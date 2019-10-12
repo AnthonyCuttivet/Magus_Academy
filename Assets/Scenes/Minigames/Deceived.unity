@@ -248,7 +248,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e4012c495602ea54ca2ea9b4bf28ec5f, type: 2}
   - {fileID: 2100000, guid: f552f2efa1675b44d966e98c008fbb9e, type: 2}
   player: {fileID: 2100000, guid: c510f9fa1eb7c584c9e2d23da4e163a7, type: 2}
-  m_MaxDistance: 0.5
+  m_MaxDistance: 1.1
 --- !u!4 &577806174
 Transform:
   m_ObjectHideFlags: 0

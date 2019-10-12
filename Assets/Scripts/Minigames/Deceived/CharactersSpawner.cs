@@ -36,16 +36,22 @@ public class CharactersSpawner : MonoBehaviour
     public void PoolEntities(GameObject entity, int amount){
         pooledEntities = new List<GameObject>();
         for (int i = 1; i <= amount; i++) {
-            GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(-30f,30f), 1, Random.Range(-15f,15f)), Quaternion.identity);
-            obj.name = i.ToString();
-            m_HitDetect = Physics.CheckSphere(obj.transform.position, m_MaxDistance);
-            if(m_HitDetect){
-                Debug.Log("Hit : " + obj.name);
+            bool spawned = false;
+            while(spawned != true){
+                GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(-30f,30f), 1, Random.Range(-15f,15f)), Quaternion.identity);
+                Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, m_MaxDistance);
+                if(hitColliders.Length <= 1){
+                    spawned = true;
+                    obj.name = i.ToString();        
+                    obj.transform.parent = GameObject.Find("Characters").transform;
+                    SetSkin(obj, i);
+                    //obj.SetActive(false); 
+                    pooledEntities.Add(obj);
+                }else{
+                    Destroy(obj);
+                }
+            
             }
-            obj.transform.parent = GameObject.Find("Characters").transform;
-            SetSkin(obj, i);
-            //obj.SetActive(false); 
-            pooledEntities.Add(obj);
         }
         SetPlayers();
     }
@@ -75,6 +81,14 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     public void SetPlayers(){
+        List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
+        foreach (float i in ids){
+            //pooledEntities[i].GetComponent<Renderer>().material = player;
+            pooledEntities[(int)i-1].name = "Player";
+        }
+    }
+
+    public void SetPlayersRandomly(){
         List<int> ids = GenerateUniqueRandoms(4,1,100);
         foreach (int i in ids){
             pooledEntities[i].GetComponent<Renderer>().material = player;
