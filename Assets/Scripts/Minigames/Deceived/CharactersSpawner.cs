@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharactersSpawner : MonoBehaviour
 {
 
+    [Space]
+    [Header("Players")]
     public GameObject entity;
+
     [Range(4,100)]
     public int amountOfEntities = 4;
-
-
-    public Material[] materials;
-
     public Material player;
+    public Material[] materials;
 
     private List<GameObject> pooledEntities;
     private List<GameObject> players;
@@ -21,7 +22,15 @@ public class CharactersSpawner : MonoBehaviour
 
     private bool m_HitDetect;
     private RaycastHit m_Hit;
+    
+    [Space]
+    [Header("Settings")]
     public float m_MaxDistance = 1f;
+    public InputActionAsset actions;
+
+    void Awake(){
+        
+    }
 
     // Start is called before the first frame update
     void Start(){
@@ -81,20 +90,24 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     public void SetPlayers(){
+        actions.Enable();
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
         foreach (float i in ids){
-            //pooledEntities[i].GetComponent<Renderer>().material = player;
+            pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
+            PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
+            p.actions = actions;
+            PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
             pooledEntities[(int)i-1].name = "Player";
         }
     }
 
-    public void SetPlayersRandomly(){
+    /*public void SetPlayersRandomly(){
         List<int> ids = GenerateUniqueRandoms(4,1,100);
         foreach (int i in ids){
             pooledEntities[i].GetComponent<Renderer>().material = player;
             pooledEntities[i].name = "Player";
         }
-    }
+    } */
 
     public List<int> GenerateUniqueRandoms(int amount, int min, int max){
         List<int> numbers = new List<int>();
