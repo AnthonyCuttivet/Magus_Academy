@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerControls : MonoBehaviour
+public class PlayerControls : Controls
 {
     private Vector2 i_movement;
 
@@ -14,8 +14,7 @@ public class PlayerControls : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Vector3 movement = new Vector3(i_movement.x, 0, i_movement.y) * 5f * Time.deltaTime;
-        transform.Translate(movement);
+        velocity = new Vector3(i_movement.x, i_movement.y);
     }
 
     void OnWalk(InputValue value){

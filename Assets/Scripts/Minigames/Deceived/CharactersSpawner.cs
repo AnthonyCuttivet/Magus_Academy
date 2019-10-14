@@ -96,10 +96,20 @@ public class CharactersSpawner : MonoBehaviour
     public void SetPlayers(){
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
         foreach (float i in ids){
+            Debug.Log(i);
             pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
             pooledEntities[(int)i-1].name = "Player";
         }
         InstantiatePlayersControls(ids);
+        ActivatePNJ(ids);
+    }
+    void ActivatePNJ(List<float> ids){
+        for(float i = 0;i < 100;i++){
+            if(!ids.Contains(i+1)){
+                PNJControls pnj_Controls = pooledEntities[(int)i].AddComponent<PNJControls>();
+                pnj_Controls.speed = 5;
+            }
+        }
     }
 
     public void InstantiatePlayersControls(List<float> ids){
@@ -107,6 +117,7 @@ public class CharactersSpawner : MonoBehaviour
             PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
             p.actions = Instantiate(actions);
             PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
+            pc.speed = 5;
             p.actions.Enable();
         }
     }
