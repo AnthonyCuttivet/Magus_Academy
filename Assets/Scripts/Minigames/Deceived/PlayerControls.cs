@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerControls : MonoBehaviour
 {
     private Vector2 i_movement;
 
-    void Start(){
-        Debug.Log(Gamepad.current);
+    void Awake(){
+        
     }
 
     // Update is called once per frame

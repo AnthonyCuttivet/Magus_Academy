@@ -32,6 +32,10 @@ public class CharactersSpawner : MonoBehaviour
         
     }
 
+    void OnEnable(){
+        actions.Enable();
+    }
+
     // Start is called before the first frame update
     void Start(){
         PoolEntities(entity, amountOfEntities);
@@ -90,16 +94,44 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     public void SetPlayers(){
-        actions.Enable();
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
         foreach (float i in ids){
             pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
-            PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
-            p.actions = actions;
-            PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
             pooledEntities[(int)i-1].name = "Player";
         }
+        InstantiatePlayersControls(ids);
     }
+
+    public void InstantiatePlayersControls(List<float> ids){
+        foreach (var i in ids){
+            PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
+            p.actions = Instantiate(actions);
+            PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
+            p.actions.Enable();
+        }
+    }
+
+/*     public void Mescouilles(List<float> ids){
+        PlayerInput p1 = pooledEntities[(int)ids[0]-1].AddComponent<PlayerInput>();
+        p1.actions = Instantiate(actions);
+        PlayerControls pc1 = pooledEntities[(int)ids[0]-1].AddComponent<PlayerControls>();
+        p1.actions.Enable();
+
+        PlayerInput p2 = pooledEntities[(int)ids[1]-1].AddComponent<PlayerInput>();
+        p2.actions = Instantiate(actions);
+        PlayerControls pc2 = pooledEntities[(int)ids[1]-1].AddComponent<PlayerControls>();
+        p2.actions.Enable();
+
+        PlayerInput p3 = pooledEntities[(int)ids[2]-1].AddComponent<PlayerInput>();
+        p3.actions = Instantiate(actions);
+        PlayerControls pc3 = pooledEntities[(int)ids[2]-1].AddComponent<PlayerControls>();
+        p3.actions.Enable();
+
+        PlayerInput p4 = pooledEntities[(int)ids[3]-1].AddComponent<PlayerInput>();
+        p4.actions = Instantiate(actions);
+        PlayerControls pc4 = pooledEntities[(int)ids[3]-1].AddComponent<PlayerControls>();
+        p4.actions.Enable();
+    } */
 
     /*public void SetPlayersRandomly(){
         List<int> ids = GenerateUniqueRandoms(4,1,100);
