@@ -9,7 +9,7 @@ public class Controls : MonoBehaviour
     public float speed;
     
 
-    public virtual void Start(){
+    public virtual void Awake(){
         rb = GetComponent<Rigidbody>();
     }
 

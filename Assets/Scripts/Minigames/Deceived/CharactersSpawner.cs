@@ -27,7 +27,7 @@ public class CharactersSpawner : MonoBehaviour
     [Header("Settings")]
     public float m_MaxDistance = 1f;
     public InputActionAsset actions;
-
+    LayerMask layerMask = (1 <<8);      //only the layer 8
     void Awake(){
         
     }
@@ -52,7 +52,7 @@ public class CharactersSpawner : MonoBehaviour
             bool spawned = false;
             while(spawned != true){
                 GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(-30f,30f), 1, Random.Range(-15f,15f)), Quaternion.identity);
-                Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, m_MaxDistance);
+                Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, m_MaxDistance,layerMask);
                 if(hitColliders.Length <= 1){
                     spawned = true;
                     obj.name = i.ToString();        

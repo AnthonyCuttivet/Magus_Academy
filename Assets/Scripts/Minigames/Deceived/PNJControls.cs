@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PNJControls : Controls
 {
-    public override void Start(){
-        base.Start();
+    void Start(){
         InvokeRepeating("CalculateVelocity", 0, Random.Range(2,5));
     }
 
     void CalculateVelocity(){
-        velocity = new Vector2(Random.Range(-1f,1f),Random.Range(-1f,1f));
+        Vector2 newVelocity = new Vector2(Random.Range(-1f,1f),Random.Range(-1f,1f));
+        velocity = Vector2.Lerp(velocity,newVelocity,Random.Range(0f,1f));
+        
     }
 }

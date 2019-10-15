@@ -25,6 +25,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Stick"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4856e352-6856-43c5-bdcf-9d8abf723af2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -36,6 +44,17 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""565c60a2-a8d4-42b6-939e-18e80594c8ea"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -59,6 +78,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         // Deceived
         m_Deceived = asset.FindActionMap("Deceived", throwIfNotFound: true);
         m_Deceived_Walk = m_Deceived.FindAction("Walk", throwIfNotFound: true);
+        m_Deceived_Attack = m_Deceived.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -109,11 +129,13 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Deceived;
     private IDeceivedActions m_DeceivedActionsCallbackInterface;
     private readonly InputAction m_Deceived_Walk;
+    private readonly InputAction m_Deceived_Attack;
     public struct DeceivedActions
     {
         private PlayerActions m_Wrapper;
         public DeceivedActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Deceived_Walk;
+        public InputAction @Attack => m_Wrapper.m_Deceived_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Deceived; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -126,6 +148,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Walk.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
                 Walk.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
                 Walk.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
+                Attack.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                Attack.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                Attack.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
@@ -133,6 +158,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Walk.started += instance.OnWalk;
                 Walk.performed += instance.OnWalk;
                 Walk.canceled += instance.OnWalk;
+                Attack.started += instance.OnAttack;
+                Attack.performed += instance.OnAttack;
+                Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -149,5 +177,6 @@ public class PlayerActions : IInputActionCollection, IDisposable
     public interface IDeceivedActions
     {
         void OnWalk(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

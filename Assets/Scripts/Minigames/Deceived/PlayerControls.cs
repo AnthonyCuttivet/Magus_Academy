@@ -7,9 +7,12 @@ using UnityEngine.InputSystem;
 public class PlayerControls : Controls
 {
     private Vector2 i_movement;
-
-    void Awake(){
-        
+    Collider attackCollider;
+    public Vector3 attackArea;
+    List<Collider> targets = new List<Collider>();
+    public override void  Awake(){
+        base.Awake();
+        attackCollider = GetComponentInChildren<Collider>();
     }
 
     // Update is called once per frame
@@ -19,5 +22,23 @@ public class PlayerControls : Controls
 
     void OnWalk(InputValue value){
         i_movement = -value.Get<Vector2>();
+    }
+
+    void OnAttack(InputValue value){
+        Collider[] gameObjectToDestroy = targets.ToArray();
+        foreach(Collider collider in gameObjectToDestroy){
+            targets.Remove(collider);
+            Destroy(collider.gameObject);
+        }
+        
+
+        
+    }
+
+    void OnTriggerEnter(Collider collider){
+        targets.Add(collider);
+    }
+    void OnTriggerExit(Collider collider){
+        targets.Remove(collider);
     }
 }
