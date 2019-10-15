@@ -16,13 +16,17 @@ public class CharactersSpawner : MonoBehaviour
     public Material player;
     public Material[] materials;
 
-    private List<GameObject> pooledEntities;
+    public List<GameObject> pooledEntities;
     private List<GameObject> players;
 
     private Dictionary<string,int> colorRepartition = new Dictionary<string,int>();
 
+    public bool gameStart = false; //Check if the minigame has started
+
     private bool m_HitDetect;
     private RaycastHit m_Hit;
+
+    private List<int> pnjIds = new List<int>();
     
     [Space]
     [Header("Settings")]
@@ -68,17 +72,8 @@ public class CharactersSpawner : MonoBehaviour
             }
         }
         SetPlayers();
+        pooledEntities.RemoveAll(x=>x.name=="Player"); // remove the players from the list
     }
-
-/*     public void setSkin(GameObject obj){
-        Material randomMat = materials[Random.Range(0, materials.Length)];
-        if(colorRepartition.ContainsKey(randomMat.name)){
-            colorRepartition[randomMat.name] += 1;
-        }else{
-            colorRepartition[randomMat.name] = 0;
-        }
-        obj.GetComponent<Renderer>().material = randomMat;
-    } */
 
     public void SetSkin(GameObject obj, int index){
         if(index <= (0.25f * amountOfEntities)){
@@ -97,7 +92,6 @@ public class CharactersSpawner : MonoBehaviour
     public void SetPlayers(){
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
         foreach (float i in ids){
-            Debug.Log(i);
             pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
             pooledEntities[(int)i-1].name = "Player";
         }
@@ -115,6 +109,7 @@ public class CharactersSpawner : MonoBehaviour
         }
     }
 
+
     public void InstantiatePlayersControls(List<float> ids){
         foreach (var i in ids){
             PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
@@ -124,36 +119,6 @@ public class CharactersSpawner : MonoBehaviour
             p.actions.Enable();
         }
     }
-
-/*     public void Mescouilles(List<float> ids){
-        PlayerInput p1 = pooledEntities[(int)ids[0]-1].AddComponent<PlayerInput>();
-        p1.actions = Instantiate(actions);
-        PlayerControls pc1 = pooledEntities[(int)ids[0]-1].AddComponent<PlayerControls>();
-        p1.actions.Enable();
-
-        PlayerInput p2 = pooledEntities[(int)ids[1]-1].AddComponent<PlayerInput>();
-        p2.actions = Instantiate(actions);
-        PlayerControls pc2 = pooledEntities[(int)ids[1]-1].AddComponent<PlayerControls>();
-        p2.actions.Enable();
-
-        PlayerInput p3 = pooledEntities[(int)ids[2]-1].AddComponent<PlayerInput>();
-        p3.actions = Instantiate(actions);
-        PlayerControls pc3 = pooledEntities[(int)ids[2]-1].AddComponent<PlayerControls>();
-        p3.actions.Enable();
-
-        PlayerInput p4 = pooledEntities[(int)ids[3]-1].AddComponent<PlayerInput>();
-        p4.actions = Instantiate(actions);
-        PlayerControls pc4 = pooledEntities[(int)ids[3]-1].AddComponent<PlayerControls>();
-        p4.actions.Enable();
-    } */
-
-    /*public void SetPlayersRandomly(){
-        List<int> ids = GenerateUniqueRandoms(4,1,100);
-        foreach (int i in ids){
-            pooledEntities[i].GetComponent<Renderer>().material = player;
-            pooledEntities[i].name = "Player";
-        }
-    } */
 
     public List<int> GenerateUniqueRandoms(int amount, int min, int max){
         List<int> numbers = new List<int>();
@@ -167,31 +132,5 @@ public class CharactersSpawner : MonoBehaviour
         }
 
         return numbers;
-    }
-
-    public void SpawnEntities(GameObject entity, int amount){
-
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        //Check if there has been a hit yet
-        if (m_HitDetect)
-        {
-            //Draw a Ray forward from GameObject toward the hit
-            Gizmos.DrawRay(transform.position, transform.forward * m_Hit.distance);
-            //Draw a cube that extends to where the hit exists
-            Gizmos.DrawWireCube(transform.position + transform.forward * m_Hit.distance, transform.localScale);
-        }
-        //If there hasn't been a hit yet, draw the ray at the maximum distance
-        else
-        {
-            //Draw a Ray forward from GameObject toward the maximum distance
-            Gizmos.DrawRay(transform.position, transform.forward * m_MaxDistance);
-            //Draw a cube at the maximum distance
-            Gizmos.DrawWireCube(transform.position + transform.forward * m_MaxDistance, transform.localScale);
-        }
     }
 }

@@ -20,7 +20,6 @@ public class PNJControls : Controls
         //velocity = Vector2.Lerp(velocity,newVelocity,Random.Range(0f,1f));
         Vector3 newPos = RandomDestination();
         agent.SetDestination(newPos);
-        
     }
     Vector3 RandomDestination(){
         Vector3 randomDirection = Random.insideUnitSphere * distance;

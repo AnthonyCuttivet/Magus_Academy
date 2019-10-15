@@ -33,6 +33,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2d6dbdf-7e0a-41c9-8c7a-43296e42a235"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -57,6 +65,17 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03bef1d8-1998-42b0-89dc-4e4c19f99867"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": ""Press(pressPoint=0.1,behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +98,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         m_Deceived = asset.FindActionMap("Deceived", throwIfNotFound: true);
         m_Deceived_Walk = m_Deceived.FindAction("Walk", throwIfNotFound: true);
         m_Deceived_Attack = m_Deceived.FindAction("Attack", throwIfNotFound: true);
+        m_Deceived_Run = m_Deceived.FindAction("Run", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -130,12 +150,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private IDeceivedActions m_DeceivedActionsCallbackInterface;
     private readonly InputAction m_Deceived_Walk;
     private readonly InputAction m_Deceived_Attack;
+    private readonly InputAction m_Deceived_Run;
     public struct DeceivedActions
     {
         private PlayerActions m_Wrapper;
         public DeceivedActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Deceived_Walk;
         public InputAction @Attack => m_Wrapper.m_Deceived_Attack;
+        public InputAction @Run => m_Wrapper.m_Deceived_Run;
         public InputActionMap Get() { return m_Wrapper.m_Deceived; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -151,6 +173,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Attack.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
                 Attack.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
                 Attack.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                Run.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                Run.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                Run.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
@@ -161,6 +186,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Attack.started += instance.OnAttack;
                 Attack.performed += instance.OnAttack;
                 Attack.canceled += instance.OnAttack;
+                Run.started += instance.OnRun;
+                Run.performed += instance.OnRun;
+                Run.canceled += instance.OnRun;
             }
         }
     }
@@ -178,5 +206,6 @@ public class PlayerActions : IInputActionCollection, IDisposable
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
 }

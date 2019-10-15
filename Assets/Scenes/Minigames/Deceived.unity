@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 137566286}
   - component: {fileID: 137566285}
   - component: {fileID: 137566287}
+  - component: {fileID: 137566288}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -159,8 +160,8 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 1
+    m_NormalBias: 1
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -225,6 +226,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arena: {fileID: 656387972}
+--- !u!114 &137566288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137566284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UsePipelineSettings: 1
 --- !u!1 &577806172
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +250,7 @@ GameObject:
   - component: {fileID: 577806174}
   - component: {fileID: 577806173}
   - component: {fileID: 577806175}
+  - component: {fileID: 577806177}
   - component: {fileID: 577806176}
   m_Layer: 0
   m_Name: GameManager
@@ -258,12 +273,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2017429164077980345, guid: 887f77e149fdc654d82d2db23340350d, type: 3}
   amountOfEntities: 100
-  player: {fileID: 2100000, guid: c510f9fa1eb7c584c9e2d23da4e163a7, type: 2}
+  player: {fileID: 2100000, guid: ac42dc0b9473cfa4caccbc485e88837c, type: 2}
   materials:
   - {fileID: 2100000, guid: b3e6c1d073a0d104e92557b46ef7f3c8, type: 2}
   - {fileID: 2100000, guid: e4e422fd038f2f548b7c802add0a963d, type: 2}
   - {fileID: 2100000, guid: e4012c495602ea54ca2ea9b4bf28ec5f, type: 2}
   - {fileID: 2100000, guid: f552f2efa1675b44d966e98c008fbb9e, type: 2}
+  pooledEntities: []
+  gameStart: 0
   m_MaxDistance: 1.2
   actions: {fileID: -944628639613478452, guid: 34cd19cfc26fed547b57825563985b1c, type: 3}
 --- !u!4 &577806174
@@ -340,7 +357,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a73450b7bc3c6345bc41f449c3e1e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpeed: 5
+  characterWalkingSpeed: 5
+  characterRunningSpeed: 10
+--- !u!114 &577806177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577806172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2726b82131d310b40bfbddc5609cdabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 0.1
 --- !u!1 &656387969
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c510f9fa1eb7c584c9e2d23da4e163a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -18,6 +18,6 @@ public class Controls : MonoBehaviour
     }
 
     void Move(Vector2 _velocity){
-        rb.velocity = new Vector3(_velocity.x,0,_velocity.y) * speed;
+        rb.velocity = new Vector3(_velocity.x,0,_velocity.y) * speed * Time.deltaTime;
     }
 }
