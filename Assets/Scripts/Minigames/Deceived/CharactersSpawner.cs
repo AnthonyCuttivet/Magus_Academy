@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class CharactersSpawner : MonoBehaviour
@@ -106,7 +107,9 @@ public class CharactersSpawner : MonoBehaviour
     void ActivatePNJ(List<float> ids){
         for(float i = 0;i < 100;i++){
             if(!ids.Contains(i+1)){
+                pooledEntities[(int)i].AddComponent<NavMeshAgent>();
                 PNJControls pnj_Controls = pooledEntities[(int)i].AddComponent<PNJControls>();
+                pnj_Controls.distance = 15;
                 pnj_Controls.speed = 5;
             }
         }

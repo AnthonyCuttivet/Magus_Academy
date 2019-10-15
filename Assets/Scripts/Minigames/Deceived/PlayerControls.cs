@@ -36,9 +36,13 @@ public class PlayerControls : Controls
     }
 
     void OnTriggerEnter(Collider collider){
-        targets.Add(collider);
+        if(collider.tag == "Character"){
+            targets.Add(collider);
+        }
     }
     void OnTriggerExit(Collider collider){
-        targets.Remove(collider);
+        if(collider.tag == "Character"){
+            targets.Remove(collider);
+        }
     }
 }
