@@ -13,10 +13,13 @@ public class PlayerControls : Controls
     public bool isWalking = false;
     public bool isRunning = false;
     public PlayerActions pa;
+    float walkingSpeed,runningSpeed;
 
     public override void Awake(){
         base.Awake();
         attackCollider = GetComponentInChildren<Collider>();
+        walkingSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
+        runningSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
         pa = new PlayerActions();
 
 /*         pa.Deceived.Walk.performed += ctx => isWalking = true;
@@ -33,35 +36,23 @@ public class PlayerControls : Controls
     }
 
     public void GetSpeed(){
-        if(isWalking){
-            speed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
-        }else if(isRunning){
+        if(isRunning){
             speed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
-        }else{
-            speed = 0;
+        }else {
+            speed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
         }
     }
 
     void OnWalk(InputValue value){
-        Vector2 inputValue = value.Get<Vector2>();
-        if((inputValue.x < 0.1 && inputValue.x > -0.1) && (inputValue.y < 0.1 && inputValue.y > -0.1)){
-            isWalking = false;
-        }else{
-            i_movement = value.Get<Vector2>();
-            isWalking = true;
-        }
-        
+        i_movement = value.Get<Vector2>();        
     }
 
     void OnRun(InputValue value){
-        float triggerValue = value.Get<float>();
-        if(triggerValue >= 0.1f){
+        if(isRunning){
+            isRunning = false;
+        }
+        else{
             isRunning = true;
-            isWalking = false;
-        }else if(speed > 0){
-            isRunning = false;
-        }else{
-            isRunning = false;
         }
     }
 
@@ -71,7 +62,6 @@ public class PlayerControls : Controls
             targets.Remove(collider);
             Destroy(collider.gameObject);
         }
-        
     }
 
     void OnTriggerEnter(Collider collider){

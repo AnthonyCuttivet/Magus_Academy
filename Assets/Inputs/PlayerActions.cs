@@ -49,7 +49,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""id"": ""9eba1b44-dfd0-4c18-9681-8704c465e7ba"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(max=0.1)"",
                     ""groups"": ""Xbox"",
                     ""action"": ""Walk"",
                     ""isComposite"": false,
