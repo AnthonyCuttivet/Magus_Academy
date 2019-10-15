@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class CharactersSpawner : MonoBehaviour
 {
 
+    public static CharactersSpawner instance;
+
     [Space]
     [Header("Players")]
     public GameObject entity;
@@ -25,16 +27,19 @@ public class CharactersSpawner : MonoBehaviour
 
     private bool m_HitDetect;
     private RaycastHit m_Hit;
-
-    private List<int> pnjIds = new List<int>();
+    public List<GameObject> PNJList = new List<GameObject>();
     
     [Space]
     [Header("Settings")]
     public float m_MaxDistance = 1f;
     public InputActionAsset actions;
     LayerMask layerMask = (1 <<8);      //only the layer 8
+
     void Awake(){
-        
+        if(instance == null){
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void OnEnable(){
@@ -68,11 +73,17 @@ public class CharactersSpawner : MonoBehaviour
                 }else{
                     Destroy(obj);
                 }
-            
             }
         }
         SetPlayers();
+        GeneratePNJList();
+    }
+
+    public void GeneratePNJList(){
         pooledEntities.RemoveAll(x=>x.name=="Player"); // remove the players from the list
+        foreach (GameObject g in pooledEntities){
+            PNJList.Add(g);
+        }
     }
 
     public void SetSkin(GameObject obj, int index){

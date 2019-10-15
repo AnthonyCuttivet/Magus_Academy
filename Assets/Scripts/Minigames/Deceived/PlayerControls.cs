@@ -61,6 +61,7 @@ public class PlayerControls : Controls
         foreach(Collider collider in gameObjectToDestroy){
             targets.Remove(collider);
             Destroy(collider.gameObject);
+            CharactersSpawner.instance.PNJList.RemoveAll(x=>x.name==collider.gameObject.name);
         }
     }
 
