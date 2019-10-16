@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerControls : Controls
 {
     private Vector2 i_movement;
+    private Vector3 i_rotation;
     Collider attackCollider;
     public Vector3 attackArea;
     List<Collider> targets = new List<Collider>();
@@ -43,8 +44,23 @@ public class PlayerControls : Controls
         }
     }
 
+     public float GetAngle(Vector2 p_vector2){
+         if (p_vector2.x < 0)
+         {
+             return 360 - (Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg * -1);
+         }
+         else
+         {
+             return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
+         }
+     }
+
     void OnWalk(InputValue value){
-        i_movement = value.Get<Vector2>();        
+        if(value.Get<Vector2>() != Vector2.zero){
+            gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
+        }
+        i_movement = value.Get<Vector2>();
+        Debug.DrawRay(gameObject.transform.position,gameObject.transform.forward, Color.red, .5f);    
     }
 
     void OnRun(InputValue value){
