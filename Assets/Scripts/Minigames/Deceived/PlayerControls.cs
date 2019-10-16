@@ -22,7 +22,7 @@ public class PlayerControls : Controls
         runningSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
         pa = new PlayerActions();
 
-/*         pa.Deceived.Walk.performed += ctx => isWalking = true;
+/*      pa.Deceived.Walk.performed += ctx => isWalking = true;
         pa.Deceived.Run.performed += ctx => isRunning = true;
 
         pa.Deceived.Walk.canceled += ctx => isWalking = false;
