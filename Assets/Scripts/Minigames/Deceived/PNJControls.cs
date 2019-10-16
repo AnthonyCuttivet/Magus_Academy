@@ -13,6 +13,9 @@ public class PNJControls : Controls
     }
     void Start(){
         InvokeRepeating("CalculateVelocity", 0, Random.Range(2f,5f));
+        agent.speed = PlayersSettings.instance.pnjWalkingSpeed;
+        agent.autoBraking = false;
+        distance = PlayersSettings.instance.pnjDistanceToWalk;
     }
 
     void CalculateVelocity(){

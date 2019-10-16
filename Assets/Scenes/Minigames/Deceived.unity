@@ -767,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterWalkingSpeed: 5
   characterRunningSpeed: 10
+  pnjWalkingSpeed: 5
 --- !u!114 &577806177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,6 +978,7 @@ GameObject:
   - component: {fileID: 812328282}
   - component: {fileID: 812328281}
   - component: {fileID: 812328280}
+  - component: {fileID: 812328285}
   - component: {fileID: 812328284}
   - component: {fileID: 812328283}
   m_Layer: 9
@@ -1128,6 +1130,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &812328285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812328279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d596c14f918d24cac1e64507c1fd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arena: {fileID: 1013863617}
 --- !u!1 &822909598
 GameObject:
   m_ObjectHideFlags: 0

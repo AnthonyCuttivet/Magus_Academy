@@ -114,8 +114,6 @@ public class CharactersSpawner : MonoBehaviour
             if(!ids.Contains(i+1)){
                 pooledEntities[(int)i].AddComponent<NavMeshAgent>();
                 PNJControls pnj_Controls = pooledEntities[(int)i].AddComponent<PNJControls>();
-                pnj_Controls.distance = 15;
-                pnj_Controls.speed = 5;
             }
         }
     }
@@ -126,7 +124,6 @@ public class CharactersSpawner : MonoBehaviour
             PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
             p.actions = Instantiate(actions);
             PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
-            pc.speed = 5;
             p.actions.Enable();
         }
     }
