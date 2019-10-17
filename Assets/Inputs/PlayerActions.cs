@@ -88,7 +88,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6ce79dec-2a23-4ce7-a1a4-f01b972efac8"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",

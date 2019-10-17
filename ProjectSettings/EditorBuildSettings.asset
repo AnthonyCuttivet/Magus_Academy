@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Deceived.unity
+    guid: 0b093224573151f4c9fc396e4ed29f02
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen/VictoryScreen.unity
+    guid: 6e441cc27ee73b14488dbf19fbef4b79
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ba131a0fd8b62fa4b9cb6a38cc581745,
       type: 2}
