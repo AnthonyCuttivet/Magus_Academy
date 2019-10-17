@@ -19,7 +19,8 @@ public class CharactersSpawner : MonoBehaviour
     public Material[] materials;
 
     public List<GameObject> pooledEntities;
-    private List<GameObject> players;
+    public List<GameObject> players;
+    public List<GameObject> PNJList = new List<GameObject>();
 
     private Dictionary<string,int> colorRepartition = new Dictionary<string,int>();
 
@@ -27,7 +28,7 @@ public class CharactersSpawner : MonoBehaviour
 
     private bool m_HitDetect;
     private RaycastHit m_Hit;
-    public List<GameObject> PNJList = new List<GameObject>();
+    public GameObject shot;
     
     [Space]
     [Header("Settings")]
@@ -38,7 +39,9 @@ public class CharactersSpawner : MonoBehaviour
     void Awake(){
         if(instance == null){
             instance = this;
-            DontDestroyOnLoad(gameObject);
+        }
+        else{
+            Destroy(this);  
         }
     }
 
@@ -77,10 +80,11 @@ public class CharactersSpawner : MonoBehaviour
         }
         SetPlayers();
         GeneratePNJList();
+        ActivatePNJ(PNJList);
     }
 
     public void GeneratePNJList(){
-        pooledEntities.RemoveAll(x=>x.name=="Player"); // remove the players from the list
+        pooledEntities.RemoveAll(x=>x.name.Contains("Player")); // remove the players from the list
         foreach (GameObject g in pooledEntities){
             PNJList.Add(g);
         }
@@ -102,19 +106,20 @@ public class CharactersSpawner : MonoBehaviour
 
     public void SetPlayers(){
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
+        int j = 1;
         foreach (float i in ids){
             pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
-            pooledEntities[(int)i-1].name = "Player";
+            pooledEntities[(int)i-1].name = "Player" + j;
+            j++;
+            players.Add(pooledEntities[(int)i-1]);
         }
         InstantiatePlayersControls(ids);
-        ActivatePNJ(ids);
+        
     }
-    void ActivatePNJ(List<float> ids){
-        for(float i = 0;i < 100;i++){
-            if(!ids.Contains(i+1)){
-                pooledEntities[(int)i].AddComponent<NavMeshAgent>();
-                PNJControls pnj_Controls = pooledEntities[(int)i].AddComponent<PNJControls>();
-            }
+    void ActivatePNJ(List<GameObject> pnjList){
+        foreach(GameObject pnj in pnjList){
+            pnj.AddComponent<NavMeshAgent>();
+            PNJControls pnj_Controls = pnj.AddComponent<PNJControls>();
         }
     }
 

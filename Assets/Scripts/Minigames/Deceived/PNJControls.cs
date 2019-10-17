@@ -31,4 +31,10 @@ public class PNJControls : Controls
         NavMesh.SamplePosition(randomDirection,out navMeshHit,distance,1);
         return navMeshHit.position;
     }
+
+    public override void Kill(){
+        CharactersSpawner.instance.pooledEntities.Remove(gameObject);
+        CharactersSpawner.instance.PNJList.Remove(gameObject);
+        Destroy(gameObject);
+    }
 }

@@ -626,8 +626,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e4012c495602ea54ca2ea9b4bf28ec5f, type: 2}
   - {fileID: 2100000, guid: f552f2efa1675b44d966e98c008fbb9e, type: 2}
   pooledEntities: []
-  gameStart: 0
+  players: []
   PNJList: []
+  gameStart: 0
+  shot: {fileID: 4528121723943493109, guid: 41b20d3027ad39e41aeffbca3147c3bb, type: 3}
   m_MaxDistance: 1.2
   actions: {fileID: -944628639613478452, guid: 34cd19cfc26fed547b57825563985b1c, type: 3}
 --- !u!4 &577806174

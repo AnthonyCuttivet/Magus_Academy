@@ -41,6 +41,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""20c919b6-3a19-474c-bad2-a94524a002ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ce79dec-2a23-4ce7-a1a4-f01b972efac8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +118,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         m_Deceived_Walk = m_Deceived.FindAction("Walk", throwIfNotFound: true);
         m_Deceived_Attack = m_Deceived.FindAction("Attack", throwIfNotFound: true);
         m_Deceived_Run = m_Deceived.FindAction("Run", throwIfNotFound: true);
+        m_Deceived_Shoot = m_Deceived.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -151,6 +171,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Deceived_Walk;
     private readonly InputAction m_Deceived_Attack;
     private readonly InputAction m_Deceived_Run;
+    private readonly InputAction m_Deceived_Shoot;
     public struct DeceivedActions
     {
         private PlayerActions m_Wrapper;
@@ -158,6 +179,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         public InputAction @Walk => m_Wrapper.m_Deceived_Walk;
         public InputAction @Attack => m_Wrapper.m_Deceived_Attack;
         public InputAction @Run => m_Wrapper.m_Deceived_Run;
+        public InputAction @Shoot => m_Wrapper.m_Deceived_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Deceived; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -176,6 +198,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Run.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
                 Run.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
                 Run.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                Shoot.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                Shoot.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                Shoot.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
@@ -189,6 +214,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Run.started += instance.OnRun;
                 Run.performed += instance.OnRun;
                 Run.canceled += instance.OnRun;
+                Shoot.started += instance.OnShoot;
+                Shoot.performed += instance.OnShoot;
+                Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -207,5 +235,6 @@ public class PlayerActions : IInputActionCollection, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

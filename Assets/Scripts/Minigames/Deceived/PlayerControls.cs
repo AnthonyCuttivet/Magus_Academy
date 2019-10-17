@@ -10,6 +10,7 @@ public class PlayerControls : Controls
     private Vector3 i_rotation;
     Collider attackCollider;
     public Vector3 attackArea;
+    Transform shotSpawnPoint;
     List<Collider> targets = new List<Collider>();
     public bool isWalking = false;
     public bool isRunning = false;
@@ -19,6 +20,7 @@ public class PlayerControls : Controls
     public override void Awake(){
         base.Awake();
         attackCollider = GetComponentInChildren<Collider>();
+        shotSpawnPoint = transform.Find("ShotSpawn").GetComponent<Transform>();
         walkingSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
         runningSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
         pa = new PlayerActions();
@@ -32,6 +34,9 @@ public class PlayerControls : Controls
 
     // Update is called once per frame
     void Update(){
+        if(Input.GetKeyDown(KeyCode.Space)){
+            OnShoot();
+        }
         GetSpeed();
         velocity = new Vector3(i_movement.x, i_movement.y);
     }
@@ -90,5 +95,15 @@ public class PlayerControls : Controls
         if(collider.tag == "Character"){
             targets.Remove(collider);
         }
+    }
+
+    void OnShoot(){
+        Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,Quaternion.identity);
+    }
+
+    public override void Kill(){
+        CharactersSpawner.instance.pooledEntities.Remove(gameObject);
+        CharactersSpawner.instance.players.Remove(gameObject);
+        Destroy(gameObject);
     }
 }
