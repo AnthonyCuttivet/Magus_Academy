@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 2017429164077980345, guid: 887f77e149fdc654d82d2db23340350d, type: 3}
-  amountOfEntities: 4
+  amountOfEntities: 100
   player: {fileID: 2100000, guid: 900cc3396d85df04794e734d03db88e1, type: 2}
   materials:
   - {fileID: 2100000, guid: b3e6c1d073a0d104e92557b46ef7f3c8, type: 2}

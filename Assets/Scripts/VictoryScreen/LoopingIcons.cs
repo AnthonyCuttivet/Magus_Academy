@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class LoopingIcons : MonoBehaviour
 {
+
+    public enum Directions{
+        Horizontal,
+        Vertical,
+        Diagonal
+    }
+
+    public Directions scrollingDirection;
     public int direction = 1;
     public float scrollSpeed;
 
     [Space]
     [SerializeField] private float horizontalValue;
     [SerializeField] private float verticalValue;
+
+    public GameObject canvas;
 
     private int first = 0;
     private int second = 1;
@@ -19,14 +29,15 @@ public class LoopingIcons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch(direction){
-            case 0 :
+
+        switch(scrollingDirection){
+            case Directions.Horizontal :
                 SetHorizontalDirection();
             break;
-            case 1 : 
+            case Directions.Vertical : 
                 SetVerticalDirection();
             break;
-            case 2 :
+            case Directions.Diagonal :
                 SetDiagonalDirection();
             break;
         }
@@ -35,27 +46,28 @@ public class LoopingIcons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(direction){
-            case 0 :
+        switch(scrollingDirection){
+            case Directions.Horizontal :
                 MoveHorizontally();
             break;
-            case 1 : 
+            case Directions.Vertical : 
                 MoveVertically();
             break;
-            case 2 :
+            case Directions.Diagonal :
                 MoveDiagonally();
             break;
         }
     }
 
     public void SetHorizontalDirection(){
-        this.transform.GetChild(first + 1).transform.position = new Vector3(-horizontalValue, 0f, 0f);
-        this.transform.GetChild(first + 2).transform.position = new Vector3((-horizontalValue * 2), 0f, 0f);
+        Debug.Log(horizontalValue + " " + verticalValue);
+        this.transform.GetChild(first + 1).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
+        this.transform.GetChild(first + 2).transform.position = new Vector3(-(2*horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
     }
 
     public void SetVerticalDirection(){
-        this.transform.GetChild(first + 1).transform.position = new Vector3(0f, verticalValue, 0f);
-        this.transform.GetChild(first + 2).transform.position = new Vector3(0f, (verticalValue * 2), 0f);
+        this.transform.GetChild(first + 1).transform.position = new Vector3(0f + canvas.transform.position.x, verticalValue, 0f);
+        this.transform.GetChild(first + 2).transform.position = new Vector3(0f + canvas.transform.position.x, (verticalValue * 2), 0f);
     }
 
     public void SetDiagonalDirection(){
@@ -76,8 +88,8 @@ public class LoopingIcons : MonoBehaviour
         this.transform.GetChild(first + 8).transform.position = new Vector3((-horizontalValue * 2), (verticalValue * 2), 0f);  
     }
     public void MoveHorizontally(){
-        if(this.transform.GetChild(first).transform.position.x >= horizontalValue){
-            this.transform.GetChild(first).transform.position = new Vector3((-horizontalValue * 2), 0f, 0f);
+        if(this.transform.GetChild(first).transform.position.x >= horizontalValue + canvas.transform.position.x){
+            this.transform.GetChild(first).transform.position = new Vector3(-(2*horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
             ShiftFirst();
         }
         this.transform.Translate(new Vector3(1,0,0) * scrollSpeed);

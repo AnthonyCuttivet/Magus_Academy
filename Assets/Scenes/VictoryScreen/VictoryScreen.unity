@@ -238,7 +238,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405841339
 MonoBehaviour:
@@ -252,10 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effc7ae0d662da14c95ec834a16b86b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollingDirection: 0
   direction: 3
   scrollSpeed: 1
-  horizontalValue: 0
-  verticalValue: 0
+  horizontalValue: 1920
+  verticalValue: 1080
+  canvas: {fileID: 768680111}
 --- !u!1 &766859351
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +403,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -489,7 +491,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Is that all ? You guys were all lame...
+  m_text: Is that all ? You guys were so lame...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9f6afb11c41e174caf83bbb7ec6b13c, type: 2}
   m_sharedMaterial: {fileID: 5172663687537724724, guid: d9f6afb11c41e174caf83bbb7ec6b13c,
@@ -559,7 +561,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -554.7427, w: 0}
   m_textInfo:
     textComponent: {fileID: 773316566}
-    characterCount: 39
+    characterCount: 38
     spriteCount: 0
     spaceCount: 8
     wordCount: 8
@@ -856,10 +858,10 @@ RectTransform:
   m_Father: {fileID: 768680115}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038729707
 MonoBehaviour:
