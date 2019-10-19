@@ -12,7 +12,6 @@ public class LoopingIcons : MonoBehaviour
     }
 
     public Directions scrollingDirection;
-    public int direction = 1;
     public float scrollSpeed;
 
     [Space]
@@ -60,14 +59,13 @@ public class LoopingIcons : MonoBehaviour
     }
 
     public void SetHorizontalDirection(){
-        Debug.Log(horizontalValue + " " + verticalValue);
         this.transform.GetChild(first + 1).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
-        this.transform.GetChild(first + 2).transform.position = new Vector3(-(2*horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
+        this.transform.GetChild(first + 2).transform.position = new Vector3(-(2 * horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
     }
 
     public void SetVerticalDirection(){
-        this.transform.GetChild(first + 1).transform.position = new Vector3(0f + canvas.transform.position.x, verticalValue, 0f);
-        this.transform.GetChild(first + 2).transform.position = new Vector3(0f + canvas.transform.position.x, (verticalValue * 2), 0f);
+        this.transform.GetChild(first + 1).transform.position = new Vector3(0f + canvas.transform.position.x, (verticalValue + canvas.transform.position.y), 0f);
+        this.transform.GetChild(first + 2).transform.position = new Vector3(0f + canvas.transform.position.x, (2 * verticalValue + canvas.transform.position.y), 0f);
     }
 
     public void SetDiagonalDirection(){
@@ -78,14 +76,14 @@ public class LoopingIcons : MonoBehaviour
         this.transform.GetChild(first + 7).gameObject.SetActive(true);
         this.transform.GetChild(first + 8).gameObject.SetActive(true);
 
-        this.transform.GetChild(first + 1).transform.position = new Vector3(-horizontalValue, 0f, 0f);
-        this.transform.GetChild(first + 2).transform.position = new Vector3((-horizontalValue * 2), 0f, 0f);
-        this.transform.GetChild(first + 3).transform.position = new Vector3(0f, verticalValue, 0f);
-        this.transform.GetChild(first + 4).transform.position = new Vector3(-horizontalValue, verticalValue, 0f);   
-        this.transform.GetChild(first + 5).transform.position = new Vector3((-horizontalValue * 2), verticalValue, 0f); 
-        this.transform.GetChild(first + 6).transform.position = new Vector3(0f, (verticalValue * 2), 0f);
-        this.transform.GetChild(first + 7).transform.position = new Vector3(-horizontalValue, (verticalValue * 2), 0f);   
-        this.transform.GetChild(first + 8).transform.position = new Vector3((-horizontalValue * 2), (verticalValue * 2), 0f);  
+        this.transform.GetChild(first + 1).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
+        this.transform.GetChild(first + 2).transform.position = new Vector3(-(2 * horizontalValue - canvas.transform.position.x), 0f + canvas.transform.position.y, 0f);
+        this.transform.GetChild(first + 3).transform.position = new Vector3(0f + canvas.transform.position.x, (verticalValue + canvas.transform.position.y), 0f);
+        this.transform.GetChild(first + 4).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), (verticalValue + canvas.transform.position.y), 0f);
+        this.transform.GetChild(first + 5).transform.position = new Vector3(-(2 * horizontalValue - canvas.transform.position.x), (verticalValue + canvas.transform.position.y), 0f);  
+        this.transform.GetChild(first + 6).transform.position = new Vector3(0f + canvas.transform.position.x, (2 * verticalValue + canvas.transform.position.y), 0f);
+        this.transform.GetChild(first + 7).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), (2 * verticalValue + canvas.transform.position.y), 0f);
+        this.transform.GetChild(first + 8).transform.position = new Vector3(-(2 * horizontalValue - canvas.transform.position.x), (2 * verticalValue + canvas.transform.position.y), 0f);
     }
     public void MoveHorizontally(){
         if(this.transform.GetChild(first).transform.position.x >= horizontalValue + canvas.transform.position.x){
@@ -96,19 +94,18 @@ public class LoopingIcons : MonoBehaviour
     }
 
     public void MoveVertically(){
-        if(this.transform.GetChild(first).transform.position.y <= -verticalValue){
-            Debug.Break();
-            this.transform.GetChild(first).transform.position = new Vector3(0f, (verticalValue * 2), 0f);
+        if(this.transform.GetChild(first).transform.position.y <= -verticalValue + canvas.transform.position.y){
+            this.transform.GetChild(first).transform.position = new Vector3(0f + canvas.transform.position.x, (2 * verticalValue + canvas.transform.position.y), 0f);
             ShiftFirst();
         }
         this.transform.Translate(new Vector3(0,-1,0) * scrollSpeed);
     }
 
     public void MoveDiagonally(){
-        if(this.transform.GetChild(first).transform.position.y <= -verticalValue){
-        this.transform.GetChild(first).transform.position = new Vector3(0f, (verticalValue * 2), 0f);
-        this.transform.GetChild(second).transform.position = new Vector3(-horizontalValue, (verticalValue * 2), 0f);   
-        this.transform.GetChild(third).transform.position = new Vector3((-horizontalValue * 2), (verticalValue * 2), 0f);  
+        if(this.transform.GetChild(first).transform.position.y <= -verticalValue + canvas.transform.position.y){
+            this.transform.GetChild(first).transform.position = new Vector3(0f + canvas.transform.position.x, (2 * verticalValue + canvas.transform.position.y), 0f);
+            this.transform.GetChild(second).transform.position = new Vector3(-(horizontalValue - canvas.transform.position.x), (2 * verticalValue + canvas.transform.position.y), 0f); 
+            this.transform.GetChild(third).transform.position = new Vector3(-(2 * horizontalValue - canvas.transform.position.x), (2 * verticalValue + canvas.transform.position.y), 0f); 
             ShiftFirst(true);
         }
         this.transform.Translate(new Vector3(1,-1,0) * scrollSpeed);
