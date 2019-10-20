@@ -108,7 +108,7 @@ public class CharactersSpawner : MonoBehaviour
         List<float> ids = new List<float>{0.25f*amountOfEntities,0.5f*amountOfEntities,0.75f*amountOfEntities,amountOfEntities};
         int j = 1;
         foreach (float i in ids){
-            pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
+            //pooledEntities[(int)i-1].GetComponent<Renderer>().material = player;
             pooledEntities[(int)i-1].name = "Player" + j;
             j++;
             players.Add(pooledEntities[(int)i-1]);
