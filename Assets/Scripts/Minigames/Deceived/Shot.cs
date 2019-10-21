@@ -11,15 +11,15 @@ public class Shot : MonoBehaviour
     float aliveTimer;
     void Awake()
     {
-        //rb = GetComponent<Rigidbody>();
-        
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * 50;
         shotOrigin = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.forward);
+        //transform.Translate(transform.forward);
         aliveTimer += Time.deltaTime;
         DestroyProjectile();
     }

@@ -98,7 +98,7 @@ public class PlayerControls : Controls
     }
 
     void OnShoot(){
-        Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,Quaternion.identity);
+        Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
     }
 
     public override void Kill(){
