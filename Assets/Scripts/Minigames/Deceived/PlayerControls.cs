@@ -101,6 +101,10 @@ public class PlayerControls : Controls
         Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
     }
 
+    void OnForceField(){
+        Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
+    }
+
     public override void Kill(){
         CharactersSpawner.instance.pooledEntities.Remove(gameObject);
         CharactersSpawner.instance.players.Remove(gameObject);

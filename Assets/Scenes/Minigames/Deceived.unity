@@ -539,6 +539,8 @@ MonoBehaviour:
   PNJList: []
   gameStart: 0
   shot: {fileID: 4528121723943493109, guid: 41b20d3027ad39e41aeffbca3147c3bb, type: 3}
+  forceField: {fileID: 7032108314169665663, guid: f293918089406a64797aef32ff4e9ef2,
+    type: 3}
   m_MaxDistance: 1.2
   actions: {fileID: -944628639613478452, guid: 34cd19cfc26fed547b57825563985b1c, type: 3}
 --- !u!4 &577806174
@@ -1539,6 +1541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Presence Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1207543391218706, guid: 6765f9da738e023499d7110035d6a3f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4538616532646682, guid: 6765f9da738e023499d7110035d6a3f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1582,41 +1588,6 @@ PrefabInstance:
     - target: {fileID: 4538616532646682, guid: 6765f9da738e023499d7110035d6a3f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: applicationId
-      value: 615954626176483348
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.state
-      value: Playing against AI
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.details
-      value: Deceived
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.largeImageKey
-      value: img-logo
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.largeImageText
-      value: Fire Magi
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.partySize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114922932606890730, guid: 6765f9da738e023499d7110035d6a3f9,
-        type: 3}
-      propertyPath: presence.partyMax
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6765f9da738e023499d7110035d6a3f9, type: 3}

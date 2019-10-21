@@ -49,6 +49,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ForceField"",
+                    ""type"": ""Button"",
+                    ""id"": ""0efc5635-4d45-4c0f-83d6-e958e6f46a9b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +103,17 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9f2e678-5f29-49e5-b4af-2577c6d547d6"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ForceField"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -119,6 +138,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         m_Deceived_Attack = m_Deceived.FindAction("Attack", throwIfNotFound: true);
         m_Deceived_Run = m_Deceived.FindAction("Run", throwIfNotFound: true);
         m_Deceived_Shoot = m_Deceived.FindAction("Shoot", throwIfNotFound: true);
+        m_Deceived_ForceField = m_Deceived.FindAction("ForceField", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -172,6 +192,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Deceived_Attack;
     private readonly InputAction m_Deceived_Run;
     private readonly InputAction m_Deceived_Shoot;
+    private readonly InputAction m_Deceived_ForceField;
     public struct DeceivedActions
     {
         private PlayerActions m_Wrapper;
@@ -180,6 +201,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Deceived_Attack;
         public InputAction @Run => m_Wrapper.m_Deceived_Run;
         public InputAction @Shoot => m_Wrapper.m_Deceived_Shoot;
+        public InputAction @ForceField => m_Wrapper.m_Deceived_ForceField;
         public InputActionMap Get() { return m_Wrapper.m_Deceived; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -201,6 +223,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Shoot.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
                 Shoot.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
                 Shoot.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                ForceField.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                ForceField.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                ForceField.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
@@ -217,6 +242,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 Shoot.started += instance.OnShoot;
                 Shoot.performed += instance.OnShoot;
                 Shoot.canceled += instance.OnShoot;
+                ForceField.started += instance.OnForceField;
+                ForceField.performed += instance.OnForceField;
+                ForceField.canceled += instance.OnForceField;
             }
         }
     }
@@ -236,5 +264,6 @@ public class PlayerActions : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnForceField(InputAction.CallbackContext context);
     }
 }

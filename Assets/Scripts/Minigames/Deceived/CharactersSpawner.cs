@@ -28,7 +28,11 @@ public class CharactersSpawner : MonoBehaviour
 
     private bool m_HitDetect;
     private RaycastHit m_Hit;
+
+    [Space]
+    [Header("Prefabs")]
     public GameObject shot;
+    public GameObject forceField;
     
     [Space]
     [Header("Settings")]
