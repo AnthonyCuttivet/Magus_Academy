@@ -98,7 +98,9 @@ public class PlayerControls : Controls
     }
 
     void OnShoot(){
+        Debug.Log(CharactersSpawner.instance.shot.transform.rotation);
         Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
+        //g.transform.Rotate(new Vector3(90f,0,0));
     }
 
     void OnForceField(){

@@ -19,10 +19,11 @@ public class PNJControls : Controls
     }
 
     void CalculateVelocity(){
-        Vector2 newVelocity = new Vector2(Random.Range(-1f,1f),Random.Range(-1f,1f));
-        //velocity = Vector2.Lerp(velocity,newVelocity,Random.Range(0f,1f));
-        Vector3 newPos = RandomDestination();
-        agent.SetDestination(newPos);
+        if(agent.isActiveAndEnabled){
+            Vector2 newVelocity = new Vector2(Random.Range(-1f,1f),Random.Range(-1f,1f));
+            Vector3 newPos = RandomDestination();
+            agent.SetDestination(newPos);
+        }
     }
     Vector3 RandomDestination(){
         Vector3 randomDirection = Random.insideUnitSphere * distance;
