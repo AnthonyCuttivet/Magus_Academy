@@ -5,15 +5,18 @@ using UnityEngine;
 public class ForceField : MonoBehaviour
 {
     public float lifeTime = 3f;
+    public Vector3 finalSize = Vector3.one * 10;
     private List<GameObject> invisibleObjects = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        while(Vector3.Distance(transform.localScale, finalSize) >= 1){
+            transform.localScale += Vector3.one;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
         
     }
 
-    // Update is called once per frame
     void Update(){
         Destroy(gameObject, lifeTime);
     }

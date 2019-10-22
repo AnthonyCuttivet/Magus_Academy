@@ -623,6 +623,7 @@ MonoBehaviour:
   characterRunningSpeed: 10
   pnjWalkingSpeed: 5
   pnjDistanceToWalk: 15
+  divineLightSpeed: 20
 --- !u!114 &577806177
 MonoBehaviour:
   m_ObjectHideFlags: 0

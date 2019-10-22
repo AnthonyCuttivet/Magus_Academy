@@ -10,6 +10,7 @@ public class PlayersSettings : MonoBehaviour
     public float characterRunningSpeed = 10f;
     public float pnjWalkingSpeed = 5;
     public float pnjDistanceToWalk = 15;
+    public float divineLightSpeed = 10;
 
     void Awake(){
         if(instance == null){
