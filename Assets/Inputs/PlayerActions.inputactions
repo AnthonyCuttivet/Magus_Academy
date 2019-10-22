@@ -44,6 +44,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ResetSpells",
+                    "type": "Button",
+                    "id": "8ad32072-3ddd-45fb-952f-4e09c86c8009",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -99,6 +107,44 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "ForceField",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "879366ec-f355-40e6-9a37-01c20a5d5f46",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "ResetSpells",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Deceived_PM",
+            "id": "fb8c52ed-ac40-4290-85df-62274db45a1f",
+            "actions": [
+                {
+                    "name": "DivineLight",
+                    "type": "Button",
+                    "id": "22577e54-0704-4f30-9151-f800fae87f80",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c4700e20-ce0f-42f9-94ee-429951b47081",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "DivineLight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

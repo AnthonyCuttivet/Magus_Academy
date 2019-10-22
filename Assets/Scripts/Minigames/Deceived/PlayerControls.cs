@@ -17,6 +17,16 @@ public class PlayerControls : Controls
     public PlayerActions pa;
     float walkingSpeed,runningSpeed;
 
+    public bool alive = true;
+
+    [Space]
+    [Header("Spells")]
+    public bool invisibilityField = true;
+    public bool magicSpear = true;
+    public bool divineLight = true;
+
+    private GameObject dlInstance;
+
     public override void Awake(){
         base.Awake();
         attackCollider = GetComponentInChildren<Collider>();
@@ -24,12 +34,6 @@ public class PlayerControls : Controls
         walkingSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
         runningSpeed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
         pa = new PlayerActions();
-
-/*      pa.Deceived.Walk.performed += ctx => isWalking = true;
-        pa.Deceived.Run.performed += ctx => isRunning = true;
-
-        pa.Deceived.Walk.canceled += ctx => isWalking = false;
-        pa.Deceived.Run.canceled += ctx => isRunning = false; */
     }
 
     // Update is called once per frame
@@ -61,11 +65,14 @@ public class PlayerControls : Controls
      }
 
     void OnWalk(InputValue value){
-        if(value.Get<Vector2>() != Vector2.zero){
-            gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
+        if(alive){
+            if(value.Get<Vector2>() != Vector2.zero){
+                gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
+            }
+            i_movement = value.Get<Vector2>();
+        }else if(!alive && divineLight && dlInstance != null){
+            dlInstance.transform.Translate(new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0));
         }
-        i_movement = value.Get<Vector2>();
-        Debug.DrawRay(gameObject.transform.position,gameObject.transform.forward, Color.red, .5f);    
     }
 
     void OnRun(InputValue value){
@@ -78,11 +85,14 @@ public class PlayerControls : Controls
     }
 
     void OnAttack(InputValue value){
-        Collider[] gameObjectToDestroy = targets.ToArray();
-        foreach(Collider collider in gameObjectToDestroy){
-            targets.Remove(collider);
-            Destroy(collider.gameObject);
-            CharactersSpawner.instance.PNJList.RemoveAll(x=>x.name==collider.gameObject.name);
+        if(alive){
+            Collider[] gameObjectToDestroy = targets.ToArray();
+            foreach(Collider collider in gameObjectToDestroy){
+                targets.Remove(collider);
+                collider.GetComponent<Controls>().Kill();
+    /*             Destroy(collider.gameObject);
+                CharactersSpawner.instance.PNJList.RemoveAll(x=>x.name==collider.gameObject.name); */
+            }
         }
     }
 
@@ -98,18 +108,54 @@ public class PlayerControls : Controls
     }
 
     void OnShoot(){
-        Debug.Log(CharactersSpawner.instance.shot.transform.rotation);
-        Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
+        if(alive && magicSpear){
+            Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
+            magicSpear = false;
+        }
         //g.transform.Rotate(new Vector3(90f,0,0));
     }
 
     void OnForceField(){
-        Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
+        if(alive && invisibilityField){
+            Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
+            invisibilityField = false;
+        }
+    }
+
+    void OnResetSpells(){
+        invisibilityField = true;
+        magicSpear = true;
+        divineLight = true;
     }
 
     public override void Kill(){
-        CharactersSpawner.instance.pooledEntities.Remove(gameObject);
-        CharactersSpawner.instance.players.Remove(gameObject);
-        Destroy(gameObject);
+        if(gameObject.name.Contains("Player")){
+            CharactersSpawner.instance.players.Remove(gameObject);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
+            gameObject.GetComponent<PlayerControls>().alive = false;
+        }else{
+            CharactersSpawner.instance.pooledEntities.Remove(gameObject);
+            CharactersSpawner.instance.players.Remove(gameObject);
+            Destroy(gameObject);
+        }
     }
+
+    #region PM
+    //Post mortem spells
+
+    void OnDivineLight(){
+        if(!alive && divineLight){
+            dlInstance = Instantiate(CharactersSpawner.instance.divineLight, CharactersSpawner.instance.divineLight.transform.localPosition, CharactersSpawner.instance.divineLight.transform.rotation);
+            //divineLight = false;
+        }
+    }
+
+
+
+
+
+
+    #endregion
 }

@@ -33,6 +33,7 @@ public class CharactersSpawner : MonoBehaviour
     [Header("Prefabs")]
     public GameObject shot;
     public GameObject forceField;
+    public GameObject divineLight;
     
     [Space]
     [Header("Settings")]
@@ -132,6 +133,7 @@ public class CharactersSpawner : MonoBehaviour
         foreach (var i in ids){
             PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
             p.actions = Instantiate(actions);
+            p.defaultActionMap = "Deceived";
             PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
             p.actions.Enable();
         }

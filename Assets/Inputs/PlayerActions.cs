@@ -57,6 +57,14 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ResetSpells"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ad32072-3ddd-45fb-952f-4e09c86c8009"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -114,6 +122,44 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""action"": ""ForceField"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""879366ec-f355-40e6-9a37-01c20a5d5f46"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ResetSpells"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Deceived_PM"",
+            ""id"": ""fb8c52ed-ac40-4290-85df-62274db45a1f"",
+            ""actions"": [
+                {
+                    ""name"": ""DivineLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""22577e54-0704-4f30-9151-f800fae87f80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c4700e20-ce0f-42f9-94ee-429951b47081"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""DivineLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,6 +185,10 @@ public class PlayerActions : IInputActionCollection, IDisposable
         m_Deceived_Run = m_Deceived.FindAction("Run", throwIfNotFound: true);
         m_Deceived_Shoot = m_Deceived.FindAction("Shoot", throwIfNotFound: true);
         m_Deceived_ForceField = m_Deceived.FindAction("ForceField", throwIfNotFound: true);
+        m_Deceived_ResetSpells = m_Deceived.FindAction("ResetSpells", throwIfNotFound: true);
+        // Deceived_PM
+        m_Deceived_PM = asset.FindActionMap("Deceived_PM", throwIfNotFound: true);
+        m_Deceived_PM_DivineLight = m_Deceived_PM.FindAction("DivineLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -193,6 +243,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Deceived_Run;
     private readonly InputAction m_Deceived_Shoot;
     private readonly InputAction m_Deceived_ForceField;
+    private readonly InputAction m_Deceived_ResetSpells;
     public struct DeceivedActions
     {
         private PlayerActions m_Wrapper;
@@ -202,6 +253,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
         public InputAction @Run => m_Wrapper.m_Deceived_Run;
         public InputAction @Shoot => m_Wrapper.m_Deceived_Shoot;
         public InputAction @ForceField => m_Wrapper.m_Deceived_ForceField;
+        public InputAction @ResetSpells => m_Wrapper.m_Deceived_ResetSpells;
         public InputActionMap Get() { return m_Wrapper.m_Deceived; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +278,9 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 ForceField.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
                 ForceField.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
                 ForceField.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                ResetSpells.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
+                ResetSpells.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
+                ResetSpells.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
@@ -245,10 +300,46 @@ public class PlayerActions : IInputActionCollection, IDisposable
                 ForceField.started += instance.OnForceField;
                 ForceField.performed += instance.OnForceField;
                 ForceField.canceled += instance.OnForceField;
+                ResetSpells.started += instance.OnResetSpells;
+                ResetSpells.performed += instance.OnResetSpells;
+                ResetSpells.canceled += instance.OnResetSpells;
             }
         }
     }
     public DeceivedActions @Deceived => new DeceivedActions(this);
+
+    // Deceived_PM
+    private readonly InputActionMap m_Deceived_PM;
+    private IDeceived_PMActions m_Deceived_PMActionsCallbackInterface;
+    private readonly InputAction m_Deceived_PM_DivineLight;
+    public struct Deceived_PMActions
+    {
+        private PlayerActions m_Wrapper;
+        public Deceived_PMActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DivineLight => m_Wrapper.m_Deceived_PM_DivineLight;
+        public InputActionMap Get() { return m_Wrapper.m_Deceived_PM; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Deceived_PMActions set) { return set.Get(); }
+        public void SetCallbacks(IDeceived_PMActions instance)
+        {
+            if (m_Wrapper.m_Deceived_PMActionsCallbackInterface != null)
+            {
+                DivineLight.started -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+                DivineLight.performed -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+                DivineLight.canceled -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+            }
+            m_Wrapper.m_Deceived_PMActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                DivineLight.started += instance.OnDivineLight;
+                DivineLight.performed += instance.OnDivineLight;
+                DivineLight.canceled += instance.OnDivineLight;
+            }
+        }
+    }
+    public Deceived_PMActions @Deceived_PM => new Deceived_PMActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -265,5 +356,10 @@ public class PlayerActions : IInputActionCollection, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnForceField(InputAction.CallbackContext context);
+        void OnResetSpells(InputAction.CallbackContext context);
+    }
+    public interface IDeceived_PMActions
+    {
+        void OnDivineLight(InputAction.CallbackContext context);
     }
 }
