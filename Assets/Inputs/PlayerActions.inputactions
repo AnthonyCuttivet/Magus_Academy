@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "f114cda7-0dd0-45be-a113-e87cdf6b02e4",
                     "expectedControlType": "Stick",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.05)",
                     "interactions": ""
                 },
                 {
@@ -60,7 +60,7 @@
                     "id": "9eba1b44-dfd0-4c18-9681-8704c465e7ba",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "StickDeadzone(max=0.1)",
+                    "processors": "",
                     "groups": "Xbox",
                     "action": "Walk",
                     "isComposite": false,
@@ -145,6 +145,52 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "DivineLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "3817bafa-97de-4cca-a8ea-c9e97036bfdc",
+            "actions": [
+                {
+                    "name": "Navigate",
+                    "type": "Button",
+                    "id": "3b69c89c-88bc-4639-9a67-e70869577b7e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ezfaz",
+                    "type": "Button",
+                    "id": "8fdee150-3110-4664-901c-d91e3f5c70a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "20de7ffe-5e68-4577-ab45-cd85fd074780",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f883d995-88b8-475f-bc12-927983062562",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ezfaz",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

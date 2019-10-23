@@ -23,7 +23,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""f114cda7-0dd0-45be-a113-e87cdf6b02e4"",
                     ""expectedControlType"": ""Stick"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.05)"",
                     ""interactions"": """"
                 },
                 {
@@ -73,7 +73,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""id"": ""9eba1b44-dfd0-4c18-9681-8704c465e7ba"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone(max=0.1)"",
+                    ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""Walk"",
                     ""isComposite"": false,
@@ -162,6 +162,52 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""3817bafa-97de-4cca-a8ea-c9e97036bfdc"",
+            ""actions"": [
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b69c89c-88bc-4639-9a67-e70869577b7e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ezfaz"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fdee150-3110-4664-901c-d91e3f5c70a2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""20de7ffe-5e68-4577-ab45-cd85fd074780"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f883d995-88b8-475f-bc12-927983062562"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ezfaz"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -189,6 +235,10 @@ public class PlayerActions : IInputActionCollection, IDisposable
         // Deceived_PM
         m_Deceived_PM = asset.FindActionMap("Deceived_PM", throwIfNotFound: true);
         m_Deceived_PM_DivineLight = m_Deceived_PM.FindAction("DivineLight", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_ezfaz = m_UI.FindAction("ezfaz", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -340,6 +390,47 @@ public class PlayerActions : IInputActionCollection, IDisposable
         }
     }
     public Deceived_PMActions @Deceived_PM => new Deceived_PMActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_ezfaz;
+    public struct UIActions
+    {
+        private PlayerActions m_Wrapper;
+        public UIActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @ezfaz => m_Wrapper.m_UI_ezfaz;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                ezfaz.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+                ezfaz.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+                ezfaz.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                Navigate.started += instance.OnNavigate;
+                Navigate.performed += instance.OnNavigate;
+                Navigate.canceled += instance.OnNavigate;
+                ezfaz.started += instance.OnEzfaz;
+                ezfaz.performed += instance.OnEzfaz;
+                ezfaz.canceled += instance.OnEzfaz;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -361,5 +452,10 @@ public class PlayerActions : IInputActionCollection, IDisposable
     public interface IDeceived_PMActions
     {
         void OnDivineLight(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnEzfaz(InputAction.CallbackContext context);
     }
 }

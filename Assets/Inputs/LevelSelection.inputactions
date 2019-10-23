@@ -1,0 +1,71 @@
+{
+    "name": "LevelSelection",
+    "maps": [
+        {
+            "name": "Pointer",
+            "id": "37cbcc35-d94d-4878-a24d-5e77417b4bdf",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "caba2201-260a-415e-987a-3a3135c7ed26",
+                    "expectedControlType": "Stick",
+                    "processors": "StickDeadzone(min=0.05)",
+                    "interactions": ""
+                },
+                {
+                    "name": "Lock",
+                    "type": "Button",
+                    "id": "a9cc46b6-a716-4fdf-8726-53d342ebee76",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CancelLock",
+                    "type": "Button",
+                    "id": "a070dfde-2669-490e-9b87-2cd929ce1d67",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "027a6df7-c36b-4056-b161-dfa9a71361f4",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b67dccf-f1b7-4b70-8172-6d533fcc00eb",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc8fec0d-b5b2-4f0a-9034-205704de811e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelLock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
