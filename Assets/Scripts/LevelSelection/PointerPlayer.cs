@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class PointerPlayer : MonoBehaviour
 {
     Rigidbody rb;
-    Vector3 velocity;
-    ParticleSystem ps;
+    public Vector3 velocity;
+    public ParticleSystem body;
+    public ParticleSystem trail;
     Gradient baseGradient;
     public bool onSlot;
     public CharacterSlot slot;
@@ -15,8 +16,8 @@ public class PointerPlayer : MonoBehaviour
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
-        ps = GetComponent<ParticleSystem>();
-        baseGradient = ps.colorOverLifetime.color.gradient;
+        body = GetComponent<ParticleSystem>();
+        baseGradient = body.colorOverLifetime.color.gradient;
     }
     void OnMove(InputValue value){
         if(!locked){
@@ -28,9 +29,7 @@ public class PointerPlayer : MonoBehaviour
 
     void OnLock(){
         if(onSlot){
-
-            locked = true;
-            slot.SelectSlot(gameObject.name);
+            slot.SelectSlot(this);
         }
     }
     void OnCancelLock(){
@@ -47,15 +46,22 @@ public class PointerPlayer : MonoBehaviour
     void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("Slot")){
             slot = collider.GetComponent<CharacterSlot>();
-            slot.ChangeColor(ps);
+            slot.ChangeColor(body,trail);
             onSlot = true;
         }
 
     }
     void OnTriggerExit(Collider collider){
-        var colorOverLife = ps.colorOverLifetime;
-        colorOverLife.color = baseGradient;
-        onSlot = false;
-        slot = null;
+        if(collider.CompareTag("Slot")){
+            var colorOverLife = body.colorOverLifetime;
+            colorOverLife.color = baseGradient;
+            var psChild = trail.colorOverLifetime;
+            psChild.color = baseGradient;
+            
+            var gradientTrail = trail.trails.colorOverLifetime;
+            gradientTrail.color = baseGradient.colorKeys[0].color;
+            onSlot = false;
+            slot = null;
+        }
     }
 }
