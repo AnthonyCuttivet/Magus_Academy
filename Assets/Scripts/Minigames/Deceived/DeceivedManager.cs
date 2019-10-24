@@ -4,23 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class DeceivedManager : MonoBehaviour
 {
+
+    public static DeceivedManager instance;
+
+    public static bool gameEnded = false;
+
+    void Awake(){
+        if(instance == null){
+            instance = this;
+        }
+        else{
+            Destroy(this);  
+        }
+        //DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(CharactersSpawner.instance.players.Count == 1){
+    void Update(){
+        if(CharactersSpawner.instance.players.Count == 1 && !gameEnded){
+            gameEnded = true;
+            MinigameStats.instance.ranking.Add(CharactersSpawner.instance.players[0].name);
             UiWinner();
             LoadVictoryScreen();
         }
     }
 
     public void UiWinner(){
-
+        
     }
 
     public void LoadVictoryScreen(){

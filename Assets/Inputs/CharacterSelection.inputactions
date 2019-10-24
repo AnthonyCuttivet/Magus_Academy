@@ -1,0 +1,90 @@
+{
+    "name": "CharacterSelection",
+    "maps": [
+        {
+            "name": "TipsScreen",
+            "id": "f7a70b1c-31e1-4d34-94fc-562fc3d5b52b",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "18d1192a-8fac-4906-9911-53ad7054ade3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Validate",
+                    "type": "Button",
+                    "id": "15216a05-2511-42e9-9999-bcd7e2cae44d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "02945c5d-6b8e-4ee9-882b-26687e02688d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "bee17ff0-51c9-44ab-9289-8975b4cb3af3",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8dc30274-c2b9-4140-bb50-e2c829cf8630",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "279124ec-849e-4ae5-bed6-672893a88446",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Validate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69d36658-b7a1-4ad7-aa92-9609229aa162",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb86c816-da61-45d1-86e7-f642dab02283",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

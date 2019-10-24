@@ -74,7 +74,7 @@ public class PlayerControls : Controls
 
     void OnWalk(InputValue value){
         i_movement = value.Get<Vector2>();
-        Debug.Log(i_movement);
+        //Debug.Log(i_movement);
         if(alive){
             if(value.Get<Vector2>() != Vector2.zero){
                 gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
@@ -144,6 +144,7 @@ public class PlayerControls : Controls
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
             alive = false;
+            MinigameStats.instance.ranking.Add(gameObject.name);
     }
 
     #region PM
