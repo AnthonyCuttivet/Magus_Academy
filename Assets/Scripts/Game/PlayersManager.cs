@@ -20,16 +20,6 @@ public class PlayersManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start(){
-
-    }
-
-    // Update is called once per frame
-    void Update(){
-        
-    }
-
     public Player CreatePlayer(){
         Player p = new Player(playersList.Count, -1);
         playersList.Add(p);

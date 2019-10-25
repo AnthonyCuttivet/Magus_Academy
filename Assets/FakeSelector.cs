@@ -6,24 +6,24 @@ public class FakeSelector : MonoBehaviour
 {
 
 
-    void OnEnable(){
-        for (int i = 0; i < 4; i++)
+    void Start(){
+        /* for (int i = 0; i < 4; i++)
         {
-            Player p = PlayersManager.instance.CreatePlayer();
-            PlayersManager.instance.AddSkin(p, i);
+            Player p = PlayersManager.CreatePlayer();
+            PlayersManager.AddSkin(p, i);
             CharacterSelectionManager.instance.selectedCount++;
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        } */
+        Player p = PlayersManager.instance.CreatePlayer();
+        PlayersManager.instance.AddSkin(p, 1);
+        CharacterSelectionManager.instance.selectedCount++;
+        Player q = PlayersManager.instance.CreatePlayer();
+        PlayersManager.instance.AddSkin(q, 0);
+        CharacterSelectionManager.instance.selectedCount++;
+        Player a = PlayersManager.instance.CreatePlayer();
+        PlayersManager.instance.AddSkin(a, 3);
+        CharacterSelectionManager.instance.selectedCount++;
+        Player b = PlayersManager.instance.CreatePlayer();
+        PlayersManager.instance.AddSkin(b, 2);
+        CharacterSelectionManager.instance.selectedCount++;
     }
 }

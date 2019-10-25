@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
@@ -41,10 +42,12 @@ public class CharacterSelectionManager : MonoBehaviour
         if(selectedCount == 4 && !selectedCountFlag){
             Debug.Log("All 4 players have selected their characters");
             selectedCountFlag = true;
+            ready = true;
         }
         if(ready && !readyFlag){
             Debug.Log("Everyone is ready, transitioning to next scene");
             readyFlag = true;
+            SceneManager.LoadScene("Deceived");
         }
     }
 }

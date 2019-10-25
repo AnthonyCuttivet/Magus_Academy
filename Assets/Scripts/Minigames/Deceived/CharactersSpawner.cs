@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class CharactersSpawner : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class CharactersSpawner : MonoBehaviour
     public float m_MaxDistance = 1f;
     public InputActionAsset actions;
     LayerMask layerMask = (1 <<8);      //only the layer 8
+    public List<Material> skinToUse = new List<Material>();
+    public List<Player> playersInfos = PlayersManager.instance.playersList;
 
     void Awake(){
         if(instance == null){
@@ -54,14 +57,11 @@ public class CharactersSpawner : MonoBehaviour
         actions.Enable();
     }
 
-    // Start is called before the first frame update
     void Start(){
+        foreach(Player player in playersInfos){
+            skinToUse.Add(DeceivedManager.instance.skins[player.Skin]);
+        }
         PoolEntities(entity, amountOfEntities);
-    }
-
-    // Update is called once per frame
-    void Update(){
-        
     }
 
     public void PoolEntities(GameObject entity, int amount){
@@ -97,15 +97,15 @@ public class CharactersSpawner : MonoBehaviour
 
     public void SetSkin(GameObject obj, int index){
         if(index <= (0.25f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = materials[0];
+            obj.GetComponent<Renderer>().material = skinToUse[0];
         }else if(index <= (0.5f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = materials[1];
+            obj.GetComponent<Renderer>().material = skinToUse[1];
         }
         else if(index <= (0.75f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = materials[2];
+            obj.GetComponent<Renderer>().material = skinToUse[2];
         }
         else{
-            obj.GetComponent<Renderer>().material = materials[3];
+            obj.GetComponent<Renderer>().material = skinToUse[3];
         }
     }
 

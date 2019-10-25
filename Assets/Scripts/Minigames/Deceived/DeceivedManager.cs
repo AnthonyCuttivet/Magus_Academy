@@ -8,6 +8,7 @@ public class DeceivedManager : MonoBehaviour
     public static DeceivedManager instance;
 
     public static bool gameEnded = false;
+    public Material[] skins;
 
     void Awake(){
         if(instance == null){

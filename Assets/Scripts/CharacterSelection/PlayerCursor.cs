@@ -51,6 +51,7 @@ public class PlayerCursor : MonoBehaviour
         if(currentSelection != -1 && !hasSelected){
             hasSelected = true;
             PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
+            CharacterSelectionManager.instance.selectedCount++;
         }
     }
 
@@ -58,6 +59,7 @@ public class PlayerCursor : MonoBehaviour
         if(hasSelected){
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
+            CharacterSelectionManager.instance.selectedCount--;
         }
     }
 
