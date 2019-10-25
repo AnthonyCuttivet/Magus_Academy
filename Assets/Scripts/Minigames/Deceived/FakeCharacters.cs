@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FakeSelector : MonoBehaviour
+public class FakeCharacters : MonoBehaviour
 {
-
-
-    void Start(){
+    void Awake(){
         /* for (int i = 0; i < 4; i++)
         {
             Player p = PlayersManager.CreatePlayer();

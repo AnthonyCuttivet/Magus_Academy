@@ -5,10 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour {
 
+    public enum Minigames{
+        Map,
+        Deceived,
+        DragonMesCouilles,
+        MNG3,
+        MNG4,
+        MNG5
+    }
+
+
     public static PlayersManager instance;
 
-    [SerializeField]
     public List<Player> playersList = new List<Player>();
+
+    public Minigames nextMinigame;
 
     void Awake(){
         if(instance == null){

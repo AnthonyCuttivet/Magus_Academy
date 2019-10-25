@@ -42,12 +42,12 @@ public class CharacterSelectionManager : MonoBehaviour
         if(selectedCount == 4 && !selectedCountFlag){
             Debug.Log("All 4 players have selected their characters");
             selectedCountFlag = true;
-            ready = true;
+            //ready = true;
         }
         if(ready && !readyFlag){
-            Debug.Log("Everyone is ready, transitioning to next scene");
+            Debug.Log("Everyone is ready, transitioning to " + PlayersManager.instance.nextMinigame.ToString() + " Tips Screen");
             readyFlag = true;
-            SceneManager.LoadScene("Deceived");
+            SceneManager.LoadScene("TipsScreen");
         }
     }
 }

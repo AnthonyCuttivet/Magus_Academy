@@ -9,9 +9,7 @@ public class TipsScreenManager : MonoBehaviour
     public InputActionAsset tipsScreenActions;
 
     void Awake(){
-        foreach (Player p in PlayersManager.instance.playersList){
-            
-        }
+        Debug.Log(PlayersManager.instance.nextMinigame.ToString());
     }
 
     // Start is called before the first frame update
@@ -27,10 +25,7 @@ public class TipsScreenManager : MonoBehaviour
     }
 
     public void InstantiatePlayers(){
-        foreach (Player p in PlayersManager.instance.playersList){
-            
-            //g.transform.parent = GameObject.Find("Players").transform;
-        }
+
     }
 
     void OnReady(GameObject g){
