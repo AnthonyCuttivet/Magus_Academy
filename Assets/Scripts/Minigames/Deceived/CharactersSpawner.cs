@@ -42,7 +42,7 @@ public class CharactersSpawner : MonoBehaviour
     public InputActionAsset actions;
     LayerMask layerMask = (1 <<8);      //only the layer 8
     public List<Material> skinToUse = new List<Material>();
-    public List<Player> playersInfos = PlayersManager.instance.playersList;
+    public List<Player> playersInfos;
 
     void Awake(){
         if(instance == null){
@@ -58,6 +58,7 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     void Start(){
+        playersInfos = PlayersManager.instance.playersList;
         foreach(Player player in playersInfos){
             skinToUse.Add(DeceivedManager.instance.skins[player.Skin]);
         }

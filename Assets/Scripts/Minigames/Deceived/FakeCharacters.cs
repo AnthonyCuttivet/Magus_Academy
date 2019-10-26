@@ -14,16 +14,12 @@ public class FakeCharacters : MonoBehaviour
         List<int> randomSkins = GenerateUniqueRandoms(4, 0, 7);
         Player p = PlayersManager.instance.CreatePlayer();
         PlayersManager.instance.AddSkin(p, randomSkins[0]);
-        CharacterSelectionManager.instance.selectedCount++;
         Player q = PlayersManager.instance.CreatePlayer();
         PlayersManager.instance.AddSkin(q, randomSkins[1]);
-        CharacterSelectionManager.instance.selectedCount++;
         Player a = PlayersManager.instance.CreatePlayer();
         PlayersManager.instance.AddSkin(a, randomSkins[2]);
-        CharacterSelectionManager.instance.selectedCount++;
         Player b = PlayersManager.instance.CreatePlayer();
         PlayersManager.instance.AddSkin(b, randomSkins[3]);
-        CharacterSelectionManager.instance.selectedCount++;
     }
 
     public List<int> GenerateUniqueRandoms(int amount, int min, int max){
