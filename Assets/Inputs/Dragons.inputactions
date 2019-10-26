@@ -1,0 +1,33 @@
+{
+    "name": "Dragons",
+    "maps": [
+        {
+            "name": "Dragons",
+            "id": "de446d0f-a1fd-4f0c-a0c7-e802aac6d4aa",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "d6a0467b-ee0e-4ef6-9f95-1ef98175f82a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e54ad13c-c057-496b-b554-898f43d8eae9",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
