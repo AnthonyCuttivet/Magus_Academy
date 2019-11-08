@@ -15,54 +15,118 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public float spacing;
     public Vector2 startPos;
     public Text scoreText;
-    int score = 0;
+    public int score = 0;
+    public int combo = 0;
     void Awake(){
         scoreText.text = score.ToString();
         GenerateQteList();
     }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.A)){
+            QTE_List.RemoveAt(0);
+            Destroy(TouchesGO[0]);
+            TouchesGO.RemoveAt(0);
+            GenerateQteList();
+        }
+        scoreText.text = "Score : " + score.ToString() + "\nCombos : " + combo.ToString();
+    }
     void GenerateQteList(){
         QTE_List = new List<Touche>();
         int randomRange = Touches.Count;
-        for(int i = 0; i<lengthOfQTE;i++){
+/*         for(int i = 0; i<lengthOfQTE;i++){
             QTE_List.Add(Touches[Random.Range(0,randomRange)]);
-        }
+        } */
+        PickRandomInputs(randomRange);
         DisplayQTE_List();
-        scoreText.text = score.ToString();
     }
+
+    void PickRandomInputs(int maxRange){
+        List<int> lastPicked = new List<int>();
+        for (int i = 0; i < lengthOfQTE; i++){
+            int index = Random.Range(0,maxRange);
+            while(lastPicked.Contains(index)){
+                index = Random.Range(0,maxRange);
+            }
+            lastPicked.Add(index);
+            QTE_List.Add(Touches[index]);
+        }
+    }
+
+    void RightInput(){
+        combo++;
+        UpdateQTE();
+    }
+
+    void MissInput(){
+        combo = 0;
+        GenerateQteList();
+        //TODO Voir quoi faire en cas de missInput : Continuer le QTE ? Mort instant ? Le poisson se barre ?
+    }
+
     void OnB(){
         if(QTE_List[0].equals(Touche.Touches.B)){
-            UpdateQTE();
+            RightInput();
         }
         else{
-            score--;
-            GenerateQteList();
+            MissInput();
         }
     }
     void OnA(){
         if(QTE_List[0].equals(Touche.Touches.A)){
-            UpdateQTE();
+            RightInput();
         }
         else{
-            score--;
-            GenerateQteList();
+            MissInput();
         }
     }
     void OnX(){
         if(QTE_List[0].equals(Touche.Touches.X)){
-            UpdateQTE();
+            RightInput();
         }
         else{
-            score--;
-            GenerateQteList();
+            MissInput();
         }
     }
     void OnY(){
         if(QTE_List[0].equals(Touche.Touches.Y)){
-            UpdateQTE();
+            RightInput();
         }
         else{
-            score--;
-            GenerateQteList();
+            MissInput();
+        }
+    }
+
+    void OnUp(){
+        if(QTE_List[0].equals(Touche.Touches.UP)){
+            RightInput();
+        }
+        else{
+            MissInput();
+        }
+    }
+    void OnDown(){
+        if(QTE_List[0].equals(Touche.Touches.DOWN)){
+            RightInput();
+        }
+        else{
+            MissInput();
+        }
+    }
+    void OnLeft(){
+        if(QTE_List[0].equals(Touche.Touches.LEFT)){
+            RightInput();
+        }
+        else{
+            MissInput();
+        }
+    }
+    void OnRight(){
+        if(QTE_List[0].equals(Touche.Touches.RIGHT)){
+            RightInput();
+        }
+        else{
+            MissInput();
         }
     }
     void DisplayQTE_List(){
@@ -76,7 +140,11 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     }
     void UpdateQTE(){
         if(QTE_List.Count == 1){
-            score++;
+            score += 1 * (combo + 1);
+/*          QTE_List.RemoveAt(0);
+            Destroy(TouchesGO[0]);
+            TouchesGO.RemoveAt(0); */
+            Debug.Log("End of QTE. Score : " + score);
             GenerateQteList();      //QTE fini
         }
         else{
@@ -98,7 +166,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
 [System.Serializable]
 public class Touche{
     public GameObject spriteTouche;
-    public enum Touches { A, B, X, Y};
+    public enum Touches { A, B, X, Y, UP, DOWN, LEFT, RIGHT};
     public Touches touches;
 
     public bool equals(Touches enumT){

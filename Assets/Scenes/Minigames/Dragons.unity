@@ -491,6 +491,18 @@ MonoBehaviour:
   - spriteTouche: {fileID: 6435416295521328595, guid: 95db138db1c43d049b61ecd857ace3e2,
       type: 3}
     touches: 3
+  - spriteTouche: {fileID: 6435416295521328595, guid: f4d5a59f54a9b824a93defe12e324aec,
+      type: 3}
+    touches: 4
+  - spriteTouche: {fileID: 6435416295521328595, guid: bc3b357900025ee4487b5aebfaa95364,
+      type: 3}
+    touches: 5
+  - spriteTouche: {fileID: 6435416295521328595, guid: a97084f396a6f5045826b5d9d10583b5,
+      type: 3}
+    touches: 6
+  - spriteTouche: {fileID: 6435416295521328595, guid: 9fa86803221187d4fb1d1c3b04e6e07d,
+      type: 3}
+    touches: 7
   lengthOfQTE: 5
   spacing: 7
   startPos: {x: 0, y: 0}
