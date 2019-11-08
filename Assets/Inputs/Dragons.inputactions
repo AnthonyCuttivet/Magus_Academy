@@ -9,6 +9,38 @@
                     "name": "Action",
                     "type": "Button",
                     "id": "d6a0467b-ee0e-4ef6-9f95-1ef98175f82a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "B",
+                    "type": "Button",
+                    "id": "d7584bba-c8cb-42eb-b04a-2ab1f71b14d6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "0713c12f-e4ba-4756-8c4c-a5e8fce0669d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "X",
+                    "type": "Button",
+                    "id": "e5c9585d-7254-4a57-a3ab-efac909f915b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Y",
+                    "type": "Button",
+                    "id": "cca9c8ea-e740-4c8f-b6e5-fff0341b6bc9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -17,12 +49,56 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "e54ad13c-c057-496b-b554-898f43d8eae9",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "e75e2d31-a42c-4f4b-a5d3-5ebfe14ae1b3",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3573ee2e-7f0a-4c2b-8f8c-439ad0e211f9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d8bf4dc-a477-4f17-a5b9-97a84abef984",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "892a6735-7e11-4c85-ab2f-ff9d91b1625d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6bceaf58-310b-4dd1-b8d1-555430f62217",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Y",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
