@@ -17,8 +17,10 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public Text scoreText;
     public int score = 0;
     public int combo = 0;
+    Vector3 spriteSize;
     void Awake(){
         scoreText.text = score.ToString();
+        spriteSize = Touches[0].spriteTouche.transform.localScale;
         GenerateQteList();
     }
 
@@ -133,17 +135,14 @@ public class DragonQTE_PlayerControls : MonoBehaviour
         ResetTouchesGO();
         int spriteGenerated = 0;
         foreach(Touche touche in QTE_List){
-            Vector2 spawnPos = new Vector2(startPos.x + spacing * spriteGenerated,startPos.y);
-            TouchesGO.Add(Instantiate(touche.spriteTouche,spawnPos,transform.rotation));
+            Vector2 spawnPos = new Vector2(startPos.x + spriteSize.x * spriteGenerated,startPos.y);
+            TouchesGO.Add(Instantiate(touche.spriteTouche,(Vector2)transform.position + spawnPos,transform.rotation));
             spriteGenerated++;
         }
     }
     void UpdateQTE(){
         if(QTE_List.Count == 1){
             score += 1 * (combo + 1);
-/*          QTE_List.RemoveAt(0);
-            Destroy(TouchesGO[0]);
-            TouchesGO.RemoveAt(0); */
             Debug.Log("End of QTE. Score : " + score);
             GenerateQteList();      //QTE fini
         }
@@ -151,6 +150,9 @@ public class DragonQTE_PlayerControls : MonoBehaviour
             QTE_List.RemoveAt(0);
             Destroy(TouchesGO[0]);
             TouchesGO.RemoveAt(0);
+            foreach(GameObject touche in TouchesGO){
+                touche.transform.position -= new Vector3(spriteSize.x,0,0);
+            }
         }
 
     }
