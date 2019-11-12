@@ -18,13 +18,16 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public int score = 0;
     public int combo = 0;
     Vector3 spriteSize;
-    void Awake(){
+
+    void Start(){
+        score = DragonsManager.instance.dragonsScoreboard[0];
         scoreText.text = score.ToString();
         spriteSize = Touches[0].spriteTouche.transform.localScale;
         GenerateQteList();
     }
 
     void Update(){
+        score = DragonsManager.instance.dragonsScoreboard[0];
         if(Input.GetKeyDown(KeyCode.A)){
             QTE_List.RemoveAt(0);
             Destroy(TouchesGO[0]);
@@ -142,8 +145,9 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     }
     void UpdateQTE(){
         if(QTE_List.Count == 1){
-            score += 1 * (combo + 1);
-            Debug.Log("End of QTE. Score : " + score);
+            DragonsManager.instance.AddPoints(0,DragonsManager.instance.dragonsScoreboard[0] += (1*(combo + 1)));
+            //score += 1 * (combo + 1);
+            Debug.Log("End of QTE. Score : " + DragonsManager.instance.dragonsScoreboard[0]);
             GenerateQteList();      //QTE fini
         }
         else{
