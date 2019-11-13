@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DragonsManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class DragonsManager : MonoBehaviour
     public InputActionAsset dragonsActions;
     [SerializeField]
     public Dictionary<int, int> dragonsScoreboard = new Dictionary<int, int>();
+    public List<Player> playersInfos = new List<Player>();
+    public List<GameObject> playersGO = new List<GameObject>();
+    public Text[] scoresText;
 
     void Awake(){
         if(instance == null){
@@ -24,24 +28,35 @@ public class DragonsManager : MonoBehaviour
         dragonsScoreboard.Add(2, 0);
         dragonsScoreboard.Add(3, 0);
     }
+    void Start(){
+        playersInfos = PlayersManager.instance.playersList;
+        AssignControllerToPlayer();
+    }
 
     void OnEnable(){
         dragonsActions.Enable();
     }
 
-    // Start is called before the first frame update
-    void Start(){
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AddPoints(int id, int points){
-        dragonsScoreboard[id]+= points;
+        dragonsScoreboard[id] += points;
+        Debug.Log(dragonsScoreboard[id]);
+        foreach(KeyValuePair<int,int> i in dragonsScoreboard){
+            Debug.Log("key " + i.Key);
+            Debug.Log("Value " + i.Value);
+        }
+        UpdateScores();
+    }
+    public void UpdateScores(){
+        for(int i = 0;i<dragonsScoreboard.Count;i++){
+            scoresText[i].text = dragonsScoreboard[i].ToString();
+        }
+    }
+    void AssignControllerToPlayer(){
+        foreach(GameObject player in playersGO){
+            PlayerInput input = player.GetComponent<PlayerInput>();
+            input.actions = dragonsActions;
+            input.defaultActionMap = "Fishing"; 
+        }
     }
 }
 

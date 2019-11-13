@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class DragonQTE_PlayerControls : MonoBehaviour
 {
@@ -14,36 +15,40 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public int lengthOfQTE;
     public float spacing;
     public Vector2 startPos;
-    public Text scoreText;
     public int score = 0;
     public int combo = 0;
+    public int id;
     Vector3 spriteSize;
+    public AimController aimSprite;
+    fishingRodRenderer fishingRod;
+    public bool inQTE;
 
+
+    void Awake(){
+        fishingRod = GetComponentInChildren<fishingRodRenderer>();
+    }
     void Start(){
-        score = DragonsManager.instance.dragonsScoreboard[0];
-        scoreText.text = score.ToString();
+
         spriteSize = Touches[0].spriteTouche.transform.localScale;
-        GenerateQteList();
+        //GenerateQte();
     }
 
     void Update(){
-        score = DragonsManager.instance.dragonsScoreboard[0];
         if(Input.GetKeyDown(KeyCode.A)){
             QTE_List.RemoveAt(0);
             Destroy(TouchesGO[0]);
             TouchesGO.RemoveAt(0);
-            GenerateQteList();
+            //GenerateQte();
         }
-        scoreText.text = "Score : " + score.ToString() + "\nCombos : " + combo.ToString();
+        transform.LookAt(aimSprite.transform.position);
+        transform.rotation = new Quaternion(0,transform.rotation.y,0,transform.rotation.w);
     }
-    void GenerateQteList(){
+    public void GenerateQte(Transform aimTransform){
         QTE_List = new List<Touche>();
         int randomRange = Touches.Count;
-/*         for(int i = 0; i<lengthOfQTE;i++){
-            QTE_List.Add(Touches[Random.Range(0,randomRange)]);
-        } */
         PickRandomInputs(randomRange);
-        DisplayQTE_List();
+        DisplayQTE_List(aimTransform);
+        inQTE = true;
     }
 
     void PickRandomInputs(int maxRange){
@@ -56,99 +61,23 @@ public class DragonQTE_PlayerControls : MonoBehaviour
             lastPicked.Add(index);
             QTE_List.Add(Touches[index]);
         }
-    }
-
-    void RightInput(){
-        combo++;
-        UpdateQTE();
-    }
-
-    void MissInput(){
-        combo = 0;
-        GenerateQteList();
-        //TODO Voir quoi faire en cas de missInput : Continuer le QTE ? Mort instant ? Le poisson se barre ?
-    }
-
-    void OnB(){
-        if(QTE_List[0].equals(Touche.Touches.B)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnA(){
-        if(QTE_List[0].equals(Touche.Touches.A)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnX(){
-        if(QTE_List[0].equals(Touche.Touches.X)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnY(){
-        if(QTE_List[0].equals(Touche.Touches.Y)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-
-    void OnUp(){
-        if(QTE_List[0].equals(Touche.Touches.UP)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnDown(){
-        if(QTE_List[0].equals(Touche.Touches.DOWN)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnLeft(){
-        if(QTE_List[0].equals(Touche.Touches.LEFT)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void OnRight(){
-        if(QTE_List[0].equals(Touche.Touches.RIGHT)){
-            RightInput();
-        }
-        else{
-            MissInput();
-        }
-    }
-    void DisplayQTE_List(){
+    }    
+    void DisplayQTE_List(Transform aimTransform){
         ResetTouchesGO();
         int spriteGenerated = 0;
+        Vector3 startPosition = new Vector3(aimTransform.position.x - (spriteSize.x  / 2) * (QTE_List.Count - 1),aimTransform.position.y,aimTransform.position.z );
         foreach(Touche touche in QTE_List){
-            Vector2 spawnPos = new Vector2(startPos.x + spriteSize.x * spriteGenerated,startPos.y);
-            TouchesGO.Add(Instantiate(touche.spriteTouche,(Vector2)transform.position + spawnPos,transform.rotation));
+            Vector3 spawnPos = new Vector3(spriteSize.x * spriteGenerated,0,0);
+            TouchesGO.Add(Instantiate(touche.spriteTouche,startPosition + spawnPos,aimTransform.rotation));
             spriteGenerated++;
         }
     }
     void UpdateQTE(){
         if(QTE_List.Count == 1){
-            DragonsManager.instance.AddPoints(0,DragonsManager.instance.dragonsScoreboard[0] += (1*(combo + 1)));
-            //score += 1 * (combo + 1);
-            Debug.Log("End of QTE. Score : " + DragonsManager.instance.dragonsScoreboard[0]);
-            GenerateQteList();      //QTE fini
+            DragonsManager.instance.AddPoints(id, (1*(combo + 1)));
+            Debug.Log("End of QTE. Score : " + id + "  " + DragonsManager.instance.dragonsScoreboard[id]);
+            //GenerateQte();      //QTE fini
+            CancelQTE();
         }
         else{
             QTE_List.RemoveAt(0);
@@ -160,11 +89,122 @@ public class DragonQTE_PlayerControls : MonoBehaviour
         }
 
     }
+    void CancelQTE(){
+        QTE_List = new List<Touche>();
+        foreach(GameObject go in TouchesGO){
+            Destroy(go);
+        }
+        TouchesGO = new List<GameObject>();
+        inQTE = false;
+    }
+        void RightInput(){
+        combo++;
+        UpdateQTE();
+    }
+
+    void MissInput(){
+        combo = 0;
+        //GenerateQte();
+        //TODO Voir quoi faire en cas de missInput : Continuer le QTE ? Mort instant ? Le poisson se barre ?
+        CancelQTE();
+    }
     void ResetTouchesGO(){
         foreach(GameObject GO in TouchesGO){
             Destroy(GO);
         }
         TouchesGO = new List<GameObject>();
+    }
+    void OnB(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.B)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnA(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.A)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnX(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.X)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnY(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.Y)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+
+    void OnUp(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.UP)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnDown(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.DOWN)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnLeft(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.LEFT)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnRight(){
+        if(inQTE){
+            if(QTE_List[0].equals(Touche.Touches.RIGHT)){
+                RightInput();
+            }
+            else{
+                MissInput();
+            }
+        }
+    }
+    void OnAim(InputValue value){
+        if(!inQTE){
+            Vector2 aimDirection = value.Get<Vector2>();
+            aimSprite.direction = aimDirection;
+        }
+    }
+    void OnFish(){
+        if(!inQTE){
+            aimSprite.Fish();
+        }
     }
 
     
