@@ -8,7 +8,7 @@ public class PlayersManager : MonoBehaviour {
     public enum Minigames{
         Map,
         Deceived,
-        DragonMesCouilles,
+        DF,
         MNG3,
         MNG4,
         MNG5

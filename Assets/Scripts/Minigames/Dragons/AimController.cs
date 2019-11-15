@@ -20,6 +20,6 @@ public class AimController : MonoBehaviour
         rb.velocity = new Vector3(direction.x,0,direction.y) * speed;
     }
     public void Fish(){
-        playerController.GenerateQte(transform);
+        playerController.GenerateSequence(transform);
     }
 }

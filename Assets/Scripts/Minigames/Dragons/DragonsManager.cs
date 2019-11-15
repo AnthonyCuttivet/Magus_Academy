@@ -15,6 +15,16 @@ public class DragonsManager : MonoBehaviour
     public List<GameObject> playersGO = new List<GameObject>();
     public Text[] scoresText;
 
+    [Space]
+    [Header("Minigame Vars")] 
+    public int basePoints = 100;
+    public int sequenceMultiplier = 20;
+    public int comboScale = 1;
+    public int QTELength = 5;
+    public float sequenceMaxTime = 5f;
+    public float bitingMaxTime = 10f;
+    public int qteStreak = 3;
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -39,10 +49,10 @@ public class DragonsManager : MonoBehaviour
 
     public void AddPoints(int id, int points){
         dragonsScoreboard[id] += points;
-        Debug.Log(dragonsScoreboard[id]);
+        //Debug.Log(dragonsScoreboard[id]);
         foreach(KeyValuePair<int,int> i in dragonsScoreboard){
-            Debug.Log("key " + i.Key);
-            Debug.Log("Value " + i.Value);
+/*             Debug.Log("key " + i.Key);
+            Debug.Log("Value " + i.Value); */
         }
         UpdateScores();
     }
