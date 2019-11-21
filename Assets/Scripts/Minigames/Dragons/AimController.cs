@@ -8,6 +8,7 @@ public class AimController : MonoBehaviour
     Rigidbody rb;
     public float speed;
     public DragonQTE_PlayerControls playerController;
+    public bool fishable = false;
     Quaternion rotation;
 
     void Awake(){

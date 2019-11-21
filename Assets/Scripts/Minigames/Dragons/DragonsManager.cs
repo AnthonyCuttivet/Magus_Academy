@@ -69,13 +69,3 @@ public class DragonsManager : MonoBehaviour
         }
     }
 }
-
-public class Stats{
-    public int Score{get;set;}
-    public int Combos{get;set;}
-
-    public Stats(int score, int combos){
-        Score = score;
-        Combos = combos;
-    }
-}

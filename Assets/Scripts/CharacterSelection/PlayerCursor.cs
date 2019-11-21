@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerCursor : MonoBehaviour
 {
 
-    private RaycastHit hit;
+    private RaycastHit2D hit;
     public int currentSelection = -1;
     public bool hasSelected = false;
     public bool playerCreated = false;
@@ -29,8 +29,11 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(Physics.Raycast(transform.position, new Vector3(0,0,1), out hit, 10f)){
-            currentSelection = int.Parse(hit.transform.gameObject.name);
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+        Debug.DrawRay(transform.position, forward, Color.green);
+        hit = Physics2D.Raycast(transform.position, forward, 10f);
+        if(hit.collider != null){
+            currentSelection = hit.collider.transform.gameObject.GetComponent<CharacterAttribute>().attributeID;
         }else{
             currentSelection = -1;
         }
@@ -48,10 +51,19 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void OnValidate(){
-        if(currentSelection != -1 && !hasSelected){
-            hasSelected = true;
-            PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
-            CharacterSelectionManager.instance.selectedCount++;
+        if(currentSelection != -1  && !hasSelected){
+            if(currentSelection != 0){
+                hasSelected = true;
+                PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
+            }else if(currentSelection == 0){
+                //Random skin
+                hasSelected = true;
+                PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
+                CharacterSelectionManager.instance.selectedCount++;
+                CharacterSelectionManager.instance.characters[currentPlayer.Id].SetActive(true);
+            }else if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection)){
+                //Skin already selected
+            }
         }
     }
 
@@ -59,7 +71,9 @@ public class PlayerCursor : MonoBehaviour
         if(hasSelected){
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
+            CharacterSelectionManager.instance.selectedSkins.Remove(currentSelection);
             CharacterSelectionManager.instance.selectedCount--;
+            CharacterSelectionManager.instance.characters[currentPlayer.Id].SetActive(false);
         }
     }
 

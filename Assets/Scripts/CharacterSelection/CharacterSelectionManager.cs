@@ -12,6 +12,13 @@ public class CharacterSelectionManager : MonoBehaviour
     public int selectedCount = 0;
     public bool ready = false;
 
+    public GameObject[] characters;
+
+    public Material[] skins;
+
+    public List<int> selectedSkins = new List<int>();
+
+
     //Security flags
     private bool selectedCountFlag = false;
     private bool readyFlag = false;
@@ -45,9 +52,29 @@ public class CharacterSelectionManager : MonoBehaviour
             //ready = true;
         }
         if(ready && !readyFlag){
+            //Set random skins
+            foreach (Player p in PlayersManager.instance.playersList){
+                if(p.Skin == 0){
+                    PlayersManager.instance.RemoveSkin(p);
+                    PlayersManager.instance.AddSkin(p, GetRandomSkin());
+                }
+            }
+            
             Debug.Log("Everyone is ready, transitioning to " + PlayersManager.instance.nextMinigame.ToString() + " Tips Screen");
             readyFlag = true;
-            SceneManager.LoadScene("TipsScreen");
+            //SceneManager.LoadScene("TipsScreen");
         }
+    }
+
+    public int GetRandomSkin(){
+        int randomSkin = 0;
+        randomSkin = (int)Random.Range(1,8);
+        if(selectedSkins.Count != 0){
+            while(selectedSkins.Contains(randomSkin)){
+                randomSkin = (int)Random.Range(1,8);
+            }
+        }
+        selectedSkins.Add(randomSkin);
+        return randomSkin;
     }
 }

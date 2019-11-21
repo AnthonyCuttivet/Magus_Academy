@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CharacterSelectionTest.unity
+    path: Assets/Scenes/CharacterSelectionT.unity
     guid: e6f8d34e5d4e8464fa6c56fe9e651945
   - enabled: 1
     path: Assets/Scenes/TipsScreen/TipsScreen.unity

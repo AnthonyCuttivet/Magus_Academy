@@ -40,6 +40,10 @@ public class PlayersManager : MonoBehaviour {
 
     public void AddSkin(Player p, int skin){
         p.Skin = skin;
+        CharacterSelectionManager.instance.selectedSkins.Add(skin);
+        CharacterSelectionManager.instance.selectedCount++;
+        CharacterSelectionManager.instance.characters[p.Id].transform.GetChild(0).Find("Chibi").GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
+        CharacterSelectionManager.instance.characters[p.Id].SetActive(true);
         Debug.Log("Skin " + p.Skin + " has been set to Player " + p.Id);
     }
 

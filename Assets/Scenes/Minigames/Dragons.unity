@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -486,6 +486,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 15
   playerController: {fileID: 1611882372}
+  fishable: 0
 --- !u!212 &530299540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -770,15 +771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e842bb232e869409fb5b207e86e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersList:
-  - Id: 0
-    Skin: 0
-  - Id: 1
-    Skin: 1
-  - Id: 2
-    Skin: 2
-  - Id: 3
-    Skin: 3
   nextMinigame: 0
 --- !u!4 &695209002
 Transform:
@@ -1056,11 +1048,15 @@ MonoBehaviour:
   lengthOfQTE: 5
   spacing: 7
   startPos: {x: 0, y: 0}
-  score: 0
+  sequenceScore: 0
   combo: 0
   id: 2
   aimSprite: {fileID: 1306100452}
   inQTE: 0
+  qteTimeLeft: 0
+  qteCompletionTime: 0
+  qteStreak: 0
+  qtePosition: {fileID: 0}
 --- !u!114 &1116100119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,6 +1227,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 15
   playerController: {fileID: 1611882372}
+  fishable: 0
 --- !u!212 &1306100453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1350,7 +1347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragonsActions: {fileID: -944628639613478452, guid: f19a417d6f857e640a3983091a03cae5,
     type: 3}
-  playersInfos: []
   playersGO:
   - {fileID: 1611882368}
   - {fileID: 1402005617}
@@ -1361,6 +1357,13 @@ MonoBehaviour:
   - {fileID: 1954949432}
   - {fileID: 1032085027}
   - {fileID: 2073882508}
+  basePoints: 100
+  sequenceMultiplier: 20
+  comboScale: 1
+  QTELength: 5
+  sequenceMaxTime: 5
+  bitingMaxTime: 10
+  qteStreak: 3
 --- !u!4 &1391944741
 Transform:
   m_ObjectHideFlags: 0
@@ -1437,11 +1440,15 @@ MonoBehaviour:
   lengthOfQTE: 5
   spacing: 7
   startPos: {x: 0, y: 0}
-  score: 0
+  sequenceScore: 0
   combo: 0
   id: 1
   aimSprite: {fileID: 530299539}
   inQTE: 0
+  qteTimeLeft: 0
+  qteCompletionTime: 0
+  qteStreak: 0
+  qtePosition: {fileID: 0}
 --- !u!114 &1402005619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,6 +1652,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 15
   playerController: {fileID: 1611882372}
+  fishable: 0
 --- !u!54 &1407035838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2303,11 +2311,15 @@ MonoBehaviour:
   lengthOfQTE: 5
   spacing: 7
   startPos: {x: 0, y: 0}
-  score: 0
+  sequenceScore: 0
   combo: 0
   id: 0
   aimSprite: {fileID: 1407035837}
   inQTE: 0
+  qteTimeLeft: 0
+  qteCompletionTime: 0
+  qteStreak: 0
+  qtePosition: {fileID: 0}
 --- !u!136 &1611882373
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3056,6 +3068,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speed: 15
   playerController: {fileID: 1611882372}
+  fishable: 0
 --- !u!212 &1742531625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3197,11 +3210,15 @@ MonoBehaviour:
   lengthOfQTE: 5
   spacing: 7
   startPos: {x: 0, y: 0}
-  score: 0
+  sequenceScore: 0
   combo: 0
   id: 3
   aimSprite: {fileID: 1742531624}
   inQTE: 0
+  qteTimeLeft: 0
+  qteCompletionTime: 0
+  qteStreak: 0
+  qtePosition: {fileID: 0}
 --- !u!114 &1818563757
 MonoBehaviour:
   m_ObjectHideFlags: 0
