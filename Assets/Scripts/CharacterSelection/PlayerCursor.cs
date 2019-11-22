@@ -52,17 +52,11 @@ public class PlayerCursor : MonoBehaviour
 
     void OnValidate(){
         if(currentSelection != -1  && !hasSelected){
-            if(currentSelection != 0){
-                hasSelected = true;
-                PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
-            }else if(currentSelection == 0){
-                //Random skin
-                hasSelected = true;
-                PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
-                CharacterSelectionManager.instance.selectedCount++;
-                CharacterSelectionManager.instance.characters[currentPlayer.Id].SetActive(true);
-            }else if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection)){
+            if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection)){
                 //Skin already selected
+            }else{
+                hasSelected = true;
+                PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
             }
         }
     }
@@ -71,9 +65,6 @@ public class PlayerCursor : MonoBehaviour
         if(hasSelected){
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
-            CharacterSelectionManager.instance.selectedSkins.Remove(currentSelection);
-            CharacterSelectionManager.instance.selectedCount--;
-            CharacterSelectionManager.instance.characters[currentPlayer.Id].SetActive(false);
         }
     }
 
