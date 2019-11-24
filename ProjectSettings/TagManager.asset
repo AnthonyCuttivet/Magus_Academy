@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - Slot
+  - Dragon
   layers:
   - Default
   - TransparentFX
