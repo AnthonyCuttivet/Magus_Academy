@@ -1,0 +1,52 @@
+{
+    "name": "TitleScreen",
+    "maps": [
+        {
+            "name": "TitleScreen",
+            "id": "083def34-6bbd-4345-becb-265ac6f512b4",
+            "actions": [
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "c3e20ed1-c790-49f3-96ff-ec22ed2b819a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "2eadf8f6-5494-4323-8134-1535681aeee2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6e5a3ed9-4e55-470c-beeb-2b53993cd82b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40a51ff4-3739-4961-acf6-d88e7f913350",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

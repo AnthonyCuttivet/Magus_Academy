@@ -18,6 +18,10 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public List<int> selectedSkins = new List<int>();
 
+    [Space]
+    [Header("Special Skin")]
+    public GameObject SP_MONSTER_SKIN;
+
 
     //Security flags
     private bool selectedCountFlag = false;
@@ -38,9 +42,8 @@ public class CharacterSelectionManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        CheckSpecialSkin();
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class CharacterSelectionManager : MonoBehaviour
             
             Debug.Log("Everyone is ready, transitioning to " + PlayersManager.instance.nextMinigame.ToString() + " Tips Screen");
             readyFlag = true;
+            StartDance();
             //SceneManager.LoadScene("TipsScreen");
         }
     }
@@ -76,5 +80,19 @@ public class CharacterSelectionManager : MonoBehaviour
         }
         selectedSkins.Add(randomSkin);
         return randomSkin;
+    }
+
+    public void CheckSpecialSkin(){
+        if(PlayerPrefs.GetInt("SP_MONSTER_SKIN") == 1){
+            SP_MONSTER_SKIN.SetActive(true);
+        }
+    }
+
+    public void StartDance(){
+        gameObject.GetComponent<AudioSource>().Play();
+        foreach (GameObject character in characters){
+            Animator animator = character.transform.GetChild(0).GetComponent<Animator>();
+            animator.Play("DanceMoves");
+        }
     }
 }

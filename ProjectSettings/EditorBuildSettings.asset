@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CharacterSelectionT.unity
-    guid: e6f8d34e5d4e8464fa6c56fe9e651945
+    path: Assets/Scenes/TitleScreen/TitleScreen.unity
+    guid: cc6ff491634f2b540af58d9c6d1a2794
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelection/CharacterSelection.unity
+    guid: 1587e150cd0432a49b39212f750901f4
   - enabled: 1
     path: Assets/Scenes/TipsScreen/TipsScreen.unity
     guid: f992860beca6ca74b9be8692960bbc0b
@@ -15,11 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigames/Deceived.unity
     guid: 0b093224573151f4c9fc396e4ed29f02
   - enabled: 1
+    path: Assets/Scenes/Minigames/Dragons.unity
+    guid: fd269c58756ecf74583f968b3a1208ce
+  - enabled: 1
     path: Assets/Scenes/VictoryScreen/VictoryScreen.unity
     guid: 6e441cc27ee73b14488dbf19fbef4b79
   - enabled: 1
-    path: Assets/Scenes/Minigames/Dragons.unity
-    guid: fd269c58756ecf74583f968b3a1208ce
+    path: Assets/Scenes/SpecialScenes/RedeemCode.unity
+    guid: 9875c1a9a3ce31f47abfb9e9123d25b7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ba131a0fd8b62fa4b9cb6a38cc581745,
       type: 2}

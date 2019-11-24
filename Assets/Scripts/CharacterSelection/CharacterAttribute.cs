@@ -14,7 +14,8 @@ public class CharacterAttribute : MonoBehaviour
         Lightning = 6, 
         Death = 7, 
         Dark = 8, 
-        Random = 0
+        Random = 0,
+        SP_Monster = 9
     }
 
     public MagesAttributes attribute;

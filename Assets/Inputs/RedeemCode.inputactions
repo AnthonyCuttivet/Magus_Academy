@@ -1,0 +1,248 @@
+{
+    "name": "RedeemCode",
+    "maps": [
+        {
+            "name": "RedeemCode",
+            "id": "5547d79e-3679-47e2-81df-4ad0924c7498",
+            "actions": [
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "a6a4c87a-2b57-4178-a5d2-4b71246282bd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "B",
+                    "type": "Button",
+                    "id": "5a5fdf19-2c97-4490-9eec-a9a5ca6929bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "X",
+                    "type": "Button",
+                    "id": "47f40035-c099-424b-8363-b2e1d3277611",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Y",
+                    "type": "Button",
+                    "id": "425ec69d-766d-445e-bad5-3fc84b6778ef",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "9ba8fa4f-399e-46e9-afb5-9325cbc02be5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "c7e8a613-1dee-4872-ac07-2224ba306582",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "ee6319d9-be49-44a6-8221-641f9f4409e7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "b539a0da-509b-481a-84ff-5aeba0093c0c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "dbbf015f-b0ae-4488-a9cf-e97254488ca4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "6c3dba2a-6a64-4486-a029-07f7bbab7982",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8dfb1340-69ce-4c3d-9446-6cb98bd49e3e",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9854321f-feba-44cf-8c6e-c25f5f2dcf7c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "122ea060-81dc-4958-94c7-9cc7e37c5b42",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "838148dd-82c3-4c35-b816-a2ca6362af54",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0824d634-66cb-49cb-80e2-5c29b4541440",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7fec1c75-3e5b-4064-bf21-c9854e718bef",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "300906bb-9c11-4126-8c32-bfe8d2c8d183",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a992a7fb-d1fd-44a6-838a-19909924a902",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2b0aa33-2301-4131-a866-ad199821a754",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2765db78-266f-4468-a1c8-cb683a963d43",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe3d457f-0435-4333-87af-0027524487d7",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "603d9bd3-362c-4b08-8daa-b0d75181bc6c",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22549bd2-8d4c-4036-8231-823aa13a2f0d",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8e44553-834b-463b-8866-89ae25fc014c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
