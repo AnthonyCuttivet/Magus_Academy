@@ -92,7 +92,7 @@ public class CharacterSelectionManager : MonoBehaviour
         gameObject.GetComponent<AudioSource>().Play();
         foreach (GameObject character in characters){
             Animator animator = character.transform.GetChild(0).GetComponent<Animator>();
-            animator.Play("DanceMoves");
+            animator.Play("DanceMoves");    
         }
     }
 }

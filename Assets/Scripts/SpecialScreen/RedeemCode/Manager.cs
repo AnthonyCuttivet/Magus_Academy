@@ -2,16 +2,21 @@
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class Manager : MonoBehaviour{
 
     public string code;
     public string userCode = "";
     public bool fullCode = false;
+    public bool unlocked = false;
 
     public GameObject underscores;
     public GameObject currentUnderscore;
     public int currentIndex = -1;
+
+    public GameObject unlockText;
 
     [Space]
     [Header("Sprites Input")]
@@ -40,7 +45,10 @@ public class Manager : MonoBehaviour{
     void OnStart(){
         if(fullCode){
             if(userCode == code){
-                print("ggwp");
+                PlayerPrefs.SetInt("SP_MONSTER_SKIN", 1);
+                gameObject.GetComponent<AudioSource>().Play();
+                unlockText.SetActive(true);
+                unlocked = true;
             }else{
                 print("Invalid code, please check and try again");
             }
@@ -49,9 +57,7 @@ public class Manager : MonoBehaviour{
 
     // Cancel last input
     void OnSelect(){
-        if(currentIndex > 0){
-            RemoveLastInput();
-        }
+        RemoveLastInput();
     }
 
     void SetCurrentInputIndex(bool shift){
@@ -60,19 +66,21 @@ public class Manager : MonoBehaviour{
             currentUnderscore = underscores.transform.GetChild(currentIndex).gameObject;
             currentUnderscore.GetComponent<Blink>().enabled = true;
         }else if(shift == false){
-            currentIndex --;
+            if(currentIndex != (code.Length - 1)){
+                currentIndex --;
+            }
             currentUnderscore = underscores.transform.GetChild(currentIndex).gameObject;
+            currentUnderscore.transform.localScale = new Vector3(.25f,.25f,.25f);
+            currentUnderscore.GetComponent<SpriteRenderer>().sprite = n;
+            currentUnderscore.GetComponent<Blink>().enabled = true;
         }
     }
 
     void RemoveLastInput(){
-        if(userCode.Length != code.Length){
-            underscores.transform.GetChild(currentIndex + 1).gameObject.GetComponent<Blink>().enabled = false;
-        }
         userCode = userCode.Remove(userCode.Length - 1);
-        currentUnderscore.transform.localScale = new Vector3(.25f,.25f,.25f);
-        currentUnderscore.GetComponent<SpriteRenderer>().sprite = n;
-        currentUnderscore.GetComponent<Blink>().enabled = true;
+/*         if(userCode.Length != code.Length){
+            underscores.transform.GetChild(currentIndex + 1).gameObject.GetComponent<Blink>().enabled = false;
+        } */
         UnshiftIndex();
     }
 
@@ -83,9 +91,7 @@ public class Manager : MonoBehaviour{
     }
 
     void UnshiftIndex(){
-        if(userCode.Length != 0){
-            SetCurrentInputIndex(false);
-        }
+        SetCurrentInputIndex(false);
     }
 
     void ShowInput(string input){
@@ -129,6 +135,9 @@ public class Manager : MonoBehaviour{
 
     void OnB(){
         ShowInput("b");
+        if(unlocked){
+            SceneManager.LoadScene("TitleScreen");
+        }
     }
 
     void OnX(){

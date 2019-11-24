@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e8d0af3c1c992ad44ba6f9ee8bc3418b, type: 2}
   - {fileID: 2100000, guid: e1461cf857b77834da40a75d450935f0, type: 2}
   selectedSkins: 
-  SP_MONSTER_SKIN: {fileID: 0}
+  SP_MONSTER_SKIN: {fileID: 1340880199}
 --- !u!4 &820570151
 Transform:
   m_ObjectHideFlags: 0
