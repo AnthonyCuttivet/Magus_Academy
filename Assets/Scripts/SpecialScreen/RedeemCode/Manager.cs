@@ -62,9 +62,29 @@ public class Manager : MonoBehaviour{
         }else if(shift == false){
             currentIndex --;
             currentUnderscore = underscores.transform.GetChild(currentIndex).gameObject;
-            currentUnderscore.transform.localScale = new Vector3(.25f,.25f,.25f);
-            currentUnderscore.GetComponent<SpriteRenderer>().sprite = n;
-            currentUnderscore.GetComponent<Blink>().enabled = true;
+        }
+    }
+
+    void RemoveLastInput(){
+        if(userCode.Length != code.Length){
+            underscores.transform.GetChild(currentIndex + 1).gameObject.GetComponent<Blink>().enabled = false;
+        }
+        userCode = userCode.Remove(userCode.Length - 1);
+        currentUnderscore.transform.localScale = new Vector3(.25f,.25f,.25f);
+        currentUnderscore.GetComponent<SpriteRenderer>().sprite = n;
+        currentUnderscore.GetComponent<Blink>().enabled = true;
+        UnshiftIndex();
+    }
+
+    void ShiftIndex(){
+        if(userCode.Length < code.Length){
+            SetCurrentInputIndex(true);
+        }
+    }
+
+    void UnshiftIndex(){
+        if(userCode.Length != 0){
+            SetCurrentInputIndex(false);
         }
     }
 
@@ -100,24 +120,6 @@ public class Manager : MonoBehaviour{
             currentUnderscore.GetComponent<Blink>().enabled = false;
             currentUnderscore.transform.localScale = new Vector3(1,1,1);
             ShiftIndex();
-        }
-    }
-
-    void RemoveLastInput(){
-        userCode = userCode.Remove(userCode.Length - 1);
-        currentUnderscore.GetComponent<Blink>().enabled = false;
-        UnshiftIndex();
-    }
-
-    void ShiftIndex(){
-        if(userCode.Length < code.Length){
-            SetCurrentInputIndex(true);
-        }
-    }
-
-    void UnshiftIndex(){
-        if(userCode.Length != 0){
-            SetCurrentInputIndex(false);
         }
     }
 
