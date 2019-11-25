@@ -44,7 +44,12 @@ public class PlayersManager : MonoBehaviour {
             CharacterSelectionManager.instance.selectedSkins.Add(skin);
         }
         CharacterSelectionManager.instance.selectedCount++;
-        CharacterSelectionManager.instance.characters[p.Id].transform.GetChild(0).Find("Chibi").GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
+        foreach(Transform g in CharacterSelectionManager.instance.characters[p.Id].transform.GetChild(0)){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
+            }
+        }
+        //CharacterSelectionManager.instance.characters[p.Id].transform.GetChild(0).Find("Chibi").GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
         CharacterSelectionManager.instance.characters[p.Id].SetActive(true);
         Debug.Log("Skin " + p.Skin + " has been set to Player " + p.Id);
     }

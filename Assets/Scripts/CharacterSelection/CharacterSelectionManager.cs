@@ -52,7 +52,7 @@ public class CharacterSelectionManager : MonoBehaviour
         if(selectedCount == 4 && !selectedCountFlag){
             Debug.Log("All 4 players have selected their characters");
             selectedCountFlag = true;
-            //ready = true;
+            ready = true;
         }
         if(ready && !readyFlag){
             //Set random skins
