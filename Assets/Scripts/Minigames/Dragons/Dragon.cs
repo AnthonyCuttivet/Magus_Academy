@@ -7,9 +7,13 @@ public class Dragon : MonoBehaviour
     SpriteRenderer sprite;
     float timeBeforeFade = 1;
     public float timeToFadeIn = 5f;
+    public float timeBeforeDelete = 10f;
+    public bool fished;
+    Collider colliderDragon;
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        colliderDragon = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -24,6 +28,15 @@ public class Dragon : MonoBehaviour
             sprite.color = newColor;
         }
         timeBeforeFade -= Time.deltaTime;
+        timeBeforeDelete -= Time.deltaTime;
+        if(!fished && timeBeforeDelete <= 0){
+            DeleteDragon();
+        }
+    }
 
+
+    public void DeleteDragon(){
+        GenerationRemous.instance.fishesColliders.Remove(colliderDragon);
+        Destroy(gameObject);
     }
 }

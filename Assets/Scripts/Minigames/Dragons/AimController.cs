@@ -10,10 +10,14 @@ public class AimController : MonoBehaviour
     public DragonQTE_PlayerControls playerController;
     public bool fishable = false;
     Quaternion rotation;
-    List<GameObject> dragonsToFish = new List<GameObject>();
+    public Dragon dragonToFish;
+    public GenerationRemous generationRemous; 
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
+    }
+    void Start(){
+         generationRemous = GenerationRemous.instance;
     }
     void LateUpdate(){
     }
@@ -22,20 +26,21 @@ public class AimController : MonoBehaviour
         rb.velocity = new Vector3(direction.x,0,direction.y) * speed;
     }
     public void Fish(){
-        if(dragonsToFish.Count != 0){
+        if(dragonToFish != null){
             direction = Vector2.zero;
             playerController.GenerateSequence(transform);
-        }
-
-    }
-    void OnTriggerEnter(Collider collider){
-        if(collider.CompareTag("Dragon")){
-            dragonsToFish.Add(collider.gameObject);
+            dragonToFish.fished = true;
         }
     }
-    void OnTriggerExit(Collider collider){
+    void OnTriggerStay(Collider collider){
         if(collider.CompareTag("Dragon")){
-            dragonsToFish.Remove(collider.gameObject);
+            dragonToFish = collider.GetComponent<Dragon>();
         }
+    }
+    public void EndFishing(){
+        
+        dragonToFish = null;
+        generationRemous.fishesColliders = new List<Collider>();
+        dragonToFish.DeleteDragon();
     }
 }

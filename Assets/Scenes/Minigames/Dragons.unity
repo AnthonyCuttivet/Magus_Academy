@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 530299539}
   - component: {fileID: 530299538}
   m_Layer: 0
-  m_Name: aim sprite P2
+  m_Name: aim controller P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,6 +487,8 @@ MonoBehaviour:
   speed: 15
   playerController: {fileID: 1611882372}
   fishable: 0
+  dragonToFish: {fileID: 0}
+  generationRemous: {fileID: 0}
 --- !u!212 &530299540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,7 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e842bb232e869409fb5b207e86e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersList: []
   nextMinigame: 0
 --- !u!4 &695209002
 Transform:
@@ -1052,12 +1053,13 @@ MonoBehaviour:
   sequenceScore: 0
   combo: 0
   id: 2
-  aimSprite: {fileID: 1306100452}
+  aimController: {fileID: 1306100452}
   inQTE: 0
   qteTimeLeft: 0
   qteCompletionTime: 0
   qteStreak: 0
   qtePosition: {fileID: 0}
+  dragonCurrentlyFishing: {fileID: 0}
 --- !u!114 &1116100119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1179,7 @@ GameObject:
   - component: {fileID: 1306100452}
   - component: {fileID: 1306100451}
   m_Layer: 0
-  m_Name: aim sprite P3
+  m_Name: aim controller P3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,6 +1231,8 @@ MonoBehaviour:
   speed: 15
   playerController: {fileID: 1611882372}
   fishable: 0
+  dragonToFish: {fileID: 0}
+  generationRemous: {fileID: 0}
 --- !u!212 &1306100453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1348,7 +1352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragonsActions: {fileID: -944628639613478452, guid: f19a417d6f857e640a3983091a03cae5,
     type: 3}
-  playersInfos: []
   playersGO:
   - {fileID: 1611882368}
   - {fileID: 1402005617}
@@ -1445,12 +1448,13 @@ MonoBehaviour:
   sequenceScore: 0
   combo: 0
   id: 1
-  aimSprite: {fileID: 530299539}
+  aimController: {fileID: 530299539}
   inQTE: 0
   qteTimeLeft: 0
   qteCompletionTime: 0
   qteStreak: 0
   qtePosition: {fileID: 0}
+  dragonCurrentlyFishing: {fileID: 0}
 --- !u!114 &1402005619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,7 +1575,7 @@ GameObject:
   - component: {fileID: 1407035838}
   - component: {fileID: 1407035839}
   m_Layer: 0
-  m_Name: aim sprite P1
+  m_Name: aim controller P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,6 +1660,8 @@ MonoBehaviour:
   speed: 15
   playerController: {fileID: 1611882372}
   fishable: 0
+  dragonToFish: {fileID: 0}
+  generationRemous: {fileID: 0}
 --- !u!54 &1407035838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1901,7 +1907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1556407137}
   m_Layer: 0
-  m_Name: Aim Sprites
+  m_Name: Aim Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2330,12 +2336,13 @@ MonoBehaviour:
   sequenceScore: 0
   combo: 0
   id: 0
-  aimSprite: {fileID: 1407035837}
+  aimController: {fileID: 1407035837}
   inQTE: 0
   qteTimeLeft: 0
   qteCompletionTime: 0
   qteStreak: 0
   qtePosition: {fileID: 0}
+  dragonCurrentlyFishing: {fileID: 0}
 --- !u!136 &1611882373
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2437,6 +2444,11 @@ MonoBehaviour:
   smoke: {fileID: 7424264834104019434, guid: 2c9a0edb76afcc3478a719cbf6e7da9b, type: 3}
   fish: {fileID: 2945107430307660983, guid: b46f8b31749caf14ab6d18aa0dc7c729, type: 3}
   spawnHeight: 4.1
+  spawnRange: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  fishesColliders: []
 --- !u!65 &1623460157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2448,8 +2460,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 48.671043, y: 1, z: 31.019547}
-  m_Center: {x: -6.8148117, y: 0, z: 20.118244}
+  m_Size: {x: 69.20591, y: 1, z: 49.787308}
+  m_Center: {x: -0.04658127, y: 0, z: 21.47734}
 --- !u!4 &1623460158
 Transform:
   m_ObjectHideFlags: 0
@@ -2458,7 +2470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623460155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3125385, y: 1.2714348, z: -0.57302856}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3093,7 +3105,7 @@ GameObject:
   - component: {fileID: 1742531624}
   - component: {fileID: 1742531623}
   m_Layer: 0
-  m_Name: aim sprite P4
+  m_Name: aim controller P4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3145,6 +3157,8 @@ MonoBehaviour:
   speed: 15
   playerController: {fileID: 1611882372}
   fishable: 0
+  dragonToFish: {fileID: 0}
+  generationRemous: {fileID: 0}
 --- !u!212 &1742531625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3289,12 +3303,13 @@ MonoBehaviour:
   sequenceScore: 0
   combo: 0
   id: 3
-  aimSprite: {fileID: 1742531624}
+  aimController: {fileID: 1742531624}
   inQTE: 0
   qteTimeLeft: 0
   qteCompletionTime: 0
   qteStreak: 0
   qtePosition: {fileID: 0}
+  dragonCurrentlyFishing: {fileID: 0}
 --- !u!114 &1818563757
 MonoBehaviour:
   m_ObjectHideFlags: 0

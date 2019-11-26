@@ -19,7 +19,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public int combo = 0;
     public int id;
     Vector3 spriteSize;
-    public AimController aimSprite;
+    public AimController aimController;
     fishingRodRenderer fishingRod;
     public bool inQTE;
 
@@ -27,6 +27,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public float qteCompletionTime;
     public int qteStreak;
     public Transform qtePosition;
+    public GameObject dragonCurrentlyFishing;
 
 
     void Awake(){
@@ -56,7 +57,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
             CancelQTE();
             qteTimeLeft = DragonsManager.instance.sequenceMaxTime;
         }
-        transform.LookAt(aimSprite.transform.position);
+        transform.LookAt(aimController.transform.position);
         transform.rotation = new Quaternion(0,transform.rotation.y,0,transform.rotation.w);
     }
 
@@ -133,6 +134,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
         qteStreak = DragonsManager.instance.qteStreak;
         qteTimeLeft = DragonsManager.instance.sequenceMaxTime;
         qteStreak = DragonsManager.instance.qteStreak;
+        aimController.EndFishing();
     }
     void RightInput(){
         UpdateQTE();
@@ -251,12 +253,12 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     void OnAim(InputValue value){
         if(!inQTE){
             Vector2 aimDirection = value.Get<Vector2>();
-            aimSprite.direction = aimDirection;
+            aimController.direction = aimDirection;
         }
     }
     void OnFish(){
         if(!inQTE){
-            aimSprite.Fish();
+            aimController.Fish();
         }
     }
 
