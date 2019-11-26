@@ -17,6 +17,7 @@ public class PlayersManager : MonoBehaviour {
 
     public static PlayersManager instance;
 
+    [SerializeField]
     public List<Player> playersList = new List<Player>();
 
     public Minigames nextMinigame;
@@ -49,9 +50,9 @@ public class PlayersManager : MonoBehaviour {
                 g.GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
             }
         }
-        //CharacterSelectionManager.instance.characters[p.Id].transform.GetChild(0).Find("Chibi").GetComponent<SkinnedMeshRenderer>().material = CharacterSelectionManager.instance.skins[skin];
         CharacterSelectionManager.instance.characters[p.Id].SetActive(true);
         Debug.Log("Skin " + p.Skin + " has been set to Player " + p.Id);
+        gameObject.transform.Find("DebugIcons").gameObject.GetComponent<DebugIcons>().AddDebugIcon(p.Id, p.Skin);
     }
 
     public void RemoveSkin(Player p){

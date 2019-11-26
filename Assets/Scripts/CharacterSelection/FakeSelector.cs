@@ -5,30 +5,14 @@ using UnityEngine;
 public class FakeSelector : MonoBehaviour
 {
 
-
     void Start(){
-        /* for (int i = 0; i < 4; i++)
-        {
-            Player p = PlayersManager.CreatePlayer();
-            PlayersManager.AddSkin(p, i);
-            CharacterSelectionManager.instance.selectedCount++;
-        } */
-        List<int> randomSkins = GenerateUniqueRandoms(4, 0, 7);
-        Player p = PlayersManager.instance.CreatePlayer();
-        PlayersManager.instance.AddSkin(p, randomSkins[0]);
-        CharacterSelectionManager.instance.selectedCount++;
-        Player q = PlayersManager.instance.CreatePlayer();
-        PlayersManager.instance.AddSkin(q, randomSkins[1]);
-        CharacterSelectionManager.instance.selectedCount++;
-        Player a = PlayersManager.instance.CreatePlayer();
-        PlayersManager.instance.AddSkin(a, randomSkins[2]);
-        CharacterSelectionManager.instance.selectedCount++;
-        Player b = PlayersManager.instance.CreatePlayer();
-        PlayersManager.instance.AddSkin(b, randomSkins[3]);
-        CharacterSelectionManager.instance.selectedCount++;
+        for (int i = 0; i < 4; i++){
+            Player p = PlayersManager.instance.CreatePlayer();
+            PlayersManager.instance.AddSkin(p, 0);
+        }
     }
 
-    public List<int> GenerateUniqueRandoms(int amount, int min, int max){
+/*     public List<int> GenerateUniqueRandoms(int amount, int min, int max){
         List<int> numbers = new List<int>();
 
         for(int i = 0; i < amount; i++){
@@ -40,5 +24,5 @@ public class FakeSelector : MonoBehaviour
         }
 
         return numbers;
-    }
+    } */
 }

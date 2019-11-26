@@ -65,8 +65,8 @@ public class CharacterSelectionManager : MonoBehaviour
             
             Debug.Log("Everyone is ready, transitioning to " + PlayersManager.instance.nextMinigame.ToString() + " Tips Screen");
             readyFlag = true;
-            StartDance();
-            //SceneManager.LoadScene("TipsScreen");
+            //StartDance();
+            SceneManager.LoadScene("TipsScreen");
         }
     }
 
