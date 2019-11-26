@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class TipsScreenManager : MonoBehaviour
 {
 
+    public enum MinigamesScenesList{
+        Deceived, Dragons, MNG3, MNG4, MNG5
+    }
+
+    public MinigamesScenesList currentMinigame;
+
     public InputActionAsset tipsScreenActions;
 
     void Awake(){
-        Debug.Log(PlayersManager.instance.nextMinigame.ToString());
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        InstantiatePlayers();
+        GetPlayers();
+        SceneManager.LoadScene(currentMinigame.ToString());
     }
 
     // Update is called once per frame
@@ -24,7 +32,7 @@ public class TipsScreenManager : MonoBehaviour
         
     }
 
-    public void InstantiatePlayers(){
+    public void GetPlayers(){
 
     }
 

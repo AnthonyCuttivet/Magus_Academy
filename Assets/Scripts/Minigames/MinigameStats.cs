@@ -16,7 +16,7 @@ public class MinigameStats : MonoBehaviour
         else{
             Destroy(this);  
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 }

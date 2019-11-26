@@ -35,7 +35,6 @@ public class PlayersManager : MonoBehaviour {
     public Player CreatePlayer(){
         Player p = new Player(playersList.Count, -1);
         playersList.Add(p);
-        Debug.Log("Created Player " + p.Id);
         return p;
     }
 
@@ -51,7 +50,6 @@ public class PlayersManager : MonoBehaviour {
             }
         }
         CharacterSelectionManager.instance.characters[p.Id].SetActive(true);
-        Debug.Log("Skin " + p.Skin + " has been set to Player " + p.Id);
         gameObject.transform.Find("DebugIcons").gameObject.GetComponent<DebugIcons>().AddDebugIcon(p.Id, p.Skin);
     }
 
@@ -60,6 +58,5 @@ public class PlayersManager : MonoBehaviour {
         CharacterSelectionManager.instance.selectedCount--;
         CharacterSelectionManager.instance.characters[p.Id].SetActive(false);
         p.Skin = -1;
-        Debug.Log("Skin has been removed from Player " + p.Id);
     }
 }

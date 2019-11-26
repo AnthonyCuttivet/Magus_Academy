@@ -98,15 +98,23 @@ public class CharactersSpawner : MonoBehaviour
 
     public void SetSkin(GameObject obj, int index){
         if(index <= (0.25f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = skinToUse[0];
+            ApplySkin(obj, skinToUse[0]);
         }else if(index <= (0.5f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = skinToUse[1];
+            ApplySkin(obj, skinToUse[1]);
         }
         else if(index <= (0.75f * amountOfEntities)){
-            obj.GetComponent<Renderer>().material = skinToUse[2];
+            ApplySkin(obj, skinToUse[2]);
         }
         else{
-            obj.GetComponent<Renderer>().material = skinToUse[3];
+            ApplySkin(obj, skinToUse[3]);
+        }
+    }
+
+    public void ApplySkin(GameObject obj, Material skin){
+        foreach(Transform g in obj.transform){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().material = skin;
+            }
         }
     }
 

@@ -50,10 +50,10 @@ public class PlayerControls : Controls
     public void GetSpeed(){
         if(alive){
             if(isRunning){
-            speed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterRunningSpeed;
-        }else {
-            speed = GameObject.Find("GameManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
-        }
+            speed = GameObject.Find("DeceivedManager").GetComponent<PlayersSettings>().characterRunningSpeed;
+            }else {
+                speed = GameObject.Find("DeceivedManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
+            }
         }
         else{
             speed = divineLightSpeed;
