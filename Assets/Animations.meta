@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animations.meta
 guid: c00f555ec0070144f9ae4b8fcd371b51
+=======
+guid: 062269b0ffd08b641be42e190f48b0d4
+>>>>>>> Cursors + playerprefs mionster:Assets/Materials/CharacterSelection/Cursors.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

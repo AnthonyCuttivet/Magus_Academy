@@ -95,7 +95,11 @@ Material:
     - _Color: {r: 0.254717, g: 0.11764706, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+<<<<<<< HEAD
 --- !u!114 &572931278554688236
+=======
+--- !u!114 &1318027910834273177
+>>>>>>> Cursors + playerprefs mionster
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

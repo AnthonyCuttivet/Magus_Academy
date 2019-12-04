@@ -898,7 +898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &502557837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   - {fileID: 250331290}
   - {fileID: 674919362}
   skins:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 4070f3c350861774b8d955de9ec81c93, type: 2}
   - {fileID: 2100000, guid: 83af09df9b59fd0479d195292fdf6b10, type: 2}
   - {fileID: 2100000, guid: 3433f57a7afd76d47a154f7414ee109d, type: 2}
   - {fileID: 2100000, guid: 74b847f090f33d84e8ebad9e7b90409d, type: 2}
@@ -1478,6 +1478,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: dd64e27426e3d54418a9abf5559d8b69, type: 2}
   - {fileID: 2100000, guid: e8d0af3c1c992ad44ba6f9ee8bc3418b, type: 2}
   - {fileID: 2100000, guid: e1461cf857b77834da40a75d450935f0, type: 2}
+  cursors:
+  - {fileID: 2100000, guid: c7b9f2eb3b0ba514e8db82e1e7df7299, type: 2}
+  - {fileID: 2100000, guid: f224d27ce592bf6499eabc6de096babd, type: 2}
+  - {fileID: 2100000, guid: e7edc94425f00c3429784889f6dbfa22, type: 2}
+  - {fileID: 2100000, guid: 49ce6aa269e443f4dbce18e37204557c, type: 2}
   selectedSkins: 
   SP_MONSTER_SKIN: {fileID: 1340880199}
 --- !u!4 &820570151

@@ -19,7 +19,12 @@ public class PlayerCursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(!playerCreated){
+            playerCreated = true;
+            currentPlayer = PlayersManager.instance.CreatePlayer();
+            Color fullColor = CharacterSelectionManager.instance.cursors[currentPlayer.Id];
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
+        }
     }
 
     // Update is called once per frame
@@ -40,10 +45,6 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void OnMove(InputValue value){
-        if(!playerCreated){
-            playerCreated = true;
-            currentPlayer = PlayersManager.instance.CreatePlayer();
-        }
         if(!hasSelected){
             Vector3 v3Value = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
             gameObject.transform.Translate(v3Value);

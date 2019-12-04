@@ -16,6 +16,8 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public Material[] skins;
 
+    public Color[] cursors;
+
     public List<int> selectedSkins = new List<int>();
 
     [Space]
