@@ -1479,10 +1479,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e8d0af3c1c992ad44ba6f9ee8bc3418b, type: 2}
   - {fileID: 2100000, guid: e1461cf857b77834da40a75d450935f0, type: 2}
   cursors:
-  - {fileID: 2100000, guid: c7b9f2eb3b0ba514e8db82e1e7df7299, type: 2}
-  - {fileID: 2100000, guid: f224d27ce592bf6499eabc6de096babd, type: 2}
-  - {fileID: 2100000, guid: e7edc94425f00c3429784889f6dbfa22, type: 2}
-  - {fileID: 2100000, guid: 49ce6aa269e443f4dbce18e37204557c, type: 2}
+  - {r: 1, g: 0.1745283, b: 0.1745283, a: 0}
+  - {r: 0.33490568, g: 0.44442058, b: 1, a: 1e-45}
+  - {r: 0.70148313, g: 0.9622642, b: 0.503827, a: 0}
+  - {r: 1, g: 0.89266866, b: 0.36320752, a: 0}
   selectedSkins: 
   SP_MONSTER_SKIN: {fileID: 1340880199}
 --- !u!4 &820570151
