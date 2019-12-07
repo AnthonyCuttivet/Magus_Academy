@@ -16,8 +16,6 @@ public class CharactersSpawner : MonoBehaviour
 
     [Range(4,100)]
     public int amountOfEntities = 4;
-    public Material player;
-    public Material[] materials;
 
     public List<GameObject> pooledEntities;
     public List<GameObject> players;
@@ -111,7 +109,7 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     public void ApplySkin(GameObject obj, Material skin){
-        foreach(Transform g in obj.transform){
+        foreach(Transform g in obj.transform.Find("Parts")){
             if(g.name != "Chibi_Character"){
                 g.GetComponent<SkinnedMeshRenderer>().material = skin;
             }

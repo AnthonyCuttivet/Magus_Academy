@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GenerateFakeCharactersDC : MonoBehaviour
 {
-    void Start(){
+    void OnEnable(){
         List<int> skins = GenerateUniqueRandoms(4,1,8);
         for (int i = 0; i < 4; i++){
-           Player p = PlayersManager.instance.CreatePlayer();
-           PlayersManager.instance.AddSkin(p, skins[i]);
+            //Player p = PlayersManager.instance.CreatePlayer();
+            //PlayersManager.instance.AddSkin(p, skins[i]);
         }
     }
 
