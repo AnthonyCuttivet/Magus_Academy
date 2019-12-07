@@ -74,10 +74,14 @@ public class PlayerControls : Controls
 
     void OnWalk(InputValue value){
         i_movement = value.Get<Vector2>();
-        //Debug.Log(i_movement);
         if(alive){
             if(value.Get<Vector2>() != Vector2.zero){
+                gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
                 gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
+            }else{
+                gameObject.GetComponent<Animator>().SetBool("isWalking", false);
+                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
             }
             
         }else if(!alive && divineLight && dlInstance != null){
@@ -89,9 +93,11 @@ public class PlayerControls : Controls
     void OnRun(InputValue value){
         if(isRunning){
             isRunning = false;
+            gameObject.GetComponent<Animator>().SetBool("isRunning", false);
         }
         else{
             isRunning = true;
+            gameObject.GetComponent<Animator>().SetBool("isRunning", true);
         }
     }
 

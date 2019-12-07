@@ -12,6 +12,7 @@ public class PNJControls : Controls
         agent = GetComponent<NavMeshAgent>();
     }
     void Start(){
+    gameObject.GetComponent<Animator>().SetBool("isWalking", true);
         InvokeRepeating("CalculateVelocity", 0, Random.Range(2f,5f));
         agent.speed = PlayersSettings.instance.pnjWalkingSpeed;
         agent.autoBraking = false;
