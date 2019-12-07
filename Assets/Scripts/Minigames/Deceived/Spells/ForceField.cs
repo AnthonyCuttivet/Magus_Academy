@@ -22,22 +22,33 @@ public class ForceField : MonoBehaviour
     }
 
     void OnDestroy(){
-        foreach (GameObject g in invisibleObjects)
-        {
-            g.GetComponent<MeshRenderer>().enabled = true;
+        foreach (GameObject g in invisibleObjects){
+            foreach(Transform t in g.transform.Find("Parts")){
+                if(t.name != "Chibi_Character"){
+                    t.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+            }
         }
     }
 
     void OnTriggerEnter(Collider collider){
         if(collider.tag == "Character"){
-            collider.GetComponent<MeshRenderer>().enabled = false;
+            foreach(Transform g in collider.transform.Find("Parts")){
+                if(g.name != "Chibi_Character"){
+                    g.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+            }
             invisibleObjects.Add(collider.gameObject);
         }
     }
 
     void OnTriggerExit(Collider collider){
         if(collider.tag == "Character"){
-            collider.GetComponent<MeshRenderer>().enabled = true;
+            foreach(Transform g in collider.transform.Find("Parts")){
+                if(g.name != "Chibi_Character"){
+                    g.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+            }
             invisibleObjects.Remove(collider.gameObject);
         }
     }

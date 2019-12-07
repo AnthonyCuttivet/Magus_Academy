@@ -140,8 +140,12 @@ public class PlayerControls : Controls
 
     public override void Kill(){
             CharactersSpawner.instance.players.Remove(gameObject);
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<CapsuleCollider>().enabled = false;
+            foreach(Transform g in gameObject.transform.Find("Parts")){
+                if(g.name != "Chibi_Character"){
+                    g.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+            }
+            GetComponent<BoxCollider>().enabled = false;
             GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
             alive = false;
             MinigameStats.instance.ranking.Add(gameObject.name);
