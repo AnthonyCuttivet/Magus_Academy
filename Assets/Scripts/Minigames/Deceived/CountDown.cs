@@ -10,12 +10,13 @@ public class CountDown : MonoBehaviour
     public float time;
     public AudioClip countDownSFX;
     public AudioClip goSFX;
-
     private int currentSecond = -1;
+    public static CountDown instance;
+    public bool countDownfinished;
 
-    // Start is called before the first frame update
-    void Start(){
+    void Awake(){
         currentSecond = (int)time % 60;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class CountDown : MonoBehaviour
                 gameObject.GetComponent<TextMeshProUGUI>().text = "GO!";
                 PlaySound(goSFX);
                 gameObject.GetComponent<TextMeshProUGUI>().DOFade(0,0.5f);
+                countDownfinished = true;
             }
         }
     }

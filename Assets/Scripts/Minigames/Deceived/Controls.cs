@@ -7,14 +7,18 @@ public class Controls : MonoBehaviour
     protected Rigidbody rb;
     protected Vector2 velocity;
     public float speed;
-    
+    public bool gameStarted;
 
     public virtual void Awake(){
         rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate(){
-        Move(velocity);
+        if(gameStarted)
+            Move(velocity);
+    }
+    public virtual void Update(){
+        gameStarted = CountDown.instance.countDownfinished;
     }
 
     void Move(Vector2 _velocity){

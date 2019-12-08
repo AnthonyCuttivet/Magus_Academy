@@ -25,7 +25,6 @@ public class PlayerControls : Controls
     public bool magicSpear = true;
     public bool divineLight = true;
     public float divineLightSpeed;
-
     private GameObject dlInstance;
 
     public override void Awake(){
@@ -39,7 +38,8 @@ public class PlayerControls : Controls
     }
 
     // Update is called once per frame
-    void Update(){
+    public override void  Update(){
+        base.Update();
         if(Input.GetKeyDown(KeyCode.Space)){
             Kill();
         }
@@ -74,7 +74,7 @@ public class PlayerControls : Controls
 
     void OnWalk(InputValue value){
         i_movement = value.Get<Vector2>();
-        if(alive){
+        if(alive && gameStarted){
             if(value.Get<Vector2>() != Vector2.zero){
                 gameObject.GetComponent<Animator>().SetBool("isWalking", true);
                 gameObject.GetComponent<Animator>().SetBool("isRunning", false);
@@ -91,24 +91,28 @@ public class PlayerControls : Controls
     }
 
     void OnRun(InputValue value){
-        if(isRunning){
-            isRunning = false;
-            gameObject.GetComponent<Animator>().SetBool("isRunning", false);
-        }
-        else{
-            isRunning = true;
-            gameObject.GetComponent<Animator>().SetBool("isRunning", true);
+        if(gameStarted){
+            if(isRunning){
+                isRunning = false;
+                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
+            }
+            else{
+                isRunning = true;
+                gameObject.GetComponent<Animator>().SetBool("isRunning", true);
+            }
         }
     }
 
     void OnAttack(InputValue value){
-        if(alive){
-            Collider[] gameObjectToDestroy = targets.ToArray();
-            foreach(Collider collider in gameObjectToDestroy){
-                if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
-                    collider.GetComponent<Controls>().Kill();
+        if(gameStarted){
+            if(alive && gameStarted){
+                Collider[] gameObjectToDestroy = targets.ToArray();
+                foreach(Collider collider in gameObjectToDestroy){
+                    if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
+                        collider.GetComponent<Controls>().Kill();
+                    }
+                    targets.Remove(collider);
                 }
-                targets.Remove(collider);
             }
         }
     }
@@ -125,14 +129,14 @@ public class PlayerControls : Controls
     }
 
     void OnShoot(){
-        if(alive && magicSpear){
+        if(alive && magicSpear && gameStarted){
             Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
             magicSpear = false;
         }
     }
 
     void OnForceField(){
-        if(alive && invisibilityField){
+        if(alive && invisibilityField && gameStarted){
             Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
             invisibilityField = false;
         }

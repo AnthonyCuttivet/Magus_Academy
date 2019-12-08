@@ -1086,7 +1086,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23588
+  m_Name: pb_Mesh20370
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 3770419374215896339, guid: e07567d8c8fcb9444bc6057f06b1cd46, type: 3}
-  amountOfEntities: 4
+  amountOfEntities: 47
   pooledEntities: []
   players: []
   PNJList: []
@@ -1431,7 +1431,7 @@ MonoBehaviour:
     type: 3}
   divineLight: {fileID: 9124415688842227435, guid: 58fe34ff8b10da14f958415d97b8931a,
     type: 3}
-  m_MaxDistance: 1.2
+  m_MaxDistance: 1.57
   actions: {fileID: -944628639613478452, guid: 34cd19cfc26fed547b57825563985b1c, type: 3}
   skinToUse: []
   playersInfos: []
@@ -1540,7 +1540,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23630
+  m_Name: pb_Mesh20434
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1872,6 +1872,7 @@ MonoBehaviour:
   time: 3
   countDownSFX: {fileID: 8300000, guid: ea4bd126feec2aa4281a2c9452ac4c50, type: 3}
   goSFX: {fileID: 8300000, guid: a7ba2735263d43f43ae321d203797a80, type: 3}
+  countDownfinished: 0
 --- !u!114 &2049325622
 MonoBehaviour:
   m_ObjectHideFlags: 0

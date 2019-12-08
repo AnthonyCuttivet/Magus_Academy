@@ -74,6 +74,8 @@ public class CharactersSpawner : MonoBehaviour
                     spawned = true;
                     obj.name = i.ToString();        
                     obj.transform.parent = GameObject.Find("Characters").transform;
+                    Quaternion randomRotation = Quaternion.Euler(0,Random.Range(-360,360),0);
+                    obj.transform.rotation = randomRotation;
                     SetSkin(obj, i);
                     //obj.SetActive(false); 
                     pooledEntities.Add(obj);
