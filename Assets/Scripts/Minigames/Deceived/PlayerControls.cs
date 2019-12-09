@@ -26,6 +26,7 @@ public class PlayerControls : Controls
     public bool divineLight = true;
     public float divineLightSpeed;
     private GameObject dlInstance;
+    private Animator animator;
 
     public override void Awake(){
         base.Awake();
@@ -35,16 +36,20 @@ public class PlayerControls : Controls
         runningSpeed = PlayersSettings.instance.characterRunningSpeed;
         divineLightSpeed = PlayersSettings.instance.divineLightSpeed;
         pa = new PlayerActions();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    public override void  Update(){
+    public override void Update(){
         base.Update();
         if(Input.GetKeyDown(KeyCode.Space)){
             Kill();
         }
         GetSpeed();
         velocity = new Vector3(i_movement.x, i_movement.y);
+
+        //Animation
+        animator.SetBool("isRunning", isRunning);
     }
 
     public void GetSpeed(){
@@ -76,12 +81,12 @@ public class PlayerControls : Controls
         i_movement = value.Get<Vector2>();
         if(alive && gameStarted){
             if(value.Get<Vector2>() != Vector2.zero){
-                gameObject.GetComponent<Animator>().SetBool("isWalking", true);
-                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isRunning", false);
                 gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
             }else{
-                gameObject.GetComponent<Animator>().SetBool("isWalking", false);
-                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
             }
             
         }else if(!alive && divineLight && dlInstance != null){
@@ -94,18 +99,17 @@ public class PlayerControls : Controls
         if(gameStarted){
             if(isRunning){
                 isRunning = false;
-                gameObject.GetComponent<Animator>().SetBool("isRunning", false);
             }
             else{
                 isRunning = true;
-                gameObject.GetComponent<Animator>().SetBool("isRunning", true);
             }
         }
     }
 
     void OnAttack(InputValue value){
         if(gameStarted){
-            if(alive && gameStarted){
+            if(alive){
+                animator.SetTrigger("isPunching");
                 Collider[] gameObjectToDestroy = targets.ToArray();
                 foreach(Collider collider in gameObjectToDestroy){
                     if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
@@ -130,6 +134,7 @@ public class PlayerControls : Controls
 
     void OnShoot(){
         if(alive && magicSpear && gameStarted){
+            animator.SetTrigger("isAttacking");
             Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
             magicSpear = false;
         }

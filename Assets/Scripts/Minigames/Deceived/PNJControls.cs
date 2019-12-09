@@ -7,19 +7,34 @@ public class PNJControls : Controls
 {
     NavMeshAgent agent;
     public float distance;
+
+    private Animator animator;
+
     public override void  Awake(){
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
+        animator = gameObject.GetComponent<Animator>();
     }
+
     IEnumerator Start(){
         while(!gameStarted){
             yield return new WaitForSeconds(.01f);
         }
-        gameObject.GetComponent<Animator>().SetBool("isWalking", true);
+        animator.SetBool("isWalking", true);
         InvokeRepeating("CalculateVelocity", 0, Random.Range(2f,5f));
         agent.speed = PlayersSettings.instance.pnjWalkingSpeed;
-        agent.autoBraking = false;
+        agent.autoBraking = true;
+        agent.angularSpeed = 360f;
         distance = PlayersSettings.instance.pnjDistanceToWalk;
+    }
+
+    public override void Update(){
+        base.Update();
+        if(agent.destination == transform.position){
+            animator.SetBool("isWalking", false);
+        }else{
+            animator.SetBool("isWalking", true);
+        }
     }
 
     void CalculateVelocity(){

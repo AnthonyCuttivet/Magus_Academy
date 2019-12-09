@@ -23,7 +23,7 @@ public class PlayerActions : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""f114cda7-0dd0-45be-a113-e87cdf6b02e4"",
                     ""expectedControlType"": ""Stick"",
-                    ""processors"": ""StickDeadzone(min=0.05)"",
+                    ""processors"": ""StickDeadzone(min=0.2)"",
                     ""interactions"": """"
                 },
                 {
