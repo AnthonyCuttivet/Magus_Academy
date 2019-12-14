@@ -1,0 +1,52 @@
+{
+    "name": "CommandsUI",
+    "maps": [
+        {
+            "name": "CommandsUI",
+            "id": "5b26b811-140d-41e5-868f-3deeaccdfeb1",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "411a30b4-a9d4-453c-9342-fdb7a2fbfc7b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "917305de-03eb-45fe-bc8a-7225a9672f8b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9d1fa604-f25b-4699-b60a-287fc3d66355",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbb5c09b-f537-4ad6-9cff-85ed28b9f18f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

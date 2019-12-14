@@ -31,7 +31,7 @@ public class Shot : MonoBehaviour
 
     void OnTriggerEnter(Collider collider){
         if(collider.tag == "Character"){
-            collider.GetComponent<Controls>().Kill();
+            collider.GetComponent<Controls>().Kill(int.Parse(gameObject.name.Replace("Player", "")));
         }
 
        

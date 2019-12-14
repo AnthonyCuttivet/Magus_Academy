@@ -30,7 +30,7 @@ public class DeceivedManager : MonoBehaviour
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && !gameEnded){
             gameEnded = true;
-            MinigameStats.instance.ranking.Add(CharactersSpawner.instance.players[0].name);
+            //MinigameStats.instance.ranking.Add(CharactersSpawner.instance.players[0].name);
             UiWinner();
             LoadVictoryScreen();
         }

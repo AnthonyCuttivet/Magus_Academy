@@ -25,7 +25,7 @@ public class Controls : MonoBehaviour
         rb.velocity = new Vector3(_velocity.x,0,_velocity.y) * speed;
     }
 
-    public virtual void Kill(){
+    public virtual void Kill(int killer){
 
     }
 }

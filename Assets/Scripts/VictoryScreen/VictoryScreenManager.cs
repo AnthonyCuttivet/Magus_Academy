@@ -10,7 +10,7 @@ public class VictoryScreenManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        playerName.GetComponent<TextMeshProUGUI>().text = MinigameStats.instance.ranking[3];
+        //playerName.GetComponent<TextMeshProUGUI>().text = MinigameStats.instance.ranking[3];
     }
 
     // Update is called once per frame

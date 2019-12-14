@@ -7,7 +7,7 @@ public class MinigameStats : MonoBehaviour
 
     public static MinigameStats instance;
 
-    public List<string> ranking = new List<string>();
+    public Dictionary<int,int> ranking = new Dictionary<int,int>(); //dead, killer
 
     void Awake(){
         if(instance == null){
@@ -17,6 +17,15 @@ public class MinigameStats : MonoBehaviour
             Destroy(this);  
         }
         //DontDestroyOnLoad(gameObject);
+    }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.Space)){
+            foreach (KeyValuePair<int, int> kvp in ranking)
+            {
+                print(kvp.Key + " " + kvp.Value);
+            }
+        }
     }
 
 }

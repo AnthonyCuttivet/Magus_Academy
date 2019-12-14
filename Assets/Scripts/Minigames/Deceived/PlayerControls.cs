@@ -42,9 +42,6 @@ public class PlayerControls : Controls
     // Update is called once per frame
     public override void Update(){
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Kill();
-        }
         GetSpeed();
         velocity = new Vector3(i_movement.x, i_movement.y);
 
@@ -113,7 +110,7 @@ public class PlayerControls : Controls
                 Collider[] gameObjectToDestroy = targets.ToArray();
                 foreach(Collider collider in gameObjectToDestroy){
                     if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
-                        collider.GetComponent<Controls>().Kill();
+                        collider.GetComponent<Controls>().Kill(int.Parse(gameObject.name.Replace("Player", "")));
                     }
                     targets.Remove(collider);
                 }
@@ -153,17 +150,17 @@ public class PlayerControls : Controls
         divineLight = true;
     }
 
-    public override void Kill(){
-            CharactersSpawner.instance.players.Remove(gameObject);
-            foreach(Transform g in gameObject.transform.Find("Parts")){
-                if(g.name != "Chibi_Character"){
-                    g.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                }
+    public override void Kill(int killer){
+        CharactersSpawner.instance.players.Remove(gameObject);
+        foreach(Transform g in gameObject.transform.Find("Parts")){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().enabled = false;
             }
-            GetComponent<BoxCollider>().enabled = false;
-            GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
-            alive = false;
-            MinigameStats.instance.ranking.Add(gameObject.name);
+        }
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
+        alive = false;
+        MinigameStats.instance.ranking.Add(int.Parse(gameObject.name), killer);
     }
 
     #region PM

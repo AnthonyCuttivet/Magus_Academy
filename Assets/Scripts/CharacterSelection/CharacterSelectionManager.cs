@@ -52,7 +52,6 @@ public class CharacterSelectionManager : MonoBehaviour
     void Update()
     {
         if(selectedCount == 4 && !selectedCountFlag){
-            //Debug.Log("All 4 players have selected their characters");
             selectedCountFlag = true;
             ready = true;
         }
@@ -64,11 +63,9 @@ public class CharacterSelectionManager : MonoBehaviour
                     PlayersManager.instance.AddSkin(p, GetRandomSkin());
                 }
             }
-            
-            //Debug.Log("Everyone is ready, transitioning to " + PlayersManager.instance.nextMinigame.ToString() + " Tips Screen");
             readyFlag = true;
             //StartDance();
-            SceneManager.LoadScene("TipsScreen");
+            SceneManager.LoadScene(PlayersManager.instance.nextMinigame.ToString());
         }
     }
 

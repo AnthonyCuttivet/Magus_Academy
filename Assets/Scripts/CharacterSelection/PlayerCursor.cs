@@ -11,9 +11,11 @@ public class PlayerCursor : MonoBehaviour
     public bool hasSelected = false;
     public bool playerCreated = false;
     public Player currentPlayer;
+    public GameObject PlayersManagerGO;
 
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
+        PlayersManagerGO = GameObject.Find("PlayersManager/PlayersGO");
     }
 
     // Start is called before the first frame update
@@ -24,6 +26,8 @@ public class PlayerCursor : MonoBehaviour
             currentPlayer = PlayersManager.instance.CreatePlayer();
             Color fullColor = CharacterSelectionManager.instance.cursors[currentPlayer.Id];
             gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
+            gameObject.name = "PlayerGO" + currentPlayer.Id;
+            gameObject.transform.parent = PlayersManagerGO.transform;
         }
     }
 

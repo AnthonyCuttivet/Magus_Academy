@@ -52,7 +52,7 @@ public class PNJControls : Controls
         return navMeshHit.position;
     }
 
-    public override void Kill(){
+    public override void Kill(int killer){
         CharactersSpawner.instance.pooledEntities.Remove(gameObject);
         CharactersSpawner.instance.PNJList.Remove(gameObject);
         Destroy(gameObject);
