@@ -21,7 +21,7 @@ public class CountDown : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if(!CharactersSpawner.instance.gameStart && !CommandsUIManager.instance.inUI){
+        if(!CharactersSpawner.instance.gameStart){
             if(time > 0){
                 time -= Time.deltaTime;
                 int second = (int)time % 60;

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelection/CharacterSelection.unity
     guid: 1587e150cd0432a49b39212f750901f4
   - enabled: 1
-    path: Assets/Scenes/TipsScreen/TipsScreen.unity
+    path: Assets/Scenes/CommandsScreen/CommandsScreen.unity
     guid: f992860beca6ca74b9be8692960bbc0b
   - enabled: 1
     path: Assets/Scenes/Minigames/Deceived.unity

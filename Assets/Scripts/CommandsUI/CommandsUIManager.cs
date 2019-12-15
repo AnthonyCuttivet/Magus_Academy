@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CommandsUIManager : MonoBehaviour
 {
-
     public static CommandsUIManager instance;
-    public InputActionAsset actions;
-    public bool inUI = true;
 
-    public GameObject PlayersManagerGO;
+    public GameObject commandsPlayerPrefab;
+    public GameObject playerIcons;
+    public int readyCount = 0;
+    public bool start = false;
+    public GameObject BG;
+    [Space]
+    [Header("Backgrounds")]
+    public Sprite deceivedBG;
 
     void Awake(){
         if(instance == null){
@@ -19,28 +24,39 @@ public class CommandsUIManager : MonoBehaviour
         else{
             Destroy(this);  
         }
-    }
 
-    void OnEnable(){
-        actions.Enable();
+        //Set BG
+        string nextMinigame = PlayersManager.instance.nextMinigame.ToString();
+        switch(nextMinigame){
+            case "Deceived" : 
+                BG.GetComponent<Image>().sprite = deceivedBG;
+            break;
+        }
+        BG.GetComponent<Image>().enabled = true;
+
+        //Set UI
+
+
+
+        //Generate Commands Players
+        foreach(Player p in PlayersManager.instance.playersList){
+            GameObject g = Instantiate(commandsPlayerPrefab);
+            g.name = p.Id + " " + p.Skin;
+            g.GetComponent<PlayerCUI>().id = p.Id;
+            //Set Player Icons
+            playerIcons.transform.GetChild(p.Id).GetComponent<Image>().sprite = GameObject.Find("PlayersManager").GetComponent<DebugIcons>().icons[p.Skin];
+        }
     }
 
     void Start(){
-        PlayersManagerGO = GameObject.Find("PlayersManager/PlayersGO");
-        foreach(Transform player in PlayersManagerGO.transform){
-            PlayerInput p = player.GetComponent<PlayerInput>();
-            p.actions = Instantiate(actions);
-            p.actions.Enable();
-            player.gameObject.AddComponent<PlayerCUI>();
-            Destroy(player.GetComponent<PlayerCursor>());
-            Destroy(player.GetComponent<SpriteRenderer>());
-        }
+
     }
 
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if(start){
+            SceneManager.LoadScene(PlayersManager.instance.nextMinigame.ToString());
+        }
     }
 }

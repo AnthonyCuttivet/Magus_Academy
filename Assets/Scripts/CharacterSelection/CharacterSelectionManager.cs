@@ -65,7 +65,7 @@ public class CharacterSelectionManager : MonoBehaviour
             }
             readyFlag = true;
             //StartDance();
-            SceneManager.LoadScene(PlayersManager.instance.nextMinigame.ToString());
+            SceneManager.LoadScene("CommandsScreen");
         }
     }
 
