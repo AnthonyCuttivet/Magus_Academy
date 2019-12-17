@@ -9,6 +9,7 @@ public class Shot : MonoBehaviour
     public float distanceBeforeDestroy;
     public float timeBeforeDestroy;
     float aliveTimer;
+    public string shooter;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,8 +31,8 @@ public class Shot : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider){
-        if(collider.tag == "Character"){
-            collider.GetComponent<Controls>().Kill(int.Parse(gameObject.name.Replace("Player", "")));
+        if(collider.CompareTag("Character") && collider.gameObject.name != shooter){
+            collider.GetComponent<Controls>().Kill(int.Parse(shooter.Replace("Player", string.Empty)));
         }
 
        

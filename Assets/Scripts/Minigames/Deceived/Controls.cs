@@ -14,8 +14,10 @@ public class Controls : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(gameStarted)
+        if(gameStarted){
             Move(velocity);
+        }
+            
     }
     public virtual void Update(){
         gameStarted = CountDown.instance.countDownfinished;

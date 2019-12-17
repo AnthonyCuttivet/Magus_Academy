@@ -27,6 +27,9 @@ public class PlayerControls : Controls
     public float divineLightSpeed;
     private GameObject dlInstance;
     private Animator animator;
+    Vector3 shotOriginPosition;
+    Quaternion shotOriginRotation;
+    bool castingSpell;
 
     public override void Awake(){
         base.Awake();
@@ -44,7 +47,6 @@ public class PlayerControls : Controls
         base.Update();
         GetSpeed();
         velocity = new Vector3(i_movement.x, i_movement.y);
-
         //Animation
         animator.SetBool("isRunning", isRunning);
     }
@@ -52,7 +54,7 @@ public class PlayerControls : Controls
     public void GetSpeed(){
         if(alive){
             if(isRunning){
-            speed = GameObject.Find("DeceivedManager").GetComponent<PlayersSettings>().characterRunningSpeed;
+                speed = GameObject.Find("DeceivedManager").GetComponent<PlayersSettings>().characterRunningSpeed;
             }else {
                 speed = GameObject.Find("DeceivedManager").GetComponent<PlayersSettings>().characterWalkingSpeed;
             }
@@ -75,11 +77,12 @@ public class PlayerControls : Controls
      }
 
     void OnWalk(InputValue value){
-        i_movement = value.Get<Vector2>();
-        if(alive && gameStarted){
+        
+        if(alive && gameStarted && !castingSpell){
+            i_movement = value.Get<Vector2>();
             if(value.Get<Vector2>() != Vector2.zero){
                 animator.SetBool("isWalking", true);
-                animator.SetBool("isRunning", false);
+                //animator.SetBool("isRunning", false);
                 gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
             }else{
                 animator.SetBool("isWalking", false);
@@ -89,6 +92,11 @@ public class PlayerControls : Controls
         }else if(!alive && divineLight && dlInstance != null){
 
             //dlInstance.transform.Translate(new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0));
+        }
+        else{
+            i_movement = Vector2.zero;
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
         }
     }
 
@@ -131,10 +139,19 @@ public class PlayerControls : Controls
 
     void OnShoot(){
         if(alive && magicSpear && gameStarted){
-            animator.SetTrigger("isAttacking");
-            Instantiate(CharactersSpawner.instance.shot,shotSpawnPoint.position,shotSpawnPoint.rotation);
+            animator.SetTrigger("isAttacking");         
             magicSpear = false;
+            shotOriginPosition = shotSpawnPoint.position;
+            shotOriginRotation = shotSpawnPoint.rotation;
+            castingSpell = true;
         }
+    }
+    public void SpawnShot(){
+        GameObject shot = Instantiate(CharactersSpawner.instance.shot,shotOriginPosition,shotOriginRotation);
+        shot.GetComponent<Shot>().shooter = gameObject.name;
+    }
+    public void SpellEndedCast(){
+        castingSpell = false;
     }
 
     void OnForceField(){
@@ -160,7 +177,7 @@ public class PlayerControls : Controls
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
         alive = false;
-        MinigameStats.instance.ranking.Add(int.Parse(gameObject.name), killer);
+        MinigameStats.instance.ranking.Add(int.Parse(gameObject.name.Replace("Player", string.Empty)), killer);
     }
 
     #region PM
