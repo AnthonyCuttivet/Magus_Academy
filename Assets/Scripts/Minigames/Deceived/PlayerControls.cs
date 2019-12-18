@@ -46,7 +46,13 @@ public class PlayerControls : Controls
     public override void Update(){
         base.Update();
         GetSpeed();
-        velocity = new Vector3(i_movement.x, i_movement.y);
+        if(!castingSpell){
+            velocity = new Vector3(i_movement.x, i_movement.y);
+        }
+        else{
+            velocity = Vector3.zero;
+        }
+        
         //Animation
         animator.SetBool("isRunning", isRunning);
     }
@@ -78,7 +84,7 @@ public class PlayerControls : Controls
 
     void OnWalk(InputValue value){
         
-        if(alive && gameStarted && !castingSpell){
+        if(alive && gameStarted){
             i_movement = value.Get<Vector2>();
             if(value.Get<Vector2>() != Vector2.zero){
                 animator.SetBool("isWalking", true);
@@ -89,9 +95,6 @@ public class PlayerControls : Controls
                 animator.SetBool("isRunning", false);
             }
             
-        }else if(!alive && divineLight && dlInstance != null){
-
-            //dlInstance.transform.Translate(new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0));
         }
         else{
             i_movement = Vector2.zero;
@@ -184,7 +187,7 @@ public class PlayerControls : Controls
     //Post mortem spells
 
     void OnDivineLight(){
-        if(!alive && divineLight){
+        if(!alive && divineLight && dlInstance == null){
             dlInstance = Instantiate(CharactersSpawner.instance.divineLight, CharactersSpawner.instance.divineLight.transform.localPosition, CharactersSpawner.instance.divineLight.transform.rotation,gameObject.transform);
             //divineLight = false;
         }

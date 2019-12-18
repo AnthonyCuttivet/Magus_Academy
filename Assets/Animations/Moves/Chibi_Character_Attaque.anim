@@ -63958,7 +63958,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7666667
+  - time: 2.2666667
     functionName: SpellEndedCast
     data: 
     objectReferenceParameter: {fileID: 0}

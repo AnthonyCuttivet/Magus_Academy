@@ -179,8 +179,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.0168, y: 0.453063, z: 10.5097885}
-  m_Center: {x: -0.18096542, y: -3.8153214, z: 15.4703865}
+  m_Size: {x: 18.0168, y: 4.2477827, z: 10.5097885}
+  m_Center: {x: -0.18096542, y: -1.9179616, z: 15.4703865}
 --- !u!1001 &9310398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersList: []
   nextMinigame: 1
+  currentMinigame: 0
 --- !u!4 &71602491
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,8 +1759,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.0168, y: 0.5463705, z: 10.5097885}
-  m_Center: {x: -0.18096542, y: -3.7686677, z: 15.4703865}
+  m_Size: {x: 18.0168, y: 5.0621176, z: 10.5097885}
+  m_Center: {x: -0.18096542, y: -6.026541, z: 15.4703865}
 --- !u!1 &891595888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,8 +2128,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9094219, y: 10.252898, z: 13.647209}
-  m_Center: {x: -0.22544861, y: 1.0845962, z: 17.039097}
+  m_Size: {x: 3.7273197, y: 10.252898, z: 13.647209}
+  m_Center: {x: 0.6835003, y: 1.0845962, z: 17.039097}
 --- !u!54 &1344740677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2734,8 +2735,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.439579, y: 10.252898, z: 13.647209}
-  m_Center: {x: 0.039629936, y: 1.0845962, z: 17.039097}
+  m_Size: {x: 7.002863, y: 10.252898, z: 13.647209}
+  m_Center: {x: -2.242012, y: 1.0845962, z: 17.039097}
 --- !u!1 &1824079605
 GameObject:
   m_ObjectHideFlags: 0
