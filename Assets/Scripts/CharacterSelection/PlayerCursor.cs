@@ -10,8 +10,11 @@ public class PlayerCursor : MonoBehaviour
     public int currentSelection = -1;
     public bool hasSelected = false;
     public bool playerCreated = false;
+    public float speed = 10f;
     public Player currentPlayer;
     public GameObject PlayersManagerGO;
+    private Vector2 vel;
+    private Rigidbody rb;
 
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
@@ -25,6 +28,8 @@ public class PlayerCursor : MonoBehaviour
             currentPlayer = PlayersManager.instance.CreatePlayer();
             Color fullColor = CharacterSelectionManager.instance.cursors[currentPlayer.Id];
             gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
+
+            rb = gameObject.GetComponent<Rigidbody>();
         }
     }
 
@@ -35,6 +40,12 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void FixedUpdate(){
+        //Movement
+        rb.velocity = vel * speed;
+        if(hasSelected){
+            rb.velocity = Vector2.zero;
+        }
+
         Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
         Debug.DrawRay(transform.position, forward, Color.green);
         hit = Physics2D.Raycast(transform.position, forward, 10f);
@@ -47,8 +58,11 @@ public class PlayerCursor : MonoBehaviour
 
     void OnMove(InputValue value){
         if(!hasSelected){
-            Vector3 v3Value = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
-            gameObject.transform.Translate(v3Value);
+            vel = value.Get<Vector2>();
+/*             Vector3 v3Value = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
+            gameObject.transform.Translate(v3Value); */
+        }else{
+            vel = Vector2.zero;
         }
     }
 
