@@ -6,12 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayersManager : MonoBehaviour {
 
     public enum Minigames{
-        Map,
         Deceived,
         DF,
-        MNG3,
-        MNG4,
-        MNG5
+        KTB,
     }
 
 
@@ -19,8 +16,10 @@ public class PlayersManager : MonoBehaviour {
 
     [SerializeField]
     public List<Player> playersList = new List<Player>();
+    public Dictionary<Minigames, Dictionary<int,int>> globalRanking = new Dictionary<Minigames, Dictionary<int,int>>();
 
     public Minigames nextMinigame;
+    public Minigames currentMinigame;
 
     void Awake(){
         if(instance == null){
