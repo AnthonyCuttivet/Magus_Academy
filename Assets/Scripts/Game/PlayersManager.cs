@@ -16,7 +16,7 @@ public class PlayersManager : MonoBehaviour {
 
     [SerializeField]
     public List<Player> playersList = new List<Player>();
-    public Dictionary<Minigames, Dictionary<int,int>> globalRanking = new Dictionary<Minigames, Dictionary<int,int>>();
+    public Dictionary<Minigames, Dictionary<int,Player>> globalRanking = new Dictionary<Minigames, Dictionary<int,Player>>();
 
     public Minigames nextMinigame;
     public Minigames currentMinigame;
