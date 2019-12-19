@@ -75,11 +75,13 @@ public class PlayerCursor : MonoBehaviour
         if(currentSelection != -1  && !hasSelected){
             if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection)){
                 //Skin already selected
-            }else{
+            }
+            else{
                 hasSelected = true;
                 PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
                 //Set banner alpha to 1
                 ChangeBannerAlpha(1f);
+                GetComponent<Collider>().isTrigger = true;
             }
         }
     }
@@ -89,6 +91,7 @@ public class PlayerCursor : MonoBehaviour
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
             ChangeBannerAlpha(.4f);
+            GetComponent<Collider>().isTrigger = false;
         }
     }
 

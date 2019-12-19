@@ -69,6 +69,7 @@ public class CharacterSelectionManager : MonoBehaviour
                 }
             }
             readyFlag = true;
+            StopAllMusic();
             //StartDance();
             SceneManager.LoadScene("CommandsScreen");
         }
@@ -100,15 +101,16 @@ public class CharacterSelectionManager : MonoBehaviour
         }
     }
 
-    public void AddSkin(Player player,int skin){
+    public void AddSkin(Player player){
+        selectedSkins.Add(player.Skin);
         selectedCount++;
         foreach(Transform g in characters[player.Id].transform.GetChild(0)){
             if(g.name != "Chibi_Character"){
-                g.GetComponent<SkinnedMeshRenderer>().material = skins[skin];
+                g.GetComponent<SkinnedMeshRenderer>().material = skins[player.Skin];
             }
         }
         characters[player.Id].SetActive(true);
-        soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)skin + "Theme",.3f,true,.3f);
+        soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f,true,.3f);
     }
     public void RemoveSkin(Player player){
         selectedSkins.Remove(player.Skin);
@@ -120,6 +122,13 @@ public class CharacterSelectionManager : MonoBehaviour
         foreach(string name in System.Enum.GetNames(typeof (CharacterAttribute.MagesAttributes))){
             soundManager.PlayMusicMuted(name + "Theme");
         }
+    }
+    public void StopAllMusic(){
+        foreach(int skinNumber in selectedSkins){
+            Debug.Log(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber));
+            soundManager.FadeOutMusic(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",1f);
+        }
+        soundManager.FadeOutMusic("MainTheme",1f);
     }
 
 
