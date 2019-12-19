@@ -11,7 +11,7 @@ public class CharacterAttribute : MonoBehaviour
         Fire = 3, 
         Wind = 4, 
         Light = 5, 
-        Lightning = 6, 
+        Thunder = 6, 
         Death = 7, 
         Dark = 8, 
         Random = 0,

@@ -9,7 +9,7 @@ public class Sound {
 	
 	public string name;
 	public bool isFadeIn,isFadeOut,finnishFade;
-	public Coroutine fadeOutCoroutine,fadeInCoroutine;
+	public Coroutine fadeInCoroutine,fadeOutCoroutine,fadeOutVolumeCoroutine,fadeInVolumeCoroutine;
 	public AudioClip clip;
 	public float volume = 0.7f;
 	[Range(0.5f,1.5f)]
@@ -84,6 +84,37 @@ public class Sound {
         source.volume = 0;
 		yield return null;
 	}
+	public IEnumerator FadeInVolume (float FadeTime) {
+		source.volume = 0;
+		isFadeIn = true;
+        float endVolume = startVolume; 
+        while (source.volume < endVolume) {
+            source.volume += endVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+		isFadeIn = false;
+	}
+	public IEnumerator FadeOutVolume (float FadeTime) {
+        float startVolume = source.volume;
+		isFadeOut = true;
+        while (source.volume > 0) {
+            source.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+		isFadeOut = false;
+	}
+	public IEnumerator EndFadeInVolume(){
+		isFadeIn = false;
+        source.volume = startVolume;
+		yield return null;
+	}
+	
+	public IEnumerator EndFadeOutVolume(){
+		isFadeOut = false;
+        source.volume = 0;
+		yield return null;
+	}
+	
 
 
 }
@@ -153,7 +184,7 @@ public class SoundManager : MonoBehaviour {
 			}
 		}
 	}
-	public void FadeOut(string musicName,float fadeTime){
+	public void FadeOutMusic(string musicName,float fadeTime){
 		foreach(Sound _sound in musiques ){
 			if(_sound.name == musicName){
 				if(_sound.isPlaying()){
@@ -167,7 +198,7 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	public void FadeIn(string musicName,float fadeTime, bool overPlay = false,float fadoutTime = .3f){
+	public void FadeInMusic(string musicName,float fadeTime, bool overPlay = false,float fadoutTime = .3f){
 		foreach(Sound _sound in musiques ){
 			if(_sound.name == musicName){
 				if(overPlay){
@@ -203,5 +234,51 @@ public class SoundManager : MonoBehaviour {
 	public void PlayRandomSound(string[] SoundsNames){
 		string soundToPlay = SoundsNames[Random.Range(0,SoundsNames.Length-1)];
 		PlaySound(soundToPlay);
+	}
+	public void PlayMusicMuted(string musicName){
+		foreach(Sound _sound in musiques ){
+			if(_sound.name == musicName){
+				if(!_sound.isPlaying()){
+					_sound.volume = 0;
+					_sound.makeItLoop();
+					_sound.Play();
+					return;
+				}
+			}
+		}
+	}
+	public void FadeInMusicVolume(string musicName,float fadeTime, bool overPlay = false,float fadoutTime = .3f){
+		foreach(Sound _sound in musiques ){
+			if(_sound.name == musicName){
+				if(overPlay){
+					if(_sound.isFadeOut || _sound.isFadeIn){
+						if(_sound.isFadeOut){
+							StopCoroutine(_sound.fadeOutVolumeCoroutine);
+							StartCoroutine(_sound.EndFadeOutVolume());
+						}
+						if(_sound.isFadeIn){
+							StopCoroutine(_sound.fadeInVolumeCoroutine);
+							StartCoroutine(_sound.EndFadeInVolume());
+						}
+
+					}
+				}
+				_sound.fadeInVolumeCoroutine = StartCoroutine(_sound.FadeInVolume(fadeTime));
+				_sound.makeItLoop();
+			}
+		}
+	}
+		public void FadeOutMusicVolume(string musicName,float fadeTime){
+		foreach(Sound _sound in musiques ){
+			if(_sound.name == musicName){
+				if(_sound.isPlaying()){
+					if(_sound.isFadeIn){
+						StopCoroutine(_sound.fadeInVolumeCoroutine);
+						StartCoroutine(_sound.EndFadeInVolume());
+					}
+					_sound.fadeOutVolumeCoroutine = StartCoroutine(_sound.FadeOutVolume(fadeTime));
+				}
+			}
+		}
 	}
 }

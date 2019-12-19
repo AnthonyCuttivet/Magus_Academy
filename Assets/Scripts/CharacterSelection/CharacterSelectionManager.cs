@@ -50,6 +50,7 @@ public class CharacterSelectionManager : MonoBehaviour
         soundManager = SoundManager.instance;
         soundManager.PlayMusic("MainTheme");
         CheckSpecialSkin();
+        PlayMagesThemeMuted();
     }
 
     // Update is called once per frame
@@ -107,13 +108,18 @@ public class CharacterSelectionManager : MonoBehaviour
             }
         }
         characters[player.Id].SetActive(true);
-        soundManager.FadeIn((CharacterAttribute.MagesAttributes)skin + "Theme",.3f,true,.3f);
+        soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)skin + "Theme",.3f,true,.3f);
     }
     public void RemoveSkin(Player player){
         selectedSkins.Remove(player.Skin);
         selectedCount--;
         characters[player.Id].SetActive(false);
-        soundManager.FadeOut((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f);
+        soundManager.FadeOutMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f);
+    }
+    void PlayMagesThemeMuted(){
+        foreach(string name in System.Enum.GetNames(typeof (CharacterAttribute.MagesAttributes))){
+            soundManager.PlayMusicMuted(name + "Theme");
+        }
     }
 
 
