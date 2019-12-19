@@ -23,6 +23,7 @@ public class CharacterSelectionManager : MonoBehaviour
     [Space]
     [Header("Special Skin")]
     public GameObject SP_MONSTER_SKIN;
+    SoundManager soundManager;
 
 
     //Security flags
@@ -45,6 +46,8 @@ public class CharacterSelectionManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        soundManager = SoundManager.instance;
+        soundManager.PlayMusic("MainTheme");
         CheckSpecialSkin();
     }
 
@@ -94,4 +97,23 @@ public class CharacterSelectionManager : MonoBehaviour
             animator.Play("DanceMoves");    
         }
     }
+
+    public void AddSkin(Player player,int skin){
+        selectedCount++;
+        foreach(Transform g in characters[player.Id].transform.GetChild(0)){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().material = skins[skin];
+            }
+        }
+        characters[player.Id].SetActive(true);
+        soundManager.FadeIn((CharacterAttribute.MagesAttributes)skin + "Theme",.3f,true,.3f);
+    }
+    public void RemoveSkin(Player player){
+        selectedSkins.Remove(player.Skin);
+        selectedCount--;
+        characters[player.Id].SetActive(false);
+        soundManager.FadeOut((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f);
+    }
+
+
 }
