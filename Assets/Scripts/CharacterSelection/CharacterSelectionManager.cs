@@ -13,6 +13,7 @@ public class CharacterSelectionManager : MonoBehaviour
     public bool ready = false;
 
     public GameObject[] characters;
+    public GameObject[] banners;
 
     public Material[] skins;
 

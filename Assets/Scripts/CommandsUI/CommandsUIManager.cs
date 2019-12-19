@@ -16,6 +16,8 @@ public class CommandsUIManager : MonoBehaviour
     [Space]
     [Header("Backgrounds")]
     public Sprite deceivedBG;
+    public Sprite DFBG;
+    public Sprite KTBBG;
 
     void Awake(){
         if(instance == null){
@@ -30,6 +32,12 @@ public class CommandsUIManager : MonoBehaviour
         switch(nextMinigame){
             case "Deceived" : 
                 BG.GetComponent<Image>().sprite = deceivedBG;
+            break;
+            case "DF" : 
+                BG.GetComponent<Image>().sprite = DFBG;
+            break;
+            case "KTB" : 
+                BG.GetComponent<Image>().sprite = KTBBG;
             break;
         }
         BG.GetComponent<Image>().enabled = true;

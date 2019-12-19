@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerCursor : MonoBehaviour
 {
@@ -30,6 +32,9 @@ public class PlayerCursor : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
 
             rb = gameObject.GetComponent<Rigidbody>();
+
+            //Set banner
+            CharacterSelectionManager.instance.banners[currentPlayer.Id].transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = false;
         }
     }
 
@@ -51,16 +56,16 @@ public class PlayerCursor : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, forward, 10f);
         if(hit.collider != null){
             currentSelection = hit.collider.transform.gameObject.GetComponent<CharacterAttribute>().attributeID;
+            CharacterSelectionManager.instance.banners[currentPlayer.Id].GetComponent<Image>().sprite = GetComponent<Magesnames>().banners[currentSelection];
         }else{
             currentSelection = -1;
+            CharacterSelectionManager.instance.banners[currentPlayer.Id].GetComponent<Image>().sprite = GetComponent<Magesnames>().banners[0];
         }
     }
 
     void OnMove(InputValue value){
         if(!hasSelected){
             vel = value.Get<Vector2>();
-/*             Vector3 v3Value = new Vector3(value.Get<Vector2>().x, value.Get<Vector2>().y, 0);
-            gameObject.transform.Translate(v3Value); */
         }else{
             vel = Vector2.zero;
         }
@@ -73,6 +78,8 @@ public class PlayerCursor : MonoBehaviour
             }else{
                 hasSelected = true;
                 PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
+                //Set banner alpha to 1
+                ChangeBannerAlpha(1f);
             }
         }
     }
@@ -81,11 +88,19 @@ public class PlayerCursor : MonoBehaviour
         if(hasSelected){
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
+            ChangeBannerAlpha(.4f);
         }
     }
 
     void OnSkip(){
         CharacterSelectionManager.instance.ready = true;
+    }
+
+    void ChangeBannerAlpha(float value){
+        var banner = CharacterSelectionManager.instance.banners[currentPlayer.Id].GetComponent<Image>();
+        var tempColor = banner.color;
+        tempColor.a = value;
+        banner.color = tempColor;
     }
 
 
