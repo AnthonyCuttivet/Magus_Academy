@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3021,133 +3021,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1382919862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1382919864}
-  - component: {fileID: 1382919863}
-  m_Layer: 0
-  m_Name: SoundDataBase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1382919863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382919862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18297c17660a9324d966df80e41380eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds: []
-  musiques:
-  - name: MainTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 3e1e14697ee34ee4494354cbf6967597, type: 3}
-    volume: 0.5
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: DarkTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: ca5b5a610980e0e478417aa7385549a4, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: DeathTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: e732544a3ec054f4d8037397006795eb, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: EarthTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 76475e8d0255a4b4593831313cfbee30, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: FireTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: f9e3bce496b4a7e4080480eb5deaecfe, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: IceTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 41feddecef479a24ebf39df9ecbbfc14, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: LightTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 44f37e049380b0749921055777acd5e4, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: ThunderTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 344f28454141aad408ddaebc7636c6a8, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  - name: WindTheme
-    isFadeIn: 0
-    isFadeOut: 0
-    finnishFade: 0
-    clip: {fileID: 8300000, guid: 4cb71a028edb88346b45ec5ad3d60ff8, type: 3}
-    volume: 1
-    pitch: 1
-    randomVolume: 0
-    randomPitch: 0
-  MusicMixer: {fileID: 24300002, guid: c4271dac92d61a5438546365d280ae89, type: 2}
---- !u!4 &1382919864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382919862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.657507, y: 8.232767, z: 80.321686}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421126761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,3 +4276,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127877528}
   m_CullTransparentMesh: 0
+--- !u!1001 &3785447113300722339
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3785447112527637525, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundDataBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.657507
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.232767
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 80.321686
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637531, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}

@@ -41,6 +41,7 @@ public class CharactersSpawner : MonoBehaviour
     LayerMask layerMask = (1 <<8);      //only the layer 8
     public List<Material> skinToUse = new List<Material>();
     public List<Player> playersInfos;
+    SoundManager soundManager;
 
     void Awake(){
         if(instance == null){
@@ -61,6 +62,8 @@ public class CharactersSpawner : MonoBehaviour
             skinToUse.Add(DeceivedManager.instance.skins[player.Skin]);
         }
         PoolEntities(entity, amountOfEntities);
+        soundManager = SoundManager.instance;
+        StartMusic();
     }
 
     public void PoolEntities(GameObject entity, int amount){
@@ -159,5 +162,13 @@ public class CharactersSpawner : MonoBehaviour
         }
 
         return numbers;
+    }
+    void StartMusic(){
+        soundManager.PlayMusic("Deceived_MainTheme");
+        foreach(Player player in playersInfos){
+            string skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), player.Skin);
+            soundManager.PlayMusic("Deceived_"+skin+"Theme");
+
+        } 
     }
 }
