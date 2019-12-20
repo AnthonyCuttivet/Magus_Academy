@@ -11,7 +11,7 @@ public class GenerateFakeScore : MonoBehaviour
     void Start(){
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         for (int i = 0; i < 4; i++){
-            minigameRanking.Add(i,new Player(i,i+1));
+            minigameRanking.Add((i+1)*2576,new Player(i,i+1));
         }
         PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, minigameRanking);
     }
