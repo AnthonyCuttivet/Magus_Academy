@@ -9,6 +9,6 @@ public class TextFlash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<TextMeshProUGUI>().DOFade(0,2f). SetLoops(-1, LoopType.Yoyo);
+        GetComponent<TextMeshProUGUI>().DOFade(0,2f).SetLoops(-1, LoopType.Yoyo);
     }
 }

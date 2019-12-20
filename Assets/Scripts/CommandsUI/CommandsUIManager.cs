@@ -28,8 +28,8 @@ public class CommandsUIManager : MonoBehaviour
         }
 
         //Set BG
-        string nextMinigame = PlayersManager.instance.nextMinigame.ToString();
-        switch(nextMinigame){
+        string currenMinigame = PlayersManager.instance.currentMinigame.ToString();
+        switch(currenMinigame){
             case "Deceived" : 
                 BG.GetComponent<Image>().sprite = deceivedBG;
             break;

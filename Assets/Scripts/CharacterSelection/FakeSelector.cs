@@ -8,7 +8,7 @@ public class FakeSelector : MonoBehaviour
     void Start(){
         for (int i = 0; i < 4; i++){
             Player p = PlayersManager.instance.CreatePlayer();
-            PlayersManager.instance.AddSkin(p, 0);
+            PlayersManager.instance.AddSkin(p, i+1);
         }
     }
 
