@@ -15,6 +15,12 @@ public class CountDown : MonoBehaviour
     public bool countDownfinished;
 
     void Awake(){
+        if(instance == null){
+            instance = this;
+        }
+        else{
+            Destroy(this);  
+        }
         currentSecond = (int)time % 60;
         instance = this;
     }

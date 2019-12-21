@@ -207,4 +207,76 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0
     randomPitch: 0
+  - name: Deceived_DarkEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: c72cf2cd7d9ddac4aaf3cafc24591682, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_DeathEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: fa7ffab3cdd70f24e9b1a7779fcede91, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_FireEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: b93a318cba822d64a9fb4af8fc14fa69, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_IceEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: ac0d0929470ef714a8e946a971acdcf6, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_LightEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 4dd1eccc08b64cd44953b838301f1a89, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_MainEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 7b2c4962b02902e439a8f23a12ba2bf7, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_ThunderEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 0d54a89fc3074164fa33412885afb169, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Deceived_WindEndTheme
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 4d7df2d318e7dea46ab4d97ca0a5609a, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
   MusicMixer: {fileID: 24300002, guid: c4271dac92d61a5438546365d280ae89, type: 2}

@@ -16,6 +16,7 @@ public class PlayerControls : Controls
     public bool isRunning = false;
     public PlayerActions pa;
     float walkingSpeed,runningSpeed;
+    public Player infos;
 
     public bool alive = true;
 
@@ -181,6 +182,7 @@ public class PlayerControls : Controls
         GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
         alive = false;
         MinigameStats.instance.ranking.Add(int.Parse(gameObject.name.Replace("Player", string.Empty)), killer);
+        DeceivedManager.instance.StopMusicSkin(infos.Skin);
     }
 
     #region PM

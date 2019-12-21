@@ -62,8 +62,6 @@ public class CharactersSpawner : MonoBehaviour
             skinToUse.Add(DeceivedManager.instance.skins[player.Skin]);
         }
         PoolEntities(entity, amountOfEntities);
-        soundManager = SoundManager.instance;
-        StartMusic();
     }
 
     public void PoolEntities(GameObject entity, int amount){
@@ -141,11 +139,12 @@ public class CharactersSpawner : MonoBehaviour
 
 
     public void InstantiatePlayersControls(List<float> ids){
-        foreach (var i in ids){
-            PlayerInput p = pooledEntities[(int)i-1].AddComponent<PlayerInput>();
+        for(int i = 0; i < players.Count;i++){
+            PlayerInput p = players[i].AddComponent<PlayerInput>();
             p.actions = Instantiate(actions);
             p.defaultActionMap = "Deceived";
-            PlayerControls pc = pooledEntities[(int)i-1].AddComponent<PlayerControls>();
+            PlayerControls pc = players[i].AddComponent<PlayerControls>();
+            pc.infos = new Player(i,playersInfos[i].Skin);
             p.actions.Enable();
         }
     }
@@ -163,12 +162,5 @@ public class CharactersSpawner : MonoBehaviour
 
         return numbers;
     }
-    void StartMusic(){
-        soundManager.PlayMusic("Deceived_MainTheme");
-        foreach(Player player in playersInfos){
-            string skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), player.Skin);
-            soundManager.PlayMusic("Deceived_"+skin+"Theme");
 
-        } 
-    }
 }
