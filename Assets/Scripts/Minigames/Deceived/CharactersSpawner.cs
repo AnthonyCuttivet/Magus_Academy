@@ -124,6 +124,7 @@ public class CharactersSpawner : MonoBehaviour
         int j = 1;
         foreach (float i in ids){
             pooledEntities[(int)i-1].name = "Player" + j;
+            pooledEntities[(int)i-1].AddComponent<DeceivedScoring>();
             j++;
             players.Add(pooledEntities[(int)i-1]);
         }

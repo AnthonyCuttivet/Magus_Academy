@@ -12,6 +12,10 @@ public class PlayersSettings : MonoBehaviour
     public float pnjDistanceToWalk = 15;
     public float divineLightSpeed = 10;
 
+    public int pointsPerSecond = 10;
+    public int pointsPerElimination = 100;
+
+
     void Awake(){
         if(instance == null){
             instance = this;

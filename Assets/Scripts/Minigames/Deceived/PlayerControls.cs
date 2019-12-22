@@ -165,13 +165,21 @@ public class PlayerControls : Controls
         }
     }
 
-    void OnResetSpells(){
+    void OnResetSpells(){   
         invisibilityField = true;
         magicSpear = true;
         divineLight = true;
     }
 
     public override void Kill(int killer){
+        //Save score
+        alive = false;
+        GetComponent<DeceivedScoring>().alive = false;
+        MinigameStats.instance.ranking.Add(GetComponent<DeceivedScoring>().score, infos);
+        //Give points to the killer
+        GameObject.Find("Characters/Player"+killer).GetComponent<DeceivedScoring>().score += PlayersSettings.instance.pointsPerElimination;
+
+        Debug.Log(gameObject.name + " was killed by player " + killer);
         CharactersSpawner.instance.players.Remove(gameObject);
         foreach(Transform g in gameObject.transform.Find("Parts")){
             if(g.name != "Chibi_Character"){
@@ -180,8 +188,6 @@ public class PlayerControls : Controls
         }
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
-        alive = false;
-        MinigameStats.instance.ranking.Add(int.Parse(gameObject.name.Replace("Player", string.Empty)), killer);
         DeceivedManager.instance.StopMusicSkin(infos.Skin);
     }
 

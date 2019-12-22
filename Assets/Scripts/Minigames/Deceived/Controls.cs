@@ -28,6 +28,6 @@ public class Controls : MonoBehaviour
     }
 
     public virtual void Kill(int killer){
-
+        
     }
 }

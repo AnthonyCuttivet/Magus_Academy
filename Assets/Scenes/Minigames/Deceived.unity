@@ -1288,6 +1288,7 @@ GameObject:
   - component: {fileID: 1461373003}
   - component: {fileID: 1461373005}
   - component: {fileID: 1461373006}
+  - component: {fileID: 1461373009}
   m_Layer: 0
   m_Name: DeceivedManager
   m_TagString: Untagged
@@ -1319,7 +1320,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e8d0af3c1c992ad44ba6f9ee8bc3418b, type: 2}
   despawnRate: 2
   EndGamePercentage: 0.279
-  playersInfos: []
 --- !u!4 &1461373004
 Transform:
   m_ObjectHideFlags: 0
@@ -1411,6 +1411,8 @@ MonoBehaviour:
   pnjWalkingSpeed: 5
   pnjDistanceToWalk: 15
   divineLightSpeed: 20
+  pointsPerSecond: 10
+  pointsPerElimination: 100
 --- !u!114 &1461373008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,6 +1440,19 @@ MonoBehaviour:
   actions: {fileID: -944628639613478452, guid: 34cd19cfc26fed547b57825563985b1c, type: 3}
   skinToUse: []
   playersInfos: []
+--- !u!114 &1461373009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461373002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c0f4acc7674d349a4cf8c4124aa93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &1645141484
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class Shot : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.up * 50;
         shotOrigin = transform.position;
+        shooter = gameObject.name;
     }
 
     // Update is called once per frame
