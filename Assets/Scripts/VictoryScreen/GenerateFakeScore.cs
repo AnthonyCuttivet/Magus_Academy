@@ -5,13 +5,13 @@ using UnityEngine;
 public class GenerateFakeScore : MonoBehaviour
 {
 
-    public Dictionary<int,Player> minigameRanking = new Dictionary<int, Player>();
+    public Dictionary<Player,int> minigameRanking = new Dictionary<Player, int>();
 
     // Start is called before the first frame update
     void Start(){
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         for (int i = 0; i < 4; i++){
-            minigameRanking.Add((i+1)*2576,new Player(i,i+1));
+            minigameRanking.Add(new Player(i,i+1), (i+1)*4526);
         }
         PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, minigameRanking);
     }

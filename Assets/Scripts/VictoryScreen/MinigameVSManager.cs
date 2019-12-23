@@ -49,7 +49,7 @@ public class MinigameVSManager : MonoBehaviour
             BG.GetComponent<Image>().enabled = true;
 
             //Set winner skin and banner
-            int winnerSkinID = PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame].First().Value.Skin;
+            int winnerSkinID = PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame].First().Key.Skin;
 
             foreach(Transform t in winnerModel.transform.GetChild(0)){
                 if(t.name != "Chibi_Character"){
@@ -61,28 +61,22 @@ public class MinigameVSManager : MonoBehaviour
             
             //Fill scoreboard
             int lineNumber = 0;
-            foreach(KeyValuePair<int,Player> ranking in PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame]){
+            foreach(KeyValuePair<Player,int> ranking in PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame]){
                 GameObject currentLine = lines.transform.GetChild(lineNumber).gameObject;
-                currentLine.transform.Find("Icon").GetComponent<Image>().sprite = GetComponent<DebugIcons>().icons[ranking.Value.Skin];
-                string completeName = currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text + (ranking.Value.Id+1);
-                currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text = "<color=#" + ColorUtility.ToHtmlStringRGB(GetComponent<Magesnames>().playerColors[ranking.Value.Id]) + ">" + completeName + "</color>";
-                currentLine.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = ranking.Key + " pts";
+                currentLine.transform.Find("Icon").GetComponent<Image>().sprite = GetComponent<DebugIcons>().icons[ranking.Key.Skin];
+                string completeName = currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text + (ranking.Key.Id+1);
+                currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text = "<color=#" + ColorUtility.ToHtmlStringRGB(GetComponent<Magesnames>().playerColors[ranking.Key.Id]) + ">" + completeName + "</color>";
+                currentLine.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = ranking.Value + " pts";
                 lineNumber++;
             }
             generated = true;
         }
     }
 
-    public void OrderScoreboard(Dictionary<int, Player> scoreBoard){
-        Dictionary<int, Player> scToReturn = new Dictionary<int, Player>();
-        List<int> orderedScores = new List<int>();
-        foreach(KeyValuePair<int,Player> line in scoreBoard){
-            orderedScores.Add(line.Key);
-        }
-        orderedScores.Sort();
-        orderedScores.Reverse();
-        foreach(int score in orderedScores){
-            scToReturn.Add(score, scoreBoard[score]);
+    public void OrderScoreboard(Dictionary<Player, int> scoreBoard){
+        Dictionary<Player, int> scToReturn = new Dictionary<Player, int>();
+        foreach (KeyValuePair<Player,int> line in scoreBoard.OrderByDescending(x => x.Value)){
+            scToReturn.Add(line.Key, line.Value);
         }
         PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame] = scToReturn;
     }

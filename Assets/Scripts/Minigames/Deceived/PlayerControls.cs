@@ -175,9 +175,11 @@ public class PlayerControls : Controls
         //Save score
         alive = false;
         GetComponent<DeceivedScoring>().alive = false;
-        MinigameStats.instance.ranking.Add(GetComponent<DeceivedScoring>().score, infos);
+        MinigameStats.instance.ranking.Add(infos, GetComponent<DeceivedScoring>().score);
+        DeceivedManager.instance.scoresSaved++;
         //Give points to the killer
-        GameObject.Find("Characters/Player"+killer).GetComponent<DeceivedScoring>().score += PlayersSettings.instance.pointsPerElimination;
+        GameObject gKiller = GameObject.Find("Characters/Player"+killer);
+        gKiller.GetComponent<DeceivedScoring>().score += PlayersSettings.instance.pointsPerElimination;
 
         Debug.Log(gameObject.name + " was killed by player " + killer);
         CharactersSpawner.instance.players.Remove(gameObject);
@@ -189,6 +191,12 @@ public class PlayerControls : Controls
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
         DeceivedManager.instance.StopMusicSkin(infos.Skin);
+
+        //if killer is winner save its score
+        if(CharactersSpawner.instance.players.Count == 1){
+            MinigameStats.instance.ranking.Add(gKiller.GetComponent<PlayerControls>().infos, gKiller.GetComponent<DeceivedScoring>().score);
+            DeceivedManager.instance.scoresSaved++;
+        }
     }
 
     #region PM

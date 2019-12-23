@@ -8,6 +8,7 @@ public class DeceivedManager : MonoBehaviour
     public static DeceivedManager instance;
 
     public static bool gameEnded = false;
+    public int scoresSaved = 0;
     public Material[] skins;
     public float despawnRate;
     [Range(0,1)]
@@ -41,10 +42,10 @@ public class DeceivedManager : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if(CharactersSpawner.instance.players.Count == 1 && !gameEnded){
+        if(CharactersSpawner.instance.players.Count == 1 && scoresSaved == 4 && !gameEnded){
             gameEnded = true;
-            //MinigameStats.instance.ranking.Add(CharactersSpawner.instance.players[0].name);
-            UiWinner();
+            //Save minigame scoreboard to global scoreboard
+            PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, MinigameStats.instance.ranking);
             LoadVictoryScreen();
         }
         else if(CountDown.instance.countDownfinished){
@@ -52,13 +53,8 @@ public class DeceivedManager : MonoBehaviour
             EndGameTransition();
         }
     }
-
-    public void UiWinner(){
-        
-    }
-
     public void LoadVictoryScreen(){
-        SceneManager.LoadScene("VictoryScreen");
+        SceneManager.LoadScene("MinigameVictoryScreen");
     }
 
     void Despawner(){
