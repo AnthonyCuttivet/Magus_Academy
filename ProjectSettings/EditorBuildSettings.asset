@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SplashScreen/SplashScreen.unity
+    guid: 280b8560fa9bc9347a277fd83314ab09
+  - enabled: 1
     path: Assets/Scenes/TitleScreen/TitleScreen.unity
     guid: cc6ff491634f2b540af58d9c6d1a2794
+  - enabled: 1
+    path: Assets/Scenes/TournamentScreen/TournamentScreen.unity
+    guid: 021b0137008d29f428993656d4bb9534
+  - enabled: 1
+    path: Assets/Scenes/MinigamesScreen/MinigamesScreen.unity
+    guid: f4ed6193d8aff1e43ba091fee45c9ac5
   - enabled: 1
     path: Assets/Scenes/CharacterSelection/CharacterSelection.unity
     guid: 1587e150cd0432a49b39212f750901f4
