@@ -1,0 +1,33 @@
+{
+    "name": "SplashScreen",
+    "maps": [
+        {
+            "name": "SplashScreen",
+            "id": "2fe7d914-3b60-4869-a939-174a4a6d3105",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Value",
+                    "id": "2d8d3f77-b22e-43b9-a989-6d4d45ce3ac0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "50a4af25-d1a1-47b4-9ab3-b45e599a2b03",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
