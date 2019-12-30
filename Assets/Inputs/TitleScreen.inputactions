@@ -26,7 +26,7 @@
                     "type": "Value",
                     "id": "4ab3a9ad-43f6-49a5-b819-9f7788e3a59f",
                     "expectedControlType": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.2)",
                     "interactions": ""
                 }
             ],

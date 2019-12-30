@@ -11,6 +11,11 @@ public class PlayersManager : MonoBehaviour {
         KTB,
     }
 
+    public enum Gamemodes{
+        Single,
+        Tournament
+    }
+
 
     public static PlayersManager instance;
 
@@ -20,6 +25,7 @@ public class PlayersManager : MonoBehaviour {
 
     public Minigames nextMinigame;
     public Minigames currentMinigame;
+    public Gamemodes gamemode;
 
     void Awake(){
         if(instance == null){

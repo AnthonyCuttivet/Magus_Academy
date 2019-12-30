@@ -71,7 +71,14 @@ public class CharacterSelectionManager : MonoBehaviour
             readyFlag = true;
             StopAllMusic();
             //StartDance();
-            SceneManager.LoadScene("CommandsScreen");
+            switch(PlayersManager.instance.gamemode){
+                case PlayersManager.Gamemodes.Single:
+                    SceneManager.LoadScene("MinigamesScreen");
+                break;
+                case PlayersManager.Gamemodes.Tournament:
+
+                break;
+            }
         }
     }
 
