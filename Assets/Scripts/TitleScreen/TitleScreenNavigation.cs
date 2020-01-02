@@ -22,10 +22,12 @@ public class TitleScreenNavigation : MonoBehaviour
     void OnA(){
         switch(selectedMenu){
             case "Minigames" : 
-                SceneManager.LoadScene("MinigamesScreen");
+                PlayersManager.instance.gamemode = PlayersManager.Gamemodes.Single;
+                SceneManager.LoadScene("CharacterSelection");
             break;
             case "Tournament" : 
-                SceneManager.LoadScene("TournamentScreen");
+                PlayersManager.instance.gamemode = PlayersManager.Gamemodes.Tournament;
+                SceneManager.LoadScene("CharacterSelection");
             break;
             case "Quit" : 
                 SceneManager.LoadScene("SplashScreen");

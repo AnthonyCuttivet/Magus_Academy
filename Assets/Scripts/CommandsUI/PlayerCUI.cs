@@ -45,6 +45,10 @@ public class PlayerCUI : MonoBehaviour
         }
     }
 
+    void OnSelect(){
+        CommandsUIManager.instance.start = true;
+    }
+
     void ToggleReady(){
         ready = !ready;
         GameObject playersIcons = CommandsUIManager.instance.playerIcons;

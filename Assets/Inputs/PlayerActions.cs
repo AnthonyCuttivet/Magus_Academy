@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class PlayerActions : IInputActionCollection, IDisposable
+public class @PlayerActions : IInputActionCollection, IDisposable
 {
     private InputActionAsset asset;
-    public PlayerActions()
+    public @PlayerActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerActions"",
@@ -296,8 +296,8 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Deceived_ResetSpells;
     public struct DeceivedActions
     {
-        private PlayerActions m_Wrapper;
-        public DeceivedActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActions m_Wrapper;
+        public DeceivedActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_Deceived_Walk;
         public InputAction @Attack => m_Wrapper.m_Deceived_Attack;
         public InputAction @Run => m_Wrapper.m_Deceived_Run;
@@ -313,46 +313,46 @@ public class PlayerActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_DeceivedActionsCallbackInterface != null)
             {
-                Walk.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
-                Walk.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
-                Walk.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
-                Attack.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
-                Attack.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
-                Attack.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
-                Run.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
-                Run.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
-                Run.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
-                Shoot.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
-                Shoot.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
-                Shoot.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
-                ForceField.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
-                ForceField.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
-                ForceField.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
-                ResetSpells.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
-                ResetSpells.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
-                ResetSpells.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
+                @Walk.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnWalk;
+                @Attack.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnAttack;
+                @Run.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnRun;
+                @Shoot.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnShoot;
+                @ForceField.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                @ForceField.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                @ForceField.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnForceField;
+                @ResetSpells.started -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
+                @ResetSpells.performed -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
+                @ResetSpells.canceled -= m_Wrapper.m_DeceivedActionsCallbackInterface.OnResetSpells;
             }
             m_Wrapper.m_DeceivedActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Walk.started += instance.OnWalk;
-                Walk.performed += instance.OnWalk;
-                Walk.canceled += instance.OnWalk;
-                Attack.started += instance.OnAttack;
-                Attack.performed += instance.OnAttack;
-                Attack.canceled += instance.OnAttack;
-                Run.started += instance.OnRun;
-                Run.performed += instance.OnRun;
-                Run.canceled += instance.OnRun;
-                Shoot.started += instance.OnShoot;
-                Shoot.performed += instance.OnShoot;
-                Shoot.canceled += instance.OnShoot;
-                ForceField.started += instance.OnForceField;
-                ForceField.performed += instance.OnForceField;
-                ForceField.canceled += instance.OnForceField;
-                ResetSpells.started += instance.OnResetSpells;
-                ResetSpells.performed += instance.OnResetSpells;
-                ResetSpells.canceled += instance.OnResetSpells;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @ForceField.started += instance.OnForceField;
+                @ForceField.performed += instance.OnForceField;
+                @ForceField.canceled += instance.OnForceField;
+                @ResetSpells.started += instance.OnResetSpells;
+                @ResetSpells.performed += instance.OnResetSpells;
+                @ResetSpells.canceled += instance.OnResetSpells;
             }
         }
     }
@@ -364,8 +364,8 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Deceived_PM_DivineLight;
     public struct Deceived_PMActions
     {
-        private PlayerActions m_Wrapper;
-        public Deceived_PMActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActions m_Wrapper;
+        public Deceived_PMActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @DivineLight => m_Wrapper.m_Deceived_PM_DivineLight;
         public InputActionMap Get() { return m_Wrapper.m_Deceived_PM; }
         public void Enable() { Get().Enable(); }
@@ -376,16 +376,16 @@ public class PlayerActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_Deceived_PMActionsCallbackInterface != null)
             {
-                DivineLight.started -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
-                DivineLight.performed -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
-                DivineLight.canceled -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+                @DivineLight.started -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+                @DivineLight.performed -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
+                @DivineLight.canceled -= m_Wrapper.m_Deceived_PMActionsCallbackInterface.OnDivineLight;
             }
             m_Wrapper.m_Deceived_PMActionsCallbackInterface = instance;
             if (instance != null)
             {
-                DivineLight.started += instance.OnDivineLight;
-                DivineLight.performed += instance.OnDivineLight;
-                DivineLight.canceled += instance.OnDivineLight;
+                @DivineLight.started += instance.OnDivineLight;
+                @DivineLight.performed += instance.OnDivineLight;
+                @DivineLight.canceled += instance.OnDivineLight;
             }
         }
     }
@@ -398,8 +398,8 @@ public class PlayerActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_ezfaz;
     public struct UIActions
     {
-        private PlayerActions m_Wrapper;
-        public UIActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActions m_Wrapper;
+        public UIActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @ezfaz => m_Wrapper.m_UI_ezfaz;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -411,22 +411,22 @@ public class PlayerActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                ezfaz.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
-                ezfaz.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
-                ezfaz.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+                @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @ezfaz.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+                @ezfaz.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
+                @ezfaz.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEzfaz;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Navigate.started += instance.OnNavigate;
-                Navigate.performed += instance.OnNavigate;
-                Navigate.canceled += instance.OnNavigate;
-                ezfaz.started += instance.OnEzfaz;
-                ezfaz.performed += instance.OnEzfaz;
-                ezfaz.canceled += instance.OnEzfaz;
+                @Navigate.started += instance.OnNavigate;
+                @Navigate.performed += instance.OnNavigate;
+                @Navigate.canceled += instance.OnNavigate;
+                @ezfaz.started += instance.OnEzfaz;
+                @ezfaz.performed += instance.OnEzfaz;
+                @ezfaz.canceled += instance.OnEzfaz;
             }
         }
     }

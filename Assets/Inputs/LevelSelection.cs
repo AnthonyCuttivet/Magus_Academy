@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class LevelSelection : IInputActionCollection, IDisposable
+public class @LevelSelection : IInputActionCollection, IDisposable
 {
     private InputActionAsset asset;
-    public LevelSelection()
+    public @LevelSelection()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""LevelSelection"",
@@ -141,8 +141,8 @@ public class LevelSelection : IInputActionCollection, IDisposable
     private readonly InputAction m_Pointer_CancelLock;
     public struct PointerActions
     {
-        private LevelSelection m_Wrapper;
-        public PointerActions(LevelSelection wrapper) { m_Wrapper = wrapper; }
+        private @LevelSelection m_Wrapper;
+        public PointerActions(@LevelSelection wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Pointer_Move;
         public InputAction @Lock => m_Wrapper.m_Pointer_Lock;
         public InputAction @CancelLock => m_Wrapper.m_Pointer_CancelLock;
@@ -155,28 +155,28 @@ public class LevelSelection : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PointerActionsCallbackInterface != null)
             {
-                Move.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
-                Lock.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
-                Lock.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
-                Lock.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
-                CancelLock.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
-                CancelLock.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
-                CancelLock.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
+                @Move.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnMove;
+                @Lock.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
+                @Lock.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
+                @Lock.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnLock;
+                @CancelLock.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
+                @CancelLock.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
+                @CancelLock.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnCancelLock;
             }
             m_Wrapper.m_PointerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
-                Lock.started += instance.OnLock;
-                Lock.performed += instance.OnLock;
-                Lock.canceled += instance.OnLock;
-                CancelLock.started += instance.OnCancelLock;
-                CancelLock.performed += instance.OnCancelLock;
-                CancelLock.canceled += instance.OnCancelLock;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Lock.started += instance.OnLock;
+                @Lock.performed += instance.OnLock;
+                @Lock.canceled += instance.OnLock;
+                @CancelLock.started += instance.OnCancelLock;
+                @CancelLock.performed += instance.OnCancelLock;
+                @CancelLock.canceled += instance.OnCancelLock;
             }
         }
     }
