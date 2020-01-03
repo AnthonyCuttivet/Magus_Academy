@@ -998,7 +998,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dff88666b5e36cb49acd3036878232a4, type: 2}
+  - {fileID: 2100000, guid: 8d530ffe6c4968843806085897955b9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1081,13 +1081,14 @@ MonoBehaviour:
     Skin: 4
   nextMinigame: 0
   currentMinigame: 0
+  gamemode: 0
 --- !u!43 &1160947341
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34650
+  m_Name: pb_Mesh23674
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1308,6 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e6085f5b508e41b8841ebf8be1008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoresSaved: 0
   skins:
   - {fileID: 2100000, guid: 4070f3c350861774b8d955de9ec81c93, type: 2}
   - {fileID: 2100000, guid: 83af09df9b59fd0479d195292fdf6b10, type: 2}
@@ -1453,6 +1455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  alive: 1
 --- !u!1 &1645141484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1496,7 @@ MonoBehaviour:
     Skin: 5
   nextMinigame: 0
   currentMinigame: 0
+  gamemode: 0
 --- !u!4 &1645141486
 Transform:
   m_ObjectHideFlags: 0
@@ -2403,7 +2407,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dff88666b5e36cb49acd3036878232a4, type: 2}
+  - {fileID: 2100000, guid: 5e148de6cdf2d164aa3e3f90ce8c852c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

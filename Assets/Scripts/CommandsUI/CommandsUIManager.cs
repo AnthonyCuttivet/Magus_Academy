@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using J80N;
 
 public class CommandsUIManager : MonoBehaviour
 {
@@ -18,6 +20,11 @@ public class CommandsUIManager : MonoBehaviour
     public Sprite deceivedBG;
     public Sprite DFBG;
     public Sprite KTBBG;
+
+    [Space]
+    [Header("Texts")]
+
+    public GameObject texts;
 
     void Awake(){
         if(instance == null){
@@ -43,8 +50,9 @@ public class CommandsUIManager : MonoBehaviour
         BG.GetComponent<Image>().enabled = true;
 
         //Set UI
-
-
+        //Set Texts
+        texts.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = Translator.Translate("MINIGAMES." + currenMinigame.ToUpper() + ".DESC");
+        texts.transform.Find("VictoryCondition").GetComponent<TextMeshProUGUI>().text = Translator.Translate("MINIGAMES." + currenMinigame.ToUpper() + ".VCOND");
 
         //Generate Commands Players
         foreach(Player p in PlayersManager.instance.playersList){

@@ -1,0 +1,19 @@
+{
+    "MINIGAMES" : {
+        "DECEIVED" : {
+            "TITLE" : "DECEIVED",
+            "DESC" : "The description of DECEIVED needs to be integrated by our GDLD.",
+            "VCOND" : "Our GDLD have yet to specify a victory condition."
+        },
+        "DF" : {
+            "TITLE" : "DRAGON'S FISHING",
+            "DESC" : "The description of DRAGON'S FISHING needs to be integrated by our GDLD.",
+            "VCOND" : "Our GDLD have yet to specify a victory condition."
+        },
+        "KTB" : {
+            "TITLE" : "KEEP THE BROOM",
+            "DESC" : "The description of KEEP THE BROOM needs to be integrated by our GDLD.",
+            "VCOND" : "Our GDLD have yet to specify a victory condition."
+        }
+    }
+}
