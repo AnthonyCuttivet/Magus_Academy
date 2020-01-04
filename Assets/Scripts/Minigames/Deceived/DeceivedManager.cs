@@ -10,6 +10,7 @@ public class DeceivedManager : MonoBehaviour
     public static bool gameEnded = false;
     public int scoresSaved = 0;
     public Material[] skins;
+    public Gradient[] projectileColors;
     public float despawnRate;
     [Range(0,1)]
     public float EndGamePercentage; //percentage of players that trigger endgame musics

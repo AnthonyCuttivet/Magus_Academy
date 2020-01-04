@@ -282,7 +282,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a85f75ffae1d429479eeccd865c78096, type: 2}
+  - {fileID: 2100000, guid: b47554dfe65652045a4357cafdcbd616, type: 2}
   - {fileID: 2100000, guid: a85f75ffae1d429479eeccd865c78096, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -322,7 +322,7 @@ ParticleSystemRenderer:
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 5060444177187149915, guid: 9a54a332c97cec64c812f1291d3b692e, type: 3}
+  m_Mesh: {fileID: 5060444177187149915, guid: 5c0443a5c58e09e4b8cf65a60cdba3ea, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -520,8 +520,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 0.6161808, b: 0.24056602, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.36335683, b: 0, a: 1}
-        key1: {r: 1, g: 0.6639627, b: 0, a: 1}
+        key0: {r: 0.4310527, g: 0.6792453, b: 0.3236027, a: 1}
+        key1: {r: 0.0898149, g: 0.3018868, b: 0.06123176, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -537,7 +537,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
+        atime1: 65150
         atime2: 0
         atime3: 0
         atime4: 0
@@ -1485,7 +1485,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12.56637
+      scalar: 31.415926
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1599,7 +1599,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.53333336}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5014,7 +5014,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 5060444177187149915, guid: 9a54a332c97cec64c812f1291d3b692e, type: 3}
+  m_Mesh: {fileID: 5060444177187149915, guid: 5c0443a5c58e09e4b8cf65a60cdba3ea, type: 3}
 --- !u!114 &1336834919678772460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,3 +5029,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceBeforeDestroy: 50
   timeBeforeDestroy: 5
+  shooter: 

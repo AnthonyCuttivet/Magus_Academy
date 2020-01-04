@@ -17,8 +17,6 @@ public class Shot : MonoBehaviour
         shotOrigin = transform.position;
         shooter = gameObject.name;
     }
-
-    // Update is called once per frame
     void Update()
     {
         aliveTimer += Time.deltaTime;
@@ -38,4 +36,5 @@ public class Shot : MonoBehaviour
 
        
     }
+
 }

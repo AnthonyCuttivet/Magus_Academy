@@ -17,7 +17,7 @@ public class PlayersManager : MonoBehaviour {
     }
 
 
-    public static PlayersManager instance;
+    public static PlayersManager instance = null;
 
     [SerializeField]
     public List<Player> playersList = new List<Player>();
@@ -28,11 +28,11 @@ public class PlayersManager : MonoBehaviour {
     public Gamemodes gamemode;
 
     void Awake(){
-        if(instance == null){
-            instance = this;
+        if(instance != null && instance != this){
+            Destroy(gameObject);
         }
         else{
-            Destroy(gameObject);  
+            instance = this;
         }
         DontDestroyOnLoad(gameObject);
     }

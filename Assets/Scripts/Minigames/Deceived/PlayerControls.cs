@@ -17,6 +17,7 @@ public class PlayerControls : Controls
     public PlayerActions pa;
     float walkingSpeed,runningSpeed;
     public Player infos;
+    public GameObject projectileGO;
 
     public bool alive = true;
 
@@ -43,7 +44,6 @@ public class PlayerControls : Controls
         animator = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     public override void Update(){
         base.Update();
         GetSpeed();
@@ -153,6 +153,7 @@ public class PlayerControls : Controls
     public void SpawnShot(){
         GameObject shot = Instantiate(CharactersSpawner.instance.shot,shotOriginPosition,shotOriginRotation);
         shot.GetComponent<Shot>().shooter = gameObject.name;
+        SetShotSkin(shot);
     }
     public void SpellEndedCast(){
         castingSpell = false;
@@ -169,6 +170,14 @@ public class PlayerControls : Controls
         invisibilityField = true;
         magicSpear = true;
         divineLight = true;
+    }
+    void SetShotSkin(GameObject shot){
+        var psMain = shot.GetComponent<ParticleSystem>().main;
+        psMain.startColor = DeceivedManager.instance.projectileColors[infos.Skin];
+        TrailRenderer trail = shot.GetComponentInChildren<TrailRenderer>();
+        trail.colorGradient = DeceivedManager.instance.projectileColors[infos.Skin];
+        Light light = shot.GetComponentInChildren<Light>();
+        light.color = DeceivedManager.instance.projectileColors[infos.Skin].colorKeys[0].color; 
     }
 
     public override void Kill(int killer){
