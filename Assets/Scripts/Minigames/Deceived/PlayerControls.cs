@@ -42,7 +42,9 @@ public class PlayerControls : Controls
         divineLightSpeed = PlayersSettings.instance.divineLightSpeed;
         pa = new PlayerActions();
         animator = gameObject.GetComponent<Animator>();
-    }
+ }
+ 
+
 
     public override void Update(){
         base.Update();
@@ -154,6 +156,7 @@ public class PlayerControls : Controls
         GameObject shot = Instantiate(CharactersSpawner.instance.shot,shotOriginPosition,shotOriginRotation);
         shot.GetComponent<Shot>().shooter = gameObject.name;
         SetShotSkin(shot);
+        SoundManager.instance.PlaySound("Deceived_" + System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), infos.Skin) + "_Shot");
     }
     public void SpellEndedCast(){
         castingSpell = false;
