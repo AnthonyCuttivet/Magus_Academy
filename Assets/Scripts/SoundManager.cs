@@ -208,6 +208,7 @@ public class SoundManager : MonoBehaviour {
 							StartCoroutine(_sound.EndFadeOut());
 						}
 						if(_sound.isFadeIn){
+							
 							StopCoroutine(_sound.fadeInCoroutine);
 							StartCoroutine(_sound.EndFadeIn());
 						}

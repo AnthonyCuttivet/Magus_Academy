@@ -32,7 +32,7 @@ public class PlayersManager : MonoBehaviour {
             instance = this;
         }
         else{
-            Destroy(this);  
+            Destroy(gameObject);  
         }
         DontDestroyOnLoad(gameObject);
     }

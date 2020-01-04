@@ -98,6 +98,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fb6245b03161a7f459f479d4c1f94d2f, type: 3}
   - {fileID: 21300000, guid: 2c222624ac9f58f43b37039e6b830968, type: 3}
   - {fileID: 21300000, guid: 27998893c490e98429e2259bf6c20165, type: 3}
+  playerColors: []
 --- !u!114 &7906383817277405950
 MonoBehaviour:
   m_ObjectHideFlags: 0

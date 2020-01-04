@@ -133,7 +133,7 @@ public class CharacterSelectionManager : MonoBehaviour
     public void StopAllMusic(){
         foreach(int skinNumber in selectedSkins){
             Debug.Log(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber));
-            soundManager.FadeOutMusic(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",1f);
+            soundManager.FadeOutMusicVolume(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",1f);
         }
         soundManager.FadeOutMusic("MainTheme",1f);
     }
