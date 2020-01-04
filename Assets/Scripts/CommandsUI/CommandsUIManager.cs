@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using J80N;
+using DG.Tweening;
 
 public class CommandsUIManager : MonoBehaviour
 {
@@ -23,8 +24,22 @@ public class CommandsUIManager : MonoBehaviour
 
     [Space]
     [Header("Texts")]
-
     public GameObject texts;
+
+    [Space]
+    [Header("UI Animations")]
+    public GameObject left_arrow;
+    public GameObject right_arrow;
+    public float arrowsOffset = 30f;
+    public float arrowsAnimDuration = 2f;
+    public GameObject s_thumbnails;
+    public GameObject s_sliders;
+    public Sprite fullSlider;
+    public Sprite emptySlider;
+    public int s_id = 0;
+    private Transform current_thumbnail;
+    private Transform current_slider;
+    
 
     void Awake(){
         if(instance == null){
@@ -65,7 +80,11 @@ public class CommandsUIManager : MonoBehaviour
     }
 
     void Start(){
-
+        //Animate arrow
+        AnimateArrows();
+        //Set current thumbnail and slider
+        current_thumbnail = s_thumbnails.transform.GetChild(0);
+        current_slider = s_sliders.transform.GetChild(0);
     }
 
 
@@ -74,5 +93,41 @@ public class CommandsUIManager : MonoBehaviour
         if(start){
             SceneManager.LoadScene(PlayersManager.instance.nextMinigame.ToString());
         }
+    }
+
+    public void AnimateArrows(){
+        //left
+        left_arrow.transform.DOMoveX(left_arrow.transform.position.x + arrowsOffset, arrowsAnimDuration).SetEase(Ease.OutSine).SetLoops(-1,LoopType.Yoyo);
+        //right
+        right_arrow.transform.DOMoveX(right_arrow.transform.position.x - arrowsOffset, arrowsAnimDuration).SetEase(Ease.OutSine).SetLoops(-1,LoopType.Yoyo);
+    }
+
+    public void SwapThumbnail(int direction){ //0 -> Left, 1 -> Right
+        if(direction == 0 && s_id != 0){
+            s_id--;
+        }else if(direction == 1 && s_id != 2){
+            s_id++;
+        }
+
+        //Show / Hide arrows
+        if(s_id == 0){
+            left_arrow.SetActive(false);
+        }else if(s_id == 2){
+            right_arrow.SetActive(false);
+        }else{
+            left_arrow.SetActive(true);
+            right_arrow.SetActive(true);
+        }
+        
+        //switch thumbnail
+        s_thumbnails.transform.GetChild(s_id).gameObject.SetActive(true);
+        current_thumbnail.gameObject.SetActive(false);
+        current_thumbnail = s_thumbnails.transform.GetChild(s_id);
+
+        //switch slider
+        current_slider.GetComponent<Image>().sprite = emptySlider;
+        s_sliders.transform.GetChild(s_id).GetComponent<Image>().sprite = fullSlider;
+        current_slider = s_sliders.transform.GetChild(s_id);
+
     }
 }

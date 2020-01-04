@@ -49,6 +49,19 @@ public class PlayerCUI : MonoBehaviour
         CommandsUIManager.instance.start = true;
     }
 
+    void OnLeft(){
+        if(CommandsUIManager.instance.s_id != 0){
+            CommandsUIManager.instance.SwapThumbnail(0);
+        }
+    }
+
+    void OnRight(){
+        if(CommandsUIManager.instance.s_id != 2){
+            CommandsUIManager.instance.SwapThumbnail(1);
+        }
+    }
+
+
     void ToggleReady(){
         ready = !ready;
         GameObject playersIcons = CommandsUIManager.instance.playerIcons;
