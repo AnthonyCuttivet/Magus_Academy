@@ -23,6 +23,15 @@ public class CommandsUIManager : MonoBehaviour
     public Sprite KTBBG;
 
     [Space]
+    [Header("Thumbnails")]
+    public Sprite[] thumbnails;
+
+    [Space]
+    [Header("Inputs")]
+    public GameObject imgInputs;
+    public Sprite[] inputsSprites;
+
+    [Space]
     [Header("Texts")]
     public GameObject texts;
 
@@ -64,7 +73,31 @@ public class CommandsUIManager : MonoBehaviour
         }
         BG.GetComponent<Image>().enabled = true;
 
-        //Set UI
+        //Set UI thumbnails and commands
+        switch(currenMinigame){
+            case "Deceived" : 
+                s_thumbnails.transform.GetChild(0).GetComponent<Image>().sprite = thumbnails[0];
+                s_thumbnails.transform.GetChild(1).GetComponent<Image>().sprite = thumbnails[1];
+                s_thumbnails.transform.GetChild(2).GetComponent<Image>().sprite = thumbnails[2];
+
+                imgInputs.GetComponent<Image>().sprite = inputsSprites[0];
+            break;
+            case "DF" : 
+                s_thumbnails.transform.GetChild(0).GetComponent<Image>().sprite = thumbnails[3];
+                s_thumbnails.transform.GetChild(1).GetComponent<Image>().sprite = thumbnails[4];
+                s_thumbnails.transform.GetChild(2).GetComponent<Image>().sprite = thumbnails[5];
+            
+                imgInputs.GetComponent<Image>().sprite = inputsSprites[1];
+            break;
+            case "KTB " : 
+                s_thumbnails.transform.GetChild(0).GetComponent<Image>().sprite = thumbnails[6];
+                s_thumbnails.transform.GetChild(1).GetComponent<Image>().sprite = thumbnails[7];
+                s_thumbnails.transform.GetChild(2).GetComponent<Image>().sprite = thumbnails[8];
+            
+                imgInputs.GetComponent<Image>().sprite = inputsSprites[2];
+            break;
+
+        }
         //Set Texts
         texts.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = Translator.Translate("MINIGAMES." + currenMinigame.ToUpper() + ".DESC");
         texts.transform.Find("VictoryCondition").GetComponent<TextMeshProUGUI>().text = Translator.Translate("MINIGAMES." + currenMinigame.ToUpper() + ".VCOND");
