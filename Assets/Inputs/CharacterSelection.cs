@@ -47,7 +47,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""bee17ff0-51c9-44ab-9289-8975b4cb3af3"",
                     ""expectedControlType"": ""Stick"",
-                    ""processors"": ""StickDeadzone(min=0.2)"",
+                    ""processors"": """",
                     ""interactions"": """"
                 },
                 {

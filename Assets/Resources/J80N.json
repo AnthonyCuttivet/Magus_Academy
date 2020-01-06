@@ -2,18 +2,18 @@
     "MINIGAMES" : {
         "DECEIVED" : {
             "TITLE" : "DECEIVED",
-            "DESC" : "Les joueurs apparaissent dans une foule. Chacun va devoir d’abord s’identifier puis identifier les autres joueurs et les tuer sans se faire repérer.",
+            "DESC" : "Les joueurs apparaissent dans une foule. Ils vont devoir s’identifier puis identifier les autres joueurs et les éliminer sans se faire repérer.",
             "VCOND" : "Être le dernier mage en vie."
         },
         "DF" : {
             "TITLE" : "DRAGON'S FISHING",
-            "DESC" : "Les joueurs doivent pêcher un maximum de dragon le plus rapidement possible en réalisant des successions de QTEs.",
-            "VCOND" : "Le joueur avec le plus de points gagne la partie."
+            "DESC" : "Les joueurs doivent pêcher un maximum de dragon en réalisant des successions de commandes.",
+            "VCOND" : "Avoir le plus de points pour gagner la partie."
         },
         "KTB" : {
             "TITLE" : "KEEP THE BROOM",
             "DESC" : "Les joueurs doivent garder le balai le plus longtemps possible. Chaque 30 secondes, le joueur qui a gardé le balai le moins longtemps est éliminé.",
-            "VCOND" : "Le joueur qui garde le balai le plus longtemps gagne la partie."
+            "VCOND" : "Être le dernier en possession du balai."
         }
     }
 }
