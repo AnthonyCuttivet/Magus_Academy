@@ -4375,7 +4375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 3770419374215896339, guid: e07567d8c8fcb9444bc6057f06b1cd46, type: 3}
-  amountOfEntities: 4
+  amountOfEntities: 21
   pooledEntities: []
   players: []
   PNJList: []

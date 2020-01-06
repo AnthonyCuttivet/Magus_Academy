@@ -75,7 +75,8 @@ public class DeceivedManager : MonoBehaviour
         GameObject randomPnj = spawner.PNJList[randomPnjIndex];
         spawner.PNJList.Remove(randomPnj);
         spawner.pooledEntities.Remove(randomPnj);
-        Destroy(randomPnj);
+        StartCoroutine(randomPnj.GetComponent<PNJControls>().Dissolve());
+        //Destroy(randomPnj);
     }
     void StartMusic(){
         soundManager.PlayMusic("Deceived_MainTheme");
