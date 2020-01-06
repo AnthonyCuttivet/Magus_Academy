@@ -17,9 +17,11 @@ public class PlayerControls : Controls
     public PlayerActions pa;
     float walkingSpeed,runningSpeed;
     public Player infos;
+    SoundManager soundManager;
     public GameObject projectileGO;
 
     public bool alive = true;
+    bool killAnimation;
 
     [Space]
     [Header("Spells")]
@@ -32,6 +34,7 @@ public class PlayerControls : Controls
     Vector3 shotOriginPosition;
     Quaternion shotOriginRotation;
     bool castingSpell;
+    bool isPunching;
 
     public override void Awake(){
         base.Awake();
@@ -42,7 +45,10 @@ public class PlayerControls : Controls
         divineLightSpeed = PlayersSettings.instance.divineLightSpeed;
         pa = new PlayerActions();
         animator = gameObject.GetComponent<Animator>();
- }
+    }
+    void Start(){
+        soundManager = SoundManager.instance;
+    }
  
 
 
@@ -93,22 +99,24 @@ public class PlayerControls : Controls
                 animator.SetBool("isWalking", true);
                 //animator.SetBool("isRunning", false);
                 gameObject.transform.rotation = Quaternion.Euler(0,GetAngle(i_movement),0);
-            }else{
+            }
+            else{
+                i_movement = Vector2.zero;
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
             }
-            
         }
-        else{
-            i_movement = Vector2.zero;
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false);
-        }
+        else if(gameStarted && !alive){
+                i_movement = value.Get<Vector2>();
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
+            }
+        
     }
 
     void OnRun(InputValue value){
         if(gameStarted){
-            if(isRunning){
+            if(value.Get<float>() <= 0.5f){
                 isRunning = false;
             }
             else{
@@ -119,16 +127,25 @@ public class PlayerControls : Controls
 
     void OnAttack(InputValue value){
         if(gameStarted){
-            if(alive){
+            if(alive && !isPunching){
                 animator.SetTrigger("isPunching");
-                Collider[] gameObjectToDestroy = targets.ToArray();
-                foreach(Collider collider in gameObjectToDestroy){
-                    if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
-                        collider.GetComponent<Controls>().Kill(int.Parse(gameObject.name.Replace("Player", "")));
-                    }
-                    targets.Remove(collider);
-                }
+                isPunching = true;
             }
+        }
+    }
+    void AttackHit(){
+        if(alive){
+            Collider[] gameObjectToDestroy = targets.ToArray();
+            foreach(Collider collider in gameObjectToDestroy){
+                if(collider){                                           //if a pnj is killed while in the attack area (the collider is still in the targets list but doesnt exist anymore)
+                    collider.GetComponent<Controls>().Kill(int.Parse(gameObject.name.Replace("Player", "")));
+                }
+                targets.Remove(collider);
+            }
+            if(gameObjectToDestroy.Length > 0){
+                soundManager.PlaySound("Deceived_PunchHit");
+            }
+            isPunching = false;
         }
     }
 
@@ -155,8 +172,9 @@ public class PlayerControls : Controls
     public void SpawnShot(){
         GameObject shot = Instantiate(CharactersSpawner.instance.shot,shotOriginPosition,shotOriginRotation);
         shot.GetComponent<Shot>().shooter = gameObject.name;
+        shot.GetComponent<Shot>().skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), infos.Skin);
         SetShotSkin(shot);
-        SoundManager.instance.PlaySound("Deceived_" + System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), infos.Skin) + "_Shot");
+        soundManager.PlaySound("Deceived_" + System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), infos.Skin) + "_Shot");
     }
     public void SpellEndedCast(){
         castingSpell = false;
@@ -166,6 +184,7 @@ public class PlayerControls : Controls
         if(alive && invisibilityField && gameStarted){
             Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
             invisibilityField = false;
+            soundManager.PlaySound("Deceived_Shield");
         }
     }
 
@@ -175,12 +194,19 @@ public class PlayerControls : Controls
         divineLight = true;
     }
     void SetShotSkin(GameObject shot){
+        Gradient color = DeceivedManager.instance.projectileColors[infos.Skin];
         var psMain = shot.GetComponent<ParticleSystem>().main;
-        psMain.startColor = DeceivedManager.instance.projectileColors[infos.Skin];
+        psMain.startColor = color;
+        ParticleSystem subParticles = shot.transform.Find("subParticles").GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule psChild = subParticles.main;
+        psChild.startColor = color;
         TrailRenderer trail = shot.GetComponentInChildren<TrailRenderer>();
-        trail.colorGradient = DeceivedManager.instance.projectileColors[infos.Skin];
+        Gradient colorTrail = new Gradient();
+        colorTrail.colorKeys = color.colorKeys;
+        colorTrail.alphaKeys = trail.colorGradient.alphaKeys;
+        trail.colorGradient = colorTrail;
         Light light = shot.GetComponentInChildren<Light>();
-        light.color = DeceivedManager.instance.projectileColors[infos.Skin].colorKeys[0].color; 
+        light.color = color.colorKeys[0].color; 
     }
 
     public override void Kill(int killer){
@@ -194,14 +220,7 @@ public class PlayerControls : Controls
         gKiller.GetComponent<DeceivedScoring>().score += PlayersSettings.instance.pointsPerElimination;
 
         Debug.Log(gameObject.name + " was killed by player " + killer);
-        CharactersSpawner.instance.players.Remove(gameObject);
-        foreach(Transform g in gameObject.transform.Find("Parts")){
-            if(g.name != "Chibi_Character"){
-                g.GetComponent<SkinnedMeshRenderer>().enabled = false;
-            }
-        }
-        GetComponent<BoxCollider>().enabled = false;
-        GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
+        CharactersSpawner.instance.players.Remove(gameObject);       
         DeceivedManager.instance.StopMusicSkin(infos.Skin);
 
         //if killer is winner save its score
@@ -209,6 +228,16 @@ public class PlayerControls : Controls
             MinigameStats.instance.ranking.Add(gKiller.GetComponent<PlayerControls>().infos, gKiller.GetComponent<DeceivedScoring>().score);
             DeceivedManager.instance.scoresSaved++;
         }
+        animator.SetTrigger("isKilled");
+    }
+    public void KillAnimationFinished(){
+        foreach(Transform g in gameObject.transform.Find("Parts")){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+        }
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
     }
 
     #region PM
@@ -217,7 +246,8 @@ public class PlayerControls : Controls
     void OnDivineLight(){
         if(!alive && divineLight && dlInstance == null){
             dlInstance = Instantiate(CharactersSpawner.instance.divineLight, CharactersSpawner.instance.divineLight.transform.localPosition, CharactersSpawner.instance.divineLight.transform.rotation,gameObject.transform);
-            //divineLight = false;
+            divineLight = false;
+            soundManager.PlaySound("Deceived_DivineLight");
         }
     }
 
