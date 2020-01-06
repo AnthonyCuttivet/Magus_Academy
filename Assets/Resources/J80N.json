@@ -2,18 +2,18 @@
     "MINIGAMES" : {
         "DECEIVED" : {
             "TITLE" : "DECEIVED",
-            "DESC" : "The description of DECEIVED needs to be integrated by our GDLD.",
-            "VCOND" : "Our GDLD have yet to specify a victory condition."
+            "DESC" : "Les joueurs apparaissent dans une foule. Chacun va devoir d’abord s’identifier puis identifier les autres joueurs et les tuer sans se faire repérer.",
+            "VCOND" : "Être le dernier mage en vie."
         },
         "DF" : {
             "TITLE" : "DRAGON'S FISHING",
-            "DESC" : "The description of DRAGON'S FISHING needs to be integrated by our GDLD.",
-            "VCOND" : "Our GDLD have yet to specify a victory condition."
+            "DESC" : "Les joueurs doivent pêcher un maximum de dragon le plus rapidement possible en réalisant des successions de QTEs.",
+            "VCOND" : "Le joueur avec le plus de points gagne la partie."
         },
         "KTB" : {
             "TITLE" : "KEEP THE BROOM",
-            "DESC" : "The description of KEEP THE BROOM needs to be integrated by our GDLD.",
-            "VCOND" : "Our GDLD have yet to specify a victory condition."
+            "DESC" : "Les joueurs doivent garder le balai le plus longtemps possible. Chaque 30 secondes, le joueur qui a gardé le balai le moins longtemps est éliminé.",
+            "VCOND" : "Le joueur qui garde le balai le plus longtemps gagne la partie."
         }
     }
 }
