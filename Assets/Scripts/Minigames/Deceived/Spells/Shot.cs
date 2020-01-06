@@ -10,10 +10,12 @@ public class Shot : MonoBehaviour
     public float timeBeforeDestroy;
     float aliveTimer;
     public string shooter;
+    public string skin;
+    public float speed = 35f;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.up * 50;
+        rb.velocity = transform.up * speed;
         shotOrigin = transform.position;
         shooter = gameObject.name;
     }
@@ -25,6 +27,7 @@ public class Shot : MonoBehaviour
 
     void DestroyProjectile(){
         if((Vector3.Distance(shotOrigin,transform.position)  > distanceBeforeDestroy) || (aliveTimer > timeBeforeDestroy)){
+            SoundManager.instance.PlaySound("Deceived_" + skin + "_Shot_End");
             Destroy(gameObject);
         }
     }
