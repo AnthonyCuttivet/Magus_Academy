@@ -1353,22 +1353,22 @@ MonoBehaviour:
     value: 1
   softKnee:
     overrideState: 1
-    value: 0.5
+    value: 0.452
   clamp:
     overrideState: 1
-    value: 65472
+    value: 1962.36
   diffusion:
     overrideState: 1
-    value: 7.98
+    value: 10
   anamorphicRatio:
     overrideState: 1
-    value: -1
+    value: 0
   color:
     overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
     overrideState: 1
-    value: 1
+    value: 0
   dirtTexture:
     overrideState: 0
     value: {fileID: 0}
@@ -1490,10 +1490,10 @@ MonoBehaviour:
     value: {x: 50, y: 95}
   minLuminance:
     overrideState: 1
-    value: 0
+    value: -0.5
   maxLuminance:
     overrideState: 1
-    value: 0
+    value: 2.2
   keyValue:
     overrideState: 1
     value: 1

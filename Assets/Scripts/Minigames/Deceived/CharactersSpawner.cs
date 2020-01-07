@@ -73,7 +73,7 @@ public class CharactersSpawner : MonoBehaviour
             bool spawned = false;
             while(spawned != true){
                 Debug.Log(spawnArea.bounds.min.x);
-                GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(spawnArea.bounds.min.x,spawnArea.bounds.max.x), spawnArea.bounds.max.y + .1f, Random.Range(spawnArea.bounds.min.z,spawnArea.bounds.max.z)), Quaternion.identity);
+                GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(spawnArea.bounds.min.x,spawnArea.bounds.max.x), spawnArea.bounds.max.y , Random.Range(spawnArea.bounds.min.z,spawnArea.bounds.max.z)), Quaternion.identity);
                 Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, m_MaxDistance,layerMask);
                 if(hitColliders.Length <= 1){
                     spawned = true;
