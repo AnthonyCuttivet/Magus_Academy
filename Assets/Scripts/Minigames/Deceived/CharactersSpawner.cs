@@ -137,7 +137,8 @@ public class CharactersSpawner : MonoBehaviour
     }
     void ActivatePNJ(List<GameObject> pnjList){
         foreach(GameObject pnj in pnjList){
-            pnj.AddComponent<NavMeshAgent>();
+            NavMeshAgent navMeshPNj = pnj.AddComponent<NavMeshAgent>();
+            navMeshPNj.radius = 1;
             PNJControls pnj_Controls = pnj.AddComponent<PNJControls>();
         }
     }
