@@ -111,7 +111,7 @@ public class CharacterSelectionManager : MonoBehaviour
     public void AddSkin(Player player){
         selectedSkins.Add(player.Skin);
         selectedCount++;
-        foreach(Transform g in characters[player.Id].transform.GetChild(0)){
+        foreach(Transform g in characters[player.Id].transform/* .GetChild(0) */){
             if(g.name != "Chibi_Character"){
                 g.GetComponent<SkinnedMeshRenderer>().material = skins[player.Skin];
             }
