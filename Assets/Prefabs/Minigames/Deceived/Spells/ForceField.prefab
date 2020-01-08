@@ -106,4 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 3
-  finalSize: {x: 10, y: 10, z: 10}
+  finalSize: {x: 20, y: 20, z: 20}

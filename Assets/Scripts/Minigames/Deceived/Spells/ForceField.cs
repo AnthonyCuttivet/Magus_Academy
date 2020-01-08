@@ -1,26 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ForceField : MonoBehaviour
 {
-    public float lifeTime = 3f;
+    public float lifeTime = 5f;
     public Vector3 finalSize = Vector3.one * 10;
     private List<GameObject> invisibleObjects = new List<GameObject>();
+    bool degrowStarted;
 
     IEnumerator Start()
     {
-        while(Vector3.Distance(transform.localScale, finalSize) >= 1){
-            transform.localScale += Vector3.one;
-            yield return new WaitForSeconds(Time.deltaTime);
+        
+        while(Vector3.Distance(AbsVector3(transform.localScale), finalSize) >= 1f){
+            transform.DOScale(finalSize,1.2f).SetEase(Ease.OutCirc);
+            yield return null;
         }
         
     }
 
     void Update(){
-        Destroy(gameObject, lifeTime);
+        lifeTime-= Time.deltaTime;
+        if(lifeTime <= 0 && !degrowStarted){
+            StartCoroutine(Degrow());
+        }
+        
     }
-
+    IEnumerator Degrow(){
+        degrowStarted = true;  
+        while(Vector3.Distance(transform.localScale, Vector3.zero) >= .1f){
+            transform.DOScale(Vector3.zero,1.2f).SetEase(Ease.OutCirc);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        Destroy(gameObject);
+    }
     void OnDestroy(){
         foreach (GameObject g in invisibleObjects){
             foreach(Transform t in g.transform.Find("Parts")){
@@ -51,5 +65,8 @@ public class ForceField : MonoBehaviour
             }
             invisibleObjects.Remove(collider.gameObject);
         }
+    }
+    Vector3 AbsVector3(Vector3 vecteur){
+        return new Vector3(Mathf.Abs(vecteur.x),Mathf.Abs(vecteur.y),Mathf.Abs(vecteur.z));
     }
 }

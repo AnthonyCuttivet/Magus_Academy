@@ -54,6 +54,9 @@ public class DeceivedManager : MonoBehaviour
             EndGameTransition();
         }
     }
+    void EndGameZoom(){
+        Debug.Log(CharactersSpawner.instance.players[0].name);
+    }
     public void LoadVictoryScreen(){
         SceneManager.LoadScene("MinigameVictoryScreen");
     }
