@@ -48,7 +48,6 @@ public class CharacterSelectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         soundManager = SoundManager.instance;
-        Debug.Log(soundManager == null);
         soundManager.PlayMusic("MainTheme");
         CheckSpecialSkin();
         PlayMagesThemeMuted();
@@ -118,7 +117,6 @@ public class CharacterSelectionManager : MonoBehaviour
             }
         }
         characters[player.Id].SetActive(true);
-        Debug.Log((CharacterAttribute.MagesAttributes)player.Skin);
         soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f,true,.3f);
     }
     public void RemoveSkin(Player player){
