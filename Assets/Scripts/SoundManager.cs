@@ -130,10 +130,10 @@ public class SoundManager : MonoBehaviour {
 
 	public AudioMixerGroup MusicMixer;
 	void Awake(){
-		if(instance == null){
+		if(instance == null ){
 		instance = this;
 		}
-		else if(instance != null){
+		else if(instance != null && instance != this){
 			Destroy(gameObject);
 		}
 		DontDestroyOnLoad(gameObject);

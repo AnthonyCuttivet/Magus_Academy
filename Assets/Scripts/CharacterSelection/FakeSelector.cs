@@ -6,6 +6,10 @@ public class FakeSelector : MonoBehaviour
 {
 
     void Start(){
+        Invoke("CreateFakePlayers",.3f);
+    }
+
+    void CreateFakePlayers(){
         for (int i = 0; i < 4; i++){
             Player p = PlayersManager.instance.CreatePlayer();
             PlayersManager.instance.AddSkin(p, i+1);

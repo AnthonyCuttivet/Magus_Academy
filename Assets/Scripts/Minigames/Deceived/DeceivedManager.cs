@@ -58,7 +58,8 @@ public class DeceivedManager : MonoBehaviour
         Debug.Log(CharactersSpawner.instance.players[0].name);
     }
     public void LoadVictoryScreen(){
-        SceneManager.LoadScene("MinigameVictoryScreen");
+        BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
+        //SceneManager.LoadScene("MinigameVictoryScreen");
     }
 
     void Despawner(){

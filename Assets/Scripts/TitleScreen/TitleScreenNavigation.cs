@@ -23,14 +23,14 @@ public class TitleScreenNavigation : MonoBehaviour
         switch(selectedMenu){
             case "Minigames" : 
                 PlayersManager.instance.gamemode = PlayersManager.Gamemodes.Single;
-                SceneManager.LoadScene("CharacterSelection");
+                BlackFade.instance.FadeOutToScene("CharacterSelection");
             break;
             case "Tournament" : 
                 PlayersManager.instance.gamemode = PlayersManager.Gamemodes.Tournament;
-                SceneManager.LoadScene("CharacterSelection");
+                BlackFade.instance.FadeOutToScene("CharacterSelection");
             break;
             case "Quit" : 
-                SceneManager.LoadScene("SplashScreen");
+                BlackFade.instance.FadeOutToScene("SplashScreen");
             break;
         }
     }
