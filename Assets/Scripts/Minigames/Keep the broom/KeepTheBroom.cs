@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class KeepTheBroom : MonoBehaviour
 {
@@ -14,11 +15,26 @@ public class KeepTheBroom : MonoBehaviour
     public Vector2 broomHoldingPosition;
     public Vector2 broomSpawnPosition;
     public BarFiller scoreP1, scoreP2;
+    public InputActionAsset actions;
+
+    void Awake(){
+    }
     void Start()
     {
-        
         broomCollider = broom.GetComponent<Collider2D>();
         IgnoreCollisionsPlayers();
+        foreach(PlayerKTB player in players){
+            PlayerInput playerInput = player.gameObject.AddComponent<PlayerInput>();
+            playerInput.actions = Instantiate(actions);
+            player.playerInput = playerInput;
+            playerInput.actions.Enable();
+            playerInput.defaultActionMap = "Alive";
+            playerInput.SwitchCurrentActionMap("Dead");
+            playerInput.currentActionMap.Disable();
+            playerInput.SwitchCurrentActionMap("Alive");
+            
+        }
+
     }
 
     void Update(){

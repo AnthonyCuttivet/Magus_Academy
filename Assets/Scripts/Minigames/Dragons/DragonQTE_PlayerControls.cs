@@ -253,7 +253,13 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     void OnAim(InputValue value){
         if(!inQTE){
             Vector2 aimDirection = value.Get<Vector2>();
-            aimController.direction = aimDirection;
+            if(aimDirection.magnitude > .2f){
+                aimController.direction = aimDirection;
+            }
+            else{
+                 aimController.direction = Vector2.zero;
+            }
+            
         }
     }
     void OnFish(){

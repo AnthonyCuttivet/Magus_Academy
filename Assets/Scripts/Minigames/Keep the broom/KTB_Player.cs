@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KTB_Player : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class KTB_Player : MonoBehaviour
     [HideInInspector]
     public Vector2 velocity;
     KTB_PlayerInput inputs;
+    public PlayerInput playerInput;
 
     [Space]
     [Header("Stats")]
@@ -82,8 +84,10 @@ public class KTB_Player : MonoBehaviour
         }
     }
     void FixedUpdate(){
-        Move();
-        BetterJump();
+        if(!dead){
+            Move();
+            BetterJump();
+        }
     }
 
     public void SetDirectionalInput(Vector2 input){
@@ -259,6 +263,14 @@ public class KTB_Player : MonoBehaviour
             melee.Attack(melee.playersInRange);
             attackInput = false;
         }
+    }
+    public void Death(){
+        dead = true;
+        rb.gravityScale = 0;
+        velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
+        collid.enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
 

@@ -1,0 +1,129 @@
+{
+    "name": "KTB_PlayerControls",
+    "maps": [
+        {
+            "name": "Alive",
+            "id": "3192ca74-95e9-4072-863e-50f5a728ebe0",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "75fd0773-4887-46c4-8975-c14f84f37cb7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "0bd65fed-1450-4cae-a43d-b87fb97b633f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "1cb318c3-bbcc-4f44-869b-f540cd78092d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d7af27d7-6d66-4478-b55b-7d87c957b4d9",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a250882-fd88-4457-8215-ff36b5029792",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "AxisDeadzone(min=0.3)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7eaf3505-62b1-40a0-84e8-cc824ab6f5b7",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dead",
+            "id": "6b1d4733-999a-4114-b69e-30a62799e042",
+            "actions": [
+                {
+                    "name": "DeathGamePlayAttack",
+                    "type": "Button",
+                    "id": "06138651-f12d-4064-9356-57339979164f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DeathMove",
+                    "type": "Value",
+                    "id": "4746df9c-6b7b-4046-8102-fdd6b4c9f5d4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d4afdc7a-9b82-4c3b-a248-11a622fefe7a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeathGamePlayAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e36b7086-35b9-4608-9d42-482bfaa41edc",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeathMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

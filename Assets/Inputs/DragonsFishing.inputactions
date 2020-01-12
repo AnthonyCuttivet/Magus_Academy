@@ -1,5 +1,5 @@
 {
-    "name": "Dragons",
+    "name": "DragonsFishing",
     "maps": [
         {
             "name": "Dragons",
@@ -78,17 +78,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "1753dc71-e97c-4044-9abb-8b62d01dae2b",
-                    "expectedControlType": "Axis",
+                    "name": "Fish",
+                    "type": "Button",
+                    "id": "420a3ab9-e2cf-4f0e-ada4-42b1aca38cf2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Fish",
-                    "type": "Button",
-                    "id": "420a3ab9-e2cf-4f0e-ada4-42b1aca38cf2",
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "368a64ac-dc5f-4c67-a25e-0a610d51bcb0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -240,17 +240,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d46618cc-4a0f-4fa4-9847-dd13917e102b",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "988754e9-92ac-4323-9dea-b1ddbbc8dcb4",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -259,9 +248,32 @@
                     "action": "Fish",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39d3c25f-f9ea-4f77-857a-f887bbb227a1",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "AxisDeadzone(min=0.4)",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

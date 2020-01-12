@@ -15,6 +15,8 @@ public class KTB_DeathGamePlay : MonoBehaviour
     public bool attackInput;
     SpriteRenderer crosshair;
     bool postMortemActive;
+    Rigidbody2D rb;
+    public Vector2 directionnalInput;
 
     void Start()
     {
@@ -23,12 +25,13 @@ public class KTB_DeathGamePlay : MonoBehaviour
         area = GetComponent<CircleCollider2D>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<KeepTheBroom>();
         crosshair = GetComponent<SpriteRenderer>();
+        rb = GetComponentInParent<Rigidbody2D>();
     }
 
     void Update()
     {
         if(postMortemActive){
-            area.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            rb.velocity = directionnalInput * player.speed;
             if(attackInput && useCount > 0){
                 foreach(PlayerKTB target in playersInRange){
                     Vector2 direction = target.transform.position - area.transform.position;
@@ -54,6 +57,9 @@ public class KTB_DeathGamePlay : MonoBehaviour
     public void ActivatePostMortem(){
             crosshair.enabled = true;
             postMortemActive = true;
+            player.playerInput.currentActionMap.Disable();
+            player.playerInput.SwitchCurrentActionMap("Dead");
+
     }
     void DeactivatePostMortem(){
         crosshair.enabled = false;

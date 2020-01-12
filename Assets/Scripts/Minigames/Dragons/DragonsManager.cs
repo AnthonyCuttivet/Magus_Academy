@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class DragonsManager : MonoBehaviour
 {
 
     public static DragonsManager instance;
     public InputActionAsset dragonsActions;
+    public PlayerInputManager inputManager;
     [SerializeField]
     public Dictionary<int, int> dragonsScoreboard = new Dictionary<int, int>();
     public List<Player> playersInfos = new List<Player>();
@@ -40,7 +42,9 @@ public class DragonsManager : MonoBehaviour
     }
     void Start(){
         playersInfos = PlayersManager.instance.playersList;
+        dragonsActions.Enable();
         AssignControllerToPlayer();
+        
     }
 
     void OnEnable(){
@@ -61,11 +65,14 @@ public class DragonsManager : MonoBehaviour
             scoresText[i].text = dragonsScoreboard[i].ToString();
         }
     }
-    void AssignControllerToPlayer(){
-        foreach(GameObject player in playersGO){
-            PlayerInput input = player.GetComponent<PlayerInput>();
-            input.actions = dragonsActions;
-            input.defaultActionMap = "Fishing"; 
-        }
+    void AssignControllerToPlayer(){   
+        foreach(GameObject playerGO in playersGO){
+            PlayerInput playerInput = playerGO.AddComponent<PlayerInput>();
+            playerInput.actions = Instantiate(dragonsActions);
+            playerInput.actions.Enable();
+        } 
+
+
+
     }
 }

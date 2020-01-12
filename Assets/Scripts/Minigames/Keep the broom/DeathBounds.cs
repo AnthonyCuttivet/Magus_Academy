@@ -11,7 +11,7 @@ public class DeathBounds : MonoBehaviour
     }
     public virtual void OnTriggerExit2D(Collider2D collider){
         if(collider.CompareTag("Player")){
-            collider.GetComponent<KTB_Player>().dead = true;
+            collider.GetComponent<KTB_Player>().Death();
             collider.GetComponentInChildren<KTB_DeathGamePlay>().ActivatePostMortem();
         }
         
