@@ -9,16 +9,11 @@ public class GenerateFakeScore : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         for (int i = 0; i < 4; i++){
             minigameRanking.Add(new Player(i,i+1), (i+1)*4526);
         }
-        PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, minigameRanking);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayersManager.instance.globalRanking.Add(PlayersManager.Minigames.Deceived, minigameRanking);
+        PlayersManager.instance.globalRanking.Add(PlayersManager.Minigames.DF, minigameRanking);
+        PlayersManager.instance.globalRanking.Add(PlayersManager.Minigames.KTB, minigameRanking);
     }
 }
