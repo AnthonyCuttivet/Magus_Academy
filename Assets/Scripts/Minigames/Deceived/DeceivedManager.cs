@@ -22,6 +22,7 @@ public class DeceivedManager : MonoBehaviour
     CharactersSpawner spawner;
     int playerNumber;
     bool transitionned;
+    public Transform mapCenter;
     void Awake(){
         if(instance == null){
             instance = this;

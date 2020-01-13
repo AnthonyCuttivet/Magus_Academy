@@ -73,7 +73,7 @@ public class CharacterSelectionManager : MonoBehaviour
             //StartDance();
             switch(PlayersManager.instance.gamemode){
                 case PlayersManager.Gamemodes.Single:
-                    BlackFade.instance.FadeOutToScene("MinigamesScreen");
+                    LoadMinigameSelection();
                 break;
                 case PlayersManager.Gamemodes.Tournament:
 
@@ -136,6 +136,12 @@ public class CharacterSelectionManager : MonoBehaviour
             soundManager.FadeOutMusicVolume(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",1f);
         }
         soundManager.FadeOutMusic("MainTheme",1f);
+    }
+
+    void LoadMinigameSelection(){
+        Debug.Log("load selection");
+        soundManager.PlaySound("Menu_Validate");
+        BlackFade.instance.FadeOutToScene("MinigamesScreen");
     }
 
 

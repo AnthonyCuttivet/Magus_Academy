@@ -17,6 +17,7 @@ public class PlayerCursor : MonoBehaviour
     public GameObject PlayersManagerGO;
     private Vector2 vel;
     private Rigidbody rb;
+    SoundManager soundManager;
 
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
@@ -36,6 +37,7 @@ public class PlayerCursor : MonoBehaviour
             //Set banner
             CharacterSelectionManager.instance.banners[currentPlayer.Id].transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = false;
         }
+        soundManager = SoundManager.instance;
     }
 
     // Update is called once per frame
@@ -82,6 +84,7 @@ public class PlayerCursor : MonoBehaviour
                 //Set banner alpha to 1
                 ChangeBannerAlpha(1f);
                 GetComponent<Collider>().isTrigger = true;
+                soundManager.PlaySound("Menu_Validate");
             }
         }
     }
@@ -92,6 +95,7 @@ public class PlayerCursor : MonoBehaviour
             PlayersManager.instance.RemoveSkin(currentPlayer);
             ChangeBannerAlpha(.4f);
             GetComponent<Collider>().isTrigger = false;
+            soundManager.PlaySound("Menu_Return");
         }
     }
 

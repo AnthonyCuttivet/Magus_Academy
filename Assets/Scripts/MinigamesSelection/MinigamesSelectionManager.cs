@@ -18,13 +18,6 @@ public class MinigamesSelectionManager : MonoBehaviour
         gameObject.GetComponent<PlayerInput>().actions.Enable();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         selectedMinigame = EventSystem.current.currentSelectedGameObject.name;

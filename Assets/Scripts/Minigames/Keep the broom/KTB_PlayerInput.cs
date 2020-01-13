@@ -18,15 +18,21 @@ public class KTB_PlayerInput : MonoBehaviour
     void OnAttack(){
         player.attackInput = true;
     }
-    void OnJump(){
-        player.jumpInputDown = true;
-        player.jumpInputUP = false;
+    void OnJump(InputValue value){
+        if(value.Get<float>() <= .5f){
+            player.jumpInputDown = false;
+            player.jumpInputUP = true;
+        }
+        else {
+            player.jumpInputDown = true;
+            player.jumpInputUP = false;
+        }
+
     }
     void OnMove(InputValue value){
         player.SetDirectionalInput(value.Get<Vector2>());
     }
     void OnDeathGamePlayAttack(){
-        Debug.Log("OnDeathGamePlayAttack");
         deathGamePlay.attackInput = true;
     }
     void OnDeathMove(InputValue value){

@@ -48,7 +48,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""d7af27d7-6d66-4478-b55b-7d87c957b4d9"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",

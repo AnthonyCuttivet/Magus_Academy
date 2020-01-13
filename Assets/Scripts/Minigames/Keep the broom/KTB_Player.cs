@@ -223,7 +223,7 @@ public class KTB_Player : MonoBehaviour
         if(collisions.underRoof && (rb.velocity.y > 0 || inputIncoming) && !knockBacked){
             JumpingTroughPlatform();
         }
-        if(collisions.onGround && directionalInput.y == -1){
+        if(collisions.onGround && directionalInput.y < 0){
             DropTroughPlatform();
         }
         List<Collider2D> tempIgnoredList = new List<Collider2D>(collisions.ignoredColliders);
@@ -271,6 +271,7 @@ public class KTB_Player : MonoBehaviour
         rb.velocity = Vector3.zero;
         collid.enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        transform.position = Vector3.zero;
     }
 
 
