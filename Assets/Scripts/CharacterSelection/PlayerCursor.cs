@@ -68,6 +68,9 @@ public class PlayerCursor : MonoBehaviour
     void OnMove(InputValue value){
         if(!hasSelected){
             vel = value.Get<Vector2>();
+            if(vel.magnitude < .2f){
+                vel = Vector2.zero;
+            }
         }else{
             vel = Vector2.zero;
         }

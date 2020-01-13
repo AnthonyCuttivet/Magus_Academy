@@ -124,7 +124,7 @@ public class CommandsUIManager : MonoBehaviour
     // Update is called once per frame
     void Update(){
         if(start){
-            SceneManager.LoadScene(PlayersManager.instance.nextMinigame.ToString());
+            BlackFade.instance.FadeOutToScene(PlayersManager.instance.nextMinigame.ToString());
         }
     }
 

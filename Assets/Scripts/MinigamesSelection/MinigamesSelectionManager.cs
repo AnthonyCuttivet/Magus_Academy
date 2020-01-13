@@ -12,16 +12,26 @@ public class MinigamesSelectionManager : MonoBehaviour
 
     public string selectedMinigame;
     public GameObject minigamesInfos;
-
-
+    SoundManager soundManager;
+    void Start(){
+        soundManager = SoundManager.instance;
+    }
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
     }
 
     void Update()
     {
-        selectedMinigame = EventSystem.current.currentSelectedGameObject.name;
-        SwitchInformations();
+        if(selectedMinigame == ""){
+            selectedMinigame = EventSystem.current.currentSelectedGameObject.name;
+        }
+        else if(EventSystem.current.currentSelectedGameObject.name != selectedMinigame){
+            OnChangeSelectedGO();
+            selectedMinigame = EventSystem.current.currentSelectedGameObject.name;
+            SwitchInformations();
+        }
+       
+        
     }
 
     void SwitchInformations(){
@@ -33,6 +43,12 @@ public class MinigamesSelectionManager : MonoBehaviour
     void OnA(){
         PlayersManager.instance.nextMinigame = (PlayersManager.Minigames)System.Enum.Parse( typeof(PlayersManager.Minigames), selectedMinigame);
         PlayersManager.instance.currentMinigame = (PlayersManager.Minigames)System.Enum.Parse( typeof(PlayersManager.Minigames), selectedMinigame);
-        SceneManager.LoadScene("CommandsScreen");
+        BlackFade.instance.FadeOutToScene("CommandsScreen");
+        soundManager.PlaySound("Menu_Validate");
     }
+    public void OnChangeSelectedGO(){
+        soundManager.PlaySound("Menu_Switch");
+    }
+
+
 }
