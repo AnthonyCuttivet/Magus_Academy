@@ -2963,6 +2963,7 @@ MonoBehaviour:
   readyCount: 0
   start: 0
   BG: {fileID: 497925025}
+  fadeVolumeTime: 3
   deceivedBG: {fileID: 21300000, guid: 0206419fced42d344adec5bbb8fe25f8, type: 3}
   DFBG: {fileID: 21300000, guid: f15408aabea8637498da16368198874a, type: 3}
   KTBBG: {fileID: 21300000, guid: f26540ae98f827c46becf9129dde3b96, type: 3}

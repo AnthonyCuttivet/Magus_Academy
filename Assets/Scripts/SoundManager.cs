@@ -99,7 +99,7 @@ public class Sound {
 		isFadeOut = true;
         while (source.volume > 0) {
             source.volume -= startVolume * Time.deltaTime / FadeTime;
-            yield return null;
+            yield return null;	
         }
 		isFadeOut = false;
 	}
@@ -198,7 +198,7 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	public void FadeInMusic(string musicName,float fadeTime, bool overPlay = false,float fadoutTime = .3f){
+	public void FadeInMusic(string musicName,float fadeTime, bool overPlay = false){
 		foreach(Sound _sound in musiques ){
 			if(_sound.name == musicName){
 				if(overPlay){

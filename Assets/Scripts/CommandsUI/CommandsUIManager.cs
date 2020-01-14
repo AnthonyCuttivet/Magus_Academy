@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using J80N;
 using DG.Tweening;
+using System.Linq;
 
 public class CommandsUIManager : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class CommandsUIManager : MonoBehaviour
     public GameObject playerIcons;
     public int readyCount = 0;
     public bool start = false;
+    bool startFlag;
     public GameObject BG;
+    SoundManager soundManager;
+    public float fadeVolumeTime;
     [Space]
     [Header("Backgrounds")]
     public Sprite deceivedBG;
@@ -118,13 +122,15 @@ public class CommandsUIManager : MonoBehaviour
         //Set current thumbnail and slider
         current_thumbnail = s_thumbnails.transform.GetChild(0);
         current_slider = s_sliders.transform.GetChild(0);
+        soundManager = SoundManager.instance;
     }
 
 
     // Update is called once per frame
     void Update(){
-        if(start){
-            BlackFade.instance.FadeOutToScene(PlayersManager.instance.nextMinigame.ToString());
+        if(start && !startFlag){
+            startFlag = true;
+            StartMiniGame(PlayersManager.instance.nextMinigame.ToString());
         }
     }
 
@@ -162,5 +168,16 @@ public class CommandsUIManager : MonoBehaviour
         s_sliders.transform.GetChild(s_id).GetComponent<Image>().sprite = fullSlider;
         current_slider = s_sliders.transform.GetChild(s_id);
 
+    }
+    void StartMiniGame(string miniGame){
+        BlackFade.instance.FadeOutToScene(miniGame,fadeVolumeTime);
+        StopMainTheme();
+    }
+    public void StopMainTheme(){
+        int[] selectedSkins = PlayersManager.instance.playersList.Select(x => x.Skin).ToArray();
+        foreach(int skinNumber in selectedSkins){
+            soundManager.FadeOutMusicVolume(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",fadeVolumeTime);
+        }
+        soundManager.FadeOutMusic("MainTheme",3f);
     }
 }

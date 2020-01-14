@@ -66,13 +66,10 @@ public class CharactersSpawner : MonoBehaviour
     }
 
     public void PoolEntities(GameObject entity, int amount){
-        Debug.Log(spawnArea.bounds.min.x);
-        Debug.Log(spawnArea.bounds.max.x);
         pooledEntities = new List<GameObject>();
         for (int i = 1; i <= amount; i++) {
             bool spawned = false;
             while(spawned != true){
-                Debug.Log(spawnArea.bounds.min.x);
                 GameObject obj = (GameObject)Instantiate(entity, new Vector3(Random.Range(spawnArea.bounds.min.x,spawnArea.bounds.max.x), spawnArea.bounds.max.y , Random.Range(spawnArea.bounds.min.z,spawnArea.bounds.max.z)), Quaternion.identity);
                 Collider[] hitColliders = Physics.OverlapSphere(obj.transform.position, m_MaxDistance,layerMask);
                 if(hitColliders.Length <= 1){
