@@ -7,7 +7,7 @@ public class MinigameStats : MonoBehaviour
 
     public static MinigameStats instance;
 
-    public Dictionary<Player,int> ranking = new Dictionary<Player,int>(); //score, Player
+    public Dictionary<int,int> ranking = new Dictionary<int,int>(); //score, Player
 
     void Awake(){
         if(instance == null){

@@ -9,6 +9,7 @@ public class PlayersManager : MonoBehaviour {
         Deceived,
         DF,
         KTB,
+        LB_TOTAL,
     }
 
     public enum Gamemodes{
@@ -21,7 +22,7 @@ public class PlayersManager : MonoBehaviour {
 
     [SerializeField]
     public List<Player> playersList = new List<Player>();
-    public Dictionary<Minigames, Dictionary<Player,int>> globalRanking = new Dictionary<Minigames, Dictionary<Player,int>>();
+    public Dictionary<Minigames, Dictionary<int,int>> globalRanking = new Dictionary<Minigames, Dictionary<int,int>>();
 
     public Minigames nextMinigame;
     public Minigames currentMinigame;
