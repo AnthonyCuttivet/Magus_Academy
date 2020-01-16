@@ -24,6 +24,12 @@ public class DeceivedManager : MonoBehaviour
     int playerNumber;
     bool transitionned;
     public Transform mapCenter;
+
+    [Space]
+    [Header("Camera Zoom")]
+    public float zoomDuration;
+    public float endZoomSize;
+    public float endZoomWaitBeforeLoadVictoryScene;
     public Collider mapCollider;
     void Awake(){
         if(instance == null){
@@ -41,6 +47,7 @@ public class DeceivedManager : MonoBehaviour
         StartMusic();
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
+        //StartCoroutine(cameraZoom(Camera.main,7,5f));
 
     }
 
@@ -57,24 +64,9 @@ public class DeceivedManager : MonoBehaviour
             EndGameTransition();
         }
     }
-    IEnumerator EndGameZoom(){
-        Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
-        Camera camera = Camera.main;
-        camera.orthographicSize = 7;
-        float VerticalHeightSeen    = camera.orthographicSize * 2.0f;                   //l'orthographic size = ce qui est vu verticalement par la camera * 2
-        float HorizontalHeightSeen = VerticalHeightSeen * Screen.width / Screen.height;         //on recupere le valeur horiztontale
-        Vector3 newCamPos = camera.transform.position;    
-        float boundX = mapCollider.bounds.max.x - HorizontalHeightSeen / 2;             //bound sur le x pour eviter de zoom sur le dehors de la map
-        newCamPos.x = Mathf.Clamp(winnerPosition.x,-boundX,boundX);
-        newCamPos.y -= 30;
-        winnerPosition.x = newCamPos.x;
-        camera.transform.DOMove(newCamPos,3f); 
-        yield return new WaitForSeconds(3f);
-        camera.transform.DOLookAt(winnerPosition,3f);                               
-    }
+
     public void LoadVictoryScreen(){
         BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
-        //SceneManager.LoadScene("MinigameVictoryScreen");
     }
 
     void Despawner(){
@@ -122,6 +114,33 @@ public class DeceivedManager : MonoBehaviour
             }
         }
         
+    }
+    IEnumerator EndGameZoom(){
+        Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
+        Camera camera = Camera.main;
+        StartCoroutine(cameraZoom(camera,endZoomSize,zoomDuration));
+        yield return new WaitForSeconds(zoomDuration);
+        float VerticalHeightSeen    = endZoomSize * 2.0f;                   //l'orthographic size = ce qui est vu verticalement par la camera * 2
+        float HorizontalHeightSeen = VerticalHeightSeen * Screen.width / Screen.height;         //on recupere le valeur horiztontale
+        Vector3 newCamPos = camera.transform.position;    
+        float boundX = mapCollider.bounds.max.x - HorizontalHeightSeen / 2;             //bound sur le x pour eviter de zoom sur le dehors de la map
+        newCamPos.x = Mathf.Clamp(winnerPosition.x,-boundX,boundX);
+        newCamPos.y -= 30;
+        newCamPos.z = winnerPosition.z - 35;
+        winnerPosition.x = newCamPos.x;
+        camera.transform.DOMove(newCamPos,zoomDuration); 
+        yield return new WaitForSeconds(zoomDuration);
+        camera.transform.DOLookAt(winnerPosition,zoomDuration);
+        yield return new WaitForSeconds(zoomDuration);
+        yield return new WaitForSeconds(endZoomWaitBeforeLoadVictoryScene);
+        LoadVictoryScreen();                               
+    }
+    IEnumerator cameraZoom(Camera camera,float wantedSize,float duration){
+        float sizeReduction = camera.orthographicSize - wantedSize;
+        while(camera.orthographicSize > wantedSize){
+            camera.orthographicSize -= (Time.deltaTime * sizeReduction) / duration;
+            yield return null;
+        }
     }
     public void StopMusicSkin(int skin){
         soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "Theme",2f);

@@ -4299,6 +4299,9 @@ MonoBehaviour:
   despawnRate: 2
   EndGamePercentage: 0.279
   mapCenter: {fileID: 997895459}
+  zoomDuration: 1.5
+  endZoomSize: 7
+  endZoomWaitBeforeLoadVictoryScene: 3
   mapCollider: {fileID: 808209854}
 --- !u!4 &1461373004
 Transform:
