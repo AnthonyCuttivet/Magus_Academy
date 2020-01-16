@@ -9,7 +9,7 @@ public class BlackFade : MonoBehaviour
     Animator animator;
     string SceneToLoad;
     public static BlackFade instance;
-    public float fadeTime;
+    public float fadeTime = 0;
 
     void Awake(){
         if(instance != null && instance != this){

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 public class DeceivedManager : MonoBehaviour
 {
 
@@ -23,6 +24,7 @@ public class DeceivedManager : MonoBehaviour
     int playerNumber;
     bool transitionned;
     public Transform mapCenter;
+    public Collider mapCollider;
     void Awake(){
         if(instance == null){
             instance = this;
@@ -35,11 +37,11 @@ public class DeceivedManager : MonoBehaviour
     void Start(){
         playersInfos = PlayersManager.instance.playersList;
         playerNumber = playersInfos.Count;
-        Debug.Log(playerNumber);
         soundManager = SoundManager.instance;
         StartMusic();
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
+
     }
 
     // Update is called once per frame
@@ -48,15 +50,27 @@ public class DeceivedManager : MonoBehaviour
             gameEnded = true;
             //Save minigame scoreboard to global scoreboard
             PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, MinigameStats.instance.ranking);
-            LoadVictoryScreen();
+            StartCoroutine(EndGameZoom());
         }
         else if(CountDown.instance.countDownfinished){
             Despawner();
             EndGameTransition();
         }
     }
-    void EndGameZoom(){
-        Debug.Log(CharactersSpawner.instance.players[0].name);
+    IEnumerator EndGameZoom(){
+        Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
+        Camera camera = Camera.main;
+        camera.orthographicSize = 7;
+        float VerticalHeightSeen    = camera.orthographicSize * 2.0f;                   //l'orthographic size = ce qui est vu verticalement par la camera * 2
+        float HorizontalHeightSeen = VerticalHeightSeen * Screen.width / Screen.height;         //on recupere le valeur horiztontale
+        Vector3 newCamPos = camera.transform.position;    
+        float boundX = mapCollider.bounds.max.x - HorizontalHeightSeen / 2;             //bound sur le x pour eviter de zoom sur le dehors de la map
+        newCamPos.x = Mathf.Clamp(winnerPosition.x,-boundX,boundX);
+        newCamPos.y -= 30;
+        winnerPosition.x = newCamPos.x;
+        camera.transform.DOMove(newCamPos,3f); 
+        yield return new WaitForSeconds(3f);
+        camera.transform.DOLookAt(winnerPosition,3f);                               
     }
     public void LoadVictoryScreen(){
         BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");

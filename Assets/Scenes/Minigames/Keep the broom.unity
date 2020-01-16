@@ -2472,7 +2472,7 @@ GameObject:
   - component: {fileID: 1191280258}
   - component: {fileID: 1191280260}
   - component: {fileID: 1191280261}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Broom
   m_TagString: Broom
   m_Icon: {fileID: 0}
