@@ -24,9 +24,6 @@ public class GenerateFakeScore : MonoBehaviour
         PlayersManager.instance.globalRanking.Add(PlayersManager.Minigames.KTB, minigameRanking);
         PlayersManager.instance.globalRanking.Add(PlayersManager.Minigames.LB_TOTAL, totals);
         UpdateTotals(PlayersManager.instance.globalRanking);
-        foreach(KeyValuePair<int,int> kvp in PlayersManager.instance.globalRanking[PlayersManager.Minigames.LB_TOTAL]){
-            print(kvp.Key + " : " + kvp.Value);
-        }
         
     }
     

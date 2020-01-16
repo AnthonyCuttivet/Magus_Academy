@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -819,11 +819,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149390491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.77, y: 0, z: 35.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -284, y: -95.5, z: -1220}
+  m_LocalScale: {x: 22.5, y: 22.5, z: 22.5}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1440512032}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154766507
@@ -1329,7 +1329,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e842bb232e869409fb5b207e86e19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersList: []
+  playersList:
+  - Id: 0
+    Skin: 1
+  - Id: 1
+    Skin: 2
+  - Id: 2
+    Skin: 3
+  - Id: 3
+    Skin: 4
   nextMinigame: 1
   currentMinigame: 1
   gamemode: 0
@@ -1346,7 +1354,7 @@ Transform:
   m_Children:
   - {fileID: 301701085}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439235175
 GameObject:
@@ -2556,7 +2564,7 @@ RectTransform:
   - {fileID: 439235176}
   - {fileID: 225580694}
   m_Father: {fileID: 1440512032}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3004,7 +3012,7 @@ RectTransform:
   - {fileID: 876257296}
   - {fileID: 61812237}
   m_Father: {fileID: 1440512032}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3052,7 +3060,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089361816
 GameObject:
@@ -3244,7 +3252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297068379
 GameObject:
@@ -3414,10 +3422,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1682791368}
-  - {fileID: 1829045572}
-  - {fileID: 911734926}
   - {fileID: 1081360587}
+  - {fileID: 911734926}
+  - {fileID: 1829045572}
+  - {fileID: 1682791368}
+  - {fileID: 149390494}
   m_Father: {fileID: 109472707}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3746,7 +3755,7 @@ RectTransform:
   - {fileID: 524301348}
   - {fileID: 11799457}
   m_Father: {fileID: 1440512032}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4019,7 +4028,7 @@ RectTransform:
   - {fileID: 1962513619}
   - {fileID: 965719907}
   m_Father: {fileID: 1440512032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4479,7 +4488,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2072134289
 MonoBehaviour:
@@ -4493,10 +4502,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e334c925cb4a3c4eb0317cf065cac09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinsNames: []
-  skins: []
-  banners: []
-  playerColors: []
+  skinsNames:
+  - Random
+  - Terre
+  - Glace
+  - Feu
+  - Vent
+  - "Lumi\xE8re"
+  - Foudre
+  - "N\xE9cromancie"
+  - "T\xE9n\xE8bre"
+  skins:
+  - {fileID: 2100000, guid: 4070f3c350861774b8d955de9ec81c93, type: 2}
+  - {fileID: 2100000, guid: 83af09df9b59fd0479d195292fdf6b10, type: 2}
+  - {fileID: 2100000, guid: 3433f57a7afd76d47a154f7414ee109d, type: 2}
+  - {fileID: 2100000, guid: 74b847f090f33d84e8ebad9e7b90409d, type: 2}
+  - {fileID: 2100000, guid: c15f1a74ded7fa6428bc32920b70120b, type: 2}
+  - {fileID: 2100000, guid: 526190707f5bd3747ade196efe13c61b, type: 2}
+  - {fileID: 2100000, guid: 682550d30da8d2343bf60403b00513c4, type: 2}
+  - {fileID: 2100000, guid: dd64e27426e3d54418a9abf5559d8b69, type: 2}
+  - {fileID: 2100000, guid: e8d0af3c1c992ad44ba6f9ee8bc3418b, type: 2}
+  banners:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 0c3f46e2295bc844da9af545bf06def7, type: 3}
+  - {fileID: 21300000, guid: 3ff1d51a833edd74f93e7813a9b90c17, type: 3}
+  - {fileID: 21300000, guid: b731c3756de2bca43b0ac69304ebaaec, type: 3}
+  - {fileID: 21300000, guid: 97e06379f91c86149bd31c71ec2c7d8c, type: 3}
+  - {fileID: 21300000, guid: c373381b67777ce45a4c0b401d1debdd, type: 3}
+  - {fileID: 21300000, guid: fb6245b03161a7f459f479d4c1f94d2f, type: 3}
+  - {fileID: 21300000, guid: 2c222624ac9f58f43b37039e6b830968, type: 3}
+  - {fileID: 21300000, guid: 27998893c490e98429e2259bf6c20165, type: 3}
+  playerColors:
+  - {r: 1, g: 0.1764706, b: 0.1764706, a: 0}
+  - {r: 0.33333334, g: 0.44313726, b: 1, a: 0}
+  - {r: 0.7019608, g: 0.9607843, b: 0.5019608, a: 0}
+  - {r: 1, g: 0.89411765, b: 0.3647059, a: 0}
 --- !u!1 &2117083696
 GameObject:
   m_ObjectHideFlags: 0

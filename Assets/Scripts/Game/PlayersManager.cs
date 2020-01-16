@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class PlayersManager : MonoBehaviour {
 
@@ -55,5 +56,9 @@ public class PlayersManager : MonoBehaviour {
     public void RemoveSkin(Player p){
         CharacterSelectionManager.instance.RemoveSkin(p);
         p.Skin = -1;
+    }
+
+    public int GetSkin(int playerId){
+        return playersList.Where(x=>x.Id == playerId).First().Skin;
     }
 }
