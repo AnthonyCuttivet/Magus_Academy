@@ -13,6 +13,7 @@ public class CountDown : MonoBehaviour
     private int currentSecond = -1;
     public static CountDown instance;
     public bool countDownfinished;
+    float timeBeforeCountdownStart;
 
     void Awake(){
         if(instance == null){
@@ -25,26 +26,33 @@ public class CountDown : MonoBehaviour
         instance = this;
     }
 
+    void Start(){
+        timeBeforeCountdownStart = BlackFade.instance.fadeTime;
+    }
+
     // Update is called once per frame
     void Update(){
-        if(!CharactersSpawner.instance.gameStart){
-            if(time > 0){
-                time -= Time.deltaTime;
-                int second = (int)time % 60;
-                gameObject.GetComponent<TextMeshProUGUI>().text = (second + 1).ToString();
-                if(currentSecond != second){
-                    PlaySound(countDownSFX);
+        if(timeBeforeCountdownStart < 0){
+            if(!CharactersSpawner.instance.gameStart){
+                if(time > 0){
+                    time -= Time.deltaTime;
+                    int second = (int)time % 60;
+                    gameObject.GetComponent<TextMeshProUGUI>().text = (second + 1).ToString();
+                    if(currentSecond != second){
+                        PlaySound(countDownSFX);
+                    }
+                    currentSecond = second;
+                }else{
+                    CharactersSpawner.instance.gameStart = true;
+                    //gameObject.GetComponent<DestroySelf>().enabled = true;
+                    gameObject.GetComponent<TextMeshProUGUI>().text = "GO!";
+                    PlaySound(goSFX);
+                    gameObject.GetComponent<TextMeshProUGUI>().DOFade(0,0.5f);
+                    countDownfinished = true;
                 }
-                currentSecond = second;
-            }else{
-                CharactersSpawner.instance.gameStart = true;
-                //gameObject.GetComponent<DestroySelf>().enabled = true;
-                gameObject.GetComponent<TextMeshProUGUI>().text = "GO!";
-                PlaySound(goSFX);
-                gameObject.GetComponent<TextMeshProUGUI>().DOFade(0,0.5f);
-                countDownfinished = true;
             }
         }
+        timeBeforeCountdownStart -= Time.deltaTime;
     }
 
     void PlaySound(AudioClip clp){

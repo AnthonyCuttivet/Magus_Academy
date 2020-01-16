@@ -19,6 +19,7 @@ public class BlackFade : MonoBehaviour
             instance = this;
         }
         animator = GetComponent<Animator>();
+        fadeTime = animator.GetCurrentAnimatorStateInfo(0).length;
     }
     public void FadeOutToScene(string sceneName,float _fadeTime = 0f){
         SceneToLoad = sceneName;
