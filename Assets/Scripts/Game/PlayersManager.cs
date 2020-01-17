@@ -64,53 +64,13 @@ public class PlayersManager : MonoBehaviour {
 
     public void UpdateTotals(){
 
-        print("ntm");
-
-        foreach(KeyValuePair<int,int> kvp in globalRanking[PlayersManager.Minigames.Deceived]){
-            print(kvp.Key + " : " + kvp.Value + "pts");
-        }
-
-        for (int i = 0; i < 4; i++){
-            globalRanking[PlayersManager.Minigames.LB_TOTAL][i] = globalRanking[PlayersManager.Minigames.Deceived][i] + globalRanking[PlayersManager.Minigames.DF][i] + globalRanking[PlayersManager.Minigames.KTB][i];
-        }
-
-        foreach(KeyValuePair<int,int> kvp in globalRanking[PlayersManager.Minigames.LB_TOTAL]){
-            print(kvp.Key + " : " + kvp.Value + "pts");
-        }
+        globalRanking[PlayersManager.Minigames.LB_TOTAL][0] = globalRanking[PlayersManager.Minigames.Deceived][0] + globalRanking[PlayersManager.Minigames.DF][0] + globalRanking[PlayersManager.Minigames.KTB][0];
+        globalRanking[PlayersManager.Minigames.LB_TOTAL][1] = globalRanking[PlayersManager.Minigames.Deceived][1] + globalRanking[PlayersManager.Minigames.DF][1] + globalRanking[PlayersManager.Minigames.KTB][1];
+        globalRanking[PlayersManager.Minigames.LB_TOTAL][2] = globalRanking[PlayersManager.Minigames.Deceived][2] + globalRanking[PlayersManager.Minigames.DF][2] + globalRanking[PlayersManager.Minigames.KTB][2];
+        globalRanking[PlayersManager.Minigames.LB_TOTAL][3] = globalRanking[PlayersManager.Minigames.Deceived][3] + globalRanking[PlayersManager.Minigames.DF][3] + globalRanking[PlayersManager.Minigames.KTB][3];
 
         globalRanking = OrderScores(globalRanking);
-        
-
-
-
-/*         Dictionary<int,int> totals = new Dictionary<int, int>();
-        for (int i = 0; i < 4; i++){
-            totals.Add(i,0);
-        }
-
-        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in globalRanking){                    
-            if(kvp.Key != PlayersManager.Minigames.LB_TOTAL){
-                foreach(KeyValuePair<int,int> minigameScoreKvp in kvp.Value){
-                    print(kvp.Value[minigameScoreKvp.Key]);
-                    totals[minigameScoreKvp.Key] += kvp.Value[minigameScoreKvp.Key];
-                }
-            }
-        }
-
-        globalRanking[PlayersManager.Minigames.LB_TOTAL] = totals;
-
-
-
-        Dictionary<PlayersManager.Minigames,Dictionary<int,int>> updatedTotals = globalRanking;
-        foreach(KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in updatedTotals){
-            if(kvp.Key != PlayersManager.Minigames.LB_TOTAL){
-                foreach(KeyValuePair<int,int> minigameScoreKvp in kvp.Value){
-                    updatedTotals[PlayersManager.Minigames.LB_TOTAL][minigameScoreKvp.Key] += minigameScoreKvp.Value;
-                }
-            }
-        } */
-        
-
+    
     }
 
     public Dictionary<PlayersManager.Minigames,Dictionary<int,int>> OrderScores(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> _globalRanking){

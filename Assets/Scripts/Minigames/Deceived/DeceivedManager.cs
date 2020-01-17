@@ -27,6 +27,8 @@ public class DeceivedManager : MonoBehaviour
     bool transitionned;
     public Transform mapCenter;
 
+    public Dictionary<int,int> deceivedScores = new Dictionary<int,int>();
+
     [Space]
     [Header("Camera Zoom")]
     public float zoomDuration;
@@ -59,6 +61,7 @@ public class DeceivedManager : MonoBehaviour
             gameEnded = true;
 
             //Save minigame scoreboard to global scoreboard
+            PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;
             PlayersManager.instance.UpdateTotals();
 
             StartCoroutine(EndGameZoom());
