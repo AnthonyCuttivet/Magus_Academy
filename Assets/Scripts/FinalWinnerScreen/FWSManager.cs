@@ -12,7 +12,7 @@ public class FWSManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        PlayersManager.instance.UpdateTotals(PlayersManager.instance.globalRanking);
+        
     }
 
     // Update is called once per frame
