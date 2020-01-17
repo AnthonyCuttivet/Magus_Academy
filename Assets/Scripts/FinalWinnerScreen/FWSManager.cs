@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class FWSManager : MonoBehaviour
 {
@@ -51,5 +53,9 @@ public class FWSManager : MonoBehaviour
             playersFWS.transform.Find("Fireworks").gameObject.SetActive(true);
             //currentPlayerGO.transform.Find("CharacterMenu").GetComponent<Animator>().SetTrigger("isVictorious");
         }
+    }
+
+    void OnA(){
+        BlackFade.instance.FadeOutToScene("SplashScreen");
     }
 }
