@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System.Linq;
+
 public class DeceivedManager : MonoBehaviour
 {
 
@@ -24,6 +26,7 @@ public class DeceivedManager : MonoBehaviour
     int playerNumber;
     bool transitionned;
     public Transform mapCenter;
+    public Dictionary<int,int> minigameScores;
 
     [Space]
     [Header("Camera Zoom")]
@@ -56,7 +59,6 @@ public class DeceivedManager : MonoBehaviour
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved == 4 && !gameEnded){
             gameEnded = true;
             //Save minigame scoreboard to global scoreboard
-            PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, MinigameStats.instance.ranking);
             StartCoroutine(EndGameZoom());
         }
         else if(CountDown.instance.countDownfinished){
@@ -66,7 +68,11 @@ public class DeceivedManager : MonoBehaviour
     }
 
     public void LoadVictoryScreen(){
-        BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
+        if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Single){
+            BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+        }else if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Tournament){
+            BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
+        }
     }
 
     void Despawner(){
@@ -144,5 +150,38 @@ public class DeceivedManager : MonoBehaviour
     }
     public void StopMusicSkin(int skin){
         soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "Theme",2f);
+    }
+
+    public void UpdateTotals(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> globalRanking){
+
+        Dictionary<PlayersManager.Minigames,Dictionary<int,int>> updatedTotals = globalRanking;
+        foreach(KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in globalRanking){
+            if(kvp.Key != PlayersManager.Minigames.LB_TOTAL){
+                foreach(KeyValuePair<int,int> minigameScoreKvp in kvp.Value){
+                    updatedTotals[PlayersManager.Minigames.LB_TOTAL][minigameScoreKvp.Key] += kvp.Value[minigameScoreKvp.Key];
+                }
+            }
+        }
+        updatedTotals = OrderScores(updatedTotals);
+        PlayersManager.instance.globalRanking = updatedTotals;
+
+    }
+
+    public Dictionary<PlayersManager.Minigames,Dictionary<int,int>> OrderScores(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> globalRanking){
+
+        Dictionary<PlayersManager.Minigames,Dictionary<int,int>> totalsToReturn = new Dictionary<PlayersManager.Minigames,Dictionary<int,int>>();
+        
+        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in globalRanking){
+
+            Dictionary<int,int> tmpCategoryTotal = new Dictionary<int,int>();
+
+            foreach (KeyValuePair<int,int> category in kvp.Value.OrderByDescending(x => x.Value)){
+                tmpCategoryTotal.Add(category.Key, category.Value);
+            }
+
+            totalsToReturn.Add(kvp.Key,tmpCategoryTotal);
+        }
+
+        return totalsToReturn;
     }
 }

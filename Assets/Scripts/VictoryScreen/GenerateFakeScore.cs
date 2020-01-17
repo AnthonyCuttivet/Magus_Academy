@@ -42,8 +42,6 @@ public class GenerateFakeScore : MonoBehaviour
 
     }
 
-    //totals.OrderByDescending(x => x.Value)
-
     public Dictionary<PlayersManager.Minigames,Dictionary<int,int>> OrderScores(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> globalRanking){
 
         Dictionary<PlayersManager.Minigames,Dictionary<int,int>> totalsToReturn = new Dictionary<PlayersManager.Minigames,Dictionary<int,int>>();

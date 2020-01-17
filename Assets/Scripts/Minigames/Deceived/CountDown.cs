@@ -27,7 +27,7 @@ public class CountDown : MonoBehaviour
     }
 
     void Start(){
-        timeBeforeCountdownStart = BlackFade.instance.fadeTime;
+        timeBeforeCountdownStart = BlackFade.instance.fadeTime; 
     }
 
     // Update is called once per frame

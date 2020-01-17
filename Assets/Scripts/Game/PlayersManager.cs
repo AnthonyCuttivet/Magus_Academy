@@ -61,4 +61,38 @@ public class PlayersManager : MonoBehaviour {
     public int GetSkin(int playerId){
         return playersList.Where(x=>x.Id == playerId).First().Skin;
     }
+
+    public void UpdateTotals(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> _globalRanking){
+
+        Dictionary<PlayersManager.Minigames,Dictionary<int,int>> updatedTotals = _globalRanking;
+        foreach(KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in _globalRanking){
+            if(kvp.Key != PlayersManager.Minigames.LB_TOTAL){
+                foreach(KeyValuePair<int,int> minigameScoreKvp in kvp.Value){
+                    updatedTotals[PlayersManager.Minigames.LB_TOTAL][minigameScoreKvp.Key] += kvp.Value[minigameScoreKvp.Key];
+                }
+            }
+        }
+        updatedTotals = OrderScores(updatedTotals);
+        PlayersManager.instance.globalRanking = updatedTotals;
+
+    }
+
+    public Dictionary<PlayersManager.Minigames,Dictionary<int,int>> OrderScores(Dictionary<PlayersManager.Minigames,Dictionary<int,int>> _globalRanking){
+
+        Dictionary<PlayersManager.Minigames,Dictionary<int,int>> totalsToReturn = new Dictionary<PlayersManager.Minigames,Dictionary<int,int>>();
+        
+        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in _globalRanking){
+
+            Dictionary<int,int> tmpCategoryTotal = new Dictionary<int,int>();
+
+            foreach (KeyValuePair<int,int> category in kvp.Value.OrderByDescending(x => x.Value)){
+                tmpCategoryTotal.Add(category.Key, category.Value);
+            }
+
+            totalsToReturn.Add(kvp.Key,tmpCategoryTotal);
+        }
+
+        return totalsToReturn;
+    }
+
 }

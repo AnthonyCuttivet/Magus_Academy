@@ -214,6 +214,7 @@ public class PlayerControls : Controls
         velocity = Vector3.zero;
         rb.velocity = Vector3.zero;
         GetComponent<DeceivedScoring>().alive = false;
+        PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame][infos.Id] = GetComponent<DeceivedScoring>().score;
         //MinigameStats.instance.ranking.Add(infos.Id, GetComponent<DeceivedScoring>().score);
         DeceivedManager.instance.scoresSaved++;
         //Give points to the killer
@@ -226,7 +227,8 @@ public class PlayerControls : Controls
 
         //if killer is winner save its score
         if(CharactersSpawner.instance.players.Count == 1){
-            MinigameStats.instance.ranking.Add(gKiller.GetComponent<PlayerControls>().infos.Id, gKiller.GetComponent<DeceivedScoring>().score);
+            PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame][gKiller.GetComponent<PlayerControls>().infos.Id] = gKiller.GetComponent<DeceivedScoring>().score;
+            //MinigameStats.instance.ranking.Add(gKiller.GetComponent<PlayerControls>().infos.Id, gKiller.GetComponent<DeceivedScoring>().score);
             DeceivedManager.instance.scoresSaved++;
         }
         animator.SetTrigger("isKilled");
