@@ -23,7 +23,8 @@ public class MinigamesSelectionManager : MonoBehaviour
     void Update()
     {
         if(selectedMinigame == ""){
-            selectedMinigame = EventSystem.current.currentSelectedGameObject.name;
+            selectedMinigame = "Deceived";
+            SwitchInformations();
         }
         else if(EventSystem.current.currentSelectedGameObject.name != selectedMinigame){
             OnChangeSelectedGO();

@@ -214,7 +214,7 @@ public class PlayerControls : Controls
         velocity = Vector3.zero;
         rb.velocity = Vector3.zero;
         GetComponent<DeceivedScoring>().alive = false;
-        MinigameStats.instance.ranking.Add(infos.Id, GetComponent<DeceivedScoring>().score);
+        //MinigameStats.instance.ranking.Add(infos.Id, GetComponent<DeceivedScoring>().score);
         DeceivedManager.instance.scoresSaved++;
         //Give points to the killer
         GameObject gKiller = GameObject.Find("Characters/Player"+killer);

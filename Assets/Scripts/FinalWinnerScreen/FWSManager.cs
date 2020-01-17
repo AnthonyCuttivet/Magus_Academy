@@ -49,7 +49,7 @@ public class FWSManager : MonoBehaviour
         //Activate Fireworks
         if(slot == 0){
             playersFWS.transform.Find("Fireworks").gameObject.SetActive(true);
-            currentPlayerGO.transform.Find("CharacterMenu").GetComponent<Animator>().SetTrigger("isVictorious");
+            //currentPlayerGO.transform.Find("CharacterMenu").GetComponent<Animator>().SetTrigger("isVictorious");
         }
     }
 }

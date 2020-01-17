@@ -12,7 +12,9 @@ public class TitleScreenNavigation : MonoBehaviour
     SoundManager soundManager;
     void Start(){
         soundManager = SoundManager.instance;
+        //Reset and set Globalranking and PlayersList
     }
+
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
         PlayerPrefs.SetInt("SP_MONSTER_SKIN", 0);
