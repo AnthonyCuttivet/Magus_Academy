@@ -7,11 +7,11 @@ using TMPro;
 using J80N;
 using DG.Tweening;
 using System.Linq;
-
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 public class CommandsUIManager : MonoBehaviour
 {
     public static CommandsUIManager instance;
-
     public GameObject commandsPlayerPrefab;
     public GameObject playerIcons;
     public int readyCount = 0;
@@ -113,8 +113,13 @@ public class CommandsUIManager : MonoBehaviour
             g.GetComponent<PlayerCUI>().id = p.Id;
             //Set Player Icons
             playerIcons.transform.GetChild(p.Id).GetComponent<Image>().sprite = GameObject.Find("PlayersManager").GetComponent<DebugIcons>().icons[p.Skin];
+            PlayerInput playerInput = g.GetComponent<PlayerInput>();
+            playerInput.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(p.device,playerInput.user);
+            playerInput.actions.Enable();
         }
-    }
+    }  
+
 
     void Start(){
         //Animate arrow

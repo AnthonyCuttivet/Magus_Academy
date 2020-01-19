@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using System.Linq;
 
 public class CharactersSpawner : MonoBehaviour
@@ -148,6 +149,8 @@ public class CharactersSpawner : MonoBehaviour
             p.defaultActionMap = "Deceived";
             PlayerControls pc = players[i].AddComponent<PlayerControls>();
             pc.infos = new Player(i,playersInfos[i].Skin);
+            p.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(playersInfos[i].device,p.user);
             p.actions.Enable();
         }
     }
