@@ -282,4 +282,22 @@ public class SoundManager : MonoBehaviour {
 			}
 		}
 	}
+	public bool SoundIsPlaying(string soundName){
+		foreach(Sound _sound in musiques ){
+			if(_sound.name == soundName){
+				if(_sound.isPlaying()){
+					return true;
+				}	
+			}
+		}
+		foreach(Sound _sound in sounds ){
+			if(_sound.name == soundName){
+				if(_sound.isPlaying()){
+					return true;
+				}	
+			}
+		}
+		return false;
+	}
+
 }

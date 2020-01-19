@@ -242,6 +242,33 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0
     randomPitch: 0
+  - name: CountDown
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 7997a1c5b8e08754d82819f8a3245005, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: CountDownFinal
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: efb9a05b9639aeb4ca9f962c6e15cc04, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Victory
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: bc5a39557830caf4cb63a180a951c6f2, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
   musiques:
   - name: MainTheme
     isFadeIn: 0

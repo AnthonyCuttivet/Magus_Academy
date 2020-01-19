@@ -48,14 +48,10 @@ public class DeceivedManager : MonoBehaviour
         playersInfos = PlayersManager.instance.playersList;
         playerNumber = playersInfos.Count;
         soundManager = SoundManager.instance;
-        StartMusic();
+        StartCoroutine(StartMusic());
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
-        //StartCoroutine(cameraZoom(Camera.main,7,5f));
-
     }
-
-    // Update is called once per frame
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
             gameEnded = true;
@@ -65,12 +61,14 @@ public class DeceivedManager : MonoBehaviour
             PlayersManager.instance.UpdateTotals();
 
             StartCoroutine(EndGameZoom());
+            
         }
         else if(CountDown.instance.countDownfinished){
             Despawner();
             EndGameTransition();
         }
     }
+ 
 
     public void LoadVictoryScreen(){
         if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Single){
@@ -97,7 +95,10 @@ public class DeceivedManager : MonoBehaviour
         StartCoroutine(randomPnj.GetComponent<PNJControls>().Dissolve());
         //Destroy(randomPnj);
     }
-    void StartMusic(){
+    IEnumerator StartMusic(){
+        while(!CountDown.instance.countDownfinished){
+            yield return null;
+        }
         soundManager.PlayMusic("Deceived_MainTheme");
         foreach(Player player in playersInfos){
             string skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), player.Skin);
@@ -127,6 +128,8 @@ public class DeceivedManager : MonoBehaviour
         
     }
     IEnumerator EndGameZoom(){
+        soundManager.PlaySound("Victory");
+        StopAllMusic();
         Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
         Camera camera = Camera.main;
         StartCoroutine(cameraZoom(camera,endZoomSize,zoomDuration));
@@ -144,6 +147,9 @@ public class DeceivedManager : MonoBehaviour
         camera.transform.DOLookAt(winnerPosition,zoomDuration);
         yield return new WaitForSeconds(zoomDuration);
         yield return new WaitForSeconds(endZoomWaitBeforeLoadVictoryScene);
+        while(soundManager.SoundIsPlaying("Victory")){
+            yield return null;
+        }
         LoadVictoryScreen();                               
     }
     IEnumerator cameraZoom(Camera camera,float wantedSize,float duration){
@@ -156,4 +162,12 @@ public class DeceivedManager : MonoBehaviour
     public void StopMusicSkin(int skin){
         soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "Theme",2f);
     }
+
+    public void StopAllMusic(){
+        foreach(int skin in PlayersManager.instance.playersList.Select(x => x.Skin)){
+            soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "EndTheme",1f);
+        }
+        soundManager.FadeOutMusic("Deceived_MainEndTheme",2f);
+    }
+
 }

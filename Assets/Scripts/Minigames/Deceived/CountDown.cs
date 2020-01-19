@@ -14,6 +14,7 @@ public class CountDown : MonoBehaviour
     public static CountDown instance;
     public bool countDownfinished;
     float timeBeforeCountdownStart;
+    SoundManager soundManager;
 
     void Awake(){
         if(instance == null){
@@ -28,6 +29,7 @@ public class CountDown : MonoBehaviour
 
     void Start(){
         timeBeforeCountdownStart = BlackFade.instance.fadeTime; 
+        soundManager = SoundManager.instance;
     }
 
     // Update is called once per frame
@@ -39,14 +41,14 @@ public class CountDown : MonoBehaviour
                     int second = (int)time % 60;
                     gameObject.GetComponent<TextMeshProUGUI>().text = (second + 1).ToString();
                     if(currentSecond != second){
-                        PlaySound(countDownSFX);
+                        soundManager.PlaySound("CountDown");
                     }
                     currentSecond = second;
                 }else{
                     CharactersSpawner.instance.gameStart = true;
                     //gameObject.GetComponent<DestroySelf>().enabled = true;
                     gameObject.GetComponent<TextMeshProUGUI>().text = "GO!";
-                    PlaySound(goSFX);
+                    soundManager.PlaySound("CountDownFinal");
                     gameObject.GetComponent<TextMeshProUGUI>().DOFade(0,0.5f);
                     countDownfinished = true;
                 }
