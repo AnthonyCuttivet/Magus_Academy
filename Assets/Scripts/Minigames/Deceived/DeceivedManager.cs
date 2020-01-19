@@ -10,7 +10,7 @@ public class DeceivedManager : MonoBehaviour
 
     public static DeceivedManager instance;
 
-    public static bool gameEnded = false;
+    public bool gameEnded = false;
     public int scoresSaved = 0;
     public Material[] skins;
     public Gradient[] projectileColors;
@@ -55,6 +55,7 @@ public class DeceivedManager : MonoBehaviour
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
             gameEnded = true;
+            print("ntm");
 
             //Save minigame scoreboard to global scoreboard
             PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;

@@ -56,6 +56,6 @@ public class FWSManager : MonoBehaviour
     }
 
     void OnA(){
-        BlackFade.instance.FadeOutToScene("SplashScreen");
+        BlackFade.instance.FadeOutToScene("TitleScreen");
     }
 }
