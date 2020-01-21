@@ -14,7 +14,7 @@ public class KeepTheBroom : MonoBehaviour
     bool broomIsHold;
     public Vector2 broomHoldingPosition;
     public Vector2 broomSpawnPosition;
-    public BarFiller scoreP1, scoreP2;
+    public BarFiller scoreP1, scoreP2,scoreP3,scoreP4;
     public InputActionAsset actions;
 
     void Awake(){
@@ -32,15 +32,18 @@ public class KeepTheBroom : MonoBehaviour
             playerInput.SwitchCurrentActionMap("Dead");
             playerInput.currentActionMap.Disable();
             playerInput.SwitchCurrentActionMap("Alive");
-            
         }
-
     }
 
     void Update(){
         if(broomIsHold){
-            IncreaseHoldingTime(); 
-            UpdateScoreText();
+            if(broomHolder.dead){
+                DropBroom(broomHolder);
+            }
+            else{
+                IncreaseHoldingTime(); 
+                UpdateScoreText();
+            }
         }
         else{
             PickUpBroomFromGround();
@@ -49,7 +52,7 @@ public class KeepTheBroom : MonoBehaviour
 
     void PickUpBroomFromGround(){
         foreach(PlayerKTB player in players){
-            if(Vector2.Distance(player.transform.position,broom.position) < pickUpDistance && !broomIsHold && !player.knockBacked){
+            if(Vector2.Distance(player.transform.position,broom.position) < pickUpDistance && !broomIsHold && !player.knockBacked && !player.dead){
                 broomIsHold = true;
                 broomHolder = player;  
                 broomHolder.holdingBroom = true; 
@@ -113,6 +116,8 @@ public class KeepTheBroom : MonoBehaviour
     void UpdateScoreText(){
         scoreP1.ChangeFillAmount(players[0].broomHoldingTime);
         scoreP2.ChangeFillAmount(players[1].broomHoldingTime);
+        scoreP3.ChangeFillAmount(players[2].broomHoldingTime);
+        scoreP4.ChangeFillAmount(players[3].broomHoldingTime);
     }
 }
 

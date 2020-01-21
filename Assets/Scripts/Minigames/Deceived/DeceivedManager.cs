@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System.Linq;
+
 public class DeceivedManager : MonoBehaviour
 {
 
     public static DeceivedManager instance;
 
-    public static bool gameEnded = false;
+    public bool gameEnded = false;
     public int scoresSaved = 0;
     public Material[] skins;
     public Gradient[] projectileColors;
@@ -22,6 +25,16 @@ public class DeceivedManager : MonoBehaviour
     CharactersSpawner spawner;
     int playerNumber;
     bool transitionned;
+    public Transform mapCenter;
+
+    public Dictionary<int,int> deceivedScores = new Dictionary<int,int>();
+
+    [Space]
+    [Header("Camera Zoom")]
+    public float zoomDuration;
+    public float endZoomSize;
+    public float endZoomWaitBeforeLoadVictoryScene;
+    public Collider mapCollider;
     void Awake(){
         if(instance == null){
             instance = this;
@@ -34,32 +47,36 @@ public class DeceivedManager : MonoBehaviour
     void Start(){
         playersInfos = PlayersManager.instance.playersList;
         playerNumber = playersInfos.Count;
-        Debug.Log(playerNumber);
         soundManager = SoundManager.instance;
-        StartMusic();
+        StartCoroutine(StartMusic());
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
     }
-
-    // Update is called once per frame
     void Update(){
-        if(CharactersSpawner.instance.players.Count == 1 && scoresSaved == 4 && !gameEnded){
+        if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
             gameEnded = true;
+            print("ntm");
+
             //Save minigame scoreboard to global scoreboard
-            PlayersManager.instance.globalRanking.Add(PlayersManager.instance.currentMinigame, MinigameStats.instance.ranking);
-            LoadVictoryScreen();
+            PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;
+            PlayersManager.instance.UpdateTotals();
+
+            StartCoroutine(EndGameZoom());
+            
         }
         else if(CountDown.instance.countDownfinished){
             Despawner();
             EndGameTransition();
         }
     }
-    void EndGameZoom(){
-        Debug.Log(CharactersSpawner.instance.players[0].name);
-    }
+ 
+
     public void LoadVictoryScreen(){
-        BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
-        //SceneManager.LoadScene("MinigameVictoryScreen");
+        if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Single){
+            BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+        }else if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Tournament){
+            BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
+        }
     }
 
     void Despawner(){
@@ -79,7 +96,10 @@ public class DeceivedManager : MonoBehaviour
         StartCoroutine(randomPnj.GetComponent<PNJControls>().Dissolve());
         //Destroy(randomPnj);
     }
-    void StartMusic(){
+    IEnumerator StartMusic(){
+        while(!CountDown.instance.countDownfinished){
+            yield return null;
+        }
         soundManager.PlayMusic("Deceived_MainTheme");
         foreach(Player player in playersInfos){
             string skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), player.Skin);
@@ -108,7 +128,47 @@ public class DeceivedManager : MonoBehaviour
         }
         
     }
+    IEnumerator EndGameZoom(){
+        soundManager.PlaySound("Victory");
+        StopAllMusic();
+        Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
+        Camera camera = Camera.main;
+        StartCoroutine(cameraZoom(camera,endZoomSize,zoomDuration));
+        yield return new WaitForSeconds(zoomDuration);
+        float VerticalHeightSeen    = endZoomSize * 2.0f;                   //l'orthographic size = ce qui est vu verticalement par la camera * 2
+        float HorizontalHeightSeen = VerticalHeightSeen * Screen.width / Screen.height;         //on recupere le valeur horiztontale
+        Vector3 newCamPos = camera.transform.position;    
+        float boundX = mapCollider.bounds.max.x - HorizontalHeightSeen / 2;             //bound sur le x pour eviter de zoom sur le dehors de la map
+        newCamPos.x = Mathf.Clamp(winnerPosition.x,-boundX,boundX);
+        newCamPos.y -= 30;
+        newCamPos.z = winnerPosition.z - 35;
+        winnerPosition.x = newCamPos.x;
+        camera.transform.DOMove(newCamPos,zoomDuration); 
+        yield return new WaitForSeconds(zoomDuration);
+        camera.transform.DOLookAt(winnerPosition,zoomDuration);
+        yield return new WaitForSeconds(zoomDuration);
+        yield return new WaitForSeconds(endZoomWaitBeforeLoadVictoryScene);
+        while(soundManager.SoundIsPlaying("Victory")){
+            yield return null;
+        }
+        LoadVictoryScreen();                               
+    }
+    IEnumerator cameraZoom(Camera camera,float wantedSize,float duration){
+        float sizeReduction = camera.orthographicSize - wantedSize;
+        while(camera.orthographicSize > wantedSize){
+            camera.orthographicSize -= (Time.deltaTime * sizeReduction) / duration;
+            yield return null;
+        }
+    }
     public void StopMusicSkin(int skin){
         soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "Theme",2f);
     }
+
+    public void StopAllMusic(){
+        foreach(int skin in PlayersManager.instance.playersList.Select(x => x.Skin)){
+            soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "EndTheme",1f);
+        }
+        soundManager.FadeOutMusic("Deceived_MainEndTheme",2f);
+    }
+
 }

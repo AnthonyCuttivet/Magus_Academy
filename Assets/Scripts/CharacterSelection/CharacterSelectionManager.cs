@@ -25,6 +25,7 @@ public class CharacterSelectionManager : MonoBehaviour
     [Header("Special Skin")]
     public GameObject SP_MONSTER_SKIN;
     SoundManager soundManager;
+    public float FadeVolumeTime;
 
 
     //Security flags
@@ -69,11 +70,10 @@ public class CharacterSelectionManager : MonoBehaviour
                 }
             }
             readyFlag = true;
-            StopAllMusic();
             //StartDance();
             switch(PlayersManager.instance.gamemode){
                 case PlayersManager.Gamemodes.Single:
-                    BlackFade.instance.FadeOutToScene("MinigamesScreen");
+                    LoadMinigameSelection();
                 break;
                 case PlayersManager.Gamemodes.Tournament:
 
@@ -117,25 +117,22 @@ public class CharacterSelectionManager : MonoBehaviour
             }
         }
         characters[player.Id].SetActive(true);
-        soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f,true,.3f);
+        soundManager.FadeInMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",FadeVolumeTime,true);
     }
     public void RemoveSkin(Player player){
         selectedSkins.Remove(player.Skin);
         selectedCount--;
         characters[player.Id].SetActive(false);
-        soundManager.FadeOutMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",.3f);
+        soundManager.FadeOutMusicVolume((CharacterAttribute.MagesAttributes)player.Skin + "Theme",FadeVolumeTime);
     }
     void PlayMagesThemeMuted(){
         foreach(string name in System.Enum.GetNames(typeof (CharacterAttribute.MagesAttributes))){
             soundManager.PlayMusicMuted(name + "Theme");
         }
     }
-    public void StopAllMusic(){
-        foreach(int skinNumber in selectedSkins){
-            Debug.Log(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber));
-            soundManager.FadeOutMusicVolume(System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), skinNumber)+ "Theme",1f);
-        }
-        soundManager.FadeOutMusic("MainTheme",1f);
+    void LoadMinigameSelection(){
+        soundManager.PlaySound("Menu_Validate");
+        BlackFade.instance.FadeOutToScene("MinigamesScreen");
     }
 
 

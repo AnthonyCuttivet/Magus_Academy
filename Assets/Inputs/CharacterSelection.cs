@@ -118,7 +118,19 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""xbox"",
+            ""bindingGroup"": ""xbox"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // TipsScreen
         m_TipsScreen = asset.FindActionMap("TipsScreen", throwIfNotFound: true);
@@ -237,6 +249,15 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         }
     }
     public TipsScreenActions @TipsScreen => new TipsScreenActions(this);
+    private int m_xboxSchemeIndex = -1;
+    public InputControlScheme xboxScheme
+    {
+        get
+        {
+            if (m_xboxSchemeIndex == -1) m_xboxSchemeIndex = asset.FindControlSchemeIndex("xbox");
+            return asset.controlSchemes[m_xboxSchemeIndex];
+        }
+    }
     public interface ITipsScreenActions
     {
         void OnReady(InputAction.CallbackContext context);

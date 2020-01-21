@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 
@@ -65,14 +66,13 @@ public class DragonsManager : MonoBehaviour
             scoresText[i].text = dragonsScoreboard[i].ToString();
         }
     }
-    void AssignControllerToPlayer(){   
-        foreach(GameObject playerGO in playersGO){
-            PlayerInput playerInput = playerGO.AddComponent<PlayerInput>();
+    void AssignControllerToPlayer(){
+        for(int i = 0; i < PlayersManager.instance.playersList.Count;i++){
+            PlayerInput playerInput = playersGO[i].AddComponent<PlayerInput>();
             playerInput.actions = Instantiate(dragonsActions);
             playerInput.actions.Enable();
-        } 
-
-
-
+            playerInput.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(PlayersManager.instance.playersList[i].device,playerInput.user);
+        }   
     }
 }

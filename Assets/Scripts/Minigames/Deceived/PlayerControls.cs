@@ -19,8 +19,8 @@ public class PlayerControls : Controls
     public Player infos;
     SoundManager soundManager;
     public GameObject projectileGO;
-
     public bool alive = true;
+    bool postmortem;
     bool killAnimation;
 
     [Space]
@@ -55,7 +55,7 @@ public class PlayerControls : Controls
     public override void Update(){
         base.Update();
         GetSpeed();
-        if(!castingSpell){
+        if(!castingSpell && (alive || postmortem)){
             velocity = new Vector3(i_movement.x, i_movement.y);
         }
         else{
@@ -92,7 +92,6 @@ public class PlayerControls : Controls
      }
 
     void OnWalk(InputValue value){
-        
         if(alive && gameStarted){
             i_movement = value.Get<Vector2>();
             if(value.Get<Vector2>() != Vector2.zero){
@@ -106,7 +105,7 @@ public class PlayerControls : Controls
                 animator.SetBool("isRunning", false);
             }
         }
-        else if(gameStarted && !alive){
+        else if(gameStarted && postmortem){
                 i_movement = value.Get<Vector2>();
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
@@ -212,8 +211,12 @@ public class PlayerControls : Controls
     public override void Kill(int killer){
         //Save score
         alive = false;
+        velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
         GetComponent<DeceivedScoring>().alive = false;
-        MinigameStats.instance.ranking.Add(infos, GetComponent<DeceivedScoring>().score);
+
+        DeceivedManager.instance.deceivedScores[infos.Id] = GetComponent<DeceivedScoring>().score;
+
         DeceivedManager.instance.scoresSaved++;
         //Give points to the killer
         GameObject gKiller = GameObject.Find("Characters/Player"+killer);
@@ -225,7 +228,7 @@ public class PlayerControls : Controls
 
         //if killer is winner save its score
         if(CharactersSpawner.instance.players.Count == 1){
-            MinigameStats.instance.ranking.Add(gKiller.GetComponent<PlayerControls>().infos, gKiller.GetComponent<DeceivedScoring>().score);
+            DeceivedManager.instance.deceivedScores[gKiller.GetComponent<PlayerControls>().infos.Id] = gKiller.GetComponent<DeceivedScoring>().score;
             DeceivedManager.instance.scoresSaved++;
         }
         animator.SetTrigger("isKilled");
@@ -238,6 +241,7 @@ public class PlayerControls : Controls
         }
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<PlayerInput>().defaultActionMap = "Deceived_PM";
+        postmortem = true;
     }
 
     #region PM
@@ -245,7 +249,7 @@ public class PlayerControls : Controls
 
     void OnDivineLight(){
         if(!alive && divineLight && dlInstance == null){
-            dlInstance = Instantiate(CharactersSpawner.instance.divineLight, CharactersSpawner.instance.divineLight.transform.localPosition, CharactersSpawner.instance.divineLight.transform.rotation,gameObject.transform);
+            dlInstance = Instantiate(CharactersSpawner.instance.divineLight, DeceivedManager.instance.mapCenter.position + CharactersSpawner.instance.divineLight.transform.transform.position, CharactersSpawner.instance.divineLight.transform.rotation,gameObject.transform);
             divineLight = false;
             soundManager.PlaySound("Deceived_DivineLight");
         }

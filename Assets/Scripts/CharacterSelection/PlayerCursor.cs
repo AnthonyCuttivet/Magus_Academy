@@ -17,9 +17,12 @@ public class PlayerCursor : MonoBehaviour
     public GameObject PlayersManagerGO;
     private Vector2 vel;
     private Rigidbody rb;
+    SoundManager soundManager;
+    PlayerInput pInput;
 
     void OnEnable(){
-        gameObject.GetComponent<PlayerInput>().actions.Enable();
+        pInput = gameObject.GetComponent<PlayerInput>();
+        pInput.actions.Enable();
     }
 
     // Start is called before the first frame update
@@ -28,6 +31,7 @@ public class PlayerCursor : MonoBehaviour
         if(!playerCreated){
             playerCreated = true;
             currentPlayer = PlayersManager.instance.CreatePlayer();
+            currentPlayer.device = pInput.user.pairedDevices[0];
             Color fullColor = CharacterSelectionManager.instance.cursors[currentPlayer.Id];
             gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
 
@@ -36,6 +40,7 @@ public class PlayerCursor : MonoBehaviour
             //Set banner
             CharacterSelectionManager.instance.banners[currentPlayer.Id].transform.GetChild(0).GetComponent<TextMeshProUGUI>().enabled = false;
         }
+        soundManager = SoundManager.instance;
     }
 
     // Update is called once per frame
@@ -66,6 +71,9 @@ public class PlayerCursor : MonoBehaviour
     void OnMove(InputValue value){
         if(!hasSelected){
             vel = value.Get<Vector2>();
+            if(vel.magnitude < .2f){
+                vel = Vector2.zero;
+            }
         }else{
             vel = Vector2.zero;
         }
@@ -82,6 +90,7 @@ public class PlayerCursor : MonoBehaviour
                 //Set banner alpha to 1
                 ChangeBannerAlpha(1f);
                 GetComponent<Collider>().isTrigger = true;
+                soundManager.PlaySound("Menu_Validate");
             }
         }
     }
@@ -92,6 +101,7 @@ public class PlayerCursor : MonoBehaviour
             PlayersManager.instance.RemoveSkin(currentPlayer);
             ChangeBannerAlpha(.4f);
             GetComponent<Collider>().isTrigger = false;
+            soundManager.PlaySound("Menu_Return");
         }
     }
 
@@ -105,6 +115,7 @@ public class PlayerCursor : MonoBehaviour
         tempColor.a = value;
         banner.color = tempColor;
     }
+
 
 
 }

@@ -28,8 +28,8 @@ public class KillPNJ : MonoBehaviour
         while(CharactersSpawner.instance.PNJList.Count > 0){
             yield return new WaitForSeconds(interval);
             int rndIndex = Random.Range(0,CharactersSpawner.instance.PNJList.Count); //Get a random index in pnj id list
-            Destroy(CharactersSpawner.instance.PNJList[rndIndex]); // Destroy it
             CharactersSpawner.instance.PNJList.RemoveAt(rndIndex); //Remove it from the ids list
+            Destroy(CharactersSpawner.instance.PNJList[rndIndex]); // Destroy it
         }
     }
 }

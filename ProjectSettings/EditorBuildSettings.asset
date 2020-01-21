@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SplashScreen/SplashScreen.unity
     guid: 280b8560fa9bc9347a277fd83314ab09
   - enabled: 1
@@ -26,13 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/Deceived.unity
     guid: 0b093224573151f4c9fc396e4ed29f02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Minigames/Dragons.unity
     guid: fd269c58756ecf74583f968b3a1208ce
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VictoryScreen/MinigameVictoryScreen.unity
     guid: c09e1d0c8e455e9488e1d85d9180313c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SpecialScenes/RedeemCode.unity
     guid: 9875c1a9a3ce31f47abfb9e9123d25b7
   m_configObjects:

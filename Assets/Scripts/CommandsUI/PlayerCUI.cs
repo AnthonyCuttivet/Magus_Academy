@@ -8,6 +8,7 @@ public class PlayerCUI : MonoBehaviour
 
     public bool ready = false;
     public int id;
+    SoundManager soundManager;
 
     void OnEnable(){
         gameObject.GetComponent<PlayerInput>().actions.Enable();
@@ -16,7 +17,7 @@ public class PlayerCUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundManager = SoundManager.instance;
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class PlayerCUI : MonoBehaviour
         if(!ready){
             ToggleReady();
             CommandsUIManager.instance.readyCount++;
+            soundManager.PlaySound("Menu_Validate");
         }
     }
 
@@ -36,6 +38,7 @@ public class PlayerCUI : MonoBehaviour
         if(ready){
             ToggleReady();
             CommandsUIManager.instance.readyCount--;
+            soundManager.PlaySound("Menu_Return");
         }
     }
 
@@ -52,12 +55,14 @@ public class PlayerCUI : MonoBehaviour
     void OnLeft(){
         if(CommandsUIManager.instance.s_id != 0){
             CommandsUIManager.instance.SwapThumbnail(0);
+            soundManager.PlaySound("Menu_Switch");
         }
     }
 
     void OnRight(){
         if(CommandsUIManager.instance.s_id != 2){
             CommandsUIManager.instance.SwapThumbnail(1);
+            soundManager.PlaySound("Menu_Switch");
         }
     }
 
