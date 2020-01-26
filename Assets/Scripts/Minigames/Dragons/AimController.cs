@@ -7,7 +7,7 @@ public class AimController : MonoBehaviour
     public Vector2 direction;
     Rigidbody rb;
     public float speed;
-    public DragonQTE_PlayerControls playerController;
+    public QTE playerController;
     public bool fishable = false;
     Quaternion rotation;
     public Dragon dragonToFish;
@@ -28,7 +28,7 @@ public class AimController : MonoBehaviour
     public void Fish(){
         if(dragonToFish != null){
             direction = Vector2.zero;
-            playerController.GenerateSequence(transform);
+            playerController.StartQTE();
             dragonToFish.fished = true;
         }
     }

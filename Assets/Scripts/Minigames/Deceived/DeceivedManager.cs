@@ -55,7 +55,6 @@ public class DeceivedManager : MonoBehaviour
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
             gameEnded = true;
-            print("ntm");
 
             //Save minigame scoreboard to global scoreboard
             PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;

@@ -22,12 +22,14 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     public AimController aimController;
     fishingRodRenderer fishingRod;
     public bool inQTE;
+    public int currentToucheIndex;
 
     public float qteTimeLeft;
     public float qteCompletionTime;
     public int qteStreak;
     public Transform qtePosition;
     public GameObject dragonCurrentlyFishing;
+    public Sprite checkSprite;
 
 
     void Awake(){
@@ -37,6 +39,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
 
         spriteSize = Touches[0].spriteTouche.transform.localScale;
         qteStreak = DragonsManager.instance.qteStreak;
+        qtePosition = gameObject.transform.Find("QTE");
         //GenerateQte();
     }
 
@@ -57,13 +60,12 @@ public class DragonQTE_PlayerControls : MonoBehaviour
             CancelQTE();
             qteTimeLeft = DragonsManager.instance.sequenceMaxTime;
         }
-        transform.LookAt(aimController.transform.position);
-        transform.rotation = new Quaternion(0,transform.rotation.y,0,transform.rotation.w);
+        fishingRod.transform.LookAt(aimController.transform.position);
+        fishingRod.transform.rotation = new Quaternion(0,transform.rotation.y,0,transform.rotation.w);
     }
 
 
     public void GenerateSequence(Transform aimTransform){
-        qtePosition = aimTransform;
         GenerateQte(qtePosition);
         qteTimeLeft = DragonsManager.instance.sequenceMaxTime;
     }
@@ -87,15 +89,20 @@ public class DragonQTE_PlayerControls : MonoBehaviour
             QTE_List.Add(Touches[index]);
         }
     }    
-    void DisplayQTE_List(Transform aimTransform){
+    void DisplayQTE_List(Transform qte){
         ResetTouchesGO();
         int spriteGenerated = 0;
-        Vector3 startPosition = new Vector3(aimTransform.position.x - (spriteSize.x  / 2) * (QTE_List.Count - 1),aimTransform.position.y,aimTransform.position.z );
         foreach(Touche touche in QTE_List){
-            Vector3 spawnPos = new Vector3(spriteSize.x * spriteGenerated,0,0);
-            TouchesGO.Add(Instantiate(touche.spriteTouche,startPosition + spawnPos,aimTransform.rotation));
+            qtePosition.GetChild(spriteGenerated).gameObject.SetActive(true);
+            qtePosition.GetChild(spriteGenerated).gameObject.GetComponent<SpriteRenderer>().sprite = touche.spriteTouche.GetComponent<SpriteRenderer>().sprite;
             spriteGenerated++;
         }
+/*         Vector3 startPosition = new Vector3(qte.position.x - (spriteSize.x  / 2) * (QTE_List.Count - 1),qte.position.y,qte.position.z );
+        foreach(Touche touche in QTE_List){
+            Vector3 spawnPos = new Vector3(spriteSize.x * spriteGenerated,0,0);
+            TouchesGO.Add(Instantiate(touche.spriteTouche,startPosition + spawnPos,qte.rotation));
+            spriteGenerated++;
+        } */
     }
     void UpdateQTE(){
         if(QTE_List.Count == 1){
@@ -115,20 +122,22 @@ public class DragonQTE_PlayerControls : MonoBehaviour
         }
         else{
             QTE_List.RemoveAt(0);
-            Destroy(TouchesGO[0]);
-            TouchesGO.RemoveAt(0);
+            qtePosition.GetChild(currentToucheIndex).GetComponent<SpriteRenderer>().sprite = checkSprite;
+            //Destroy(TouchesGO[0]);
+/*             TouchesGO.RemoveAt(0); 
             foreach(GameObject touche in TouchesGO){
                 touche.transform.position -= new Vector3(spriteSize.x,0,0);
-            }
+            } */
         }
 
     }
     void CancelQTE(){
+        currentToucheIndex = 0;
         //QTE_List = new List<Touche>();
-        foreach(GameObject go in TouchesGO){
+/*         foreach(GameObject go in TouchesGO){
             Destroy(go);
         }
-        TouchesGO = new List<GameObject>();
+        TouchesGO = new List<GameObject>(); */
         inQTE = false;
         sequenceScore = 0;
         qteStreak = DragonsManager.instance.qteStreak;
@@ -138,6 +147,7 @@ public class DragonQTE_PlayerControls : MonoBehaviour
     }
     void RightInput(){
         UpdateQTE();
+        currentToucheIndex++;
     }
 
     void MissInput(){
@@ -149,18 +159,17 @@ public class DragonQTE_PlayerControls : MonoBehaviour
         combo += DragonsManager.instance.comboScale;
     }
 
-    void AddScore(bool sendScore = false){
+    void AddScore(bool saveScore = false){
         qteCompletionTime = qteTimeLeft;
         int pts = (100 - ((int)(DragonsManager.instance.sequenceMaxTime - qteCompletionTime) * 20));
         sequenceScore += pts;
         Debug.Log("Sequence score : " + sequenceScore);
-        if(sendScore){
-            DragonsManager.instance.AddPoints(id, sequenceScore * combo);
+        if(saveScore){
+            //DragonsManager.instance.AddPoints(id, sequenceScore * combo);
             sequenceScore = 0;
         }
         qteCompletionTime = -1f;
         //Debug.Log("100 - " + (int)(DragonsManager.instance.sequenceMaxTime - qteCompletionTime) + " *20 = " + pts);
-        
     }
 
     void ResetTouchesGO(){

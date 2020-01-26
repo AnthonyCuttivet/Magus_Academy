@@ -55,9 +55,14 @@ public class TitleScreenNavigation : MonoBehaviour
                 BlackFade.instance.FadeOutToScene("CharacterSelection");
             break;
             case "Quit" : 
-                BlackFade.instance.FadeOutToScene("SplashScreen");
+                QuitGame();
             break;
         }
+    }
+
+    public void QuitGame(){
+        soundManager.PlaySound("Menu_Validate");
+        Application.Quit();
     }
 
     public void BackToSplashScreen(){
