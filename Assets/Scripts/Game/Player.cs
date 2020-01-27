@@ -15,5 +15,6 @@ public class Player
     public Player(int _id, int _skin){
         Id = _id;
         Skin = _skin;
+        
     }
 }

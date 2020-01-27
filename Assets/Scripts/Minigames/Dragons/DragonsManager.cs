@@ -20,11 +20,11 @@ public class DragonsManager : MonoBehaviour
 
     public static DragonsManager instance;
     public InputActionAsset dragonsActions;
-    public PlayerInputManager inputManager;
+    public List<Player> playersInfos = new List<Player>();
+    
     [SerializeField]
     public Dictionary<int, int> dragonsScoreboard = new Dictionary<int, int>();
-    public List<Player> playersInfos = new List<Player>();
-    public List<GameObject> playersGO = new List<GameObject>();  
+    public GameObject playersGO;
     public TextMeshProUGUI timerText;
     public GameObject countDown;
     public GameObject fishableZone;
@@ -101,34 +101,18 @@ public class DragonsManager : MonoBehaviour
         dragonsActions.Enable();
     }
 
-/*     public void AddPoints(int id, int points){
+    public void AddPoints(int id, int points){
         dragonsScoreboard[id] += points;
-<<<<<<< HEAD
-        //Debug.Log(dragonsScoreboard[id]);
-        foreach(KeyValuePair<int,int> i in dragonsScoreboard){
-/*             Debug.Log("key " + i.Key);
-            Debug.Log("Value " + i.Value); */
-        }
-        UpdateScores();
     }
-    public void UpdateScores(){
-        for(int i = 0;i<dragonsScoreboard.Count;i++){
-            scoresText[i].text = dragonsScoreboard[i].ToString();
-        }
-    }
+
     void AssignControllerToPlayer(){
-        for(int i = 0; i < PlayersManager.instance.playersList.Count;i++){
-            PlayerInput playerInput = playersGO[i].AddComponent<PlayerInput>();
-=======
-    } */
-    void AssignControllerToPlayer(){   
-        foreach(GameObject playerGO in playersGO){
-            PlayerInput playerInput = playerGO.AddComponent<PlayerInput>();
->>>>>>> Dragon Fishing avancement
+        foreach(Player player in playersInfos){
+            GameObject currentPlayerGO = playersGO.transform.GetChild(player.Id).gameObject; 
+            PlayerInput playerInput = currentPlayerGO.gameObject.AddComponent<PlayerInput>();
             playerInput.actions = Instantiate(dragonsActions);
             playerInput.actions.Enable();
             playerInput.user.UnpairDevices();
-            InputUser.PerformPairingWithDevice(PlayersManager.instance.playersList[i].device,playerInput.user);
+            InputUser.PerformPairingWithDevice(playersInfos[player.Id].device,playerInput.user);
         }   
     }
 }
