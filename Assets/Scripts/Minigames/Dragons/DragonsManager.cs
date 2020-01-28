@@ -107,8 +107,8 @@ public class DragonsManager : MonoBehaviour
 
     void AssignControllerToPlayer(){
         foreach(Player player in playersInfos){
-            GameObject currentPlayerGO = playersGO.transform.GetChild(player.Id).gameObject; 
-            PlayerInput playerInput = currentPlayerGO.gameObject.AddComponent<PlayerInput>();
+            GameObject currentPlayerGO = playersGO.transform.GetChild(player.Id).gameObject;
+            PlayerInput playerInput = currentPlayerGO.AddComponent<PlayerInput>();
             playerInput.actions = Instantiate(dragonsActions);
             playerInput.actions.Enable();
             playerInput.user.UnpairDevices();

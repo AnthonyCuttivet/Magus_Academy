@@ -236,7 +236,7 @@ public class QTE : MonoBehaviour
         }
 
         void OnAim(InputValue value){
-            if(qteState == QTE_STATES.NOT_IN_QTE){
+            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD){
                 Vector2 aimDirection = value.Get<Vector2>();
                 if(aimDirection.magnitude > .2f){
                     aimController.direction = aimDirection;
@@ -248,7 +248,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnFish(){
-            if(qteState == QTE_STATES.NOT_IN_QTE){
+            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD){
                 aimController.Fish();
             }
         }

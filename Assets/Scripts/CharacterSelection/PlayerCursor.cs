@@ -32,7 +32,6 @@ public class PlayerCursor : MonoBehaviour
             playerCreated = true;
             currentPlayer = PlayersManager.instance.CreatePlayer();
             currentPlayer.device = pInput.user.pairedDevices[0];
-            print(currentPlayer.device.deviceId);
             Color fullColor = CharacterSelectionManager.instance.cursors[currentPlayer.Id];
             gameObject.GetComponent<SpriteRenderer>().color = new Color(fullColor.r, fullColor.g, fullColor.b);
 

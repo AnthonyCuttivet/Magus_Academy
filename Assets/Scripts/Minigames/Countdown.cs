@@ -11,9 +11,20 @@ public class Countdown : MonoBehaviour
         AFTER_CD
     }
 
+    public static Countdown instance;
+
     public COUNTDOWN_STATES cdState;
 
     public float cdTime = 3f;
+
+    void Awake(){
+        if(instance == null){
+            instance = this;
+        }
+        else{
+            Destroy(this);  
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

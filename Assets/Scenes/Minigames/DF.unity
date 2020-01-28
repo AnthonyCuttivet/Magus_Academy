@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1003,7 +1003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72988
+  m_Name: pb_Mesh68560
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6592,7 +6592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94027ee8d2f8e624fbe282282ada63f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qteState: 4
+  qteState: 1
   QTEGO: {fileID: 1856179277}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -6954,7 +6954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1623460156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6969,7 +6969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 7424264834104019434, guid: 2c9a0edb76afcc3478a719cbf6e7da9b, type: 3}
   fish: {fileID: 2945107430307660983, guid: b46f8b31749caf14ab6d18aa0dc7c729, type: 3}
-  spawnHeight: 4.1
+  spawnHeight: 35
   spawnRange: 5
   layerMask:
     serializedVersion: 2
@@ -6986,8 +6986,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 90.03845, y: 1, z: 39.395546}
-  m_Center: {x: 0.3835678, y: 0, z: -3.7243118}
+  m_Size: {x: 90.03845, y: 1, z: 32.183517}
+  m_Center: {x: 0.3835678, y: 0, z: -6.3482437}
 --- !u!4 &1623460158
 Transform:
   m_ObjectHideFlags: 0
@@ -10020,7 +10020,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh73376
+  m_Name: pb_Mesh68940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

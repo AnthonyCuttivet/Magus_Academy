@@ -143,7 +143,17 @@ public class CharactersSpawner : MonoBehaviour
 
 
     public void InstantiatePlayersControls(List<float> ids){
-        for(int i = 0; i < players.Count;i++){
+        foreach(Player player in playersInfos){
+            PlayerInput p = players[player.Id].AddComponent<PlayerInput>();
+            p.actions = Instantiate(actions);
+            p.defaultActionMap = "Deceived";
+            PlayerControls pc = players[player.Id].AddComponent<PlayerControls>();
+            pc.infos = new Player(player.Id,playersInfos[player.Id].Skin);
+            p.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(playersInfos[player.Id].device,p.user);
+            p.actions.Enable();
+        }
+/*         for(int i = 0; i < players.Count;i++){
             PlayerInput p = players[i].AddComponent<PlayerInput>();
             p.actions = Instantiate(actions);
             p.defaultActionMap = "Deceived";
@@ -152,7 +162,7 @@ public class CharactersSpawner : MonoBehaviour
             p.user.UnpairDevices();
             InputUser.PerformPairingWithDevice(playersInfos[i].device,p.user);
             p.actions.Enable();
-        }
+        } */
     }
 
     public List<int> GenerateUniqueRandoms(int amount, int min, int max){
