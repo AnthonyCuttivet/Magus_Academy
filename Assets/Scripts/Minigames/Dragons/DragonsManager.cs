@@ -28,6 +28,8 @@ public class DragonsManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public GameObject countDown;
     public GameObject fishableZone;
+    public bool playersInitialized = false;
+    public GameObject ScoresUI;
 
     [Space]
     [Header("Minigame Vars")] 
@@ -48,10 +50,6 @@ public class DragonsManager : MonoBehaviour
             Destroy(this);  
         }
         
-        dragonsScoreboard.Add(0, 0);
-        dragonsScoreboard.Add(1, 0);
-        dragonsScoreboard.Add(2, 0);
-        dragonsScoreboard.Add(3, 0);
     }
     void Start(){
         dfState = DFStates.BEFORE_GAME;
@@ -64,6 +62,9 @@ public class DragonsManager : MonoBehaviour
     void Update(){
         switch(dfState){
             case DFStates.BEFORE_GAME :
+                if(!playersInitialized){
+                    InitializePlayers();
+                }
                 switch(countDown.GetComponent<Countdown>().cdState){
                     case Countdown.COUNTDOWN_STATES.BEFORE_CD :
                         countDown.GetComponent<Countdown>().cdState = Countdown.COUNTDOWN_STATES.IN_CD;
@@ -80,13 +81,37 @@ public class DragonsManager : MonoBehaviour
                 if(timeLeft < 0){
                     timeLeft = 0;
                     dfState = DFStates.AFTER_GAME;
+                    EndGame();
                 }
             break;
             case DFStates.AFTER_GAME :
-                ToggleFishableZone(false);
+
             break;
 
         }
+    }
+
+    void InitializePlayers(){
+        //Initialized scoreboard
+        dragonsScoreboard.Add(0, 0);
+        dragonsScoreboard.Add(1, 0);
+        dragonsScoreboard.Add(2, 0);
+        dragonsScoreboard.Add(3, 0);
+
+        //Players Icons
+        GameObject icons = GameObject.Find("PlayersManager");
+        foreach (Player p in playersInfos){
+            ScoresUI.transform.GetChild(p.Id).Find("Icon").GetComponent<Image>().sprite = icons.GetComponent<DebugIcons>().icons[p.Skin];
+        }
+
+        playersInitialized = true;
+    }
+
+    void EndGame(){
+        ToggleFishableZone(false);
+        PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = DragonsManager.instance.dragonsScoreboard;
+        PlayersManager.instance.UpdateTotals();
+        BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
     }
 
     void ToggleFishableZone(bool activated){

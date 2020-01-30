@@ -25,8 +25,9 @@ public class AimController : MonoBehaviour
     void FixedUpdate(){
         rb.velocity = new Vector3(direction.x,0,direction.y) * speed;
     }
+
     public void Fish(){
-        if(dragonToFish != null){
+        if(dragonToFish != null /* && dragonToFish != true */){
             direction = Vector2.zero;
             playerController.StartQTE();
             dragonToFish.fished = true;

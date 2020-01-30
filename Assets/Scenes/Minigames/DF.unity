@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5305,7 +5305,9 @@ MonoBehaviour:
   timerText: {fileID: 624042384}
   countDown: {fileID: 1422926516}
   fishableZone: {fileID: 1623460155}
-  timeLeft: 90
+  playersInitialized: 0
+  ScoresUI: {fileID: 1375358512}
+  timeLeft: 10
   basePoints: 100
   sequenceMultiplier: 20
   comboScale: 1
@@ -9816,7 +9818,7 @@ PrefabInstance:
     - target: {fileID: 7225640402861033576, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225640402861033581, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}

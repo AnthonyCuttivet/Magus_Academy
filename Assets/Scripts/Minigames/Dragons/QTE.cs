@@ -153,7 +153,7 @@ public class QTE : MonoBehaviour
 #region Inputs
 
     void OnB(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.B)){
                     RightInput();
                 }
@@ -163,7 +163,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnA(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.A)){
                     RightInput();
                 }
@@ -173,7 +173,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnX(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.X)){
                     RightInput();
                 }
@@ -183,7 +183,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnY(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.Y)){
                     RightInput();
                 }
@@ -194,7 +194,7 @@ public class QTE : MonoBehaviour
         }
 
         void OnUp(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.UP)){
                     RightInput();
                 }
@@ -204,7 +204,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnDown(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.DOWN)){
                     RightInput();
                 }
@@ -214,7 +214,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnLeft(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.LEFT)){
                     RightInput();
                 }
@@ -225,7 +225,7 @@ public class QTE : MonoBehaviour
         }
 
         void OnRight(){
-            if(qteState == QTE_STATES.IN_QTE){
+            if(qteState == QTE_STATES.IN_QTE && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 if(qteSequences[currentSequence][currentIndexInSequence].equals(Touche.Touches.RIGHT)){
                     RightInput();
                 }
@@ -236,7 +236,7 @@ public class QTE : MonoBehaviour
         }
 
         void OnAim(InputValue value){
-            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD){
+            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 Vector2 aimDirection = value.Get<Vector2>();
                 if(aimDirection.magnitude > .2f){
                     aimController.direction = aimDirection;
@@ -248,7 +248,7 @@ public class QTE : MonoBehaviour
             }
         }
         void OnFish(){
-            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD){
+            if(qteState == QTE_STATES.NOT_IN_QTE && Countdown.instance.cdState == Countdown.COUNTDOWN_STATES.AFTER_CD && DragonsManager.instance.dfState == DragonsManager.DFStates.IN_GAME){
                 aimController.Fish();
             }
         }
