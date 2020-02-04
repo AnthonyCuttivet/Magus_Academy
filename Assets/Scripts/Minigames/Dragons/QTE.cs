@@ -34,7 +34,6 @@ public class QTE : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        id=0; //Set dynamically
         QTEGO = gameObject.transform.Find("QTE").gameObject;
     }
 

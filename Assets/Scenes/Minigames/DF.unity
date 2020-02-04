@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1003,7 +1003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68560
+  m_Name: pb_Mesh31404
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1785,7 +1785,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406462727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 111941612}
@@ -1824,7 +1824,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "99999 \n"
+  m_text: "0 \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c17f3551166de41bf3c6c91bc06536, type: 2}
   m_sharedMaterial: {fileID: -8842245657437655543, guid: 26c17f3551166de41bf3c6c91bc06536,
@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 7
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1891,10 +1891,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -30.434956, y: 0, z: -41.695633, w: 0}
   m_textInfo:
     textComponent: {fileID: 406462730}
-    characterCount: 7
+    characterCount: 3
     spriteCount: 0
     spaceCount: 2
     wordCount: 1
@@ -3093,7 +3093,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "99999 \n"
+  m_text: "0 \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c17f3551166de41bf3c6c91bc06536, type: 2}
   m_sharedMaterial: {fileID: -8842245657437655543, guid: 26c17f3551166de41bf3c6c91bc06536,
@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 7
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -3160,10 +3160,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -28.608616, y: 0, z: -36.685436, w: 0}
   m_textInfo:
     textComponent: {fileID: 715747847}
-    characterCount: 7
+    characterCount: 3
     spriteCount: 0
     spaceCount: 2
     wordCount: 1
@@ -4455,7 +4455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94027ee8d2f8e624fbe282282ada63f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qteState: 0
+  qteState: 1
   QTEGO: {fileID: 955653429}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -4488,8 +4488,8 @@ MonoBehaviour:
   score: 0
   combo: 0
   id: 0
-  scoreTMP: {fileID: 0}
-  comboTMP: {fileID: 0}
+  scoreTMP: {fileID: 1666204611}
+  comboTMP: {fileID: 1672403103}
 --- !u!23 &1160651132
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5128,7 +5128,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "99999 \n"
+  m_text: "0 \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c17f3551166de41bf3c6c91bc06536, type: 2}
   m_sharedMaterial: {fileID: -8842245657437655543, guid: 26c17f3551166de41bf3c6c91bc06536,
@@ -5164,7 +5164,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 7
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5195,10 +5195,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -33.57924, y: 0, z: -39.82131, w: 0}
   m_textInfo:
     textComponent: {fileID: 1362789917}
-    characterCount: 7
+    characterCount: 3
     spriteCount: 0
     spaceCount: 2
     wordCount: 1
@@ -5307,7 +5307,7 @@ MonoBehaviour:
   fishableZone: {fileID: 1623460155}
   playersInitialized: 0
   ScoresUI: {fileID: 1375358512}
-  timeLeft: 10
+  timeLeft: 90
   basePoints: 100
   sequenceMultiplier: 20
   comboScale: 1
@@ -5595,7 +5595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94027ee8d2f8e624fbe282282ada63f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qteState: 0
+  qteState: 1
   QTEGO: {fileID: 337281399}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -5628,8 +5628,8 @@ MonoBehaviour:
   score: 0
   combo: 0
   id: 0
-  scoreTMP: {fileID: 0}
-  comboTMP: {fileID: 0}
+  scoreTMP: {fileID: 715747847}
+  comboTMP: {fileID: 1884486834}
 --- !u!23 &1415324429
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6971,7 +6971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoke: {fileID: 7424264834104019434, guid: 2c9a0edb76afcc3478a719cbf6e7da9b, type: 3}
   fish: {fileID: 2945107430307660983, guid: b46f8b31749caf14ab6d18aa0dc7c729, type: 3}
-  spawnHeight: 35
+  spawnHeight: 40
   spawnRange: 5
   layerMask:
     serializedVersion: 2
@@ -8163,7 +8163,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "99999 \n"
+  m_text: "0 \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c17f3551166de41bf3c6c91bc06536, type: 2}
   m_sharedMaterial: {fileID: -8842245657437655543, guid: 26c17f3551166de41bf3c6c91bc06536,
@@ -8199,7 +8199,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 7
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -8230,10 +8230,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -28.667822, y: 0, z: -34.791397, w: 0}
   m_textInfo:
     textComponent: {fileID: 1666204611}
-    characterCount: 7
+    characterCount: 3
     spriteCount: 0
     spaceCount: 2
     wordCount: 1
@@ -9730,7 +9730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94027ee8d2f8e624fbe282282ada63f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  qteState: 0
+  qteState: 1
   QTEGO: {fileID: 1554783459}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -9763,8 +9763,8 @@ MonoBehaviour:
   score: 0
   combo: 0
   id: 0
-  scoreTMP: {fileID: 0}
-  comboTMP: {fileID: 0}
+  scoreTMP: {fileID: 1362789917}
+  comboTMP: {fileID: 242689995}
 --- !u!23 &1947665590
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10022,7 +10022,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh68940
+  m_Name: pb_Mesh31792
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

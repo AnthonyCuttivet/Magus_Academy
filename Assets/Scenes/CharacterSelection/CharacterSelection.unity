@@ -1466,7 +1466,7 @@ MonoBehaviour:
   - {fileID: 384103146}
   - {fileID: 435445213}
   skins:
-  - {fileID: 2100000, guid: 4070f3c350861774b8d955de9ec81c93, type: 2}
+  - {fileID: 2100000, guid: e1461cf857b77834da40a75d450935f0, type: 2}
   - {fileID: 2100000, guid: 83af09df9b59fd0479d195292fdf6b10, type: 2}
   - {fileID: 2100000, guid: 3433f57a7afd76d47a154f7414ee109d, type: 2}
   - {fileID: 2100000, guid: 74b847f090f33d84e8ebad9e7b90409d, type: 2}

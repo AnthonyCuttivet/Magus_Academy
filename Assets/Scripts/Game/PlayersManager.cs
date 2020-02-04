@@ -47,9 +47,7 @@ public class PlayersManager : MonoBehaviour {
 
     public void AddSkin(Player p, int skin){
         p.Skin = skin;
-        if(skin != 0){
-            CharacterSelectionManager.instance.AddSkin(p);
-        }
+        CharacterSelectionManager.instance.AddSkin(p);
         //gameObject.transform.Find("DebugIcons").gameObject.GetComponent<DebugIcons>().AddDebugIcon(p.Id, p.Skin);
     }
 

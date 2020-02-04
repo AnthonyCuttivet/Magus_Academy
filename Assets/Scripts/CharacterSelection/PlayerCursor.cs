@@ -80,8 +80,8 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void OnValidate(){
-        if(currentSelection != -1  && !hasSelected){
-            if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection)){
+        if(currentSelection != -1 && !hasSelected){
+            if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection) && currentSelection != 0){
                 //Skin already selected
             }
             else{

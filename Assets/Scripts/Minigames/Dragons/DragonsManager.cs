@@ -91,6 +91,13 @@ public class DragonsManager : MonoBehaviour
         }
     }
 
+    public void PrintScores(){
+        string tmp = "";
+        foreach(KeyValuePair<int,int> kvp in dragonsScoreboard){
+            tmp += "["+kvp.Key + " : " + kvp.Value+"]";
+        }
+        print(tmp);
+    }
     void InitializePlayers(){
         //Initialized scoreboard
         dragonsScoreboard.Add(0, 0);
@@ -133,6 +140,7 @@ public class DragonsManager : MonoBehaviour
     void AssignControllerToPlayer(){
         foreach(Player player in playersInfos){
             GameObject currentPlayerGO = playersGO.transform.GetChild(player.Id).gameObject;
+            currentPlayerGO.GetComponent<QTE>().id = player.Id;
             PlayerInput playerInput = currentPlayerGO.AddComponent<PlayerInput>();
             playerInput.actions = Instantiate(dragonsActions);
             playerInput.actions.Enable();

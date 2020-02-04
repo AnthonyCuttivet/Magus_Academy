@@ -27,17 +27,22 @@ public class AimController : MonoBehaviour
     }
 
     public void Fish(){
-        if(dragonToFish != null /* && dragonToFish != true */){
+        if(dragonToFish != null && dragonToFish.fished == false){
             direction = Vector2.zero;
             playerController.StartQTE();
             dragonToFish.fished = true;
         }
     }
-    void OnTriggerStay(Collider collider){
+    void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("Dragon")){
             dragonToFish = collider.GetComponent<Dragon>();
         }
     }
+
+    void OnTriggerExit(Collider collider){
+        dragonToFish = null;
+    }
+
     public void EndFishing(){
         
         dragonToFish = null;
