@@ -8,8 +8,8 @@ public class KTB_Player : MonoBehaviour
     Rigidbody2D rb;
     [HideInInspector]
     public CollisionCheck collisions;
-    [HideInInspector]
-    public Collider2D collid;
+    //[HideInInspector]
+    public BoxCollider2D collid;
     [HideInInspector]
     public KTB_MeleeAttack melee;
     [HideInInspector]
@@ -53,14 +53,19 @@ public class KTB_Player : MonoBehaviour
     public bool knockBacked;
     [HideInInspector]
     public bool dead;
+    public Animator animator;
+    bool isJumping;
+    public Transform spineTransform;
+    public Transform RfootTransform,LfootTransform,topHeadTransform;
 
 
 
     void Awake()
     {
+        //Time.timeScale = .05f;
         rb = GetComponent<Rigidbody2D>();
         inputs = GetComponent<KTB_PlayerInput>();
-        collid = GetComponent<Collider2D>();
+        //collid = GetComponentInChildren<Collider2D>();
         collisions = GetComponent<CollisionCheck>();
         melee = GetComponentInChildren<KTB_MeleeAttack>();
         Physics2D.gravity = gravity;
@@ -71,7 +76,7 @@ public class KTB_Player : MonoBehaviour
     void Update()
     {
         if(!dead){
-            collisions.CheckCollisions();
+            
             WallJumpedUpdate();
             KnockBackedUpdate();
             CalculVelocity();
@@ -81,6 +86,13 @@ public class KTB_Player : MonoBehaviour
             PassingtroughPlatform();
             FlipDirection();
             OnAttackInput();
+            SetAnimation();
+            Vector3 newPosition = collid.transform.position;
+            newPosition.y = spineTransform.position.y - 2.2f;
+            //newPosition.x = spineTransform.position.x;
+            collid.transform.position = newPosition;
+            collid.size = new Vector2(collid.size.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
+            collisions.CheckCollisions();
         }
     }
     void FixedUpdate(){
@@ -113,22 +125,25 @@ public class KTB_Player : MonoBehaviour
                 wallSlide();
                 wallStick();
             }
-             
             else{                                                               //air control
                 velocity.x = directionalInput.x * speed;
                 velocity.y = rb.velocity.y;
+                
             } 
         }   
     }
 
     void Move(){
         rb.velocity = velocity; 
-        inputIncoming = false;      
+        inputIncoming = false;
+        
+        
+
     }
     void wallStick(){
         if(!collisions.passingTroughPlatform){
             float wallDir = (collisions.onLeftWall) ? -1 : 1;
-            if(directionalInput.x + wallDir ==0 && wallStickCurrentTime < wallStickMaxTime && !wallJumped){
+            if(Mathf.Sign(directionalInput.x) + wallDir == 0 && wallStickCurrentTime < wallStickMaxTime && !wallJumped){
                 wallStickCurrentTime += Time.deltaTime;
                 velocity.x = 0;
             }
@@ -150,7 +165,17 @@ public class KTB_Player : MonoBehaviour
             }
         }
     }
-
+    public void JumpAnim(){
+        if(!knockBacked){
+            if(jumpInputDown){
+                if(!collisions.passingTroughPlatform){
+                    if(collisions.onGround){
+                        isJumping = true;
+                    }
+                }
+            }
+        }
+    }
     public void Jump(){
         if(!knockBacked){
             if(jumpInputDown){
@@ -159,6 +184,7 @@ public class KTB_Player : MonoBehaviour
                             velocity = new Vector2(velocity.x, 0);
                             velocity += Vector2.up * jumpForce;  
                             inputIncoming = true;
+                            isJumping = true;
                         }
                         else if(collisions.onWall){
                             WallJump();
@@ -177,10 +203,8 @@ public class KTB_Player : MonoBehaviour
                     velocity += Vector2.up * jumpForce;  
                     inputIncoming = true;
                 }
-            }
-            
+            }           
         }
-        
         jumpInputDown = false;
     }
     void WallJump(){
@@ -253,15 +277,34 @@ public class KTB_Player : MonoBehaviour
     }
 
     void FlipDirection(){
+        Quaternion newRotation = transform.rotation;
         if(directionalInput.x != 0){
-            transform.localScale = new Vector2(Mathf.Sign(directionalInput.x) * Mathf.Abs(transform.localScale.x),transform.localScale.y);
+            
+            if(!collisions.onWall || collisions.passingTroughPlatform || collisions.onGround){
+                
+                if(directionalInput.x > 0){
+                    newRotation.y = 0;
+                    transform.rotation = newRotation;
+                }
+                else{
+                    newRotation.y = 180;
+                    transform.rotation = newRotation;
+                }
+            }
         }
+        else if(collisions.onWall && !collisions.passingTroughPlatform && !collisions.onGround){
+            float wallDir = (collisions.onLeftWall) ? -1 : 1;
+                newRotation.y = wallDir ==  -1 ? 180 : 0;
+                transform.rotation = newRotation;
+            }
     }
 
     public virtual void OnAttackInput(){
         if(attackInput){
+            Debug.Log("rrr");
             melee.Attack(melee.playersInRange);
             attackInput = false;
+            animator.SetTrigger("isPunching");
         }
     }
     public void Death(){
@@ -272,6 +315,35 @@ public class KTB_Player : MonoBehaviour
         collid.enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
         transform.position = Vector3.zero;
+    }
+    void SetAnimation(){
+        if(Mathf.Abs(velocity.x) > .05f && collisions.onGround) {
+            animator.SetBool("isRunning",true);
+        }
+        else{
+            animator.SetBool("isRunning",false);
+        }
+        if(!collisions.onGround && !collisions.onWall){
+            animator.SetBool("isJumping",true);
+        }
+        else{
+            animator.SetBool("isJumping",false);
+        }
+        if(collisions.onGround && !collisions.passingTroughPlatform){
+            animator.SetBool("onGround",true);
+        }
+        else{
+            animator.SetBool("onGround",false);
+        }
+        if(collisions.onGround || !collisions.onWall){
+            animator.SetBool("isWallSliding",false);
+        }
+        else if((collisions.onLeftWall ^ collisions.onRightWall) && !collisions.passingTroughPlatform){
+            animator.SetBool("isWallSliding",true);
+        }
+    }
+    public void JumpLaunched(){
+        isJumping = false;
     }
 
 

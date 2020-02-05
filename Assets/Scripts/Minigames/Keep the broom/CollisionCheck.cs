@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class CollisionCheck : MonoBehaviour
 {
-    Collider2D collid;
+    public Collider2D collid;
+    public Transform spineTransform;
+    public Transform RfootTransform,LfootTransform,topHeadTransform;
+
     Rigidbody2D rb;
     [Space]
     [Header("Booleans")]
     public bool onGround;
     public bool underRoof;
     public bool onWall, onRightWall, onLeftWall;
-    [HideInInspector]
+    
     public bool passingTroughPlatform;
 
     [Space]
@@ -38,58 +41,80 @@ public class CollisionCheck : MonoBehaviour
     float jumpVelocityFrame;
 
     //Colliders lists
-    [HideInInspector]
+    //[HideInInspector]
     public List<Collider2D> ignoredColliders = new List<Collider2D>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Collider2D> bodyColliders = new List<Collider2D>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<Collider2D> roofColliders,groundColliders;
-    
+    public KTB_Player player;
+
     void Start()
     {
-        collid = GetComponent<Collider2D>();
+        //collid = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        jumpVelocityFrame = 28 * Time.deltaTime * 2;
+        jumpVelocityFrame = 28 * Time.deltaTime * 4;
         bodySize = collid.bounds.size * new Vector2(.8f,.9f);
         
     }
 
     void RoofCheck(){
-        underRoof = Physics2D.OverlapBox((Vector2) transform.position + topOffset,roofBox  + ((Vector2.up) * jumpVelocityFrame),0,groundMask); 
-        roofColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) transform.position + topOffset,roofBox  + ((Vector2.up) * jumpVelocityFrame),0,groundMask));
+        bodySize = new Vector2(bodySize.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
+        bodySize.y *= .95f;
+        Vector2 _bodyOffset = bodySize;
+        _bodyOffset.x = 0;
+        Vector2 spineOffset = new Vector2(0,transform.position.y - spineTransform.position.y + 2.2f);
+        underRoof = Physics2D.OverlapBox((Vector2)  spineTransform.position + _bodyOffset / 2 + topOffset,roofBox  + ((Vector2.up) * jumpVelocityFrame),0,groundMask); 
+        roofColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) spineTransform.position + _bodyOffset / 2 + topOffset,roofBox  + ((Vector2.up) * jumpVelocityFrame),0,groundMask));
     }
     void GroundCheck(){
-        onGround = Physics2D.OverlapBox((Vector2) transform.position + bottomOffset,groundBox,0,groundMask); 
-        groundColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) transform.position + bottomOffset,groundBox,0,groundMask)); 
+        bodySize = new Vector2(bodySize.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
+        bodySize.y *= .9f;
+        Vector2 _bodyOffset = bodySize;
+        _bodyOffset.x = 0;
+        Vector2 spineOffset = new Vector2(0,transform.position.y - spineTransform.position.y + 2.2f);
+        onGround = Physics2D.OverlapBox((Vector2) spineTransform.position - _bodyOffset / 2 + bottomOffset,groundBox,0,groundMask); 
+        groundColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) spineTransform.position - _bodyOffset / 2 + bottomOffset,groundBox,0,groundMask)); 
     }
     void WallCheck(){
-        onRightWall = Physics2D.OverlapBox((Vector2) transform.position + rightOffset,sideBox,0,groundMask);
-        onLeftWall = Physics2D.OverlapBox((Vector2) transform.position + leftOffset,sideBox,0,groundMask);  
+        Vector2 spineOffset = new Vector2(0,transform.position.y - spineTransform.position.y + 2.2f);
+        onRightWall = Physics2D.OverlapBox(((Vector2) spineTransform.position + rightOffset ),sideBox,0,groundMask);
+        onLeftWall = Physics2D.OverlapBox(((Vector2) spineTransform.position + leftOffset),sideBox,0,groundMask);  
         onWall = (onRightWall || onLeftWall) ? true : false;
     }
     
     void PassingTroughPlatformCheck(){
-        passingTroughPlatform = Physics2D.OverlapBox((Vector2) transform.position + bodyOffset,bodySize,0,groundMask);
-        bodyColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) transform.position + bodyOffset,bodySize,0,groundMask));
+        bodySize = new Vector2(bodySize.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
+        bodySize.y *= .9f;
+        Vector2 spineOffset = new Vector2(transform.position.x,spineTransform.position.y);
+        passingTroughPlatform = Physics2D.OverlapBox((Vector2) spineOffset + bodyOffset,bodySize,0,groundMask);
+        bodyColliders = new List<Collider2D>(Physics2D.OverlapBoxAll((Vector2) spineOffset + bodyOffset,bodySize,0,groundMask));
     }
 
     public void CheckCollisions(){
-        GroundCheck();
-        WallCheck();
         RoofCheck();
         PassingTroughPlatformCheck();
+        GroundCheck();  
+        WallCheck();
+        
     }
     
     void OnDrawGizmos()
     {
+        bodySize = new Vector2(bodySize.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
+        bodySize.y *= .95f;
+        Vector2 spineOffset = new Vector2(transform.position.x,spineTransform.position.y);
+        Vector2 _bodyOffset = bodySize;
+        _bodyOffset.x = 0;
         Gizmos.color = Color.red;
-        Gizmos.DrawCube((Vector2) transform.position + topOffset, groundBox  + ((Vector2.up) * jumpVelocityFrame * 2));
-        Gizmos.DrawCube((Vector2) transform.position + bottomOffset, groundBox);
+        Gizmos.DrawCube((Vector2) spineTransform.position + _bodyOffset / 2 + topOffset, groundBox  + ((Vector2.up) * jumpVelocityFrame));
+        Gizmos.DrawCube((Vector2) spineTransform.position - _bodyOffset / 2 + bottomOffset, groundBox);
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube((Vector2) transform.position + rightOffset, sideBox);
-        Gizmos.DrawCube((Vector2) transform.position + leftOffset, sideBox);
+        sideBox.y = bodySize.y * .7f;
+        Gizmos.DrawCube((Vector2) spineTransform.position + rightOffset, sideBox);
+        Gizmos.DrawCube((Vector2) spineTransform.position + leftOffset, sideBox);
         Gizmos.color = Color.green;
-        Gizmos.DrawCube((Vector2) transform.position + bodyOffset, bodySize);
+        Gizmos.DrawCube((Vector2) spineOffset + bodyOffset, bodySize);
     }
     
 }

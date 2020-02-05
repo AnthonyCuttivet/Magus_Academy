@@ -15,6 +15,7 @@ public class PlayerKTB : KTB_Player
 
      public override void OnAttackInput(){
          if(attackInput){
+             animator.SetTrigger("isPunching");
              meleeKTB.AttackKTB(meleeKTB.playersInRangeKTB);
              attackInput = false;
          }

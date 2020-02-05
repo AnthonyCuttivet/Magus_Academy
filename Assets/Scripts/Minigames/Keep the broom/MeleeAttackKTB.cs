@@ -14,7 +14,7 @@ public class MeleeAttackKTB : KTB_MeleeAttack
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<KeepTheBroom>();
     }
 
-    public  void AttackKTB(List<PlayerKTB> playersToAttackKTB){
+    public void AttackKTB(List<PlayerKTB> playersToAttackKTB){
         if(!playerKTB.holdingBroom){                            //Si le joueur a le balai il ne peut pas attaquer         
             List<KTB_Player> playersToAttack = playersInRangeKTB.ConvertAll(x => (KTB_Player)x);                              
             base.Attack(playersToAttack);
@@ -27,13 +27,14 @@ public class MeleeAttackKTB : KTB_MeleeAttack
     }
 
     void OnTriggerEnter2D(Collider2D collider){
+        Debug.Log(collider.gameObject.name);
         if(collider.CompareTag("Player") && collider != player.collid){
-            playersInRangeKTB.Add(collider.GetComponent<PlayerKTB>());
+            playersInRangeKTB.Add(collider.GetComponentInParent<PlayerKTB>());
         }  
     }
     void OnTriggerExit2D(Collider2D collider){
         if(collider.CompareTag("Player")){
-            playersInRangeKTB.Remove(collider.GetComponent<PlayerKTB>());
+            playersInRangeKTB.Remove(collider.GetComponentInParent<PlayerKTB>());
         }
     }
 }

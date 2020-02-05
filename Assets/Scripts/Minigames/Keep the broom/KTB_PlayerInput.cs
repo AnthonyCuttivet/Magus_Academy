@@ -9,8 +9,9 @@ public class KTB_PlayerInput : MonoBehaviour
     KTB_Player player;
     public KTB_DeathGamePlay deathGamePlay;
     public KTB_PlayerControls inputActions;
-    void Awake()
-    {
+    Animator animator;
+    void Awake(){
+        animator = GetComponent<Animator>();
         player = GetComponent<KTB_Player>();
         deathGamePlay = GetComponentInChildren<KTB_DeathGamePlay>();
     }

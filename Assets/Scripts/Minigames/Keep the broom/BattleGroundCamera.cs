@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleGroundCamera : MonoBehaviour
 {
-    GameObject[] players;
+    public GameObject[] players;
     Camera cam;
     public float boxPadding;
     public float smoothTime;
@@ -12,7 +12,7 @@ public class BattleGroundCamera : MonoBehaviour
     public float verticalOffset;
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //players = GameObject.FindGameObjectsWithTag("Player");
         cam = GetComponent<Camera>();
     }
 

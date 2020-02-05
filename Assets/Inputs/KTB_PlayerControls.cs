@@ -30,8 +30,8 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""0bd65fed-1450-4cae-a43d-b87fb97b633f"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """"
                 },
                 {
@@ -60,7 +60,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""0a250882-fd88-4457-8215-ff36b5029792"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": ""AxisDeadzone(min=0.3)"",
+                    ""processors"": ""StickDeadzone(min=0.5,max=1)"",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
