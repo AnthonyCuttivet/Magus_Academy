@@ -30,7 +30,13 @@ public class QTE : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI scoreTMP;
     public TextMeshProUGUI comboTMP;
+    public Sprite dot;
 
+    [Space]
+    [Header("Controller Vibration")]
+
+    public float vibrationForce = 0.1f;
+    public float vibrationTime = .2f;
 
     // Start is called before the first frame update
     void Start(){
@@ -61,6 +67,7 @@ public class QTE : MonoBehaviour
                         currentSequence = 0;
                         ResetCombo();
                         qteState = QTE_STATES.NOT_IN_QTE;
+                        aimController.EndFishing();
                     }else{ //Of any sequence but the last
                         currentIndexInSequence = 0;
                         currentSequence++;
@@ -78,16 +85,30 @@ public class QTE : MonoBehaviour
 
     public void RightInput(){
         GameObject currentToucheGO = QTEGO.transform.GetChild(currentIndexInSequence).gameObject;
+        currentToucheGO.GetComponent<SpriteRenderer>().sprite = dot; //Change sprite on success
 
-        currentToucheGO.GetComponent<SpriteRenderer>().sprite = null; //Change sprite on success
-        //Show Green tick under QTE sprite
+        //Play sound
+        SoundManager.instance.PlaySound("QTE2");
+
+        //Vibrate controller
+        VibrateController();
 
         UpdateQTE();
     }
 
     public void MissInput(){
+        SoundManager.instance.PlaySound("QTEWrong");
         ResetCombo();
-        //Show Red X under QTE sprite
+    }
+
+    public void VibrateController(){
+        Gamepad.current.SetMotorSpeeds(vibrationForce,vibrationForce);
+        StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
+    }
+
+    IEnumerator StopVibrationAfterSeconds(float seconds){
+        yield return new WaitForSeconds(seconds);
+        Gamepad.current.PauseHaptics();
     }
 
     void AddScore(){

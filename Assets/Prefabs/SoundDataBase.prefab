@@ -269,6 +269,51 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0
     randomPitch: 0
+  - name: QTE1
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 2e3b26182d432e7418c17eb9fcb54ff1, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: QTE2
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 567b7d1f3689a6b4e97a29a9db8b9eb7, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: QTE3
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 646ec592943e8eb49ae600c8d45fab46, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: QTEWrong
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 21dab3a2aac1bca4d92e0be591f057f6, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Countdown
+    isFadeIn: 0
+    isFadeOut: 1
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 2250ad5688501ed42ad2fefde0e0f467, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
   musiques:
   - name: MainTheme
     isFadeIn: 0

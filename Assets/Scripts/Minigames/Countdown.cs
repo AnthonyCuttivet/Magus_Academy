@@ -27,9 +27,8 @@ public class Countdown : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        SoundManager.instance.PlaySound("Countdown");
     }
 
     // Update is called once per frame
@@ -43,7 +42,7 @@ public class Countdown : MonoBehaviour
                 UpdateCountdown();
             break;
             case COUNTDOWN_STATES.AFTER_CD :
-
+                StartCoroutine(DestroyItselfAfterSeconds(3));
             break;
         }
     }
@@ -64,5 +63,10 @@ public class Countdown : MonoBehaviour
             t.gameObject.SetActive(false);
         }
         gameObject.transform.GetChild(number).gameObject.SetActive(true);
+    }
+
+    IEnumerator DestroyItselfAfterSeconds(float seconds){
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 }

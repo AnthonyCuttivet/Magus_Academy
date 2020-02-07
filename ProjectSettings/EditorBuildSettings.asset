@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TournamentScreen/FinalWinnerScreen.unity
     guid: 021b0137008d29f428993656d4bb9534
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Minigames/DF.unity
     guid: fd269c58756ecf74583f968b3a1208ce
   - enabled: 0

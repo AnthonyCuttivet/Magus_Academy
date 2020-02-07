@@ -11,6 +11,7 @@ public class AimController : MonoBehaviour
     public bool fishable = false;
     Quaternion rotation;
     public Dragon dragonToFish;
+    public Dragon isFishing;
     public GenerationRemous generationRemous; 
 
     void Awake(){
@@ -29,6 +30,7 @@ public class AimController : MonoBehaviour
     public void Fish(){
         if(dragonToFish != null && dragonToFish.fished == false){
             direction = Vector2.zero;
+            isFishing = dragonToFish;
             playerController.StartQTE();
             dragonToFish.fished = true;
         }
@@ -44,9 +46,7 @@ public class AimController : MonoBehaviour
     }
 
     public void EndFishing(){
-        
-        dragonToFish = null;
         generationRemous.fishesColliders = new List<Collider>();
-        dragonToFish.DeleteDragon();
+        isFishing.DeleteDragon();
     }
 }
