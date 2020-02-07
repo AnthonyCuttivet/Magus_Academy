@@ -9,20 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen/TitleScreen.unity
     guid: cc6ff491634f2b540af58d9c6d1a2794
   - enabled: 1
-    path: Assets/Scenes/TournamentScreen/FinalWinnerScreen.unity
-    guid: 021b0137008d29f428993656d4bb9534
+    path: Assets/Scenes/CharacterSelection/CharacterSelection.unity
+    guid: 1587e150cd0432a49b39212f750901f4
   - enabled: 1
     path: Assets/Scenes/MinigamesScreen/MinigamesScreen.unity
     guid: f4ed6193d8aff1e43ba091fee45c9ac5
-  - enabled: 1
-    path: Assets/Scenes/CharacterSelection/CharacterSelection.unity
-    guid: 1587e150cd0432a49b39212f750901f4
   - enabled: 1
     path: Assets/Scenes/CommandsScreen/CommandsScreen.unity
     guid: f992860beca6ca74b9be8692960bbc0b
   - enabled: 1
     path: Assets/Scenes/Minigames/Deceived.unity
     guid: 0b093224573151f4c9fc396e4ed29f02
+  - enabled: 1
+    path: Assets/Scenes/TournamentScreen/FinalWinnerScreen.unity
+    guid: 021b0137008d29f428993656d4bb9534
   - enabled: 0
     path: Assets/Scenes/Minigames/DF.unity
     guid: fd269c58756ecf74583f968b3a1208ce

@@ -49,14 +49,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Stick"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Skip"",
-                    ""type"": ""Button"",
-                    ""id"": ""55d88079-d100-4ee9-b23a-d0194c33a70c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -103,17 +95,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d86e24f-f59c-40b8-9f1c-630347597a3c"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -138,7 +119,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         m_TipsScreen_Validate = m_TipsScreen.FindAction("Validate", throwIfNotFound: true);
         m_TipsScreen_Cancel = m_TipsScreen.FindAction("Cancel", throwIfNotFound: true);
         m_TipsScreen_Move = m_TipsScreen.FindAction("Move", throwIfNotFound: true);
-        m_TipsScreen_Skip = m_TipsScreen.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -192,7 +172,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
     private readonly InputAction m_TipsScreen_Validate;
     private readonly InputAction m_TipsScreen_Cancel;
     private readonly InputAction m_TipsScreen_Move;
-    private readonly InputAction m_TipsScreen_Skip;
     public struct TipsScreenActions
     {
         private @CharacterSelection m_Wrapper;
@@ -201,7 +180,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         public InputAction @Validate => m_Wrapper.m_TipsScreen_Validate;
         public InputAction @Cancel => m_Wrapper.m_TipsScreen_Cancel;
         public InputAction @Move => m_Wrapper.m_TipsScreen_Move;
-        public InputAction @Skip => m_Wrapper.m_TipsScreen_Skip;
         public InputActionMap Get() { return m_Wrapper.m_TipsScreen; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -223,9 +201,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
-                @Skip.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
-                @Skip.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
-                @Skip.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
             }
             m_Wrapper.m_TipsScreenActionsCallbackInterface = instance;
             if (instance != null)
@@ -242,9 +217,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Skip.started += instance.OnSkip;
-                @Skip.performed += instance.OnSkip;
-                @Skip.canceled += instance.OnSkip;
             }
         }
     }
@@ -264,6 +236,5 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         void OnValidate(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnSkip(InputAction.CallbackContext context);
     }
 }

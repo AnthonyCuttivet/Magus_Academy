@@ -36,14 +36,6 @@
                     "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Skip",
-                    "type": "Button",
-                    "id": "55d88079-d100-4ee9-b23a-d0194c33a70c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -88,17 +80,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5d86e24f-f59c-40b8-9f1c-630347597a3c",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
