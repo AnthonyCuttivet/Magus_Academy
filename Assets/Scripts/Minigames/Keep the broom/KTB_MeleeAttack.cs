@@ -17,13 +17,13 @@ public class KTB_MeleeAttack : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider){
-        if(collider.CompareTag("Player") && collider != player.collid){
+        if(collider.CompareTag("PlayerHitbox") && collider != player.collid){
             playersInRange.Add(collider.GetComponent<KTB_Player>());
         }
         
     }
     void OnTriggerExit2D(Collider2D collider){
-        if(collider.CompareTag("Player")){
+        if(collider.CompareTag("PlayerHitbox")){
             playersInRange.Remove(collider.GetComponent<KTB_Player>());
         }
     }

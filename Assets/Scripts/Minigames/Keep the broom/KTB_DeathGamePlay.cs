@@ -66,14 +66,14 @@ public class KTB_DeathGamePlay : MonoBehaviour
         postMortemActive = false;
     }
     void OnTriggerEnter2D(Collider2D collider){
-        if(collider.CompareTag("Player") && collider != player.collid){
-            playersInRange.Add(collider.GetComponent<PlayerKTB>());
+        if(collider.CompareTag("PlayerHitbox") && collider != player.collid){
+            playersInRange.Add(collider.GetComponentInParent<PlayerKTB>());
         }
         
     }
     void OnTriggerExit2D(Collider2D collider){
-        if(collider.CompareTag("Player")){
-            playersInRange.Remove(collider.GetComponent<PlayerKTB>());
+        if(collider.CompareTag("PlayerHitbox")){
+            playersInRange.Remove(collider.GetComponentInParent<PlayerKTB>());
         }
     }
 }

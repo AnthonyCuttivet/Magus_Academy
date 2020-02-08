@@ -7,17 +7,26 @@ using UnityEngine.InputSystem;
 public class KeepTheBroom : MonoBehaviour
 {
     public PlayerKTB[] players;
+    public Transform[] playersHand;
     public Transform broom;
     Collider2D broomCollider;
     public PlayerKTB broomHolder;
     public float pickUpDistance;
     bool broomIsHold;
-    public Vector2 broomHoldingPosition;
+    public Vector3 broomHoldingPosition;
+    public Vector3 broomHoldingOrientation;
     public Vector2 broomSpawnPosition;
     public BarFiller scoreP1, scoreP2,scoreP3,scoreP4;
     public InputActionAsset actions;
+    public static KeepTheBroom instance;
 
     void Awake(){
+        if(instance == null && instance != this){
+            instance = this;
+        }
+        else{
+            Destroy(gameObject);
+        }
     }
     void Start()
     {
@@ -58,8 +67,9 @@ public class KeepTheBroom : MonoBehaviour
                 broomHolder.holdingBroom = true; 
                 broomHolder.airJumpCount += 1;
                 broomHolder.maxAirJumpCount +=1;
-                broom.parent = player.transform;
+                broom.parent = playersHand[player.playerNumber-1];
                 broom.localPosition = broomHoldingPosition;
+               
                 broom.GetComponent<Rigidbody2D>().isKinematic = true;
             }
         }  
@@ -118,6 +128,9 @@ public class KeepTheBroom : MonoBehaviour
         scoreP2.ChangeFillAmount(players[1].broomHoldingTime);
         scoreP3.ChangeFillAmount(players[2].broomHoldingTime);
         scoreP4.ChangeFillAmount(players[3].broomHoldingTime);
+    }
+    public void SetBroomOrientation(){
+        broom.localRotation = new Quaternion(broomHoldingOrientation.x,broomHoldingOrientation.y,broomHoldingOrientation.z,broom.rotation.w);
     }
 }
 

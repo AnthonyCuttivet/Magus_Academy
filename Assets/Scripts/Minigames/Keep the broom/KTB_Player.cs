@@ -62,7 +62,7 @@ public class KTB_Player : MonoBehaviour
 
     void Awake()
     {
-        //Time.timeScale = .05f;
+        //Time.timeScale = .2f;
         rb = GetComponent<Rigidbody2D>();
         inputs = GetComponent<KTB_PlayerInput>();
         //collid = GetComponentInChildren<Collider2D>();
@@ -301,11 +301,14 @@ public class KTB_Player : MonoBehaviour
 
     public virtual void OnAttackInput(){
         if(attackInput){
-            Debug.Log("rrr");
-            melee.Attack(melee.playersInRange);
+            //melee.Attack(melee.playersInRange);
             attackInput = false;
             animator.SetTrigger("isPunching");
         }
+    }
+    public virtual void OnAttackHit(){
+        Debug.Log("animHit");
+        melee.Attack(melee.playersInRange);
     }
     public void Death(){
         dead = true;
@@ -313,10 +316,10 @@ public class KTB_Player : MonoBehaviour
         velocity = Vector3.zero;
         rb.velocity = Vector3.zero;
         collid.enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        transform.Find("Chibi_Mesh").gameObject.SetActive(false);
         transform.position = Vector3.zero;
     }
-    void SetAnimation(){
+    public virtual void SetAnimation(){
         if(Mathf.Abs(velocity.x) > .05f && collisions.onGround) {
             animator.SetBool("isRunning",true);
         }
@@ -340,6 +343,12 @@ public class KTB_Player : MonoBehaviour
         }
         else if((collisions.onLeftWall ^ collisions.onRightWall) && !collisions.passingTroughPlatform){
             animator.SetBool("isWallSliding",true);
+        }
+        if(knockBacked){
+            animator.SetBool("Knockbacked",true);
+        }
+        else{
+            animator.SetBool("Knockbacked",false);
         }
     }
     public void JumpLaunched(){

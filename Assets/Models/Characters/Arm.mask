@@ -7,48 +7,48 @@ AvatarMask:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Arm
-  m_Mask: 01000000010000000100000000000000000000000100000001000000010000000100000001000000010000000100000001000000
+  m_Mask: 01000000010000000100000000000000000000000100000001000000000000000000000000000000000000000000000000000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: Broche
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Ceinture
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chaussure D
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chaussure G
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips
     m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End/mixamorig:LeftToe_End_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End/mixamorig:RightToe_End_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:Spine
     m_Weight: 1
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
@@ -84,18 +84,18 @@ AvatarMask:
   - m_Path: Chibi_Character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHand_end
     m_Weight: 1
   - m_Path: Diamant D
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Diamant G
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Echarpe
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: "Genouill\xE8re D"
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: "Genouill\xE8re G"
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Jupe
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Manche D
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Manche G
-    m_Weight: 0
+    m_Weight: 1
