@@ -42,6 +42,10 @@ public class DragonsManager : MonoBehaviour
     public float bitingMaxTime = 10f;
     public int qteStreak = 3;
 
+    [Space]
+    [Header("Music")]
+    public List<string> magesThemes = new List<string>();  
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -70,6 +74,7 @@ public class DragonsManager : MonoBehaviour
                         countDown.GetComponent<Countdown>().cdState = Countdown.COUNTDOWN_STATES.IN_CD;
                     break;
                     case Countdown.COUNTDOWN_STATES.AFTER_CD :
+                        StartMusic();
                         dfState = DFStates.IN_GAME;
                         ToggleFishableZone(true);
                     break;
@@ -89,6 +94,15 @@ public class DragonsManager : MonoBehaviour
             break;
 
         }
+    }
+
+    void StartMusic(){
+        SoundManager.instance.PlayMusic("DF_Main");
+        foreach(Player player in playersInfos){
+            string skin = System.Enum.GetName(typeof(CharacterAttribute.MagesAttributes), player.Skin);
+            magesThemes.Add(skin);
+            SoundManager.instance.PlayMusic("DF_"+skin);
+        } 
     }
 
     public void PrintScores(){
@@ -114,8 +128,20 @@ public class DragonsManager : MonoBehaviour
         playersInitialized = true;
     }
 
+    void EndMusic(){
+        foreach(string theme in magesThemes){
+            Debug.Log(theme);
+            SoundManager.instance.FadeOutMusic("DF_" + theme,2f);
+            if(theme != "Earth"){
+                SoundManager.instance.FadeInMusic("DF_" + theme,2f);
+            }
+        }
+        SoundManager.instance.FadeOutMusic("DF_Main",2f);
+    }
+
     void EndGame(){
         ToggleFishableZone(false);
+        EndMusic();
         PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = DragonsManager.instance.dragonsScoreboard;
         PlayersManager.instance.UpdateTotals();
         BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
@@ -138,9 +164,11 @@ public class DragonsManager : MonoBehaviour
     }
 
     void AssignControllerToPlayer(){
+        Color[] colors = GameObject.Find("PlayersManager").GetComponent<DebugIcons>().colors;
         foreach(Player player in playersInfos){
             GameObject currentPlayerGO = playersGO.transform.GetChild(player.Id).gameObject;
             currentPlayerGO.GetComponent<QTE>().id = player.Id;
+            currentPlayerGO.transform.Find("CP").GetComponent<SpriteRenderer>().color = colors[player.Skin];
             PlayerInput playerInput = currentPlayerGO.AddComponent<PlayerInput>();
             playerInput.actions = Instantiate(dragonsActions);
             playerInput.actions.Enable();

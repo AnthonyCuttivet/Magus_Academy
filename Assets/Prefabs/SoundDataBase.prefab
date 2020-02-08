@@ -549,4 +549,85 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0
     randomPitch: 0
+  - name: DF_Dark
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 9b4c6db58d5295648ac351249e794aff, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Death
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: a16323cedf0630f4f8332ac3d25120a8, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Earth
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 8b271a21f760ddb4b8660d1028aa8319, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Fire
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: d15d64aa74af1e446a2b590a1c0f9701, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Ice
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 317c49c43506ae34aa83ddcdf2925352, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Light
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 705a2a7ae46252a45a9b1c4acd70923e, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Thunder
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 3514165cf5dc8264d894a4fb9c3edbfe, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Wind
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 79946407bfe119847bd34e1129aa19fa, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: DF_Main
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 64125afe022636f418b517512bb0c47a, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
   MusicMixer: {fileID: 24300002, guid: c4271dac92d61a5438546365d280ae89, type: 2}

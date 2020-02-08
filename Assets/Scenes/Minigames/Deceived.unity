@@ -337,7 +337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424923701
 Transform:
   m_ObjectHideFlags: 0
@@ -4032,6 +4032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e6085f5b508e41b8841ebf8be1008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEnded: 0
   scoresSaved: 0
   skins:
   - {fileID: 2100000, guid: 4070f3c350861774b8d955de9ec81c93, type: 2}

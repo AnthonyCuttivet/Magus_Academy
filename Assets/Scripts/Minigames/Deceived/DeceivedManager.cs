@@ -106,6 +106,7 @@ public class DeceivedManager : MonoBehaviour
             soundManager.PlayMusic("Deceived_"+skin+"Theme");
         } 
     }
+
     void EndGameTransition(){
         if(!transitionned){
             float characterPercentage = (spawner.PNJList.Count + spawner.players.Count)/initialCharacterNumber;
@@ -125,7 +126,6 @@ public class DeceivedManager : MonoBehaviour
                 
             }
         }
-        
     }
     IEnumerator EndGameZoom(){
         soundManager.PlaySound("Victory");

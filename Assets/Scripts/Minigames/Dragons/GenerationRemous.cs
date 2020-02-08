@@ -13,6 +13,11 @@ public class GenerationRemous : MonoBehaviour
     public LayerMask layerMask;
     public List<Collider> fishesColliders = new List<Collider>();
 
+    [Space]
+    [Header("Golden Dragon")]
+    public float goldenDragonChance = .1f;
+    public Material goldenDragonMaterial;
+
     public static GenerationRemous instance;
     
     void Awake(){
@@ -21,7 +26,20 @@ public class GenerationRemous : MonoBehaviour
         instance = this;
     }
 
+    bool IsGolden(){
+        bool isGolden = false;
+
+        if(Random.value <= goldenDragonChance){
+            isGolden = true;
+        }
+
+        return isGolden;
+    }
+
     void SpawnFish(){
+
+        bool isGolden = IsGolden();
+
         int dragonDirection = 0;
         if(Random.value <= .5f){
             dragonDirection = 1;
@@ -32,6 +50,18 @@ public class GenerationRemous : MonoBehaviour
         Vector3 randomSpawnPosition = GeneratePosition(59*dragonDirection);
         if(randomSpawnPosition != Vector3.zero){
             GameObject fishGO = Instantiate(fish,randomSpawnPosition,new Quaternion(0,0,0,0));
+
+            //if Golden Dragon
+            if(isGolden){
+                fishGO.GetComponent<Dragon>().pointsMultiplier = 2;
+                foreach(Transform t in fishGO.transform){
+                    if(t.name != "Dragon_Pete_3"){
+                        t.GetComponent<SkinnedMeshRenderer>().material = goldenDragonMaterial;
+                    }
+                }
+            }
+
+
             fishGO.transform.Rotate(new Vector3(0,-90*dragonDirection,0));
             fishGO.GetComponent<DragonMovement>().direction = -dragonDirection;
             fishesColliders.Add(fishGO.GetComponent<Collider>());

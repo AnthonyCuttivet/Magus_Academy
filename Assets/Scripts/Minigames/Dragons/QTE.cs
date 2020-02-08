@@ -113,7 +113,7 @@ public class QTE : MonoBehaviour
 
     void AddScore(){
         AddCombo();
-        int pts = DragonsManager.instance.sequenceMultiplier * combo;
+        int pts = DragonsManager.instance.sequenceMultiplier * combo * aimController.isFishing.pointsMultiplier;
         score += pts;
         DragonsManager.instance.dragonsScoreboard[id] = score;
         UpdateScoreDisplay();

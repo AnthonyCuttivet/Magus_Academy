@@ -6,6 +6,7 @@ public class DebugIcons : MonoBehaviour
 {
 
     public List<Sprite> icons = new List<Sprite>();
+    public Color[] colors;
 
     // Start is called before the first frame update
     void Start()

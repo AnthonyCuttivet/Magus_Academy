@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1083,7 +1083,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh165202
+  m_Name: pb_Mesh49702
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5547,6 +5547,7 @@ MonoBehaviour:
   sequenceMaxTime: 5
   bitingMaxTime: 10
   qteStreak: 3
+  magesThemes: []
 --- !u!4 &1391944741
 Transform:
   m_ObjectHideFlags: 0
@@ -7230,6 +7231,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   fishesColliders: []
+  goldenDragonChance: 0.1
+  goldenDragonMaterial: {fileID: 2100000, guid: 2edbf106f25c1224e89884fa4295a9ba,
+    type: 2}
 --- !u!65 &1623460157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10282,7 +10286,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh165588
+  m_Name: pb_Mesh50106
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

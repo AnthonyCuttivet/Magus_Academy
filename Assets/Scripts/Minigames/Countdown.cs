@@ -42,7 +42,7 @@ public class Countdown : MonoBehaviour
                 UpdateCountdown();
             break;
             case COUNTDOWN_STATES.AFTER_CD :
-                StartCoroutine(DestroyItselfAfterSeconds(3));
+            
             break;
         }
     }

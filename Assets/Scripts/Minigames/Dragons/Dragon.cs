@@ -6,6 +6,8 @@ public class Dragon : MonoBehaviour
 {
     public bool fished;
     Collider colliderDragon;
+    public int pointsMultiplier = 1;
+
     void Awake()
     {
         colliderDragon = GetComponent<Collider>();
