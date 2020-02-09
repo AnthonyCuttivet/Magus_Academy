@@ -3849,8 +3849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba6dfd9ba13614b9ec6799aed7f29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
   aim: {fileID: 1749561065}
   anchorPoint: {fileID: 1849454494}
+  QTEController: {fileID: 0}
 --- !u!120 &808997865
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5539,13 +5541,11 @@ MonoBehaviour:
   fishableZone: {fileID: 1623460155}
   playersInitialized: 0
   ScoresUI: {fileID: 1375358512}
-  timeLeft: 90
-  basePoints: 100
-  sequenceMultiplier: 20
+  timeLeft: 5
+  basePoints: 50
+  sequenceMultiplier: 10
   comboScale: 1
   QTELength: 5
-  sequenceMaxTime: 5
-  bitingMaxTime: 10
   qteStreak: 3
   magesThemes: []
 --- !u!4 &1391944741
@@ -8125,8 +8125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba6dfd9ba13614b9ec6799aed7f29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
   aim: {fileID: 1407035836}
   anchorPoint: {fileID: 1782443469}
+  QTEController: {fileID: 0}
 --- !u!120 &1645468852
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -9277,8 +9279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba6dfd9ba13614b9ec6799aed7f29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
   aim: {fileID: 1530505031}
   anchorPoint: {fileID: 234294895}
+  QTEController: {fileID: 0}
 --- !u!120 &1751401191
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -10876,8 +10880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba6dfd9ba13614b9ec6799aed7f29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
   aim: {fileID: 1720152268}
   anchorPoint: {fileID: 1172731017}
+  QTEController: {fileID: 0}
 --- !u!120 &2065397892
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -516,8 +516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersList: []
-  nextMinigame: 0
-  currentMinigame: 0
+  nextMinigame: 1
+  currentMinigame: 1
   gamemode: 0
 --- !u!4 &353248349
 Transform:

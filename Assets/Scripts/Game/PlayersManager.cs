@@ -39,6 +39,19 @@ public class PlayersManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start(){
+        InitializeScoreboard();
+    }
+
+    public void InitializeScoreboard(){
+        for (int i = 0; i < 4; i++){
+            globalRanking[PlayersManager.Minigames.LB_TOTAL][i] = 0;
+            globalRanking[PlayersManager.Minigames.Deceived][i] = 0;
+            globalRanking[PlayersManager.Minigames.DF][i] = 0;
+            globalRanking[PlayersManager.Minigames.KTB][i] = 0;
+        }
+    }
+
     public void ResetPlayers(){
         PlayersManager.instance.playersList = new List<Player>();
     }
@@ -64,12 +77,24 @@ public class PlayersManager : MonoBehaviour {
         return playersList.Where(x=>x.Id == playerId).First().Skin;
     }
 
-    public void UpdateTotals(){
+    public void UpdateTotals(Minigames from){
 
-        globalRanking[PlayersManager.Minigames.LB_TOTAL][0] = globalRanking[PlayersManager.Minigames.Deceived][0] + globalRanking[PlayersManager.Minigames.DF][0] + globalRanking[PlayersManager.Minigames.KTB][0];
-        globalRanking[PlayersManager.Minigames.LB_TOTAL][1] = globalRanking[PlayersManager.Minigames.Deceived][1] + globalRanking[PlayersManager.Minigames.DF][1] + globalRanking[PlayersManager.Minigames.KTB][1];
-        globalRanking[PlayersManager.Minigames.LB_TOTAL][2] = globalRanking[PlayersManager.Minigames.Deceived][2] + globalRanking[PlayersManager.Minigames.DF][2] + globalRanking[PlayersManager.Minigames.KTB][2];
-        globalRanking[PlayersManager.Minigames.LB_TOTAL][3] = globalRanking[PlayersManager.Minigames.Deceived][3] + globalRanking[PlayersManager.Minigames.DF][3] + globalRanking[PlayersManager.Minigames.KTB][3];
+        Dictionary<int,int> tmpTotals = globalRanking[Minigames.LB_TOTAL];
+
+        string aaa = "";
+        foreach (KeyValuePair<Minigames,Dictionary<int,int>> kvp in globalRanking){
+            aaa += "["+kvp.Key + ":" + kvp.Value[0]+"]";
+        }
+        print("GRIUTBFA : " + aaa);
+
+        tmpTotals[0] += globalRanking[from][0];
+        globalRanking[Minigames.LB_TOTAL] = tmpTotals;
+
+        string tmpsc3 = "";
+        foreach (KeyValuePair<Minigames,Dictionary<int,int>> kvp in globalRanking){
+            tmpsc3 += "["+kvp.Key + ":" + kvp.Value[0]+"]";
+        }
+        print("GRIUTAA : " + tmpsc3);
 
         globalRanking = OrderScores(globalRanking);
     

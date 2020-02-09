@@ -8,7 +8,8 @@ public class CharacterSelectionManager : MonoBehaviour
 {
     public enum CSStates{
         IN_SELECTION,
-        ALL_SELECTED
+        ALL_SELECTED,
+        AFTER_SELECTION
     }
 
     public CSStates cSState;
@@ -87,13 +88,14 @@ public class CharacterSelectionManager : MonoBehaviour
                     switch(PlayersManager.instance.gamemode){
                         case PlayersManager.Gamemodes.Single:
                             LoadMinigameSelection();
+                            cSState = CSStates.AFTER_SELECTION;
                         break;
                         case PlayersManager.Gamemodes.Tournament:
                             PlayersManager.instance.T_LoadNextMinigameCommands();
+                            cSState = CSStates.AFTER_SELECTION;
                         break;
                     }
                 }
-                //TODO: SetRandomSkins();
             break;
         }
 

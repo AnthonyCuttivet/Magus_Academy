@@ -58,7 +58,7 @@ public class DeceivedManager : MonoBehaviour
 
             //Save minigame scoreboard to global scoreboard
             PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;
-            PlayersManager.instance.UpdateTotals();
+            PlayersManager.instance.UpdateTotals(PlayersManager.Minigames.Deceived);
 
             StartCoroutine(EndGameZoom());
             

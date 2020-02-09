@@ -38,8 +38,6 @@ public class DragonsManager : MonoBehaviour
     public int sequenceMultiplier = 20;
     public int comboScale = 1;
     public int QTELength = 5;
-    public float sequenceMaxTime = 5f;
-    public float bitingMaxTime = 10f;
     public int qteStreak = 3;
 
     [Space]
@@ -142,8 +140,29 @@ public class DragonsManager : MonoBehaviour
     void EndGame(){
         ToggleFishableZone(false);
         EndMusic();
-        PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = DragonsManager.instance.dragonsScoreboard;
-        PlayersManager.instance.UpdateTotals();
+
+        string tmpsc = "";
+        foreach (KeyValuePair<int,int> kvp in dragonsScoreboard){
+            tmpsc += "["+kvp.Key + ":" + kvp.Value+"]";
+        }
+        print("DFLSCR : " + tmpsc);
+
+        PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = dragonsScoreboard;
+
+
+        string tmpsc2 = "";
+        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in PlayersManager.instance.globalRanking){
+            tmpsc2 += "["+kvp.Key + ":" + kvp.Value[0]+"]";
+        }
+        print("GRBUT : " + tmpsc2);
+
+        PlayersManager.instance.UpdateTotals(PlayersManager.Minigames.DF);
+
+        string tmpsc3 = "";
+        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in PlayersManager.instance.globalRanking){
+            tmpsc3 += "["+kvp.Key + ":" + kvp.Value[0]+"]";
+        }
+        print("GRBAT : " + tmpsc3);
 
         //Switch to next scene
         switch(PlayersManager.instance.gamemode){
