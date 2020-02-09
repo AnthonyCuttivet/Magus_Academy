@@ -79,7 +79,7 @@ public class PlayersManager : MonoBehaviour {
 
     public void UpdateTotals(Minigames from){
 
-        Dictionary<int,int> tmpTotals = globalRanking[Minigames.LB_TOTAL];
+        Dictionary<int,int> tmpTotals = new Dictionary<int, int>(globalRanking[Minigames.LB_TOTAL]);
 
         string aaa = "";
         foreach (KeyValuePair<Minigames,Dictionary<int,int>> kvp in globalRanking){
@@ -87,7 +87,10 @@ public class PlayersManager : MonoBehaviour {
         }
         print("GRIUTBFA : " + aaa);
 
-        tmpTotals[0] += globalRanking[from][0];
+        foreach (KeyValuePair<int,int> kvp in globalRanking[from]){
+            tmpTotals[kvp.Key] += globalRanking[from][kvp.Key];
+        }
+
         globalRanking[Minigames.LB_TOTAL] = tmpTotals;
 
         string tmpsc3 = "";
