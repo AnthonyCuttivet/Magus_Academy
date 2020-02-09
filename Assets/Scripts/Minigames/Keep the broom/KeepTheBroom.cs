@@ -116,7 +116,7 @@ public class KeepTheBroom : MonoBehaviour
         foreach(PlayerKTB player in players){
             foreach(PlayerKTB player2 in players){
                 if(player.collid != player2.collid){
-                    Physics2D.IgnoreCollision(player.collid, player2.collid);
+                    //Physics2D.IgnoreCollision(player.collid, player2.collid);
                 }
             }
             Physics2D.IgnoreCollision(player.collid, broomCollider); 

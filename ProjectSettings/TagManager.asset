@@ -7,6 +7,10 @@ TagManager:
   - Character
   - Slot
   - Dragon
+  - GameManager
+  - PassingTrough
+  - Broom
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX

@@ -77,11 +77,11 @@ public class KTB_Player : MonoBehaviour
     {
         if(!dead){
             
-            WallJumpedUpdate();
+            //WallJumpedUpdate();
             KnockBackedUpdate();
             CalculVelocity();
             Jump();
-            ResetWallStickTime();
+            //ResetWallStickTime();
             AirJumpCountReset();
             PassingtroughPlatform();
             FlipDirection();
@@ -122,8 +122,8 @@ public class KTB_Player : MonoBehaviour
                 velocity.y = rb.velocity.y;
             }
             else if(collisions.onWall){      //wallSlide
-                wallSlide();
-                wallStick();
+                //wallSlide();
+                //wallStick();
             }
             else{                                                               //air control
                 velocity.x = directionalInput.x * speed;
@@ -185,11 +185,7 @@ public class KTB_Player : MonoBehaviour
                             velocity += Vector2.up * jumpForce;  
                             inputIncoming = true;
                             isJumping = true;
-                        }
-                        else if(collisions.onWall){
-                            WallJump();
-                            inputIncoming = true;
-                        }  
+                        } 
                         else if(airJumpCount > 0){
                             airJumpCount -= 1;
                             velocity = new Vector2(velocity.x, 0);
@@ -221,7 +217,7 @@ public class KTB_Player : MonoBehaviour
         }
     }
     void AirJumpCountReset(){
-        if(collisions.onGround || collisions.onWall && !collisions.passingTroughPlatform){
+        if(collisions.onGround /* || collisions.onWall */ && !collisions.passingTroughPlatform){
             airJumpCount = maxAirJumpCount;
         }
     }

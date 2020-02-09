@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9053027177084733838}
   - component: {fileID: 9053027177084733833}
   - component: {fileID: 9053027177084733832}
-  - component: {fileID: 9053027177084733835}
   m_Layer: 0
   m_Name: Ilot_sol2
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 9053027177084733834}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: -3.28, y: -0.6599492, z: 19.108685}
-  m_LocalScale: {x: 0.25, y: 0.15, z: 0.07}
+  m_LocalScale: {x: 0.25000095, y: 0.15000023, z: 0.07000012}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,17 +78,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &9053027177084733835
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9053027177084733834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
