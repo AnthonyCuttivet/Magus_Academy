@@ -39,6 +39,10 @@ public class PlayersManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    public void ResetPlayers(){
+        PlayersManager.instance.playersList = new List<Player>();
+    }
+
     public Player CreatePlayer(){
         Player p = new Player(playersList.Count, -1);
         playersList.Add(p);
@@ -87,6 +91,14 @@ public class PlayersManager : MonoBehaviour {
         }
 
         return totalsToReturn;
+    }
+
+    public void T_LoadNextMinigameCommands(){
+        BlackFade.instance.FadeOutToScene("CommandsScreen");
+    }
+
+    public void T_ShowScoreboardScene(){
+        BlackFade.instance.FadeOutToScene("MinigameVictoryScreen");
     }
 
 }

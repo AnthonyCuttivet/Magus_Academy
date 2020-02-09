@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 2051318315}
+    m_SelectOnDown: {fileID: 180373559}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0.50980395}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.3137255, b: 0, a: 0.7254902}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.16862746}
     m_ColorMultiplier: 5
     m_FadeDuration: 0.1
@@ -177,7 +177,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 171982409}
   m_OnClick:
     m_PersistentCalls:
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 2051318315}
+    m_SelectOnUp: {fileID: 171982408}
     m_SelectOnDown: {fileID: 2051318315}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersList: []
-  nextMinigame: 1
+  nextMinigame: 0
   currentMinigame: 0
   gamemode: 0
 --- !u!4 &353248349
@@ -868,6 +868,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackFade
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225640402861033576, guid: 9688a82cb81b67241b394b9e71b95652,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225640402861033581, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
@@ -1241,7 +1246,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 180373559}
-    m_SelectOnDown: {fileID: 180373559}
+    m_SelectOnDown: {fileID: 171982408}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

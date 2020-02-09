@@ -52,6 +52,8 @@ public class TitleScreenNavigation : MonoBehaviour
             break;
             case "Tournament" : 
                 PlayersManager.instance.gamemode = PlayersManager.Gamemodes.Tournament;
+                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.Deceived;
+                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
                 BlackFade.instance.FadeOutToScene("CharacterSelection");
             break;
             case "Quit" : 

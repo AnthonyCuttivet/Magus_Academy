@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
+    public enum CSStates{
+        IN_SELECTION,
+        ALL_SELECTED
+    }
+
+    public CSStates cSState;
 
     public static CharacterSelectionManager instance;
 
@@ -20,6 +26,11 @@ public class CharacterSelectionManager : MonoBehaviour
     public Color[] cursors;
 
     public List<int> selectedSkins = new List<int>();
+
+    [Space]
+    [Header("Start Overlay")]
+    
+    public GameObject startCanvas;
 
     [Space]
     [Header("Special Skin")]
@@ -57,18 +68,41 @@ public class CharacterSelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(selectedCount == 4 && !selectedCountFlag){
+
+        switch(cSState){
+            case CSStates.IN_SELECTION :
+                if(selectedCount == 4){
+                    cSState = CSStates.ALL_SELECTED;
+                    ToggleStartOverlay();
+                }
+            break;
+            case CSStates.ALL_SELECTED : 
+                if(selectedCount < 4){
+                    cSState = CSStates.IN_SELECTION;
+                    ToggleStartOverlay();
+                }
+                if(ready){
+                    SetRandomSkins();
+                    //Start game with selected gamemode
+                    switch(PlayersManager.instance.gamemode){
+                        case PlayersManager.Gamemodes.Single:
+                            LoadMinigameSelection();
+                        break;
+                        case PlayersManager.Gamemodes.Tournament:
+                            PlayersManager.instance.T_LoadNextMinigameCommands();
+                        break;
+                    }
+                }
+                //TODO: SetRandomSkins();
+            break;
+        }
+
+/*         if(selectedCount == 4 && !selectedCountFlag){
             selectedCountFlag = true;
             ready = true;
         }
         if(ready && !readyFlag){
-            //Set random skins
-            foreach (Player p in PlayersManager.instance.playersList){
-                if(p.Skin == 0){
-                    PlayersManager.instance.RemoveSkin(p);
-                    PlayersManager.instance.AddSkin(p, GetRandomSkin());
-                }
-            }
+
             readyFlag = true;
             //StartDance();
             switch(PlayersManager.instance.gamemode){
@@ -79,6 +113,24 @@ public class CharacterSelectionManager : MonoBehaviour
 
                 break;
             }
+        } */
+    }
+
+    public void SetRandomSkins(){
+        //Set random skins
+        foreach (Player p in PlayersManager.instance.playersList){
+            if(p.Skin == 0){
+                PlayersManager.instance.RemoveSkin(p);
+                PlayersManager.instance.AddSkin(p, GetRandomSkin());
+            }
+        }
+    }
+
+    public void ToggleStartOverlay(){
+        if(startCanvas.activeSelf == true){
+            startCanvas.SetActive(false);
+        }else{
+            startCanvas.SetActive(true);
         }
     }
 
@@ -133,6 +185,10 @@ public class CharacterSelectionManager : MonoBehaviour
     void LoadMinigameSelection(){
         soundManager.PlaySound("Menu_Validate");
         BlackFade.instance.FadeOutToScene("MinigamesScreen");
+    }
+    public void Return(){
+        soundManager.PlaySound("Menu_Return");
+        BlackFade.instance.FadeOutToScene("TitleScreen");
     }
 
 

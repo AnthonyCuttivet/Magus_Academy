@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Cancel",
+                    "name": "Back",
                     "type": "Button",
                     "id": "02945c5d-6b8e-4ee9-882b-26687e02688d",
                     "expectedControlType": "",
@@ -76,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cancel",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

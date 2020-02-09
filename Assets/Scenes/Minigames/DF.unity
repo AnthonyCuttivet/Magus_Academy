@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4720,8 +4720,8 @@ MonoBehaviour:
   scoreTMP: {fileID: 1666204611}
   comboTMP: {fileID: 1672403103}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
-  vibrationForce: 0.75
-  vibrationTime: 0.5
+  vibrationForce: 0.5
+  vibrationTime: 0.1
 --- !u!23 &1160651132
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5866,8 +5866,8 @@ MonoBehaviour:
   scoreTMP: {fileID: 715747847}
   comboTMP: {fileID: 1884486834}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
-  vibrationForce: 0.75
-  vibrationTime: 0.5
+  vibrationForce: 0.5
+  vibrationTime: 0.1
 --- !u!23 &1415324429
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6801,8 +6801,8 @@ MonoBehaviour:
   scoreTMP: {fileID: 406462730}
   comboTMP: {fileID: 527777515}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
-  vibrationForce: 0.75
-  vibrationTime: 0.5
+  vibrationForce: 0.5
+  vibrationTime: 0.1
 --- !u!1 &1554783459
 GameObject:
   m_ObjectHideFlags: 0
@@ -7224,7 +7224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 7788436005604122844, guid: 6cea2300aae63694ab7763fab05b4546, type: 3}
-  spawnSpeed: 0.8
+  spawnSpeed: 1
   spawnHeight: 42
   spawnRange: 5
   layerMask:
@@ -10027,8 +10027,8 @@ MonoBehaviour:
   scoreTMP: {fileID: 1362789917}
   comboTMP: {fileID: 242689995}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
-  vibrationForce: 0.75
-  vibrationTime: 0.5
+  vibrationForce: 0.5
+  vibrationTime: 0.1
 --- !u!23 &1947665590
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10082,7 +10082,7 @@ PrefabInstance:
     - target: {fileID: 7225640402861033576, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225640402861033581, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}

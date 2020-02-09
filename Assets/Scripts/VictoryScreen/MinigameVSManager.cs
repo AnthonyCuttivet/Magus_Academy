@@ -32,7 +32,7 @@ public class MinigameVSManager : MonoBehaviour
             Dictionary<PlayersManager.Minigames,Dictionary<int,int>> globalRanking = PlayersManager.instance.globalRanking;
 
             //Set BG
-/*             switch(PlayersManager.instance.currentMinigame.ToString()){
+            switch(PlayersManager.instance.currentMinigame.ToString()){
                 case "Deceived" : 
                     BG.GetComponent<Image>().sprite = backgrounds[0];
                 break;
@@ -43,7 +43,7 @@ public class MinigameVSManager : MonoBehaviour
                     BG.GetComponent<Image>().sprite = backgrounds[2];
                 break;
             }
-            BG.GetComponent<Image>().enabled = true; */
+            BG.GetComponent<Image>().enabled = true;
 
             //Reading globalRanking and Filling table
             int currentLine = 0;

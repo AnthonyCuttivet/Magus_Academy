@@ -35,7 +35,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Cancel"",
+                    ""name"": ""Back"",
                     ""type"": ""Button"",
                     ""id"": ""02945c5d-6b8e-4ee9-882b-26687e02688d"",
                     ""expectedControlType"": """",
@@ -89,7 +89,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -136,7 +136,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         m_TipsScreen = asset.FindActionMap("TipsScreen", throwIfNotFound: true);
         m_TipsScreen_Ready = m_TipsScreen.FindAction("Ready", throwIfNotFound: true);
         m_TipsScreen_Validate = m_TipsScreen.FindAction("Validate", throwIfNotFound: true);
-        m_TipsScreen_Cancel = m_TipsScreen.FindAction("Cancel", throwIfNotFound: true);
+        m_TipsScreen_Back = m_TipsScreen.FindAction("Back", throwIfNotFound: true);
         m_TipsScreen_Move = m_TipsScreen.FindAction("Move", throwIfNotFound: true);
         m_TipsScreen_Skip = m_TipsScreen.FindAction("Skip", throwIfNotFound: true);
     }
@@ -190,7 +190,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
     private ITipsScreenActions m_TipsScreenActionsCallbackInterface;
     private readonly InputAction m_TipsScreen_Ready;
     private readonly InputAction m_TipsScreen_Validate;
-    private readonly InputAction m_TipsScreen_Cancel;
+    private readonly InputAction m_TipsScreen_Back;
     private readonly InputAction m_TipsScreen_Move;
     private readonly InputAction m_TipsScreen_Skip;
     public struct TipsScreenActions
@@ -199,7 +199,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         public TipsScreenActions(@CharacterSelection wrapper) { m_Wrapper = wrapper; }
         public InputAction @Ready => m_Wrapper.m_TipsScreen_Ready;
         public InputAction @Validate => m_Wrapper.m_TipsScreen_Validate;
-        public InputAction @Cancel => m_Wrapper.m_TipsScreen_Cancel;
+        public InputAction @Back => m_Wrapper.m_TipsScreen_Back;
         public InputAction @Move => m_Wrapper.m_TipsScreen_Move;
         public InputAction @Skip => m_Wrapper.m_TipsScreen_Skip;
         public InputActionMap Get() { return m_Wrapper.m_TipsScreen; }
@@ -217,9 +217,9 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Validate.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnValidate;
                 @Validate.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnValidate;
                 @Validate.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnValidate;
-                @Cancel.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnCancel;
+                @Back.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnBack;
                 @Move.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnMove;
@@ -236,9 +236,9 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Validate.started += instance.OnValidate;
                 @Validate.performed += instance.OnValidate;
                 @Validate.canceled += instance.OnValidate;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -262,7 +262,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
     {
         void OnReady(InputAction.CallbackContext context);
         void OnValidate(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
     }

@@ -31,16 +31,28 @@ public class PlayerCUI : MonoBehaviour
             ToggleReady();
             CommandsUIManager.instance.readyCount++;
             soundManager.PlaySound("Menu_Validate");
-        }
-    }
-
-    void OnCancel(){
-        if(ready){
+        }else{
             ToggleReady();
             CommandsUIManager.instance.readyCount--;
             soundManager.PlaySound("Menu_Return");
         }
     }
+
+    void OnBack(){
+        if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Single){
+            soundManager.PlaySound("Menu_Return");
+            CommandsUIManager.instance.StopMainTheme();
+            BlackFade.instance.FadeOutToScene("MinigamesScreen");
+        }
+    }
+
+/*     void OnCancel(){
+        if(ready){
+            ToggleReady();
+            CommandsUIManager.instance.readyCount--;
+            soundManager.PlaySound("Menu_Return");
+        }
+    } */
 
     void OnStart(){
         if(CommandsUIManager.instance.readyCount == 4){

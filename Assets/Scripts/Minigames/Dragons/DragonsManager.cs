@@ -144,7 +144,16 @@ public class DragonsManager : MonoBehaviour
         EndMusic();
         PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = DragonsManager.instance.dragonsScoreboard;
         PlayersManager.instance.UpdateTotals();
-        BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+
+        //Switch to next scene
+        switch(PlayersManager.instance.gamemode){
+            case PlayersManager.Gamemodes.Single :
+                BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+            break;
+            case PlayersManager.Gamemodes.Tournament :
+                PlayersManager.instance.T_ShowScoreboardScene();
+            break;
+        }
     }
 
     void ToggleFishableZone(bool activated){

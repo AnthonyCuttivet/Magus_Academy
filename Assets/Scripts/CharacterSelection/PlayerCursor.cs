@@ -92,20 +92,36 @@ public class PlayerCursor : MonoBehaviour
                 GetComponent<Collider>().isTrigger = true;
                 soundManager.PlaySound("Menu_Validate");
             }
-        }
-    }
-
-    void OnCancel(){
-        if(hasSelected){
+        }else if(hasSelected){
             hasSelected = false;
             PlayersManager.instance.RemoveSkin(currentPlayer);
             ChangeBannerAlpha(.4f);
             GetComponent<Collider>().isTrigger = false;
             soundManager.PlaySound("Menu_Return");
         }
+        
+    }
+
+    void OnBack(){
+        PlayersManager.instance.ResetPlayers();
+        CharacterSelectionManager.instance.Return();
+/*         if(hasSelected){
+            hasSelected = false;
+            PlayersManager.instance.RemoveSkin(currentPlayer);
+            ChangeBannerAlpha(.4f);
+            GetComponent<Collider>().isTrigger = false;
+            soundManager.PlaySound("Menu_Return");
+        } */
+    }
+
+    void OnReady(){
+        if(CharacterSelectionManager.instance.cSState == CharacterSelectionManager.CSStates.ALL_SELECTED){
+            CharacterSelectionManager.instance.ready = true;
+        }
     }
 
     void OnSkip(){
+        CharacterSelectionManager.instance.selectedCount = 4;
         CharacterSelectionManager.instance.ready = true;
     }
 
