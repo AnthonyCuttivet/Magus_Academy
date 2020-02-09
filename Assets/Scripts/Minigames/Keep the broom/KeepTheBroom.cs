@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
+using System.Linq;
 
 public class KeepTheBroom : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class KeepTheBroom : MonoBehaviour
     public BarFiller scoreP1, scoreP2,scoreP3,scoreP4;
     public InputActionAsset actions;
     public static KeepTheBroom instance;
+    public Material[] skinsDatabase;
+    public List<Material> skinToUse = new List<Material>();
+    public List<Player> playersInfos = new List<Player>();
+
+
 
     void Awake(){
         if(instance == null && instance != this){
@@ -31,17 +37,12 @@ public class KeepTheBroom : MonoBehaviour
     void Start()
     {
         broomCollider = broom.GetComponent<Collider2D>();
-        IgnoreCollisionsPlayers();
-        foreach(PlayerKTB player in players){
-            PlayerInput playerInput = player.gameObject.AddComponent<PlayerInput>();
-            playerInput.actions = Instantiate(actions);
-            player.playerInput = playerInput;
-            playerInput.actions.Enable();
-            playerInput.defaultActionMap = "Alive";
-            playerInput.SwitchCurrentActionMap("Dead");
-            playerInput.currentActionMap.Disable();
-            playerInput.SwitchCurrentActionMap("Alive");
+        playersInfos = PlayersManager.instance.playersList;
+        foreach(Player player in playersInfos){
+            skinToUse.Add(skinsDatabase[player.Skin]);
         }
+        IgnoreCollisionsPlayers();
+        AssignControllerToPlayer();
     }
 
     void Update(){
@@ -67,7 +68,7 @@ public class KeepTheBroom : MonoBehaviour
                 broomHolder.holdingBroom = true; 
                 broomHolder.airJumpCount += 1;
                 broomHolder.maxAirJumpCount +=1;
-                broom.parent = playersHand[player.playerNumber-1];
+                broom.parent = playersHand[player.playerNumber];
                 broom.localPosition = broomHoldingPosition;
                
                 broom.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -131,6 +132,28 @@ public class KeepTheBroom : MonoBehaviour
     }
     public void SetBroomOrientation(){
         broom.localRotation = new Quaternion(broomHoldingOrientation.x,broomHoldingOrientation.y,broomHoldingOrientation.z,broom.rotation.w);
+    }
+    void AssignControllerToPlayer(){
+        Color[] colors = GameObject.Find("PlayersManager").GetComponent<DebugIcons>().colors;
+        foreach(Player player in playersInfos){
+            GameObject currentPlayerGO = players.Single(x => x.playerNumber == player.Id).gameObject;
+            ApplySkin(currentPlayerGO,skinToUse[player.Id]);
+            PlayerInput playerInput = currentPlayerGO.AddComponent<PlayerInput>();
+            playerInput.actions = Instantiate(actions);
+            playerInput.actions.Enable();
+            playerInput.SwitchCurrentActionMap("Dead");
+            playerInput.currentActionMap.Disable();
+            playerInput.SwitchCurrentActionMap("Alive");
+            playerInput.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(playersInfos[player.Id].device,playerInput.user);
+        }   
+    }
+    public void ApplySkin(GameObject obj, Material skin){
+        foreach(Transform g in obj.transform.Find("Chibi_Mesh")){
+            if(g.name != "Chibi_Character"){
+                g.GetComponent<SkinnedMeshRenderer>().material = skin;
+            }
+        }
     }
 }
 
