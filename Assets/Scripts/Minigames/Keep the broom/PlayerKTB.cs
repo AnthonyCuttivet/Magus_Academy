@@ -31,7 +31,7 @@ public class PlayerKTB : KTB_Player
         else{
             animator.SetBool("isRunning",false);
         }
-        if(!collisions.onGround && !collisions.onWall){
+        if(!collisions.onGround && !collisions.onWall || collisions.passingTroughPlatform){
             animator.SetBool("isJumping",true);
         }
         else{
@@ -43,12 +43,12 @@ public class PlayerKTB : KTB_Player
         else{
             animator.SetBool("onGround",false);
         }
-        if(collisions.onGround || !collisions.onWall){
+        /* if(collisions.onGround || !collisions.onWall){
             animator.SetBool("isWallSliding",false);
         }
         else if((collisions.onLeftWall ^ collisions.onRightWall) && !collisions.passingTroughPlatform){
             animator.SetBool("isWallSliding",true);
-        }
+        } */
         if(knockBacked){
             animator.SetBool("Knockbacked",true);
         }
@@ -60,6 +60,14 @@ public class PlayerKTB : KTB_Player
         }
         else{
             animator.SetBool("holdingBroom",false);
+        }
+        if(collisions.onGround && !collisions.passingTroughPlatform){
+            if(!feetSmoke.activeInHierarchy){
+                feetSmoke.GetComponent<ParticleSystem>().Stop();
+            }
+        }
+        else{
+            feetSmoke.GetComponent<ParticleSystem>().Play();
         }
     }
     public void SetBroomOrientation(){

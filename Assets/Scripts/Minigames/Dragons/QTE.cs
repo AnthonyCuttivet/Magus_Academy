@@ -35,7 +35,8 @@ public class QTE : MonoBehaviour
     [Space]
     [Header("Controller Vibration")]
 
-    public float vibrationForce = 0.1f;
+    public float LvibrationForce = 0.1f;
+    public float RvibrationForce = 1;
     public float vibrationTime = .2f;
 
     // Start is called before the first frame update
@@ -102,7 +103,7 @@ public class QTE : MonoBehaviour
     }
 
     public void VibrateController(){
-        Gamepad.current.SetMotorSpeeds(vibrationForce,vibrationForce);
+        Gamepad.current.SetMotorSpeeds(LvibrationForce,RvibrationForce);
         StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
     }
 

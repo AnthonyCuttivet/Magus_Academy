@@ -23,6 +23,13 @@ public class KeepTheBroom : MonoBehaviour
     public Material[] skinsDatabase;
     public List<Material> skinToUse = new List<Material>();
     public List<Player> playersInfos = new List<Player>();
+    public enum KTB_States{
+        BEFORE_GAME,
+        IN_GAME,
+        AFTER_GAME,
+    }
+    public KTB_States KTB_State = KTB_States.BEFORE_GAME;
+    public GameObject countDown;
 
 
 
@@ -46,18 +53,34 @@ public class KeepTheBroom : MonoBehaviour
     }
 
     void Update(){
-        if(broomIsHold){
-            if(broomHolder.dead){
-                DropBroom(broomHolder);
-            }
-            else{
-                IncreaseHoldingTime(); 
-                UpdateScoreText();
-            }
-        }
-        else{
-            PickUpBroomFromGround();
-        }
+        switch(KTB_State){
+            case KTB_States.BEFORE_GAME :
+                switch(countDown.GetComponent<Countdown>().cdState){
+                    case Countdown.COUNTDOWN_STATES.BEFORE_CD :
+                        countDown.GetComponent<Countdown>().cdState = Countdown.COUNTDOWN_STATES.IN_CD;
+                    break;
+                    case Countdown.COUNTDOWN_STATES.AFTER_CD :
+                        //StartMusic();
+                        KTB_State = KTB_States.IN_GAME;
+                    break;
+                }
+            
+            break;
+            case KTB_States.IN_GAME :
+                if(broomIsHold){
+                    if(broomHolder.dead){
+                        DropBroom(broomHolder);
+                    }
+                    else{
+                        IncreaseHoldingTime(); 
+                        UpdateScoreText();
+                    }
+                }
+                else{
+                    PickUpBroomFromGround();
+                }
+            break;
+    }
     }
 
     void PickUpBroomFromGround(){
@@ -145,6 +168,7 @@ public class KeepTheBroom : MonoBehaviour
             playerInput.currentActionMap.Disable();
             playerInput.SwitchCurrentActionMap("Alive");
             playerInput.user.UnpairDevices();
+            playerInput.GetComponent<KTB_Player>().playerInput = playerInput;
             InputUser.PerformPairingWithDevice(playersInfos[player.Id].device,playerInput.user);
         }   
     }

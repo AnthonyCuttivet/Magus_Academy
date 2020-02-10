@@ -37,6 +37,7 @@ public class KTB_Player : MonoBehaviour
     public float wallJumpedMinimumTime;
     float wallJumpedMinimumCurrentTime;
     public float knockBackTime;
+    public GameObject feetSmoke;
 
 
     //Bool
@@ -75,7 +76,7 @@ public class KTB_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!dead){
+        if(!dead && KeepTheBroom.instance.KTB_State == KeepTheBroom.KTB_States.IN_GAME){
             
             //WallJumpedUpdate();
             KnockBackedUpdate();
@@ -334,18 +335,19 @@ public class KTB_Player : MonoBehaviour
         else{
             animator.SetBool("onGround",false);
         }
-        if(collisions.onGround || !collisions.onWall){
+        /* if(collisions.onGround || !collisions.onWall){
             animator.SetBool("isWallSliding",false);
         }
         else if((collisions.onLeftWall ^ collisions.onRightWall) && !collisions.passingTroughPlatform){
             animator.SetBool("isWallSliding",true);
-        }
+        } */
         if(knockBacked){
             animator.SetBool("Knockbacked",true);
         }
         else{
             animator.SetBool("Knockbacked",false);
         }
+        
     }
     public void JumpLaunched(){
         isJumping = false;
