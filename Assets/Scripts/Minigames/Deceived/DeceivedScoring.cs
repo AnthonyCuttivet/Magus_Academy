@@ -22,7 +22,7 @@ public class DeceivedScoring : MonoBehaviour
     }
 
     public void AddPointsPerSecond(){
-        if(alive && CharactersSpawner.instance.gameStart){
+        if(alive && Countdown.instance.countDownFinished){
             score += PlayersSettings.instance.pointsPerSecond;
         }
     }

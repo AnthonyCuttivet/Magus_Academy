@@ -76,31 +76,25 @@ public class MinigameVSManager : MonoBehaviour
                 }
             }
             winner.transform.Find("Banner").GetComponent<Image>().sprite = GetComponent<Magesnames>().banners[winnerSkinID];
-        
-
-/*             foreach(KeyValuePair<PlayersManager.Minigames,Dictionary<Player,int>> gr in PlayersManager.instance.globalRanking){
-                foreach (KeyValuePair<Player,int> ranking in gr){
-                    
-                }
-            }
-
-
-            foreach(KeyValuePair<Player,int> ranking in PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame]){
-                GameObject currentLine = lines.transform.GetChild(lineNumber).gameObject;
-                string completeName = currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text + (ranking.Key.Id+1);
-                currentLine.transform.Find("PID").GetComponent<TextMeshProUGUI>().text = "<color=#" + ColorUtility.ToHtmlStringRGB(GetComponent<Magesnames>().playerColors[ranking.Key.Id]) + ">" + completeName + "</color>";
-                currentLine.transform.Find("Score").GetComponent<TextMeshProUGUI>().text = ranking.Value + " pts";
-                lineNumber++;
-            } */
+    
             generated = true;
         }
     }
 
-/*     public void OrderScoreboard(Dictionary<Player, int> scoreBoard){
-        Dictionary<Player, int> scToReturn = new Dictionary<Player, int>();
-        foreach (KeyValuePair<Player,int> line in scoreBoard.OrderByDescending(x => x.Value)){
-            scToReturn.Add(line.Key, line.Value);
+    void OnA(){
+        switch(PlayersManager.instance.currentMinigame){
+            case PlayersManager.Minigames.Deceived :
+                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.DF;
+                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.DF;
+            break;
+            case PlayersManager.Minigames.DF :
+                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.KTB;
+                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.KTB;
+            break;
+            case PlayersManager.Minigames.KTB :
+                BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+            break;
         }
-        PlayersManager.instance.globalRanking[PlayersManager.instance.currentMinigame] = scToReturn;
-    } */
+        BlackFade.instance.FadeOutToScene("CommandsScreen");
+    }
 }

@@ -41,8 +41,7 @@ public class CharacterSelectionManager : MonoBehaviour
 
 
     //Security flags
-    private bool selectedCountFlag = false;
-    private bool readyFlag = false;
+    public bool startPressed = false;
 
     void Awake(){
         if(instance == null){

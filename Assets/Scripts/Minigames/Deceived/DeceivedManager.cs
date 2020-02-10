@@ -51,6 +51,7 @@ public class DeceivedManager : MonoBehaviour
         StartCoroutine(StartMusic());
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
+        Countdown.instance.cdState = Countdown.COUNTDOWN_STATES.IN_CD;
     }
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
@@ -63,7 +64,7 @@ public class DeceivedManager : MonoBehaviour
             StartCoroutine(EndGameZoom());
             
         }
-        else if(CountDown.instance.countDownfinished){
+        else if(Countdown.instance.countDownFinished){
             Despawner();
             EndGameTransition();
         }
@@ -96,7 +97,7 @@ public class DeceivedManager : MonoBehaviour
         //Destroy(randomPnj);
     }
     IEnumerator StartMusic(){
-        while(!CountDown.instance.countDownfinished){
+        while(!Countdown.instance.countDownFinished){
             yield return null;
         }
         soundManager.PlayMusic("Deceived_MainTheme");

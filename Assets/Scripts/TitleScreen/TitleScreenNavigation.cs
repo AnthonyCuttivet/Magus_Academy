@@ -56,15 +56,15 @@ public class TitleScreenNavigation : MonoBehaviour
                 PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
                 BlackFade.instance.FadeOutToScene("CharacterSelection");
             break;
-            case "Quit" : 
-                QuitGame();
+            case "Credits" : 
+                ToCredits();
             break;
         }
     }
 
-    public void QuitGame(){
+    public void ToCredits(){
         soundManager.PlaySound("Menu_Validate");
-        Application.Quit();
+        BlackFade.instance.FadeOutToScene("Credits");
     }
 
     public void BackToSplashScreen(){

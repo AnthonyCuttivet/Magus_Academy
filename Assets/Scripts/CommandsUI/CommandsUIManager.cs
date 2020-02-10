@@ -93,7 +93,7 @@ public class CommandsUIManager : MonoBehaviour
             
                 imgInputs.GetComponent<Image>().sprite = inputsSprites[1];
             break;
-            case "KTB " : 
+            case "KTB" : 
                 s_thumbnails.transform.GetChild(0).GetComponent<Image>().sprite = thumbnails[6];
                 s_thumbnails.transform.GetChild(1).GetComponent<Image>().sprite = thumbnails[7];
                 s_thumbnails.transform.GetChild(2).GetComponent<Image>().sprite = thumbnails[8];

@@ -20,7 +20,7 @@ public class Controls : MonoBehaviour
             
     }
     public virtual void Update(){
-        gameStarted = CountDown.instance.countDownfinished;
+        gameStarted = Countdown.instance.countDownFinished;
     }
 
     void Move(Vector2 _velocity){

@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 180373560}
   - component: {fileID: 180373559}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 523547870}
-        m_MethodName: QuitGame
+        m_MethodName: ToCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -516,8 +516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersList: []
-  nextMinigame: 1
-  currentMinigame: 1
+  nextMinigame: 0
+  currentMinigame: 0
   gamemode: 0
 --- !u!4 &353248349
 Transform:

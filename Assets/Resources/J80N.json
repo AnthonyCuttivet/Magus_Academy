@@ -7,13 +7,13 @@
         },
         "DF" : {
             "TITLE" : "DRAGON'S FISHING",
-            "DESC" : "Les joueurs doivent pêcher un maximum de dragon en réalisant des successions de commandes.",
+            "DESC" : "Les joueurs doivent pêcher un maximum de dragon en réalisant des sorts dictés par des commandes.",
             "VCOND" : "Avoir le plus de points pour gagner la partie."
         },
         "KTB" : {
             "TITLE" : "KEEP THE BROOM",
-            "DESC" : "Les joueurs doivent garder le balai le plus longtemps possible. Chaque 30 secondes, le joueur qui a gardé le balai le moins longtemps est éliminé.",
-            "VCOND" : "Être le dernier en possession du balai."
+            "DESC" : "Les joueurs se battent pour la possession du balai. Chaque seconde passée avec le balai rapporte des points au porteur, tandis que les autres le poursuivent.",
+            "VCOND" : "Être le premier a garder le balai le temps imparti."
         }
     }
 }

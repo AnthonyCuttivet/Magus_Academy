@@ -28,6 +28,14 @@
                     "expectedControlType": "",
                     "processors": "StickDeadzone(min=0.2)",
                     "interactions": ""
+                },
+                {
+                    "name": "FastForward",
+                    "type": "Button",
+                    "id": "fa993de1-9361-4a0d-8e53-a57c85181179",
+                    "expectedControlType": "",
+                    "processors": "StickDeadzone(min=0.2)",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -72,6 +80,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb5cce4d-b4db-44cc-8a35-4c25a373e617",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FastForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

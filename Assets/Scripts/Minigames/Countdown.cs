@@ -16,6 +16,7 @@ public class Countdown : MonoBehaviour
     public COUNTDOWN_STATES cdState;
 
     public float cdTime = 3f;
+    public bool countDownFinished = false;
 
     void Awake(){
         if(instance == null){
@@ -42,7 +43,7 @@ public class Countdown : MonoBehaviour
                 UpdateCountdown();
             break;
             case COUNTDOWN_STATES.AFTER_CD :
-            
+                countDownFinished = true;
             break;
         }
     }
