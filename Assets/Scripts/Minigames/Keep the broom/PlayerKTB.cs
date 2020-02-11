@@ -61,13 +61,15 @@ public class PlayerKTB : KTB_Player
         else{
             animator.SetBool("holdingBroom",false);
         }
+        ParticleSystem.EmissionModule PSsmoke = feetSmoke.GetComponent<ParticleSystem>().emission;
         if(collisions.onGround && !collisions.passingTroughPlatform){
-            if(!feetSmoke.activeInHierarchy){
-                feetSmoke.GetComponent<ParticleSystem>().Stop();
+            
+            if(!PSsmoke.enabled){
+                PSsmoke.enabled = true;
             }
         }
         else{
-            feetSmoke.GetComponent<ParticleSystem>().Play();
+            PSsmoke.enabled = false;
         }
     }
     public void SetBroomOrientation(){

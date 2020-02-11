@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using System.Linq;
+using TMPro;
+using DG.Tweening;
 
 public class KeepTheBroom : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class KeepTheBroom : MonoBehaviour
     public float pickUpDistance;
     bool broomIsHold;
     public Vector3 broomHoldingPosition;
+    public float targetHoldingTime;
     public Vector3 broomHoldingOrientation;
     public Vector2 broomSpawnPosition;
     public BarFiller scoreP1, scoreP2,scoreP3,scoreP4;
@@ -29,7 +32,11 @@ public class KeepTheBroom : MonoBehaviour
         AFTER_GAME,
     }
     public KTB_States KTB_State = KTB_States.BEFORE_GAME;
+    bool endGameReveal;
     public GameObject countDown;
+    public TextMeshProUGUI winText;
+    Tween broomMoveYLoop;
+    public int maximumScore;
 
 
 
@@ -44,12 +51,15 @@ public class KeepTheBroom : MonoBehaviour
     void Start()
     {
         broomCollider = broom.GetComponent<Collider2D>();
-        playersInfos = PlayersManager.instance.playersList;
+        /* playersInfos = PlayersManager.instance.playersList;
         foreach(Player player in playersInfos){
             skinToUse.Add(skinsDatabase[player.Skin]);
-        }
+        } */
         IgnoreCollisionsPlayers();
-        AssignControllerToPlayer();
+        //AssignControllerToPlayer();
+        SoloSceneAssign();
+        SetTimeScoreText();
+        broomMoveYLoop = StartBroomLevitation();
     }
 
     void Update(){
@@ -74,18 +84,29 @@ public class KeepTheBroom : MonoBehaviour
                     else{
                         IncreaseHoldingTime(); 
                         UpdateScoreText();
+                        if(broomHolder.broomHoldingTime >= targetHoldingTime){
+                            KTB_State = KTB_States.AFTER_GAME;
+                        }
                     }
                 }
                 else{
                     PickUpBroomFromGround();
                 }
             break;
+            case KTB_States.AFTER_GAME :
+                if(!endGameReveal){
+                    endGameReveal = true;
+                    StartCoroutine(FadeWinText());
+                    SetFinalScore();
+                }
+            break;
     }
     }
 
-    void PickUpBroomFromGround(){
+    void PickUpBroomFromGround(){ 
         foreach(PlayerKTB player in players){
             if(Vector2.Distance(player.transform.position,broom.position) < pickUpDistance && !broomIsHold && !player.knockBacked && !player.dead){
+                broomMoveYLoop.Kill();
                 broomIsHold = true;
                 broomHolder = player;  
                 broomHolder.holdingBroom = true; 
@@ -111,9 +132,11 @@ public class KeepTheBroom : MonoBehaviour
         broom.GetComponent<Rigidbody2D>().isKinematic = false;
         broomHolder = null;
         broomIsHold = false;
+        broomMoveYLoop = StartBroomLevitation();
     }
 
     public void StealBroom(PlayerKTB stealer, PlayerKTB target){
+        broomMoveYLoop.Kill();
         target.airJumpCount -= 1;
         target.maxAirJumpCount -=1;
         target.holdingBroom = false;
@@ -130,9 +153,16 @@ public class KeepTheBroom : MonoBehaviour
         }
         broom.transform.position = broomSpawnPosition;
     }
+    Tween StartBroomLevitation(){
+        Tween tmpTween = broom.DOMoveY(broom.position.y + .5f,1f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+        return tmpTween;
+    }
     void IncreaseHoldingTime(){
         if(broomIsHold){
             broomHolder.broomHoldingTime += Time.deltaTime;
+            if(broomHolder.broomHoldingTime > targetHoldingTime){
+                broomHolder.broomHoldingTime = targetHoldingTime;
+            }
         }      
     }
 
@@ -152,6 +182,12 @@ public class KeepTheBroom : MonoBehaviour
         scoreP2.ChangeFillAmount(players[1].broomHoldingTime);
         scoreP3.ChangeFillAmount(players[2].broomHoldingTime);
         scoreP4.ChangeFillAmount(players[3].broomHoldingTime);
+    }
+    void SetTimeScoreText(){
+        scoreP1.maxAmount = targetHoldingTime;
+        scoreP2.maxAmount = targetHoldingTime;
+        scoreP3.maxAmount = targetHoldingTime;
+        scoreP4.maxAmount = targetHoldingTime;
     }
     public void SetBroomOrientation(){
         broom.localRotation = new Quaternion(broomHoldingOrientation.x,broomHoldingOrientation.y,broomHoldingOrientation.z,broom.rotation.w);
@@ -179,6 +215,35 @@ public class KeepTheBroom : MonoBehaviour
             }
         }
     }
+    IEnumerator FadeWinText(){
+        winText.text = "VICTORY";
+        //winText.text = skinsDatabase[playersInfos[broomHolder.playerNumber].Skin].name;
+        winText.transform.DOScale(1,1f).SetEase(Ease.OutBounce);
+        yield return winText.DOFade(1,1).SetEase(Ease.InOutSine).WaitForCompletion();
+        winText.transform.DOScale(1.1f,.8f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+    }
+    void SetFinalScore(){
+        Dictionary<int,int> KTBscore = new Dictionary<int,int>();
+        KTBscore.Add(0,0);
+        KTBscore.Add(1,0);
+        KTBscore.Add(2,0);
+        KTBscore.Add(3,0);
+        foreach(PlayerKTB player in players){
+            KTBscore[player.playerNumber] =(int) (maximumScore * (player.broomHoldingTime/targetHoldingTime));
+        }
+        PlayersManager.instance.globalRanking[PlayersManager.Minigames.KTB] = KTBscore;
+        PlayersManager.instance.UpdateTotals(PlayersManager.Minigames.KTB);
+    }
+    void SoloSceneAssign(){
+        PlayerInput playerInput = players[0].gameObject.AddComponent<PlayerInput>();
+        playerInput.actions = Instantiate(actions);
+        playerInput.actions.Enable();
+        playerInput.SwitchCurrentActionMap("Dead");
+        playerInput.currentActionMap.Disable();
+        playerInput.SwitchCurrentActionMap("Alive");
+        playerInput.GetComponent<KTB_Player>().playerInput = playerInput;
+    }
+
 }
 
 

@@ -76,7 +76,7 @@ public class KTB_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!dead && KeepTheBroom.instance.KTB_State == KeepTheBroom.KTB_States.IN_GAME){
+        if(!dead && KeepTheBroom.instance.KTB_State != KeepTheBroom.KTB_States.BEFORE_GAME){
             
             //WallJumpedUpdate();
             KnockBackedUpdate();
@@ -94,10 +94,10 @@ public class KTB_Player : MonoBehaviour
             collid.transform.position = newPosition;
             collid.size = new Vector2(collid.size.x,topHeadTransform.position.y - Mathf.Min(RfootTransform.position.y,LfootTransform.position.y)); 
             collisions.CheckCollisions();
-        }
+        }        
     }
     void FixedUpdate(){
-        if(!dead){
+        if(!dead && KeepTheBroom.instance.KTB_State != KeepTheBroom.KTB_States.BEFORE_GAME){
             Move();
             BetterJump();
         }
@@ -244,7 +244,7 @@ public class KTB_Player : MonoBehaviour
         if(collisions.underRoof && (rb.velocity.y > 0 || inputIncoming) && !knockBacked){
             JumpingTroughPlatform();
         }
-        if(collisions.onGround && directionalInput.y < 0){
+        if(collisions.onGround && directionalInput.y < 0 && Mathf.Abs(directionalInput.x) < .3f ){
             DropTroughPlatform();
         }
         List<Collider2D> tempIgnoredList = new List<Collider2D>(collisions.ignoredColliders);
@@ -313,7 +313,13 @@ public class KTB_Player : MonoBehaviour
         velocity = Vector3.zero;
         rb.velocity = Vector3.zero;
         collid.enabled = false;
-        transform.Find("Chibi_Mesh").gameObject.SetActive(false);
+        foreach(Transform transform in transform.Find("Chibi_Mesh")){
+            if(transform.name != "Chibi_Character"){
+                transform.gameObject.SetActive(false);
+            }
+        }
+        //transform.Find("Chibi_Mesh").gameObject.SetActive(false);
+        feetSmoke.SetActive(false);
         transform.position = Vector3.zero;
     }
     public virtual void SetAnimation(){

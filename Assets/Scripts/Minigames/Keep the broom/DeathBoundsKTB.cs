@@ -10,9 +10,9 @@ public class DeathBoundsKTB : DeathBounds
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<KeepTheBroom>();
     }
     public override void OnTriggerExit2D(Collider2D collider){
-        base.OnTriggerExit2D(collider);
         if(collider.CompareTag("Broom")){
             gameManager.BroomRespawn();
         }
+        base.OnTriggerExit2D(collider);
     }
 }
