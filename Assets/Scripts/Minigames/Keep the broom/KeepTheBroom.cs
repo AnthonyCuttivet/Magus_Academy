@@ -51,13 +51,13 @@ public class KeepTheBroom : MonoBehaviour
     void Start()
     {
         broomCollider = broom.GetComponent<Collider2D>();
-        /* playersInfos = PlayersManager.instance.playersList;
+        playersInfos = PlayersManager.instance.playersList;
         foreach(Player player in playersInfos){
             skinToUse.Add(skinsDatabase[player.Skin]);
-        } */
+        }
         IgnoreCollisionsPlayers();
-        //AssignControllerToPlayer();
-        SoloSceneAssign();
+        AssignControllerToPlayer();
+        //SoloSceneAssign();
         SetTimeScoreText();
         broomMoveYLoop = StartBroomLevitation();
     }
