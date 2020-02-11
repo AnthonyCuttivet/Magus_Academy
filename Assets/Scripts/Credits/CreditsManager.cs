@@ -22,7 +22,6 @@ public class CreditsManager : MonoBehaviour
     void Update(){
         switch(creditsState){
             case CREDITSSTATES.SCROLLING : 
-            print(creditsTexts.transform.localPosition.y);
                 if(creditsTexts.transform.localPosition.y >= 3800){
                     creditsState = CREDITSSTATES.TFP;
                     scrollSpeed = 0;

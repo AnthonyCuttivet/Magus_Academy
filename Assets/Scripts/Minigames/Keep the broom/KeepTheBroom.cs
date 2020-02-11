@@ -98,6 +98,7 @@ public class KeepTheBroom : MonoBehaviour
                     endGameReveal = true;
                     StartCoroutine(FadeWinText());
                     SetFinalScore();
+                    ToNextScreen();
                 }
             break;
     }
@@ -215,6 +216,20 @@ public class KeepTheBroom : MonoBehaviour
             }
         }
     }
+
+    public void ToNextScreen(){
+        //Switch to next scene
+        switch(PlayersManager.instance.gamemode){
+            case PlayersManager.Gamemodes.Single :
+                BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+            break;
+            case PlayersManager.Gamemodes.Tournament :
+                PlayersManager.instance.T_ShowScoreboardScene();
+            break;
+        }
+    }
+
+
     IEnumerator FadeWinText(){
         winText.text = "VICTORY";
         //winText.text = skinsDatabase[playersInfos[broomHolder.playerNumber].Skin].name;

@@ -166,6 +166,7 @@ public class PlayerControls : Controls
             shotOriginPosition = shotSpawnPoint.position;
             shotOriginRotation = shotSpawnPoint.rotation;
             castingSpell = true;
+            DeceivedManager.instance.FadeUISpell(DeceivedManager.Spells.Shot, infos.Id);
         }
     }
     public void SpawnShot(){
@@ -184,6 +185,7 @@ public class PlayerControls : Controls
             Instantiate(CharactersSpawner.instance.forceField, gameObject.transform.localPosition, gameObject.transform.rotation);
             invisibilityField = false;
             soundManager.PlaySound("Deceived_Shield");
+            DeceivedManager.instance.FadeUISpell(DeceivedManager.Spells.Invisibility, infos.Id);
         }
     }
 
@@ -209,6 +211,10 @@ public class PlayerControls : Controls
     }
 
     public override void Kill(int killer){
+
+        //Fade UI
+        DeceivedManager.instance.KillUIPlayer(infos.Id);
+
         //Save score
         alive = false;
         velocity = Vector3.zero;

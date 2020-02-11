@@ -67,18 +67,22 @@ public class MinigameVSManager : MonoBehaviour
                 currentLine++;
             }
 
-            //Set winner skin and banner
+            SetWinnerSkinAndBanner();
 
-            int winnerSkinID = PlayersManager.instance.globalRanking[PlayersManager.Minigames.LB_TOTAL].Keys.First()+1;
-            foreach(Transform t in winner.transform.Find("CharacterMenu")){
-                if(t.name != "Chibi_Character"){
-                    t.GetComponent<SkinnedMeshRenderer>().material = GetComponent<Magesnames>().skins[winnerSkinID];
-                }
-            }
-            winner.transform.Find("Banner").GetComponent<Image>().sprite = GetComponent<Magesnames>().banners[winnerSkinID];
-    
             generated = true;
         }
+    }
+
+    public void SetWinnerSkinAndBanner(){
+
+        int winnerSkinID = PlayersManager.instance.playersList[PlayersManager.instance.globalRanking[PlayersManager.Minigames.LB_TOTAL].Aggregate((l, r) => l.Value > r.Value ? l : r).Key].Skin;
+
+        foreach(Transform t in winner.transform.Find("CharacterMenu")){
+            if(t.name != "Chibi_Character"){
+                t.GetComponent<SkinnedMeshRenderer>().material = GetComponent<Magesnames>().skins[winnerSkinID];
+            }
+        }
+        winner.transform.Find("Banner").GetComponent<Image>().sprite = GetComponent<Magesnames>().banners[winnerSkinID];
     }
 
     void OnA(){
@@ -86,15 +90,18 @@ public class MinigameVSManager : MonoBehaviour
             case PlayersManager.Minigames.Deceived :
                 PlayersManager.instance.currentMinigame = PlayersManager.Minigames.DF;
                 PlayersManager.instance.nextMinigame = PlayersManager.Minigames.DF;
+                BlackFade.instance.FadeOutToScene("CommandsScreen");
             break;
             case PlayersManager.Minigames.DF :
                 PlayersManager.instance.currentMinigame = PlayersManager.Minigames.KTB;
                 PlayersManager.instance.nextMinigame = PlayersManager.Minigames.KTB;
+                BlackFade.instance.FadeOutToScene("CommandsScreen");
             break;
             case PlayersManager.Minigames.KTB :
+                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.LB_TOTAL;
+                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.LB_TOTAL;
                 BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
             break;
         }
-        BlackFade.instance.FadeOutToScene("CommandsScreen");
     }
 }

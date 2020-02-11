@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Linq;
+using UnityEngine.UI;
 
 public class DeceivedManager : MonoBehaviour
 {
@@ -35,6 +36,15 @@ public class DeceivedManager : MonoBehaviour
     public float endZoomSize;
     public float endZoomWaitBeforeLoadVictoryScene;
     public Collider mapCollider;
+
+    [Space]
+    [Header("Players UI")]
+    public GameObject playersUI;
+    public enum Spells{
+        Shot,
+        Invisibility
+    }
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -51,11 +61,13 @@ public class DeceivedManager : MonoBehaviour
         StartCoroutine(StartMusic());
         spawner = CharactersSpawner.instance;
         initialCharacterNumber = 4 + spawner.amountOfEntities;
+        SetPlayersUI();
         Countdown.instance.cdState = Countdown.COUNTDOWN_STATES.IN_CD;
     }
     void Update(){
         if(CharactersSpawner.instance.players.Count == 1 && scoresSaved >= 4 && !gameEnded){
             gameEnded = true;
+            playersUI.SetActive(false);
 
             //Save minigame scoreboard to global scoreboard
             PlayersManager.instance.globalRanking[PlayersManager.Minigames.Deceived] = deceivedScores;
@@ -68,6 +80,29 @@ public class DeceivedManager : MonoBehaviour
             Despawner();
             EndGameTransition();
         }
+    }
+    
+    public void SetPlayersUI(){
+        foreach (Player p in playersInfos){
+            playersUI.transform.GetChild(p.Id).Find("Active/Icon").GetComponent<Image>().sprite = PlayersManager.instance.gameObject.GetComponent<DebugIcons>().icons[p.Skin];
+            playersUI.transform.GetChild(p.Id).Find("Inactive/Icon").GetComponent<Image>().sprite = PlayersManager.instance.gameObject.GetComponent<DebugIcons>().icons[p.Skin];
+        }
+    }
+
+    public void FadeUISpell(Spells spell, int playerID){
+        Transform playerUI = playersUI.transform.GetChild(playerID);
+        switch(spell){
+            case Spells.Shot : 
+                playerUI.Find("Active/Spell").gameObject.SetActive(false);
+            break;
+            case Spells.Invisibility : 
+                playerUI.Find("Active/Inv").gameObject.SetActive(false);
+            break;
+        }
+    }
+
+    public void KillUIPlayer(int playerID){
+        playersUI.transform.GetChild(playerID).Find("Active").gameObject.SetActive(false);
     }
  
 

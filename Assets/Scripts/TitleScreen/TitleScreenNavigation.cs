@@ -12,6 +12,8 @@ public class TitleScreenNavigation : MonoBehaviour
     SoundManager soundManager;
     void Start(){
         soundManager = SoundManager.instance;
+        PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
+        PlayersManager.instance.nextMinigame = PlayersManager.Minigames.Deceived;
     }
 
     void OnEnable(){
