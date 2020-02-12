@@ -57,6 +57,14 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleDance"",
+                    ""type"": ""Button"",
+                    ""id"": ""263957c0-7e32-4f7a-ac43-4764471fee5f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,11 +115,22 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3697575f-eae0-460a-9805-7569936af1d9"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27b29aef-3f44-4c2f-ae89-d80aaac5a94c"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleDance"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -139,6 +158,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         m_TipsScreen_Back = m_TipsScreen.FindAction("Back", throwIfNotFound: true);
         m_TipsScreen_Move = m_TipsScreen.FindAction("Move", throwIfNotFound: true);
         m_TipsScreen_Skip = m_TipsScreen.FindAction("Skip", throwIfNotFound: true);
+        m_TipsScreen_ToggleDance = m_TipsScreen.FindAction("ToggleDance", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -193,6 +213,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
     private readonly InputAction m_TipsScreen_Back;
     private readonly InputAction m_TipsScreen_Move;
     private readonly InputAction m_TipsScreen_Skip;
+    private readonly InputAction m_TipsScreen_ToggleDance;
     public struct TipsScreenActions
     {
         private @CharacterSelection m_Wrapper;
@@ -202,6 +223,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         public InputAction @Back => m_Wrapper.m_TipsScreen_Back;
         public InputAction @Move => m_Wrapper.m_TipsScreen_Move;
         public InputAction @Skip => m_Wrapper.m_TipsScreen_Skip;
+        public InputAction @ToggleDance => m_Wrapper.m_TipsScreen_ToggleDance;
         public InputActionMap Get() { return m_Wrapper.m_TipsScreen; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +248,9 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Skip.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
                 @Skip.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
                 @Skip.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnSkip;
+                @ToggleDance.started -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnToggleDance;
+                @ToggleDance.performed -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnToggleDance;
+                @ToggleDance.canceled -= m_Wrapper.m_TipsScreenActionsCallbackInterface.OnToggleDance;
             }
             m_Wrapper.m_TipsScreenActionsCallbackInterface = instance;
             if (instance != null)
@@ -245,6 +270,9 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
+                @ToggleDance.started += instance.OnToggleDance;
+                @ToggleDance.performed += instance.OnToggleDance;
+                @ToggleDance.canceled += instance.OnToggleDance;
             }
         }
     }
@@ -265,5 +293,6 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
+        void OnToggleDance(InputAction.CallbackContext context);
     }
 }

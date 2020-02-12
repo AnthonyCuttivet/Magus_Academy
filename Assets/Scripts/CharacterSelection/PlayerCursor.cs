@@ -127,6 +127,10 @@ public class PlayerCursor : MonoBehaviour
         CharacterSelectionManager.instance.ready = true;
     }
 
+    void OnToggleDance(){
+        CharacterSelectionManager.instance.willDance = true;
+    }
+
     void ChangeBannerAlpha(float value){
         var banner = CharacterSelectionManager.instance.banners[currentPlayer.Id].GetComponent<Image>();
         var tempColor = banner.color;

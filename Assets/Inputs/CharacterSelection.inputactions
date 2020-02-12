@@ -44,6 +44,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ToggleDance",
+                    "type": "Button",
+                    "id": "263957c0-7e32-4f7a-ac43-4764471fee5f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -94,11 +102,22 @@
                 {
                     "name": "",
                     "id": "3697575f-eae0-460a-9805-7569936af1d9",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27b29aef-3f44-4c2f-ae89-d80aaac5a94c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleDance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

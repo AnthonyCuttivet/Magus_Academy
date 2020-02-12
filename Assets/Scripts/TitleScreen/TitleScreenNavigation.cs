@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TitleScreenNavigation : MonoBehaviour
 {
 
     public string selectedMenu;
     SoundManager soundManager;
+
+    public GameObject buttonsGO;
+    public GameObject arrow;
+
+
     void Start(){
         soundManager = SoundManager.instance;
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
@@ -25,13 +31,12 @@ public class TitleScreenNavigation : MonoBehaviour
     }
 
     void Update(){
-
         if(selectedMenu == ""){
             selectedMenu = EventSystem.current.currentSelectedGameObject.name;
         }
         else if(EventSystem.current.currentSelectedGameObject.name != selectedMenu){
-            OnChangeSelectedGO();
             selectedMenu = EventSystem.current.currentSelectedGameObject.name;
+            OnChangeSelectedGO();
         }        
     }
 
@@ -80,5 +85,12 @@ public class TitleScreenNavigation : MonoBehaviour
     }
     public void OnChangeSelectedGO(){
         soundManager.PlaySound("Menu_Switch");
+        foreach (Transform t in buttonsGO.transform){
+            if(t.name != selectedMenu){
+                t.GetComponent<TextMeshProUGUI>().enableVertexGradient = false;
+            }
+        }
+        buttonsGO.transform.Find(selectedMenu).GetComponent<TextMeshProUGUI>().enableVertexGradient = true;
+        arrow.transform.localPosition = new Vector3(arrow.transform.localPosition.x,EventSystem.current.currentSelectedGameObject.transform.localPosition.y,arrow.transform.localPosition.z);
     }
 }

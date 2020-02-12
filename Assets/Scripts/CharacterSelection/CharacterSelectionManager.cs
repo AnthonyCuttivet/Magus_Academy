@@ -28,6 +28,8 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public List<int> selectedSkins = new List<int>();
 
+    public bool willDance = false;
+
     [Space]
     [Header("Start Overlay")]
     
@@ -72,6 +74,9 @@ public class CharacterSelectionManager : MonoBehaviour
         switch(cSState){
             case CSStates.IN_SELECTION :
                 if(selectedCount == 4){
+                    if(willDance){
+                        StartDance();
+                    }
                     cSState = CSStates.ALL_SELECTED;
                     ToggleStartOverlay();
                 }
@@ -82,6 +87,9 @@ public class CharacterSelectionManager : MonoBehaviour
                     ToggleStartOverlay();
                 }
                 if(ready){
+                    if(willDance){
+                        SoundManager.instance.StopMusic("Dance");
+                    }
                     SetRandomSkins();
                     //Start game with selected gamemode
                     switch(PlayersManager.instance.gamemode){
@@ -105,7 +113,7 @@ public class CharacterSelectionManager : MonoBehaviour
         if(ready && !readyFlag){
 
             readyFlag = true;
-            //StartDance();
+            
             switch(PlayersManager.instance.gamemode){
                 case PlayersManager.Gamemodes.Single:
                     LoadMinigameSelection();
@@ -154,10 +162,10 @@ public class CharacterSelectionManager : MonoBehaviour
     }
 
     public void StartDance(){
-        gameObject.GetComponent<AudioSource>().Play();
+        SoundManager.instance.PlayMusic("Dance");
         foreach (GameObject character in characters){
             Animator animator = character.transform.GetComponent<Animator>();
-            animator.Play("DanceMoves");    
+            animator.SetTrigger("isDancing");
         }
     }
 
