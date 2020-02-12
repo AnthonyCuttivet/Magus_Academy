@@ -38,6 +38,7 @@ public class KTB_Player : MonoBehaviour
     float wallJumpedMinimumCurrentTime;
     public float knockBackTime;
     public GameObject feetSmoke;
+    public GameObject jumpSmoke;
 
 
     //Bool
@@ -112,7 +113,7 @@ public class KTB_Player : MonoBehaviour
             velocity.x = directionalInput.x * speed;
             velocity.y = rb.velocity.y;
             if(knockBacked){                                     //air control after a wall jump
-                velocity = Vector2.Lerp(rb.velocity, (new Vector2(directionalInput.x * speed, rb.velocity.y)), 5 * Time.deltaTime);
+                velocity = Vector2.Lerp(rb.velocity, (new Vector2(directionalInput.x * speed, rb.velocity.y)), 3 * Time.deltaTime);
             }
             else if(wallJumped){                                     //air control after a wall jump
                 velocity = Vector2.Lerp(rb.velocity, (new Vector2(directionalInput.x * speed, rb.velocity.y)), 10 * Time.deltaTime);
@@ -127,7 +128,7 @@ public class KTB_Player : MonoBehaviour
                 //wallStick();
             }
             else{                                                               //air control
-                velocity.x = directionalInput.x * speed;
+                velocity.x = Mathf.Lerp(rb.velocity.x, directionalInput.x * speed, 15 * Time.deltaTime);
                 velocity.y = rb.velocity.y;
                 
             } 
@@ -172,6 +173,7 @@ public class KTB_Player : MonoBehaviour
                 if(!collisions.passingTroughPlatform){
                     if(collisions.onGround){
                         isJumping = true;
+                        
                     }
                 }
             }
@@ -192,6 +194,8 @@ public class KTB_Player : MonoBehaviour
                             velocity = new Vector2(velocity.x, 0);
                             velocity += Vector2.up * jumpForce;  
                             inputIncoming = true;
+                            jumpSmoke.GetComponent<ParticleSystem>().Simulate(0.0f, true, true);
+                            jumpSmoke.GetComponent<ParticleSystem>().Play();
                         }
                 }
                 else if(airJumpCount > 0){
@@ -199,6 +203,8 @@ public class KTB_Player : MonoBehaviour
                     velocity = new Vector2(velocity.x, 0);
                     velocity += Vector2.up * jumpForce;  
                     inputIncoming = true;
+                    jumpSmoke.GetComponent<ParticleSystem>().Simulate(0.0f, true, true);
+                    jumpSmoke.GetComponent<ParticleSystem>().Play();
                 }
             }           
         }
@@ -265,10 +271,12 @@ public class KTB_Player : MonoBehaviour
         } 
     }
     void DropTroughPlatform(){
-        foreach(Collider2D groundCollider in collisions.groundColliders){
-            if(groundCollider.CompareTag("PassingTrough") && !collisions.ignoredColliders.Contains(groundCollider)){
-                Physics2D.IgnoreCollision(collid,groundCollider);
-                collisions.ignoredColliders.Add(groundCollider);
+        if(collisions.groundColliders.Count > 0){
+            foreach(Collider2D groundCollider in collisions.groundColliders){
+                if(groundCollider.CompareTag("PassingTrough") && !collisions.ignoredColliders.Contains(groundCollider)){
+                    Physics2D.IgnoreCollision(collid,groundCollider);
+                    collisions.ignoredColliders.Add(groundCollider);
+                }
             }
         }
     }
@@ -304,7 +312,6 @@ public class KTB_Player : MonoBehaviour
         }
     }
     public virtual void OnAttackHit(){
-        Debug.Log("animHit");
         melee.Attack(melee.playersInRange);
     }
     public void Death(){
