@@ -46,14 +46,15 @@ public class CollisionCheck : MonoBehaviour
     //[HideInInspector]
     public List<Collider2D> bodyColliders = new List<Collider2D>();
     //[HideInInspector]
-    public List<Collider2D> roofColliders,groundColliders;
+    public List<Collider2D> roofColliders = new List<Collider2D>();
+    public List<Collider2D> groundColliders = new List<Collider2D>();
     public KTB_Player player;
 
     void Start()
     {
         //collid = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        jumpVelocityFrame = 28 * Time.deltaTime;
+        jumpVelocityFrame = 28 * Time.deltaTime * 4;
         bodySize = collid.bounds.size * new Vector2(.8f,.9f);
         
     }

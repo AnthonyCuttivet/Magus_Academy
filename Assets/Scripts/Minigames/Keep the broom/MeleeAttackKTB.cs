@@ -27,7 +27,6 @@ public class MeleeAttackKTB : KTB_MeleeAttack
     }
 
     void OnTriggerEnter2D(Collider2D collider){
-        Debug.Log(collider.gameObject.name);
         if(collider.CompareTag("PlayerHitbox") && collider != player.collid){
             playersInRangeKTB.Add(collider.GetComponentInParent<PlayerKTB>());
         }  

@@ -55,7 +55,7 @@ public class KeepTheBroom : MonoBehaviour
         foreach(Player player in playersInfos){
             skinToUse.Add(skinsDatabase[player.Skin]);
         }
-        IgnoreCollisionsPlayers();
+        //IgnoreCollisionsPlayers();
         AssignControllerToPlayer();
         //SoloSceneAssign();
         SetTimeScoreText();
@@ -89,9 +89,6 @@ public class KeepTheBroom : MonoBehaviour
                         }
                     }
                 }
-                else{
-                    PickUpBroomFromGround();
-                }
             break;
             case KTB_States.AFTER_GAME :
                 if(!endGameReveal){
@@ -104,9 +101,7 @@ public class KeepTheBroom : MonoBehaviour
     }
     }
 
-    void PickUpBroomFromGround(){ 
-        foreach(PlayerKTB player in players){
-            if(Vector2.Distance(player.transform.position,broom.position) < pickUpDistance && !broomIsHold && !player.knockBacked && !player.dead){
+    public void PickUpBroomFromGround(PlayerKTB player){ 
                 broomMoveYLoop.Kill();
                 broomIsHold = true;
                 broomHolder = player;  
@@ -116,9 +111,7 @@ public class KeepTheBroom : MonoBehaviour
                 broom.parent = playersHand[player.playerNumber];
                 broom.localPosition = broomHoldingPosition;
                
-                broom.GetComponent<Rigidbody2D>().isKinematic = true;
-            }
-        }  
+                broom.GetComponent<Rigidbody2D>().isKinematic = true;  
     }
      public void DropBroom(PlayerKTB target){
         target.airJumpCount -= 1;
