@@ -187,41 +187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.size
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].name
-      value: Dance
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 82222d88448f4aa45893179f26b2933b, type: 3}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].isFadeIn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: musiques.Array.data[35].isFadeOut
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}
 --- !u!1 &353248346

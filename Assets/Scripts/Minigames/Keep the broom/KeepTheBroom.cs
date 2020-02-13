@@ -37,6 +37,8 @@ public class KeepTheBroom : MonoBehaviour
     public TextMeshProUGUI winText;
     Tween broomMoveYLoop;
     public int maximumScore;
+    SoundManager soundManager;
+    public GameObject pickUpEffect;
 
 
 
@@ -60,6 +62,7 @@ public class KeepTheBroom : MonoBehaviour
         //SoloSceneAssign();
         SetTimeScoreText();
         broomMoveYLoop = StartBroomLevitation();
+        soundManager = SoundManager.instance;
     }
 
     void Update(){
@@ -70,7 +73,7 @@ public class KeepTheBroom : MonoBehaviour
                         countDown.GetComponent<Countdown>().cdState = Countdown.COUNTDOWN_STATES.IN_CD;
                     break;
                     case Countdown.COUNTDOWN_STATES.AFTER_CD :
-                        //StartMusic();
+                        PlayMusic();
                         KTB_State = KTB_States.IN_GAME;
                     break;
                 }
@@ -102,26 +105,25 @@ public class KeepTheBroom : MonoBehaviour
     }
 
     public void PickUpBroomFromGround(PlayerKTB player){ 
-                broomMoveYLoop.Kill();
-                broomIsHold = true;
-                broomHolder = player;  
-                broomHolder.holdingBroom = true; 
-                broomHolder.airJumpCount += 1;
-                broomHolder.maxAirJumpCount +=1;
-                broom.parent = playersHand[player.playerNumber];
-                broom.localPosition = broomHoldingPosition;
-               
-                broom.GetComponent<Rigidbody2D>().isKinematic = true;  
+        if(broomHolder != player){
+            broomMoveYLoop.Kill();
+            broomIsHold = true;
+            broomHolder = player;  
+            broomHolder.holdingBroom = true; 
+            broomHolder.airJumpCount += 1;
+            broomHolder.maxAirJumpCount +=1;
+            broom.parent = playersHand[player.playerNumber];
+            broom.localPosition = broomHoldingPosition;
+            broom.GetComponent<Rigidbody2D>().isKinematic = true;  
+            PickUpBroomEffect(player.transform);
+            PickRandomPickUpSound(playersInfos[player.playerNumber].Skin);
+            
+        }
     }
      public void DropBroom(PlayerKTB target){
         target.airJumpCount -= 1;
         target.maxAirJumpCount -=1;
         target.holdingBroom = false;
-        //broomHolder = (PlayerKTB)broomHolder.knockBacker;
-        //broomHolder.airJumpCount += 1;
-        //broomHolder.maxAirJumpCount +=1;
-        //broomHolder.holdingBroom = true;
-        //broom.localPosition = broomHoldingPosition;
         broom.parent = null;
         broom.GetComponent<Rigidbody2D>().isKinematic = false;
         broomHolder = null;
@@ -140,6 +142,8 @@ public class KeepTheBroom : MonoBehaviour
         broomHolder.holdingBroom = true;
         broom.parent = broomHolder.transform;
         broom.localPosition = broomHoldingPosition;
+        PickUpBroomEffect(stealer.transform);
+        PickRandomPickUpSound(playersInfos[stealer.playerNumber].Skin);
     }
     public void BroomRespawn(){
         if(broomIsHold){
@@ -224,7 +228,7 @@ public class KeepTheBroom : MonoBehaviour
 
 
     IEnumerator FadeWinText(){
-        winText.text = "VICTORY";
+        winText.text = "VICTOIRE";
         //winText.text = skinsDatabase[playersInfos[broomHolder.playerNumber].Skin].name;
         winText.transform.DOScale(1,1f).SetEase(Ease.OutBounce);
         yield return winText.DOFade(1,1).SetEase(Ease.InOutSine).WaitForCompletion();
@@ -250,6 +254,20 @@ public class KeepTheBroom : MonoBehaviour
         playerInput.currentActionMap.Disable();
         playerInput.SwitchCurrentActionMap("Alive");
         playerInput.GetComponent<KTB_Player>().playerInput = playerInput;
+    }
+    void PlayMusic(){
+        soundManager.FadeInMusic("KTB_Main",2);
+    }
+    void PickRandomPickUpSound(int skin){
+        string skinName = ((CharacterAttribute.MagesAttributes)skin).ToString();
+        Debug.Log(skinName);
+        string[] soundsName = new string[] {"KTB_" + skinName + "_1"};
+        soundManager.PlayRandomSound(soundsName);
+    }
+    void PickUpBroomEffect(Transform spawn){
+        GameObject pickUpEffectGO = Instantiate(pickUpEffect,spawn.position,spawn.rotation);
+        Destroy(pickUpEffectGO,3);
+        
     }
 
 }

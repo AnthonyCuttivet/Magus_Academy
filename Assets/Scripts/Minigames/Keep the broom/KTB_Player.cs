@@ -78,7 +78,6 @@ public class KTB_Player : MonoBehaviour
     void Update()
     {
         if(!dead && KeepTheBroom.instance.KTB_State != KeepTheBroom.KTB_States.BEFORE_GAME){
-            
             //WallJumpedUpdate();
             KnockBackedUpdate();
             CalculVelocity();

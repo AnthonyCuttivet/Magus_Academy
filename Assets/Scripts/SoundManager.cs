@@ -236,6 +236,10 @@ public class SoundManager : MonoBehaviour {
 		string soundToPlay = SoundsNames[Random.Range(0,SoundsNames.Length-1)];
 		PlaySound(soundToPlay);
 	}
+	public void PlayRandomMusic(string[] musicNames){
+		string musicToPlay = musicNames[Random.Range(0,musicNames.Length-1)];
+		PlayMusic(musicToPlay);
+	}
 	public void PlayMusicMuted(string musicName){
 		foreach(Sound _sound in musiques ){
 			if(_sound.name == musicName){

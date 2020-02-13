@@ -20,6 +20,8 @@ public class TitleScreenNavigation : MonoBehaviour
         soundManager = SoundManager.instance;
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         PlayersManager.instance.nextMinigame = PlayersManager.Minigames.Deceived;
+        PlayMagesThemeMuted();
+        soundManager.FadeInMusic("MainTheme",3);
     }
 
     void OnEnable(){
@@ -92,5 +94,10 @@ public class TitleScreenNavigation : MonoBehaviour
         }
         buttonsGO.transform.Find(selectedMenu).GetComponent<TextMeshProUGUI>().enableVertexGradient = true;
         arrow.transform.localPosition = new Vector3(arrow.transform.localPosition.x,EventSystem.current.currentSelectedGameObject.transform.localPosition.y,arrow.transform.localPosition.z);
+    }
+    void PlayMagesThemeMuted(){
+        foreach(string name in System.Enum.GetNames(typeof (CharacterAttribute.MagesAttributes))){
+            soundManager.PlayMusicMuted(name + "Theme");
+        }
     }
 }
