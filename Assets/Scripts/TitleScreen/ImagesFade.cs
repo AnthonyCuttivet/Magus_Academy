@@ -17,7 +17,9 @@ public class ImagesFade : MonoBehaviour
 
     [Space]
     [Header("Animation Vars")]
-    public float fadeDuration;
+    public float fadeInDuration;
+    public float fadeOutDuration;
+    public float interval;
     public float moveOffset;
     public float moveDuration;
 
@@ -44,9 +46,10 @@ public class ImagesFade : MonoBehaviour
         }
     }
     public void LoadNextImage(){
+        if(currentImageID == 8){currentImageID = 0;}
         currentImage = floatingImages.transform.GetChild(randomizedDic[currentImageID]).GetComponent<SpriteRenderer>();
         Sequence s = DOTween.Sequence();
-        s.Append(currentImage.DOFade(1, fadeDuration)).Join(currentImage.transform.DOMoveX(currentImage.transform.position.x + moveOffset, moveDuration)).Append(currentImage.DOFade(0, fadeDuration)).AppendCallback(() => {
+        s.Append(currentImage.DOFade(1, fadeInDuration)).Join(currentImage.transform.DOMoveX(currentImage.transform.position.x + moveOffset, moveDuration)).Append(currentImage.DOFade(0, fadeOutDuration)).AppendCallback(() => {
             currentImage.transform.position = baseImagePos;
             currentImageID++;
             LoadNextImage();

@@ -1037,7 +1037,7 @@ PrefabInstance:
     - target: {fileID: 7225640402861033576, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225640402861033581, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
@@ -2092,9 +2092,11 @@ MonoBehaviour:
   animStarted: 0
   baseImagePos: {x: 0, y: 0, z: 0}
   currentImageID: 0
-  fadeDuration: 3
+  fadeInDuration: 3
+  fadeOutDuration: 3
+  interval: 10
   moveOffset: 70
-  moveDuration: 15
+  moveDuration: 20
 --- !u!1 &1775845367
 GameObject:
   m_ObjectHideFlags: 0
