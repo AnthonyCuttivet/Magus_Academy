@@ -27,7 +27,7 @@
                     "id": "7b939a55-e042-4aee-ac0b-e0e95abd5e73",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold"
                 },
                 {
                     "name": "Left",

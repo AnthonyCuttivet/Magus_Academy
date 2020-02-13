@@ -421,6 +421,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: musiques.Array.size
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: musiques.Array.data[37].name
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: musiques.Array.data[37].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b43f9fcaf428f1c4896219b40287417c, type: 3}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: musiques.Array.data[37].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: musiques.Array.data[37].pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}
 --- !u!1 &353248346
@@ -2327,7 +2352,7 @@ MonoBehaviour:
   currentImageID: 0
   fadeInDuration: 3
   fadeOutDuration: 3
-  interval: 10
+  interval: 1
   moveOffset: 50
   moveDuration: 20
 --- !u!1 &1775845367

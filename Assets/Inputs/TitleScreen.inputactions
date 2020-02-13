@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "StickDeadzone(min=0.2)",
                     "interactions": ""
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "308dfcae-8f58-4ecd-96db-83727f83dc3e",
+                    "expectedControlType": "",
+                    "processors": "StickDeadzone(min=0.2)",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -91,6 +99,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "FastForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d38ee5ff-70b4-495c-86d1-4a0f0b1e1ee8",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

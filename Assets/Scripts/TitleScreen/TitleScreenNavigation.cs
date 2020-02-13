@@ -21,7 +21,7 @@ public class TitleScreenNavigation : MonoBehaviour
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         PlayersManager.instance.nextMinigame = PlayersManager.Minigames.Deceived;
         PlayMagesThemeMuted();
-        soundManager.FadeInMusic("MainTheme",3);
+        soundManager.FadeInMusic("Title",3);
     }
 
     void OnEnable(){

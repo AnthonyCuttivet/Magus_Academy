@@ -40,7 +40,7 @@ public class @CharacterSelection : IInputActionCollection, IDisposable
                     ""id"": ""02945c5d-6b8e-4ee9-882b-26687e02688d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""Move"",

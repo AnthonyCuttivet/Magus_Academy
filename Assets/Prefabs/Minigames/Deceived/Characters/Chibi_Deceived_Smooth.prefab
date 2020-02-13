@@ -1929,7 +1929,7 @@ GameObject:
   - component: {fileID: 7020997105716220740}
   m_Layer: 0
   m_Name: Chibi_Deceived_Smooth
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1960,7 +1960,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477041238809559571}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1aa71c10b30edda4598be5653d9a150e, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 93a127c4830755b41a5cc6bb35958e18, type: 3}
   m_Controller: {fileID: 9100000, guid: 4604cc8143a0851489e81fed6050ea57, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0

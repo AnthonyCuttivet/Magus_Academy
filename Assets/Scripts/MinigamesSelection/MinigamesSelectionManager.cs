@@ -47,6 +47,13 @@ public class MinigamesSelectionManager : MonoBehaviour
         BlackFade.instance.FadeOutToScene("CommandsScreen");
         soundManager.PlaySound("Menu_Validate");
     }
+
+    void OnBack(){
+        PlayersManager.instance.playersList = new List<Player>();
+        BlackFade.instance.FadeOutToScene("CharacterSelection");
+        soundManager.PlaySound("Menu_Cancel");
+    }
+
     public void OnChangeSelectedGO(){
         soundManager.PlaySound("Menu_Switch");
     }
