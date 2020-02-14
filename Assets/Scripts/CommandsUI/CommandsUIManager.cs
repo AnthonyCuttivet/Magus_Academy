@@ -9,8 +9,18 @@ using DG.Tweening;
 using System.Linq;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+
 public class CommandsUIManager : MonoBehaviour
 {
+
+
+    public enum COMMANDSSTATES {
+        NOT_READY,
+        ALL_READY
+    }
+
+    public COMMANDSSTATES commandsState;
+
     public static CommandsUIManager instance;
     public GameObject commandsPlayerPrefab;
     public GameObject playerIcons;
@@ -20,6 +30,7 @@ public class CommandsUIManager : MonoBehaviour
     public GameObject BG;
     SoundManager soundManager;
     public float fadeVolumeTime;
+    public GameObject startCanvas;
     [Space]
     [Header("Backgrounds")]
     public Sprite deceivedBG;
@@ -133,9 +144,37 @@ public class CommandsUIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        switch(commandsState){
+            case COMMANDSSTATES.NOT_READY :
+                if(readyCount == 4){
+                    commandsState = COMMANDSSTATES.ALL_READY;
+                    ToggleStartOverlay();
+                }
+            break;
+            case COMMANDSSTATES.ALL_READY :
+                if(readyCount < 4){
+                    commandsState = COMMANDSSTATES.NOT_READY;
+                    ToggleStartOverlay();
+                }
+            break;
+        }
         if(start && !startFlag){
             startFlag = true;
             StartMiniGame(PlayersManager.instance.nextMinigame.ToString());
+        }
+    }
+
+    public void ToggleStartOverlay(){
+        if(commandsState == COMMANDSSTATES.NOT_READY){
+            startCanvas.transform.Find("StartOverlay").gameObject.GetComponent<StartOverlayAnim>().Back();
+            Sequence s = DOTween.Sequence();
+            startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(0,1);
+            startCanvas.SetActive(false);
+        }else if(commandsState == COMMANDSSTATES.ALL_READY){
+            startCanvas.SetActive(true);
+            startCanvas.transform.Find("StartOverlay").gameObject.SetActive(true);
+            startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(.8f,1);
+            startCanvas.transform.Find("StartOverlay").GetComponent<StartOverlayAnim>().PlayOverlayAnimation();
         }
     }
 
