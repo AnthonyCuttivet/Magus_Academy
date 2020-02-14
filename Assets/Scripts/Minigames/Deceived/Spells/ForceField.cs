@@ -35,11 +35,14 @@ public class ForceField : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
     void OnDestroy(){
         foreach (GameObject g in invisibleObjects){
-            foreach(Transform t in g.transform.Find("Parts")){
-                if(t.name != "Chibi_Character"){
-                    t.GetComponent<SkinnedMeshRenderer>().enabled = true;
+            if(g.GetComponent<PlayerControls>().alive == true){
+                foreach(Transform t in g.transform.Find("Parts")){
+                    if(t.name != "Chibi_Character"){
+                        t.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                    }
                 }
             }
         }

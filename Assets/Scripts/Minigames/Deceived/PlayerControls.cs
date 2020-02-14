@@ -212,6 +212,9 @@ public class PlayerControls : Controls
 
     public override void Kill(int killer){
 
+        //Remove skin
+        KillAnimationFinished();
+
         //Fade UI
         DeceivedManager.instance.KillUIPlayer(infos.Id);
 
