@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
@@ -136,10 +138,16 @@ public class CharacterSelectionManager : MonoBehaviour
     }
 
     public void ToggleStartOverlay(){
-        if(startCanvas.activeSelf == true){
+        if(cSState == CSStates.IN_SELECTION){
+            startCanvas.transform.Find("StartOverlay").gameObject.GetComponent<StartOverlayAnim>().Back();
+            Sequence s = DOTween.Sequence();
+            startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(0,1);
             startCanvas.SetActive(false);
-        }else{
+        }else if(cSState == CSStates.ALL_SELECTED){
             startCanvas.SetActive(true);
+            startCanvas.transform.Find("StartOverlay").gameObject.SetActive(true);
+            startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(.8f,1);
+            startCanvas.transform.Find("StartOverlay").GetComponent<StartOverlayAnim>().PlayOverlayAnimation();
         }
     }
 
