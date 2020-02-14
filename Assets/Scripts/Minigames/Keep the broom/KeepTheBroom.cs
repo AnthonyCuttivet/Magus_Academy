@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Users;
 using System.Linq;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class KeepTheBroom : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class KeepTheBroom : MonoBehaviour
     public float targetHoldingTime;
     public Vector3 broomHoldingOrientation;
     public Vector2 broomSpawnPosition;
-    public BarFiller scoreP1, scoreP2,scoreP3,scoreP4;
+    public TextMeshProUGUI scoreP1, scoreP2,scoreP3,scoreP4;
+    public Image iconP1,iconP2,iconP3,iconP4;
     public InputActionAsset actions;
     public static KeepTheBroom instance;
     public Material[] skinsDatabase;
@@ -39,6 +41,8 @@ public class KeepTheBroom : MonoBehaviour
     public int maximumScore;
     SoundManager soundManager;
     public GameObject pickUpEffect;
+    public GameObject crown;
+    GameObject crownGo;
 
 
 
@@ -61,6 +65,7 @@ public class KeepTheBroom : MonoBehaviour
         AssignControllerToPlayer();
         //SoloSceneAssign();
         SetTimeScoreText();
+        setIconScore();
         broomMoveYLoop = StartBroomLevitation();
         soundManager = SoundManager.instance;
     }
@@ -105,7 +110,7 @@ public class KeepTheBroom : MonoBehaviour
     }
 
     public void PickUpBroomFromGround(PlayerKTB player){ 
-        if(broomHolder != player){
+        if(broomHolder != player && !broomIsHold){
             broomMoveYLoop.Kill();
             broomIsHold = true;
             broomHolder = player;  
@@ -117,6 +122,8 @@ public class KeepTheBroom : MonoBehaviour
             broom.GetComponent<Rigidbody2D>().isKinematic = true;  
             PickUpBroomEffect(player.transform);
             PickRandomPickUpSound(playersInfos[player.playerNumber].Skin);
+            crown.transform.parent = player.transform;
+            crown.transform.localPosition = new Vector3(0,6,0);
             
         }
     }
@@ -144,6 +151,8 @@ public class KeepTheBroom : MonoBehaviour
         broom.localPosition = broomHoldingPosition;
         PickUpBroomEffect(stealer.transform);
         PickRandomPickUpSound(playersInfos[stealer.playerNumber].Skin);
+        crown.transform.parent = stealer.transform;
+        crown.transform.localPosition = new Vector3(0,6,0);
     }
     public void BroomRespawn(){
         if(broomIsHold){
@@ -176,16 +185,20 @@ public class KeepTheBroom : MonoBehaviour
     }
 
     void UpdateScoreText(){
-        scoreP1.ChangeFillAmount(players[0].broomHoldingTime);
-        scoreP2.ChangeFillAmount(players[1].broomHoldingTime);
-        scoreP3.ChangeFillAmount(players[2].broomHoldingTime);
-        scoreP4.ChangeFillAmount(players[3].broomHoldingTime);
+        scoreP1.text = ((int)(targetHoldingTime - players[0].broomHoldingTime)).ToString();
+        scoreP2.text = ((int)(targetHoldingTime - players[1].broomHoldingTime)).ToString();
+        scoreP3.text = ((int)(targetHoldingTime - players[2].broomHoldingTime)).ToString();
+        scoreP4.text = ((int)(targetHoldingTime - players[3].broomHoldingTime)).ToString();
     }
     void SetTimeScoreText(){
-        scoreP1.maxAmount = targetHoldingTime;
-        scoreP2.maxAmount = targetHoldingTime;
-        scoreP3.maxAmount = targetHoldingTime;
-        scoreP4.maxAmount = targetHoldingTime;
+        scoreP1.color = PlayersManager.instance.transform.GetComponent<DebugIcons>().colors[playersInfos[0].Skin];
+        scoreP2.color = PlayersManager.instance.transform.GetComponent<DebugIcons>().colors[playersInfos[1].Skin];
+        scoreP3.color = PlayersManager.instance.transform.GetComponent<DebugIcons>().colors[playersInfos[2].Skin];
+        scoreP4.color = PlayersManager.instance.transform.GetComponent<DebugIcons>().colors[playersInfos[3].Skin];
+        scoreP1.text = ((int)targetHoldingTime).ToString();
+        scoreP2.text = ((int)targetHoldingTime).ToString();
+        scoreP3.text = ((int)targetHoldingTime).ToString();
+        scoreP4.text = ((int)targetHoldingTime).ToString();
     }
     public void SetBroomOrientation(){
         broom.localRotation = new Quaternion(broomHoldingOrientation.x,broomHoldingOrientation.y,broomHoldingOrientation.z,broom.rotation.w);
@@ -266,9 +279,15 @@ public class KeepTheBroom : MonoBehaviour
     }
     void PickUpBroomEffect(Transform spawn){
         GameObject pickUpEffectGO = Instantiate(pickUpEffect,spawn.position,spawn.rotation);
-        Destroy(pickUpEffectGO,3);
-        
+        Destroy(pickUpEffectGO,3); 
     }
+    void setIconScore(){
+        iconP1.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[0].Skin];
+        iconP2.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[1].Skin];
+        iconP3.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[2].Skin];
+        iconP4.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[3].Skin];
+    }
+    
 
 }
 
