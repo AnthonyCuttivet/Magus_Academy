@@ -212,9 +212,6 @@ public class PlayerControls : Controls
 
     public override void Kill(int killer){
 
-        //Remove skin
-        KillAnimationFinished();
-
         //Fade UI
         DeceivedManager.instance.KillUIPlayer(infos.Id);
 
@@ -241,6 +238,9 @@ public class PlayerControls : Controls
             DeceivedManager.instance.scoresSaved++;
         }
         animator.SetTrigger("isKilled");
+
+        //Remove skin
+        KillAnimationFinished();
     }
     public void KillAnimationFinished(){
         foreach(Transform g in gameObject.transform.Find("Parts")){
