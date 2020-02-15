@@ -238,13 +238,6 @@ public class PlayerControls : Controls
             DeceivedManager.instance.scoresSaved++;
         }
         animator.SetTrigger("isKilled");
-
-        while(animator.GetNextAnimatorStateInfo(0).normalizedTime < 1){
-
-        }
-
-        //Remove skin
-        KillAnimationFinished();
     }
     public void KillAnimationFinished(){
         foreach(Transform g in gameObject.transform.Find("Parts")){
