@@ -147,7 +147,7 @@ public class KeepTheBroom : MonoBehaviour
         broomHolder.airJumpCount += 1;
         broomHolder.maxAirJumpCount +=1;
         broomHolder.holdingBroom = true;
-        broom.parent = broomHolder.transform;
+        broom.parent = playersHand[stealer.playerNumber];
         broom.localPosition = broomHoldingPosition;
         PickUpBroomEffect(stealer.transform);
         PickRandomPickUpSound(playersInfos[stealer.playerNumber].Skin);
