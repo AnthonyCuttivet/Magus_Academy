@@ -50,6 +50,7 @@ public class StartOverlayAnim : MonoBehaviour
     }
 
     public void PlayOverlayAnimation(){
+        SoundManager.instance.PlaySound("PressStart");
         s
             .Join(leftVBG.GetComponent<SpriteRenderer>().DOFade(alphaValue, fadeDuration))
             .Join(leftVBG.DOLocalMoveY(0, moveDuration))

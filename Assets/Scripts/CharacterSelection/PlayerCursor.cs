@@ -85,6 +85,9 @@ public class PlayerCursor : MonoBehaviour
                 //Skin already selected
             }
             else{
+                if(CharacterSelectionManager.instance.announcer){
+                    SoundManager.instance.PlaySound("CS"+currentSelection);
+                }
                 hasSelected = true;
                 PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
                 //Set banner alpha to 1
@@ -128,7 +131,7 @@ public class PlayerCursor : MonoBehaviour
     }
 
     void OnToggleDance(){
-        CharacterSelectionManager.instance.willDance = true;
+        CharacterSelectionManager.instance.announcer = !CharacterSelectionManager.instance.announcer;
     }
 
     void ChangeBannerAlpha(float value){

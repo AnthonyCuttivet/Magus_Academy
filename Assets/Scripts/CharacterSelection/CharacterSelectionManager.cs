@@ -31,6 +31,7 @@ public class CharacterSelectionManager : MonoBehaviour
     public List<int> selectedSkins = new List<int>();
 
     public bool willDance = false;
+    public bool announcer = false;
 
     [Space]
     [Header("Start Overlay")]
@@ -64,8 +65,8 @@ public class CharacterSelectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         soundManager = SoundManager.instance;
-        //soundManager.PlayMusic("MainTheme");
-        CheckSpecialSkin();
+        soundManager.PlayMusic("MainTheme");
+        //CheckSpecialSkin();
         //PlayMagesThemeMuted();
     }
 

@@ -27,6 +27,8 @@ public class DragonsManager : MonoBehaviour
     public GameObject playersGO;
     public TextMeshProUGUI timerText;
     public GameObject countDown;
+    public GameObject finish;
+    public float finishSeconds;
     public GameObject fishableZone;
     public bool playersInitialized = false;
     public GameObject ScoresUI;
@@ -164,6 +166,14 @@ public class DragonsManager : MonoBehaviour
         }
         print("GRBAT : " + tmpsc3);
 
+        SoundManager.instance.PlaySound("CountDown");
+        finish.SetActive(true);
+
+        StartCoroutine(ShowFinish());
+    }
+
+    public IEnumerator ShowFinish(){
+        yield return new WaitForSeconds(finishSeconds);
         //Switch to next scene
         switch(PlayersManager.instance.gamemode){
             case PlayersManager.Gamemodes.Single :
@@ -174,6 +184,8 @@ public class DragonsManager : MonoBehaviour
             break;
         }
     }
+
+
 
     void ToggleFishableZone(bool activated){
         fishableZone.SetActive(activated);

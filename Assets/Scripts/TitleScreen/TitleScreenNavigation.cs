@@ -83,6 +83,7 @@ public class TitleScreenNavigation : MonoBehaviour
     public void OnClickStartGame(int gamemode){
         soundManager.PlaySound("Menu_Validate");
         PlayersManager.instance.gamemode = (PlayersManager.Gamemodes) gamemode;
+        soundManager.StopMusic("Title");
         BlackFade.instance.FadeOutToScene("CharacterSelection");
     }
     public void OnChangeSelectedGO(){
