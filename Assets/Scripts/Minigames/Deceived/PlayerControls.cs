@@ -239,6 +239,10 @@ public class PlayerControls : Controls
         }
         animator.SetTrigger("isKilled");
 
+        while(animator.GetNextAnimatorStateInfo(0).normalizedTime < 1){
+
+        }
+
         //Remove skin
         KillAnimationFinished();
     }
