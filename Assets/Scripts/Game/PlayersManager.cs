@@ -43,6 +43,16 @@ public class PlayersManager : MonoBehaviour {
         InitializeScoreboard();
     }
 
+    void Update(){
+        //Security input
+        if(Input.GetKeyDown(KeyCode.F1)){
+            playersList = new List<Player>();
+            globalRanking = new Dictionary<Minigames, Dictionary<int, int>>();
+            SoundManager.instance.StopAllCoroutines();
+            BlackFade.instance.FadeOutToScene("TitleScreen");
+        }
+    }
+
     public void InitializeScoreboard(){
         for (int i = 0; i < 4; i++){
             globalRanking[PlayersManager.Minigames.LB_TOTAL][i] = 0;

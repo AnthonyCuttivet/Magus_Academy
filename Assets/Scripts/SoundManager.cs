@@ -304,4 +304,12 @@ public class SoundManager : MonoBehaviour {
 		return false;
 	}
 
+	public void FadeAllMusics(){
+		foreach(Sound _sound in musiques ){
+			if(_sound.isPlaying()){
+				FadeOutMusic(_sound.name,.5f);
+			}	
+		}
+	}
+
 }

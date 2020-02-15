@@ -821,21 +821,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterMenu
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4604cc8143a0851489e81fed6050ea57, type: 2}
-    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
-        type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 93a127c4830755b41a5cc6bb35958e18, type: 3}
-    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1aa71c10b30edda4598be5653d9a150e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -874,7 +859,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1aa71c10b30edda4598be5653d9a150e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1aa71c10b30edda4598be5653d9a150e,
         type: 3}
@@ -905,6 +890,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 93.53074
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4604cc8143a0851489e81fed6050ea57, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 93a127c4830755b41a5cc6bb35958e18, type: 3}
+    - target: {fileID: -6057140222963153312, guid: 1aa71c10b30edda4598be5653d9a150e,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aa71c10b30edda4598be5653d9a150e, type: 3}
@@ -1279,7 +1279,7 @@ PrefabInstance:
     - target: {fileID: 7225640402861033576, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225640402861033581, guid: 9688a82cb81b67241b394b9e71b95652,
         type: 3}

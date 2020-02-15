@@ -131,7 +131,7 @@ public class QTE : MonoBehaviour
     }
 
     void UpdateComboDisplay(){
-        comboTMP.text = combo.ToString();
+        comboTMP.text = "x"+combo.ToString();
     }
 
     void ResetCombo(){
