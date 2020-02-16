@@ -15,11 +15,11 @@ public class ImagesFade : MonoBehaviour
     public Vector3 baseImagePos;
     public int currentImageID = 0;
 
+
     [Space]
     [Header("Animation Vars")]
     public float fadeInDuration;
     public float fadeOutDuration;
-    public float interval;
     public float moveOffset;
     public float moveDuration;
 
@@ -45,15 +45,27 @@ public class ImagesFade : MonoBehaviour
             animStarted = true;
         }
     }
+
+    public IEnumerator FadeOutImage(){
+        yield return new WaitForSeconds(moveDuration - fadeOutDuration);
+        Sequence s2 = DOTween.Sequence();
+        s2.Join(currentImage.DOFade(0, fadeOutDuration)).
+            AppendCallback(() => {
+                currentImage.transform.position = baseImagePos;
+                currentImageID++;
+                LoadNextImage();
+            });
+        
+    }
+
     public void LoadNextImage(){
         if(currentImageID == 8){currentImageID = 0;}
         currentImage = floatingImages.transform.GetChild(randomizedDic[currentImageID]).GetComponent<SpriteRenderer>();
+        StartCoroutine(FadeOutImage());
         Sequence s = DOTween.Sequence();
-        s.Append(currentImage.DOFade(1, fadeInDuration)).Join(currentImage.transform.DOMoveX(currentImage.transform.position.x + moveOffset, moveDuration)).Append(currentImage.DOFade(0, fadeOutDuration)).AppendCallback(() => {
-            currentImage.transform.position = baseImagePos;
-            currentImageID++;
-            LoadNextImage();
-        });
+        s.
+            Join(currentImage.DOFade(1, fadeInDuration)).
+            Join(currentImage.transform.DOMoveX(currentImage.transform.position.x + moveOffset, moveDuration));
     }
 
     public List<int> Shuffle(List<int> ts) {
