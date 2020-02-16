@@ -159,6 +159,7 @@ public class CharacterSelectionManager : MonoBehaviour
             startCanvas.SetActive(true);
             startCanvas.transform.Find("StartOverlay").gameObject.SetActive(true);
             startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(.8f,1);
+            VibrateAllControllers();
             startCanvas.transform.Find("StartOverlay").GetComponent<StartOverlayAnim>().PlayOverlayAnimation();
         }
     }

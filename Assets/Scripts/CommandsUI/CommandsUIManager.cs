@@ -31,6 +31,7 @@ public class CommandsUIManager : MonoBehaviour
     SoundManager soundManager;
     public float fadeVolumeTime;
     public GameObject startCanvas;
+
     [Space]
     [Header("Backgrounds")]
     public Sprite deceivedBG;
@@ -49,6 +50,17 @@ public class CommandsUIManager : MonoBehaviour
     [Space]
     [Header("Texts")]
     public GameObject texts;
+
+    [Space]
+    [Header("Controller Vibration")]
+
+    public float RD_LvibrationForce = .2f;
+    public float RD_RvibrationForce = 1;
+    public float RD_vibrationTime = .1f;
+
+    public float START_LvibrationForce = 0.8f;
+    public float START_RvibrationForce = .8f;
+    public float START_vibrationTime = .3f;
 
     [Space]
     [Header("UI Animations")]
@@ -174,6 +186,7 @@ public class CommandsUIManager : MonoBehaviour
             startCanvas.SetActive(true);
             startCanvas.transform.Find("StartOverlay").gameObject.SetActive(true);
             startCanvas.transform.Find("RawImage").GetComponent<RawImage>().DOFade(.8f,1);
+            VibrateAllControllers();
             startCanvas.transform.Find("StartOverlay").GetComponent<StartOverlayAnim>().PlayOverlayAnimation();
         }
     }
@@ -211,8 +224,20 @@ public class CommandsUIManager : MonoBehaviour
         current_slider.GetComponent<Image>().sprite = emptySlider;
         s_sliders.transform.GetChild(s_id).GetComponent<Image>().sprite = fullSlider;
         current_slider = s_sliders.transform.GetChild(s_id);
-
     }
+
+    public void VibrateAllControllers(){
+        foreach (Gamepad g in Gamepad.all){
+           g.SetMotorSpeeds(START_LvibrationForce,START_RvibrationForce); 
+           StartCoroutine(StopVibrationAfterSeconds(START_vibrationTime, g));
+        }
+    }
+
+    IEnumerator StopVibrationAfterSeconds(float seconds, Gamepad g){
+        yield return new WaitForSeconds(seconds);
+        g.PauseHaptics();
+    }
+
     void StartMiniGame(string miniGame){
         BlackFade.instance.FadeOutToScene(miniGame,fadeVolumeTime);
         StopMainTheme();
