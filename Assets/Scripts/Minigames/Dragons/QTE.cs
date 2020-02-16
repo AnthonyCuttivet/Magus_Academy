@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using TMPro;
 
 public class QTE : MonoBehaviour
@@ -103,8 +104,10 @@ public class QTE : MonoBehaviour
     }
 
     public void VibrateController(){
-        Gamepad.current.SetMotorSpeeds(LvibrationForce,RvibrationForce);
-        StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
+        if(Gamepad.current.deviceId == PlayersManager.instance.playersList[id].device.deviceId){
+            Gamepad.current.SetMotorSpeeds(LvibrationForce,RvibrationForce);
+            StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
+        }
     }
 
     IEnumerator StopVibrationAfterSeconds(float seconds){

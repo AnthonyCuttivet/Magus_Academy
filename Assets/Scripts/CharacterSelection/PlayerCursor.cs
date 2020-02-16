@@ -79,6 +79,18 @@ public class PlayerCursor : MonoBehaviour
         }
     }
 
+    public void VibrateController(float l, float r, float t){
+        if(Gamepad.current.deviceId == currentPlayer.device.deviceId){
+            Gamepad.current.SetMotorSpeeds(l,r);
+            StartCoroutine(StopVibrationAfterSeconds(t));
+        }
+    }
+
+    IEnumerator StopVibrationAfterSeconds(float seconds){
+        yield return new WaitForSeconds(seconds);
+        Gamepad.current.PauseHaptics();
+    }
+
     void OnValidate(){
         if(currentSelection != -1 && !hasSelected){
             if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection) && currentSelection != 0){
@@ -90,6 +102,9 @@ public class PlayerCursor : MonoBehaviour
                 }
                 hasSelected = true;
                 PlayersManager.instance.AddSkin(currentPlayer, currentSelection);
+                if(CharacterSelectionManager.instance.selectedCount < 4){
+                    VibrateController(CharacterSelectionManager.instance.CS_LvibrationForce, CharacterSelectionManager.instance.CS_RvibrationForce, CharacterSelectionManager.instance.CS_vibrationTime);
+                }
                 //Set banner alpha to 1
                 ChangeBannerAlpha(1f);
                 GetComponent<Collider>().isTrigger = true;

@@ -39,6 +39,17 @@ public class CharacterSelectionManager : MonoBehaviour
     public GameObject startCanvas;
 
     [Space]
+    [Header("Controller Vibration")]
+
+    public float CS_LvibrationForce = 0.1f;
+    public float CS_RvibrationForce = 1;
+    public float CS_vibrationTime = .2f;
+
+    public float START_LvibrationForce = 0.1f;
+    public float START_RvibrationForce = 1;
+    public float START_vibrationTime = .2f;
+
+    [Space]
     [Header("Special Skin")]
     public GameObject SP_MONSTER_SKIN;
     SoundManager soundManager;
@@ -168,6 +179,18 @@ public class CharacterSelectionManager : MonoBehaviour
         if(PlayerPrefs.GetInt("SP_MONSTER_SKIN") == 1){
             SP_MONSTER_SKIN.SetActive(true);
         }
+    }
+
+    public void VibrateAllControllers(){
+        foreach (Gamepad g in Gamepad.all){
+           g.SetMotorSpeeds(START_LvibrationForce,START_RvibrationForce); 
+           StartCoroutine(StopVibrationAfterSeconds(START_vibrationTime, g));
+        }
+    }
+
+    IEnumerator StopVibrationAfterSeconds(float seconds, Gamepad g){
+        yield return new WaitForSeconds(seconds);
+        g.PauseHaptics();
     }
 
     public void StartDance(){

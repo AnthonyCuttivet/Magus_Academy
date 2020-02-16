@@ -1540,6 +1540,12 @@ MonoBehaviour:
   willDance: 0
   announcer: 0
   startCanvas: {fileID: 1293600329}
+  CS_LvibrationForce: 0.2
+  CS_RvibrationForce: 1
+  CS_vibrationTime: 0.1
+  START_LvibrationForce: 0.8
+  START_RvibrationForce: 0.8
+  START_vibrationTime: 0.3
   SP_MONSTER_SKIN: {fileID: 1340880199}
   FadeVolumeTime: 2
   startPressed: 0

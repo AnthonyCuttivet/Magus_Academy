@@ -685,6 +685,12 @@ MonoBehaviour:
   selectedMenu: 
   buttonsGO: {fileID: 1274914483}
   arrow: {fileID: 1453280564}
+  C_LvibrationForce: 1
+  C_RvibrationForce: 1
+  C_vibrationTime: 0.1
+  S_LvibrationForce: 0.1
+  S_RvibrationForce: 0
+  S_vibrationTime: 0.1
 --- !u!1 &546379587
 GameObject:
   m_ObjectHideFlags: 0

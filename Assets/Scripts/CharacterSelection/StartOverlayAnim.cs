@@ -65,6 +65,8 @@ public class StartOverlayAnim : MonoBehaviour
 
             .Append(text.GetComponent<SpriteRenderer>().DOFade(1,textFadeDuration).SetLoops(int.MaxValue,LoopType.Yoyo));
 
+        CharacterSelectionManager.instance.VibrateAllControllers();
+
     }
 
     public void Back(){

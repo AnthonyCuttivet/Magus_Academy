@@ -15,6 +15,17 @@ public class TitleScreenNavigation : MonoBehaviour
     public GameObject buttonsGO;
     public GameObject arrow;
 
+    [Space]
+    [Header("Controller Vibration")]
+
+    public float C_LvibrationForce = 0.1f;
+    public float C_RvibrationForce = 1;
+    public float C_vibrationTime = .2f;
+
+    public float S_LvibrationForce = 0.1f;
+    public float S_RvibrationForce = 1;
+    public float S_vibrationTime = .2f;
+
 
     void Start(){
         soundManager = SoundManager.instance;
@@ -71,22 +82,31 @@ public class TitleScreenNavigation : MonoBehaviour
         }
     }
 
+    public void VibrateController(float l, float r, float t){
+        Gamepad.current.SetMotorSpeeds(l,r);
+        StartCoroutine(StopVibrationAfterSeconds(t));
+    }
+
+    IEnumerator StopVibrationAfterSeconds(float seconds){
+        yield return new WaitForSeconds(seconds);
+        Gamepad.current.PauseHaptics();
+    }
+
     public void ToCredits(){
+        VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
         soundManager.PlaySound("Menu_Validate");
         BlackFade.instance.FadeOutToScene("Credits");
     }
 
-    public void BackToSplashScreen(){
-        soundManager.PlaySound("Menu_Validate");
-        BlackFade.instance.FadeOutToScene("SplashScreen");
-    }
     public void OnClickStartGame(int gamemode){
+        VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
         soundManager.PlaySound("Menu_Validate");
         PlayersManager.instance.gamemode = (PlayersManager.Gamemodes) gamemode;
         soundManager.StopMusic("Title");
         BlackFade.instance.FadeOutToScene("CharacterSelection");
     }
     public void OnChangeSelectedGO(){
+        VibrateController(S_LvibrationForce,S_LvibrationForce,S_vibrationTime);
         soundManager.PlaySound("Menu_Switch");
         foreach (Transform t in buttonsGO.transform){
             if(t.name != selectedMenu){
