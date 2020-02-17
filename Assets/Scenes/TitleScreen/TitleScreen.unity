@@ -424,62 +424,42 @@ PrefabInstance:
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[56].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[57].volume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[58].pitch
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[58].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[59].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[60].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[61].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[62].volume
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[63].volume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[19].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[20].volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[21].volume
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}
@@ -685,6 +665,7 @@ MonoBehaviour:
   selectedMenu: 
   buttonsGO: {fileID: 1274914483}
   arrow: {fileID: 1453280564}
+  hasClicked: 0
   C_LvibrationForce: 1
   C_RvibrationForce: 1
   C_vibrationTime: 0.1

@@ -5938,7 +5938,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   despawnRate: 2
-  EndGamePercentage: 0.279
+  EndGamePercentage: 0.25
   mapCenter: {fileID: 997895459}
   zoomDuration: 1.5
   endZoomSize: 7
@@ -6675,16 +6675,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.05
       objectReference: {fileID: 0}
-    - target: {fileID: 4768062912686041879, guid: 7ace848499229314a95b37b6fec14342,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4768062911206940025, guid: 7ace848499229314a95b37b6fec14342,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8390441590774782212, guid: 7ace848499229314a95b37b6fec14342,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -6710,12 +6700,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180.00002
       objectReference: {fileID: 0}
+    - target: {fileID: 4768062912686041879, guid: 7ace848499229314a95b37b6fec14342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4768062912674178866, guid: 7ace848499229314a95b37b6fec14342,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4768062911438782579, guid: 7ace848499229314a95b37b6fec14342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768062911206940025, guid: 7ace848499229314a95b37b6fec14342,
         type: 3}
       propertyPath: m_IsActive
       value: 0

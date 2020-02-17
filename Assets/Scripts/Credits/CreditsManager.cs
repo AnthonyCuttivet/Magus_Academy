@@ -18,7 +18,10 @@ public class CreditsManager : MonoBehaviour
     public bool isPressed = false;
 
 
-    // Update is called once per frame
+    void Start(){
+        SoundManager.instance.StopSound("Victory_Complete");
+        SoundManager.instance.FadeInMusic("Title",.5f);
+    }
     void Update(){
         switch(creditsState){
             case CREDITSSTATES.SCROLLING : 

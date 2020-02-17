@@ -162,6 +162,17 @@ public class SoundManager : MonoBehaviour {
 			}
 		}
 	}
+	
+	public void StopSound(string soundName){
+		foreach(Sound _sound in sounds ){
+			if(_sound.name == soundName){
+				if(_sound.isPlaying()){
+					_sound.Stop();
+				}
+
+			}
+		}
+	}
 	public void PlaySoundLoop(string soundName){
 		foreach(Sound _sound in sounds ){
 			if(_sound.name == soundName){

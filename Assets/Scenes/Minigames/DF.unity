@@ -5262,7 +5262,8 @@ MonoBehaviour:
   fishableZone: {fileID: 1623460155}
   playersInitialized: 0
   ScoresUI: {fileID: 1375358512}
-  timeLeft: 60
+  vthasPlayed: 0
+  timeLeft: 90
   basePoints: 50
   sequenceMultiplier: 10
   comboScale: 1

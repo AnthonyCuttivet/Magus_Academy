@@ -19,6 +19,8 @@ public class PlayerCursor : MonoBehaviour
     private Rigidbody rb;
     SoundManager soundManager;
     PlayerInput pInput;
+    public float vibratingTime;
+    public bool isVibrating = false;
 
     void OnEnable(){
         pInput = gameObject.GetComponent<PlayerInput>();
@@ -44,9 +46,8 @@ public class PlayerCursor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+
     }
 
     void FixedUpdate(){
@@ -80,19 +81,19 @@ public class PlayerCursor : MonoBehaviour
     }
 
     public void VibrateController(float l, float r, float t){
-        if(Gamepad.current.deviceId == currentPlayer.device.deviceId){
-            Gamepad.current.SetMotorSpeeds(l,r);
-            StartCoroutine(StopVibrationAfterSeconds(t));
-        }
+        pInput.user.pairedDevices[0].MakeCurrent();
+        Gamepad.current.SetMotorSpeeds(l,r);
+        StartCoroutine(StopVibrationAfterSeconds(t));
     }
 
     IEnumerator StopVibrationAfterSeconds(float seconds){
         yield return new WaitForSeconds(seconds);
+        pInput.user.pairedDevices[0].MakeCurrent();
         Gamepad.current.PauseHaptics();
     }
 
     void OnValidate(){
-        if(currentSelection != -1 && !hasSelected){
+        if(currentSelection != -1 && !hasSelected && CharacterSelectionManager.instance.lockSelection == false){
             if(CharacterSelectionManager.instance.selectedSkins.Contains(currentSelection) && currentSelection != 0){
                 //Skin already selected
             }

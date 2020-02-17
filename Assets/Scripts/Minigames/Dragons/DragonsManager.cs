@@ -33,6 +33,8 @@ public class DragonsManager : MonoBehaviour
     public bool playersInitialized = false;
     public GameObject ScoresUI;
 
+    public bool vthasPlayed = false;
+
     [Space]
     [Header("Minigame Vars")] 
     public float timeLeft;
@@ -90,7 +92,10 @@ public class DragonsManager : MonoBehaviour
                 }
             break;
             case DFStates.AFTER_GAME :
-
+                if(vthasPlayed == false){
+                    SoundManager.instance.PlaySound("Victory_Complete");
+                    vthasPlayed = true;
+                }
             break;
 
         }
@@ -132,9 +137,6 @@ public class DragonsManager : MonoBehaviour
         foreach(string theme in magesThemes){
             Debug.Log(theme);
             SoundManager.instance.FadeOutMusic("DF_" + theme,2f);
-            if(theme != "Earth"){
-                SoundManager.instance.FadeInMusic("DF_" + theme,2f);
-            }
         }
         SoundManager.instance.FadeOutMusic("DF_Main",2f);
     }
@@ -143,28 +145,10 @@ public class DragonsManager : MonoBehaviour
         ToggleFishableZone(false);
         EndMusic();
 
-        string tmpsc = "";
-        foreach (KeyValuePair<int,int> kvp in dragonsScoreboard){
-            tmpsc += "["+kvp.Key + ":" + kvp.Value+"]";
-        }
-        print("DFLSCR : " + tmpsc);
 
         PlayersManager.instance.globalRanking[PlayersManager.Minigames.DF] = dragonsScoreboard;
 
-
-        string tmpsc2 = "";
-        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in PlayersManager.instance.globalRanking){
-            tmpsc2 += "["+kvp.Key + ":" + kvp.Value[0]+"]";
-        }
-        print("GRBUT : " + tmpsc2);
-
         PlayersManager.instance.UpdateTotals(PlayersManager.Minigames.DF);
-
-        string tmpsc3 = "";
-        foreach (KeyValuePair<PlayersManager.Minigames,Dictionary<int,int>> kvp in PlayersManager.instance.globalRanking){
-            tmpsc3 += "["+kvp.Key + ":" + kvp.Value[0]+"]";
-        }
-        print("GRBAT : " + tmpsc3);
 
         SoundManager.instance.PlaySound("CountDown");
         finish.SetActive(true);

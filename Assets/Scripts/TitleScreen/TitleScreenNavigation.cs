@@ -15,6 +15,8 @@ public class TitleScreenNavigation : MonoBehaviour
     public GameObject buttonsGO;
     public GameObject arrow;
 
+    public bool hasClicked = false;
+
     [Space]
     [Header("Controller Vibration")]
 
@@ -31,7 +33,6 @@ public class TitleScreenNavigation : MonoBehaviour
         soundManager = SoundManager.instance;
         PlayersManager.instance.currentMinigame = PlayersManager.Minigames.Deceived;
         PlayersManager.instance.nextMinigame = PlayersManager.Minigames.Deceived;
-        PlayMagesThemeMuted();
         soundManager.FadeInMusic("Title",3);
     }
 
@@ -93,17 +94,23 @@ public class TitleScreenNavigation : MonoBehaviour
     }
 
     public void ToCredits(){
-        VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
-        soundManager.PlaySound("Menu_Validate");
-        BlackFade.instance.FadeOutToScene("Credits");
+        if(hasClicked == false){
+            VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
+            soundManager.PlaySound("Menu_Validate");
+            BlackFade.instance.FadeOutToScene("Credits");
+            hasClicked = true;
+        }
     }
 
     public void OnClickStartGame(int gamemode){
-        VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
-        soundManager.PlaySound("Menu_Validate");
-        PlayersManager.instance.gamemode = (PlayersManager.Gamemodes) gamemode;
-        soundManager.StopMusic("Title");
-        BlackFade.instance.FadeOutToScene("CharacterSelection");
+        if(hasClicked == false){
+            VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
+            soundManager.PlaySound("Menu_Validate");
+            PlayersManager.instance.gamemode = (PlayersManager.Gamemodes) gamemode;
+            soundManager.FadeOutMusic("Title", 3);
+            BlackFade.instance.FadeOutToScene("CharacterSelection",3);
+            hasClicked = true;
+        }
     }
     public void OnChangeSelectedGO(){
         VibrateController(S_LvibrationForce,S_LvibrationForce,S_vibrationTime);

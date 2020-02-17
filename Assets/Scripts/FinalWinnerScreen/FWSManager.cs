@@ -14,7 +14,7 @@ public class FWSManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        SoundManager.instance.PlayMusic("Victory");
+        //SoundManager.instance.PlayMusic("Victory");
     }
 
     // Update is called once per frame

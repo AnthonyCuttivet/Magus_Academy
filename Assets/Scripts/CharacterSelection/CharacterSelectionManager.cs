@@ -32,6 +32,7 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public bool willDance = false;
     public bool announcer = false;
+    public bool lockSelection = false;
 
     [Space]
     [Header("Start Overlay")]
@@ -76,9 +77,8 @@ public class CharacterSelectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         soundManager = SoundManager.instance;
-        soundManager.PlayMusic("MainTheme");
-        //CheckSpecialSkin();
-        //PlayMagesThemeMuted();
+        soundManager.FadeInMusic("MainTheme", 3);
+        PlayMagesThemeMuted();
     }
 
     // Update is called once per frame
@@ -229,8 +229,10 @@ public class CharacterSelectionManager : MonoBehaviour
         BlackFade.instance.FadeOutToScene("MinigamesScreen");
     }
     public void Return(){
+        lockSelection = true;
         soundManager.PlaySound("Menu_Return");
         StopAllSkinMusic();
+        soundManager.FadeOutMusic("MainTheme", FadeVolumeTime);
         BlackFade.instance.FadeOutToScene("TitleScreen",FadeVolumeTime);
     }
     public void StopAllSkinMusic(){

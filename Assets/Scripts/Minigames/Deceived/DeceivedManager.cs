@@ -158,13 +158,11 @@ public class DeceivedManager : MonoBehaviour
                 soundManager.FadeOutMusic("Deceived_MainTheme",2f);
                 soundManager.FadeInMusic("Deceived_MainEndTheme",2f);
                 transitionned = true;
-
-                
             }
         }
     }
     IEnumerator EndGameZoom(){
-        soundManager.PlaySound("Victory");
+        soundManager.PlaySound("Victory_Complete");
         StopAllMusic();
         Vector3 winnerPosition = CharactersSpawner.instance.players[0].transform.position;
         Camera camera = Camera.main;
@@ -183,9 +181,9 @@ public class DeceivedManager : MonoBehaviour
         camera.transform.DOLookAt(winnerPosition,zoomDuration);
         yield return new WaitForSeconds(zoomDuration);
         yield return new WaitForSeconds(endZoomWaitBeforeLoadVictoryScene);
-        while(soundManager.SoundIsPlaying("Victory")){
+/*         while(soundManager.SoundIsPlaying("Victory")){
             yield return null;
-        }
+        } */
         LoadVictoryScreen();                               
     }
     IEnumerator cameraZoom(Camera camera,float wantedSize,float duration){
@@ -204,6 +202,10 @@ public class DeceivedManager : MonoBehaviour
             soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "EndTheme",1f);
         }
         soundManager.FadeOutMusic("Deceived_MainEndTheme",2f);
+        foreach(int skin in PlayersManager.instance.playersList.Select(x => x.Skin)){
+            soundManager.FadeOutMusic("Deceived_" + (CharacterAttribute.MagesAttributes)skin + "Theme",1f);
+        }
+        soundManager.FadeOutMusic("Deceived_MainTheme",2f);
     }
 
 }

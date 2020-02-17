@@ -43,6 +43,7 @@ public class KeepTheBroom : MonoBehaviour
     public GameObject pickUpEffect;
     public GameObject crown;
     GameObject crownGo;
+    bool vthasPlayed;
 
 
 
@@ -102,8 +103,12 @@ public class KeepTheBroom : MonoBehaviour
                 if(!endGameReveal){
                     endGameReveal = true;
                     StartCoroutine(FadeWinText());
+                    StopAllMusics();
+                    if(vthasPlayed == false){
+                    SoundManager.instance.PlaySound("Victory_Complete");
+                    vthasPlayed = true;
+                }
                     SetFinalScore();
-                    ToNextScreen();
                 }
             break;
     }
@@ -246,6 +251,8 @@ public class KeepTheBroom : MonoBehaviour
         winText.transform.DOScale(1,1f).SetEase(Ease.OutBounce);
         yield return winText.DOFade(1,1).SetEase(Ease.InOutSine).WaitForCompletion();
         winText.transform.DOScale(1.1f,.8f).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+        yield return new WaitForSeconds(3);
+        ToNextScreen();
     }
     void SetFinalScore(){
         Dictionary<int,int> KTBscore = new Dictionary<int,int>();
@@ -286,6 +293,9 @@ public class KeepTheBroom : MonoBehaviour
         iconP2.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[1].Skin];
         iconP3.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[2].Skin];
         iconP4.sprite = PlayersManager.instance.transform.GetComponent<DebugIcons>().icons[playersInfos[3].Skin];
+    }
+    void StopAllMusics(){
+        soundManager.FadeOutMusic("KTB_Main",2);
     }
     
 
