@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: 972f8abbb32bd744bb71bde488d5f2d6
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      74: -7299603284881919207
+    second: "D\xE9s\xE9quilibre"
+  - first:
+      74: 4838494433744256494
+    second: Chibi_Character|Attaque
+  - first:
+      74: -3103061460103881019
+    second: Chibi_Character|Course
+  - first:
+      74: -3417768004750732685
+    second: "Chibi_Character|D\xE9c\xE8s"
+  - first:
+      74: 8915550726544895298
+    second: "Chibi_Character|D\xE9faite"
+  - first:
+      74: -7123192219391429873
+    second: "Chibi_Character|D\xE9s\xE9quilibre"
+  - first:
+      74: 2676508345837492692
+    second: Chibi_Character|Equilibre
+  - first:
+      74: 6465610647596611343
+    second: Chibi_Character|Invocation
+  - first:
+      74: -2248255364722111661
+    second: Chibi_Character|Marche
+  - first:
+      74: 6706491052038920791
+    second: "Chibi_Character|Mort_Ep\xE9e"
+  - first:
+      74: 2144765276658117779
+    second: Chibi_Character|Poing
+  - first:
+      74: 3017379315637928161
+    second: Chibi_Character|Salto
+  - first:
+      74: -2191754604688834604
+    second: Chibi_Character|Saut
+  - first:
+      74: -3103324087845500601
+    second: Chibi_Character|Saut_Idle
+  - first:
+      74: -4186533740827050213
+    second: Chibi_Character|Saut_Imp
+  - first:
+      74: -5889272286760832811
+    second: Chibi_Character|Saut_Land
+  - first:
+      74: -2209038207638801775
+    second: Chibi_Character|Sort_1
+  - first:
+      74: -5196432690360491114
+    second: Chibi_Character|Sort_2
+  - first:
+      74: -1962610161064658096
+    second: Chibi_Character|Statique
+  - first:
+      74: -8677345126439967242
+    second: Chibi_Character|Thriller
+  - first:
+      74: 3064951539495454200
+    second: Chibi_Character|Victoire
+  - first:
+      74: -4804172290460489660
+    second: Chibi_Character|Zombie
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
