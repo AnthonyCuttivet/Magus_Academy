@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -768,7 +768,7 @@ MonoBehaviour:
   broomHolder: {fileID: 0}
   pickUpDistance: 5
   broomHoldingPosition: {x: -1.69, y: -0.77, z: 1.29}
-  targetHoldingTime: 90
+  targetHoldingTime: 60
   broomHoldingOrientation: {x: 70, y: 50, z: -150}
   broomSpawnPosition: {x: 0, y: 0}
   scoreP1: {fileID: 1856375985}
@@ -43215,7 +43215,7 @@ PrefabInstance:
     - target: {fileID: 3755506992238155900, guid: ae7e030dfc94f5d4cb175f7be79c926a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.727435
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3755506992238155900, guid: ae7e030dfc94f5d4cb175f7be79c926a,
         type: 3}
@@ -43535,7 +43535,7 @@ PrefabInstance:
     - target: {fileID: 3755506992238155900, guid: ae7e030dfc94f5d4cb175f7be79c926a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6825647
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3755506992238155900, guid: ae7e030dfc94f5d4cb175f7be79c926a,
         type: 3}

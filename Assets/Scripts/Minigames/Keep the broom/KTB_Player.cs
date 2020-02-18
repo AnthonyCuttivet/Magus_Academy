@@ -312,6 +312,7 @@ public class KTB_Player : MonoBehaviour
     }
     public virtual void OnAttackHit(){
         melee.Attack(melee.playersInRange);
+        SoundManager.instance.PlaySound("Deceived_PunchHit");
     }
     public void Death(){
         dead = true;

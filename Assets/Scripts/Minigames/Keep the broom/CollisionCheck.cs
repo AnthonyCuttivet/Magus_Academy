@@ -54,7 +54,7 @@ public class CollisionCheck : MonoBehaviour
     {
         //collid = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        jumpVelocityFrame = 28 * Time.deltaTime;
+        jumpVelocityFrame = 28 * Time.deltaTime * 1.5f;
         bodySize = collid.bounds.size * new Vector2(.8f,.9f);
         
     }

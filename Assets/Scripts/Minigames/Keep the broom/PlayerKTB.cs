@@ -21,7 +21,7 @@ public class PlayerKTB : KTB_Player
          }
     }
     public override void OnAttackHit(){
-        Debug.Log("animHit");
+        SoundManager.instance.PlaySound("Deceived_PunchHit");
         meleeKTB.AttackKTB(meleeKTB.playersInRangeKTB);
     }
     public override void SetAnimation(){

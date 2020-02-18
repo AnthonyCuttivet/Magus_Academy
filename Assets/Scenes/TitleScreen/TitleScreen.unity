@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.9372549}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -444,32 +444,32 @@ PrefabInstance:
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[26].randomVolume
-      value: 0.1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[26].randomPitch
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[25].randomVolume
-      value: 0.1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[25].randomPitch
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[27].randomVolume
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
       propertyPath: sounds.Array.data[27].randomPitch
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
         type: 3}
@@ -545,6 +545,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[18].randomPitch
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: sounds.Array.data[28].randomVolume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
+        type: 3}
+      propertyPath: sounds.Array.data[28].randomPitch
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}
@@ -1187,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8509804, g: 0.8509804, b: 0.8509804, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
