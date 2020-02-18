@@ -145,6 +145,9 @@ public class CommandsUIManager : MonoBehaviour
 
 
     void Start(){
+        if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Tournament){
+            soundManager.FadeInMusic("MainTheme", 2);
+        }
         //Animate arrow
         AnimateArrows();
         //Set current thumbnail and slider

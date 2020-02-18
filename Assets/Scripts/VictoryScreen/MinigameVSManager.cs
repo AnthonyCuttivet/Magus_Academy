@@ -89,6 +89,7 @@ public class MinigameVSManager : MonoBehaviour
     void OnA(){
         if(hasClicked == false){
             hasClicked = true;
+            SoundManager.instance.StopSound("Victory_Complete");
             switch(PlayersManager.instance.currentMinigame){
                 case PlayersManager.Minigames.Deceived :
                     PlayersManager.instance.currentMinigame = PlayersManager.Minigames.DF;

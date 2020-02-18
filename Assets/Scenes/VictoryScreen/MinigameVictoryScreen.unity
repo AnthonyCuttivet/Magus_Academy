@@ -1110,6 +1110,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f15408aabea8637498da16368198874a, type: 3}
   - {fileID: 21300000, guid: f26540ae98f827c46becf9129dde3b96, type: 3}
   winner: {fileID: 172130037}
+  hasClicked: 0
 --- !u!4 &596534540
 Transform:
   m_ObjectHideFlags: 0

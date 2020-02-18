@@ -3751,6 +3751,81 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3190687977121825327, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 3249980269208397163, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 4810854588490818013, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 3844508612753357569, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 2037328132731386002, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 1062316840679661537, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 9191856987518888210, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 9038123986306198428, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 5479005233075182111, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 4665629162244892988, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 5772538316136687876, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 4310347297215826460, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 7035700096770916559, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 3765800392059546246, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
+    - target: {fileID: 6614417974910458498, guid: d426cd4ef8561fb468dd5e7e03d37a79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce604455e4ab2e34c899824b86250bed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d426cd4ef8561fb468dd5e7e03d37a79, type: 3}
 --- !u!1 &599216586
