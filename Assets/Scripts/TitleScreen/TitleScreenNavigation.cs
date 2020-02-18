@@ -83,19 +83,8 @@ public class TitleScreenNavigation : MonoBehaviour
         }
     }
 
-    public void VibrateController(float l, float r, float t){
-        Gamepad.current.SetMotorSpeeds(l,r);
-        StartCoroutine(StopVibrationAfterSeconds(t));
-    }
-
-    IEnumerator StopVibrationAfterSeconds(float seconds){
-        yield return new WaitForSeconds(seconds);
-        Gamepad.current.PauseHaptics();
-    }
-
     public void ToCredits(){
         if(hasClicked == false){
-            VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
             soundManager.PlaySound("Menu_Validate");
             BlackFade.instance.FadeOutToScene("Credits");
             hasClicked = true;
@@ -104,7 +93,6 @@ public class TitleScreenNavigation : MonoBehaviour
 
     public void OnClickStartGame(int gamemode){
         if(hasClicked == false){
-            VibrateController(C_LvibrationForce,C_LvibrationForce,C_vibrationTime);
             soundManager.PlaySound("Menu_Validate");
             PlayersManager.instance.gamemode = (PlayersManager.Gamemodes) gamemode;
             soundManager.FadeOutMusic("Title", 3);
@@ -113,7 +101,6 @@ public class TitleScreenNavigation : MonoBehaviour
         }
     }
     public void OnChangeSelectedGO(){
-        VibrateController(S_LvibrationForce,S_LvibrationForce,S_vibrationTime);
         soundManager.PlaySound("Menu_Switch");
         foreach (Transform t in buttonsGO.transform){
             if(t.name != selectedMenu){

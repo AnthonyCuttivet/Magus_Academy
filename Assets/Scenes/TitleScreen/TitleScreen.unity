@@ -421,46 +421,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[56].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[57].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[58].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[59].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[60].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[61].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[62].volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785447112527637524, guid: 0369205bb645beb45a2e084afc8e6d69,
-        type: 3}
-      propertyPath: sounds.Array.data[63].volume
-      value: 0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369205bb645beb45a2e084afc8e6d69, type: 3}
 --- !u!1 &353248346

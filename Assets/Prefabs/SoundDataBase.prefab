@@ -553,7 +553,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: ac19efeb9e74b7e4ea98bfa0db56e5d9, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: 13d0b545f43fb684ca2f01cff6b15ee5, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -571,7 +571,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: b91e6fa7743c18245a3e031ca0f5ca14, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: b7e5802bd1667304abe5d2d737deacb4, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -589,7 +589,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: 68789f74b88da6547984b31273da05fe, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: 96a388569ddcc6140ba3d3e3b1df2932, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: 0f2ae4b03d8227f47bf32d99daa1f1a0, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: a10d4909370adff40a3a7c60e443a999, type: 3}
-    volume: 0.1
+    volume: 0.25
     pitch: 1
     randomVolume: 0
     randomPitch: 0
@@ -625,6 +625,15 @@ MonoBehaviour:
     isFadeOut: 1
     finnishFade: 0
     clip: {fileID: 8300000, guid: cba32c8482aeb944e9f5bbe1d036a538, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+  - name: Surprise
+    isFadeIn: 0
+    isFadeOut: 0
+    finnishFade: 0
+    clip: {fileID: 8300000, guid: 931e03dd7bb873b4687e654d679158f7, type: 3}
     volume: 1
     pitch: 1
     randomVolume: 0

@@ -40,6 +40,7 @@ public class PlayersManager : MonoBehaviour {
     }
 
     void Start(){
+        Cursor.visible = false;
         InitializeScoreboard();
     }
 

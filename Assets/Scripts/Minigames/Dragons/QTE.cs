@@ -104,14 +104,14 @@ public class QTE : MonoBehaviour
     }
 
     public void VibrateController(){
-        if(Gamepad.current.deviceId == PlayersManager.instance.playersList[id].device.deviceId){
-            Gamepad.current.SetMotorSpeeds(LvibrationForce,RvibrationForce);
-            StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
-        }
+        gameObject.GetComponent<PlayerInput>().user.pairedDevices[0].MakeCurrent();
+        Gamepad.current.SetMotorSpeeds(LvibrationForce,RvibrationForce);
+        StartCoroutine(StopVibrationAfterSeconds(vibrationTime));
     }
 
     IEnumerator StopVibrationAfterSeconds(float seconds){
         yield return new WaitForSeconds(seconds);
+        gameObject.GetComponent<PlayerInput>().user.pairedDevices[0].MakeCurrent();
         Gamepad.current.PauseHaptics();
     }
 

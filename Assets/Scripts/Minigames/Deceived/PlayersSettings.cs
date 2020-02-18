@@ -14,6 +14,7 @@ public class PlayersSettings : MonoBehaviour
 
     public int pointsPerSecond = 10;
     public int pointsPerElimination = 100;
+    public int victoryPoints = 2500;
 
 
     void Awake(){

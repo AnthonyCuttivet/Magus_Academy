@@ -14,6 +14,7 @@ public class MinigameVSManager : MonoBehaviour
     public GameObject winner;
 
     private bool generated = false;
+    public bool hasClicked = false;
 
     void OnEnable(){
 
@@ -86,22 +87,25 @@ public class MinigameVSManager : MonoBehaviour
     }
 
     void OnA(){
-        switch(PlayersManager.instance.currentMinigame){
-            case PlayersManager.Minigames.Deceived :
-                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.DF;
-                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.DF;
-                BlackFade.instance.FadeOutToScene("CommandsScreen");
-            break;
-            case PlayersManager.Minigames.DF :
-                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.KTB;
-                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.KTB;
-                BlackFade.instance.FadeOutToScene("CommandsScreen");
-            break;
-            case PlayersManager.Minigames.KTB :
-                PlayersManager.instance.currentMinigame = PlayersManager.Minigames.LB_TOTAL;
-                PlayersManager.instance.nextMinigame = PlayersManager.Minigames.LB_TOTAL;
-                BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
-            break;
+        if(hasClicked == false){
+            hasClicked = true;
+            switch(PlayersManager.instance.currentMinigame){
+                case PlayersManager.Minigames.Deceived :
+                    PlayersManager.instance.currentMinigame = PlayersManager.Minigames.DF;
+                    PlayersManager.instance.nextMinigame = PlayersManager.Minigames.DF;
+                    BlackFade.instance.FadeOutToScene("CommandsScreen");
+                break;
+                case PlayersManager.Minigames.DF :
+                    PlayersManager.instance.currentMinigame = PlayersManager.Minigames.KTB;
+                    PlayersManager.instance.nextMinigame = PlayersManager.Minigames.KTB;
+                    BlackFade.instance.FadeOutToScene("CommandsScreen");
+                break;
+                case PlayersManager.Minigames.KTB :
+                    PlayersManager.instance.currentMinigame = PlayersManager.Minigames.LB_TOTAL;
+                    PlayersManager.instance.nextMinigame = PlayersManager.Minigames.LB_TOTAL;
+                    BlackFade.instance.FadeOutToScene("FinalWinnerScreen");
+                break;
+            }
         }
     }
 }
