@@ -33,6 +33,9 @@ public class KTB_MeleeAttack : MonoBehaviour
             foreach(KTB_Player target in playersToAttack){
                 KnockBack(target); 
             }
+            if(playersToAttack.Count > 0){
+                SoundManager.instance.PlaySound("Deceived_PunchHit");
+            }
         }
     }
 
