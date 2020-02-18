@@ -10,7 +10,7 @@ public class IlotsMove : MonoBehaviour
         foreach(Transform child in transform){
             foreach(Transform grandChild in child){
                 float randomX =  Random.Range(-.5f,.5f);
-                grandChild.DOMoveY(grandChild.position.y + (randomX + Mathf.Sign(randomX) * 1) / (grandChild.position.z / 30),Random.Range(5f,10f)).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+                grandChild.DOMoveY(grandChild.position.y + (randomX + Mathf.Sign(randomX) * 1) / (grandChild.position.z / 20),Random.Range(5f,10f)).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
             }
         }  
     }
