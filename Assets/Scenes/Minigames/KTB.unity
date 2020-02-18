@@ -768,7 +768,7 @@ MonoBehaviour:
   broomHolder: {fileID: 0}
   pickUpDistance: 5
   broomHoldingPosition: {x: -1.69, y: -0.77, z: 1.29}
-  targetHoldingTime: 30
+  targetHoldingTime: 90
   broomHoldingOrientation: {x: 70, y: 50, z: -150}
   broomSpawnPosition: {x: 0, y: 0}
   scoreP1: {fileID: 1856375985}
@@ -797,10 +797,12 @@ MonoBehaviour:
   KTB_State: 0
   countDown: {fileID: 1719084300}
   winText: {fileID: 76138685}
-  maximumScore: 25000
+  maximumScore: 20000
   pickUpEffect: {fileID: 5311999483051102999, guid: 38029b2c6c96d784dbb4ef98191808e3,
     type: 3}
   crown: {fileID: 996754224}
+  baseSpeed: 22
+  minimumSpeed: 7
 --- !u!4 &141607893
 Transform:
   m_ObjectHideFlags: 0

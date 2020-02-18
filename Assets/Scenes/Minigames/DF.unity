@@ -4405,6 +4405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qteState: 1
+  playerInput: {fileID: 0}
   QTEGO: {fileID: 955653429}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -4436,7 +4437,7 @@ MonoBehaviour:
   aimController: {fileID: 1530505034}
   score: 0
   combo: 0
-  id: 0
+  id: 2
   scoreTMP: {fileID: 1666204611}
   comboTMP: {fileID: 1672403103}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
@@ -5553,6 +5554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qteState: 1
+  playerInput: {fileID: 0}
   QTEGO: {fileID: 337281399}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -5584,7 +5586,7 @@ MonoBehaviour:
   aimController: {fileID: 1749561068}
   score: 0
   combo: 0
-  id: 0
+  id: 3
   scoreTMP: {fileID: 715747847}
   comboTMP: {fileID: 1884486834}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}
@@ -6428,6 +6430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qteState: 1
+  playerInput: {fileID: 0}
   QTEGO: {fileID: 1856179277}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -9536,6 +9539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qteState: 1
+  playerInput: {fileID: 0}
   QTEGO: {fileID: 1554783459}
   touches:
   - spriteTouche: {fileID: -4771941471064235093, guid: 8967ef02403222f4c84d06f21bfc7d2b,
@@ -9567,7 +9571,7 @@ MonoBehaviour:
   aimController: {fileID: 1720152271}
   score: 0
   combo: 0
-  id: 0
+  id: 1
   scoreTMP: {fileID: 1362789917}
   comboTMP: {fileID: 242689995}
   dot: {fileID: 21300000, guid: 181f8aa4a0aae97439974c0da13a660a, type: 3}

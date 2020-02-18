@@ -44,6 +44,8 @@ public class KeepTheBroom : MonoBehaviour
     public GameObject crown;
     GameObject crownGo;
     bool vthasPlayed;
+    public int baseSpeed = 22;
+    public int minimumSpeed = 5;
 
 
 
@@ -92,6 +94,7 @@ public class KeepTheBroom : MonoBehaviour
                     }
                     else{
                         IncreaseHoldingTime(); 
+                        OKBRoomer();
                         UpdateScoreText();
                         if(broomHolder.broomHoldingTime >= targetHoldingTime){
                             KTB_State = KTB_States.AFTER_GAME;
@@ -117,6 +120,7 @@ public class KeepTheBroom : MonoBehaviour
     public void PickUpBroomFromGround(PlayerKTB player){ 
         if(broomHolder != player && !broomIsHold){
             broomMoveYLoop.Kill();
+            player.speed = baseSpeed - minimumSpeed;
             broomIsHold = true;
             broomHolder = player;  
             broomHolder.holdingBroom = true; 
@@ -145,6 +149,8 @@ public class KeepTheBroom : MonoBehaviour
 
     public void StealBroom(PlayerKTB stealer, PlayerKTB target){
         broomMoveYLoop.Kill();
+        stealer.speed = baseSpeed - minimumSpeed;
+        target.speed = baseSpeed;
         target.airJumpCount -= 1;
         target.maxAirJumpCount -=1;
         target.holdingBroom = false;
@@ -176,6 +182,12 @@ public class KeepTheBroom : MonoBehaviour
                 broomHolder.broomHoldingTime = targetHoldingTime;
             }
         }      
+    }
+
+    public void OKBRoomer(){
+        if(broomHolder.speed >= minimumSpeed){
+            broomHolder.speed -= Time.deltaTime;
+        }
     }
 
     void IgnoreCollisionsPlayers(){

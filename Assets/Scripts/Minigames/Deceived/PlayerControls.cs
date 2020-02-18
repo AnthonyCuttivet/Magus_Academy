@@ -234,6 +234,7 @@ public class PlayerControls : Controls
 
         //if killer is winner save its score
         if(CharactersSpawner.instance.players.Count == 1){
+            gKiller.GetComponent<DeceivedScoring>().score += PlayersSettings.instance.victoryPoints;
             DeceivedManager.instance.deceivedScores[gKiller.GetComponent<PlayerControls>().infos.Id] = gKiller.GetComponent<DeceivedScoring>().score;
             DeceivedManager.instance.scoresSaved++;
         }
