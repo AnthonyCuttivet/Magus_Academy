@@ -40,5 +40,9 @@ public class KTB_PlayerInput : MonoBehaviour
         deathGamePlay.directionnalInput = value.Get<Vector2>();
     }
 
+    public void OnSelect(){
+        KeepTheBroom.instance.announcer = !KeepTheBroom.instance.announcer;
+    }
+
 
 }

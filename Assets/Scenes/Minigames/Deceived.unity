@@ -73,7 +73,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 1
-    m_BakeBackend: 1
+    m_BakeBackend: 2
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 512
@@ -1479,7 +1479,7 @@ PrefabInstance:
     - target: {fileID: 7454361809286747563, guid: d426cd4ef8561fb468dd5e7e03d37a79,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7675729242034791323, guid: d426cd4ef8561fb468dd5e7e03d37a79,
         type: 3}
@@ -6039,6 +6039,7 @@ MonoBehaviour:
   divineLightSpeed: 20
   pointsPerSecond: 250
   pointsPerElimination: 500
+  victoryPoints: 2500
 --- !u!114 &1461373008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6052,7 +6053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 7477041238809559571, guid: 16bf68024f2b7564ea342c4bc827cd35, type: 3}
-  amountOfEntities: 40
+  amountOfEntities: 60
   pooledEntities: []
   players: []
   PNJList: []

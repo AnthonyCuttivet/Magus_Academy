@@ -41,6 +41,14 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""84d36d97-41fd-47a9-afd3-f4b653cf26f5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -74,6 +82,17 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae0c9119-3ac4-4e6f-a073-ecc2f3679b80"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -145,6 +164,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
         m_Alive_Jump = m_Alive.FindAction("Jump", throwIfNotFound: true);
         m_Alive_Move = m_Alive.FindAction("Move", throwIfNotFound: true);
         m_Alive_Attack = m_Alive.FindAction("Attack", throwIfNotFound: true);
+        m_Alive_Select = m_Alive.FindAction("Select", throwIfNotFound: true);
         // Dead
         m_Dead = asset.FindActionMap("Dead", throwIfNotFound: true);
         m_Dead_DeathGamePlayAttack = m_Dead.FindAction("DeathGamePlayAttack", throwIfNotFound: true);
@@ -201,6 +221,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Alive_Jump;
     private readonly InputAction m_Alive_Move;
     private readonly InputAction m_Alive_Attack;
+    private readonly InputAction m_Alive_Select;
     public struct AliveActions
     {
         private @KTB_PlayerControls m_Wrapper;
@@ -208,6 +229,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Alive_Jump;
         public InputAction @Move => m_Wrapper.m_Alive_Move;
         public InputAction @Attack => m_Wrapper.m_Alive_Attack;
+        public InputAction @Select => m_Wrapper.m_Alive_Select;
         public InputActionMap Get() { return m_Wrapper.m_Alive; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +248,9 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                 @Attack.started -= m_Wrapper.m_AliveActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_AliveActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_AliveActionsCallbackInterface.OnAttack;
+                @Select.started -= m_Wrapper.m_AliveActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_AliveActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_AliveActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_AliveActionsCallbackInterface = instance;
             if (instance != null)
@@ -239,6 +264,9 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -298,6 +326,7 @@ public class @KTB_PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IDeadActions
     {

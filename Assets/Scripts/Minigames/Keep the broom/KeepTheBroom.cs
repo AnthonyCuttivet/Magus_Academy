@@ -46,6 +46,7 @@ public class KeepTheBroom : MonoBehaviour
     bool vthasPlayed;
     public int baseSpeed = 22;
     public int minimumSpeed = 5;
+    public bool announcer;
 
 
 
@@ -120,7 +121,7 @@ public class KeepTheBroom : MonoBehaviour
     public void PickUpBroomFromGround(PlayerKTB player){ 
         if(broomHolder != player && !broomIsHold){
             broomMoveYLoop.Kill();
-            player.speed = baseSpeed - minimumSpeed;
+            player.speed = baseSpeed - (minimumSpeed / 2);
             broomIsHold = true;
             broomHolder = player;  
             broomHolder.holdingBroom = true; 
@@ -149,7 +150,7 @@ public class KeepTheBroom : MonoBehaviour
 
     public void StealBroom(PlayerKTB stealer, PlayerKTB target){
         broomMoveYLoop.Kill();
-        stealer.speed = baseSpeed - minimumSpeed;
+        stealer.speed = baseSpeed - (minimumSpeed / 2);
         target.speed = baseSpeed;
         target.airJumpCount -= 1;
         target.maxAirJumpCount -=1;
@@ -291,8 +292,10 @@ public class KeepTheBroom : MonoBehaviour
         soundManager.FadeInMusic("KTB_Main",2);
     }
     void PickRandomPickUpSound(int skin){
+        if(announcer == true){
+            soundManager.PlaySound("Surprise");
+        }
         string skinName = ((CharacterAttribute.MagesAttributes)skin).ToString();
-        Debug.Log(skinName);
         string[] soundsName = new string[] {"KTB_" + skinName + "_1"};
         soundManager.PlayRandomSound(soundsName);
     }
