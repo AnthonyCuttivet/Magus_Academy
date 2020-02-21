@@ -48,7 +48,7 @@ public class PlayersManager : MonoBehaviour {
         //Debug musics
         string debugLine = "";
         foreach (Sound s in SoundManager.instance.musiques){
-            if(s.isPlaying()){
+            if(s.isPlaying() && s.volume > 0){
                 debugLine += "["+s.name+"]";
             }
         }

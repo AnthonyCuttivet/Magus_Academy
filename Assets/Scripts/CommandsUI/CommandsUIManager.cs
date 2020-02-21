@@ -145,6 +145,7 @@ public class CommandsUIManager : MonoBehaviour
 
 
     void Start(){
+        soundManager = SoundManager.instance;
         if(PlayersManager.instance.gamemode == PlayersManager.Gamemodes.Tournament){
             soundManager.FadeInMusic("MainTheme", 2);
         }
@@ -153,7 +154,6 @@ public class CommandsUIManager : MonoBehaviour
         //Set current thumbnail and slider
         current_thumbnail = s_thumbnails.transform.GetChild(0);
         current_slider = s_sliders.transform.GetChild(0);
-        soundManager = SoundManager.instance;
     }
 
 
