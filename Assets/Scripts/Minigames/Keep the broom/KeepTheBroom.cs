@@ -94,6 +94,9 @@ public class KeepTheBroom : MonoBehaviour
                         DropBroom(broomHolder);
                     }
                     else{
+                        if(broom.localPosition != broomHoldingPosition){
+                            broom.localPosition = broomHoldingPosition;
+                        }
                         IncreaseHoldingTime(); 
                         OKBRoomer();
                         UpdateScoreText();
@@ -187,7 +190,7 @@ public class KeepTheBroom : MonoBehaviour
 
     public void OKBRoomer(){
         if(broomHolder.speed >= minimumSpeed){
-            broomHolder.speed -= Time.deltaTime;
+            broomHolder.speed -= (Time.deltaTime / 2);
         }
     }
 

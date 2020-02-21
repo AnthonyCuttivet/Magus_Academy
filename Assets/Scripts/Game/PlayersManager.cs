@@ -45,14 +45,6 @@ public class PlayersManager : MonoBehaviour {
     }
 
     void Update(){
-        //Debug musics
-        string debugLine = "";
-        foreach (Sound s in SoundManager.instance.musiques){
-            if(s.isPlaying() && s.volume > 0){
-                debugLine += "["+s.name+"]";
-            }
-        }
-        print(debugLine);
         //Security input
         if(Input.GetKeyDown(KeyCode.F1)){
             playersList = new List<Player>();

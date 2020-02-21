@@ -802,7 +802,7 @@ MonoBehaviour:
     type: 3}
   crown: {fileID: 996754224}
   baseSpeed: 22
-  minimumSpeed: 7
+  minimumSpeed: 10
   announcer: 0
 --- !u!4 &141607893
 Transform:
