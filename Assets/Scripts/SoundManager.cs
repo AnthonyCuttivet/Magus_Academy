@@ -125,7 +125,7 @@ public class SoundManager : MonoBehaviour {
 	Sound[] sounds;
 	[SerializeField]
 
-	Sound[] musiques;
+	public Sound[] musiques;
 	[SerializeField]
 
 	public AudioMixerGroup MusicMixer;
@@ -315,10 +315,15 @@ public class SoundManager : MonoBehaviour {
 		return false;
 	}
 
-	public void FadeAllMusics(){
+	public void FadeAllMusicsAndSounds(){
 		foreach(Sound _sound in musiques ){
 			if(_sound.isPlaying()){
 				FadeOutMusic(_sound.name,.5f);
+			}	
+		}
+		foreach(Sound s in sounds ){
+			if(s.isPlaying()){
+				StopSound(s.name);
 			}	
 		}
 	}

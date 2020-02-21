@@ -45,11 +45,19 @@ public class PlayersManager : MonoBehaviour {
     }
 
     void Update(){
+        //Debug musics
+        string debugLine = "";
+        foreach (Sound s in SoundManager.instance.musiques){
+            if(s.isPlaying()){
+                debugLine += "["+s.name+"]";
+            }
+        }
+        print(debugLine);
         //Security input
         if(Input.GetKeyDown(KeyCode.F1)){
             playersList = new List<Player>();
             globalRanking = new Dictionary<Minigames, Dictionary<int, int>>();
-            SoundManager.instance.StopAllCoroutines();
+            SoundManager.instance.FadeAllMusicsAndSounds();
             BlackFade.instance.FadeOutToScene("TitleScreen");
         }
     }
